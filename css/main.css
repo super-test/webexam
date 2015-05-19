@@ -10,12 +10,6 @@
    Base styles: opinionated defaults
    ========================================================================== */
 
-html {
-    color: #222;
-    font-size: 1em;
-    line-height: 1.4;
-}
-
 /*
  * Remove text-shadow in selection highlight:
  * https://twitter.com/miketaylr/status/12228805301
@@ -40,7 +34,7 @@ html {
 
 hr {
     display: block;
-    height: 1px;
+	height: 1px;
     border: 0;
     border-top: 1px solid #ccc;
     margin: 1em 0;
@@ -93,34 +87,238 @@ textarea {
 
 /* ==========================================================================
    Author's custom styles
-   ========================================================================== */
+   ========================================================================== 
+* 1. Все размеры задаем в vh и vw !!!
 
+*/
+/* ********************************************************************************* Fonts */
 
+/* Основной шрифт */
+html { 
+    line-height: 1.5;							/* Высота линии */
+	font-family: 'Comic Sans MS'; 				/* Шрифт */
+    font-size: 1.1vw;							/* Размер основного шрифта */
+    color: darkslategray;						/* Цвет текста */
+}
 
+p {	
+	text-indent: 5vw; 							/* Отступ первой строки */
+}
 
+/* Ссылки крупнее, чем просто в тексте */
+.medium-link {
+	font-variant: small-caps; 					/* Прописные символы размером со строчные */
+	font-size: 2vw;								/* Размер шрифта как у заголовков в таблице */
+	font-weight: bold;							/* Полужирный шрифт */
+	text-decoration: none;						/* Убираем подчеркивание */
+	color: darkblue;							/* Цвет текста */
+}
 
+/* Посещенные ссылки */
+.medium-link:visited {
+	color: darkslategray;						/* Цвет текста */
+}
 
+/* Блоки с кодом */
+code {
+	font-family: 'Courier', monospace; 			/* Шрифт */
+	font-size: 1.3vw;							/* Размер шрифта */
+	font-weight: bold;							/* Полужирный шрифт */
+}
 
+.responsive-table caption {	
+	text-transform: uppercase;					/* Все буквы большие */
+	font-size: 2vw;								/* Размер шрифта */
+	font-weight: bold;							/* Полужирный шрифт */
+}
 
+/* Заголовки таблицы */
+.responsive-table th {	
+	text-align: center; 						/* Выравниваем текст заголовков по центру */
+	font-family: 'Arial', Helvetica, Verdana, sans-serif;
+	font-size: 2vw; 							/* Размер шрифта заголовков */
+	font-weight: bold;							/* Полужирное начертание */
+	color: darkslategray;						/* Цвет шрифта заголовков */
+}
 
+.responsive-table th, 
+details summary{
+	text-transform: uppercase;					/* Все буквы большие */
+	font-family: 'Monotype Corsiva', monospace;	/* Шрифт */
+}
 
+/* Встроенная таблица */
+.inner-table {
+	font-size: 1.3vw;							/* Размер шрифта чуть меньше, чем основной */
+}
 
+/* ********************************************************************************* Borders */
 
+.responsive-table {	
+	border-collapse: collapse;					/* Соединяем рамки таблицы */
+	border: 5px groove darkslategray;			/* Рамка для таблицы */	
+}
 
+.responsive-table td, 
+.responsive-table th,
+footer {
+	border: 2px inset darkslategray;			/* Рамка для ячеек */
+}
 
+.inner-table, 
+.inner-table th, 
+.inner-table tr, 
+.inner-table td {
+	border: 2px ridge darkslategray;   			/* Рамки вложенных таблиц */
+}
 
+footer {
+	border-bottom-left-radius: 50px 120px; 		/* Скругленные уголки */
+	border-bottom-right-radius: 50px 120px;
+}
 
+/* ********************************************************************************* Page-Proof */
+
+/* 
+* Размеры vw и vh отсчитываются от ширины/ высоты окна браузера, поэтому процентные размеры 
+* для родительских элементов html и body можно не задавать
+*/
+
+/* Меняем блочную модель для всех элементов */
+* {
+	box-sizing: border-box;
+}
+
+code {
+	width: 65vw;								/* Ширина внутренних блоков кода */
+	margin: 2vw auto;							/* Центрируем внутренние блоки кода */
+}
+
+footer {
+	height: 10vh;								/* Высота футера */
+}
+
+/* ***************************************************************************** Tables Page-Proof */
+
+/* Стиль для больших таблиц на всю страницу */
+.responsive-table {
+	width: 90vw; 								/* Ширина таблицы */
+	margin: 0 auto; 							/* Центрируем таблицу по горизонтали */
+}
+
+.responsive-table caption {						/* Заголовок таблицы */
+	margin-top: 2vh;
+	margin-bottom: 5vh;
+}
+
+.responsive-table td, 
+.responsive-table th {
+	padding: 1vw; 								/* Внутренние отступы */
+}
+
+/* Заголовок большой таблицы */
+.responsive-table thead tr th {
+	height: 10vh;	/* Высота у таблицы не задана, поэтому отсчитываем ее от высоты окна браузера */
+}
+
+.responsive-table tr td:first-child { 			/* В первую колонку не влазит заголовок */
+	width: 20vw;								/* Ширина первой колонки таблицы */
+}
+
+.inner-table {
+	 width: 75vw; 								/* Ширина внутренней таблицы */
+	 margin: 2vw auto;							/* Центрируем внутреннюю таблицу */
+ }
+
+/* ********************************************************************************* Backgrounds */
+
+.responsive-table tr:hover { 							/*Подсветка рядов таблицы */	
+	background: 
+		radial-gradient(circle at 2.02% 52.07%, #ece9e6, transparent 100%),
+		radial-gradient(circle at 97.98% 26.97%, #fff, transparent 100%),
+		radial-gradient(circle at 50% 50%, #000, #000 100%)			
+}
+
+/* --------------------------------------------------------------------------------- Gradients -- */
+
+html { 													/* Градиент страницы */
+	background: 
+		radial-gradient(circle at 2.02% 72.90%, #abbaab, transparent 100%),
+		radial-gradient(circle at 97.98% 17.89%, #ffffff, transparent 100%),
+		radial-gradient(circle at 50.00% 49.93%, rgba(255,255,255,0.5), transparent 100%),
+		radial-gradient(circle at 50% 50%, #000000, #000000 100%)
+}										
+
+.responsive-table thead,
+details summary {										/* Градиент заголовков таблиц */
+	background-color: 
+		rgb(197,199,214); /*top colour*/
+	background-image:         
+		linear-gradient(to bottom, rgba(197,199,214, 0.2), rgba(14,100,63, 0.2));
+}
+
+.responsive-table {										/* Градиент фона большой таблицы */			
+	background:
+		radial-gradient(circle at 2.02% 32.98%, #eeefff, transparent 70%),
+		radial-gradient(circle at 97.98% 52.07%, #e4eab5, transparent 70%),
+		radial-gradient(circle at 50% 50%, #e9edef, #e9edef 100%)
+}
+
+footer {
+	background: 
+		radial-gradient(circle at 2.02% 72.90%, #626962, transparent 100%)
+}
+
+/* ********************************************************************************* Shadows */
+
+.responsive-table, 
+footer {
+	box-shadow: 0px 0px 15px darkslategray;
+ }
+
+/* ********************************************************************************* Misc */
+
+/* ----------------------------------------------- Details -- */
+
+details[open] summary {
+	display: block;			/* иначе невозможно расположить внутренние элементы */
+}
+
+details[open]>code {
+	display: block; 		/* Только прямого потомкка */
+}
+
+details summary::-webkit-details-marker {
+	display: none; 			/* прячем родной значок */
+}
+
+details summary {
+  	padding: 5px;			/* размер блока */
+	cursor: pointer;	 	/* курсор-указатель */
+}
+
+details summary:before,
+details[open] summary:before {
+	content: " ⇓ ";			/* значок */
+	font-size: 2em;			/* размер значка */
+	color: darkslategray;	/* цвет значка в открытом состоянии */
+	margin-right: 5px;		/* расстояние от левого края до текста */
+}
+
+details[open] summary:before {
+	content: " ⇑ ";			/* значок в закрытом состоянии */
+}
 
 /* ==========================================================================
    Helper classes
    ========================================================================== */
-
+	  
 /*
  * Hide visually and from screen readers:
  */
 
 .hidden {
-    display: none !important;
+	display: none !important;
 }
 
 /*
@@ -129,7 +327,7 @@ textarea {
  */
 
 .visuallyhidden {
-    border: 0;
+	border: 0;
     clip: rect(0 0 0 0);
     height: 1px;
     margin: -1px;

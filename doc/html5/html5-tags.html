@@ -1,0 +1,1436 @@
+<!doctype html>
+
+<!--
+	Шпаргалка по тегам HTML. Блоки кода с подсветкой оформлены вручную для тренировки.
+	
+	+ Обеспечить поддержку details при помощи modernizer
+	==> Обеспечить подсветку синтаксиса - получится почти свой плагин
+	+ Через поиск проверить правильность написания <br />
+-->
+
+
+<html class="no-js" hreflang="ru">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>HTML5 Tags</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!-- Place favicon.ico in the root directory -->
+
+	<link rel="stylesheet" href="../../css/normalize.css">
+	<link rel="stylesheet" href="../../css/main.css">
+	<script src="../../js/vendor/modernizr-2.8.3.min.js"></script>
+
+	<!-- html5-support (details/summary) supported -->
+	<script src="../../js/vendor/logifill-details-min.js"></script>
+</head>
+
+<body>
+	<!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. 
+            Please <a href="http://browsehappy.com/">upgrade your browser</a> 
+            to improve your experience.</p>
+        <![endif]-->
+
+	<!-- Add your site or application content here -->
+
+	<article>
+
+		<table class="responsive-table">
+			<caption>теги html</caption>
+			<thead>
+				<tr>
+					<th>новые&nbsp;теги&nbsp;html5</th>
+					<th>описание</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<td colspan="2">footer</td>
+				</tr>
+			</tfoot>
+			<tbody>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/article.html#article" 
+								hreflang="en" 
+								title="W3C">article
+							</a>
+						&gt;
+					</td>
+					<td>
+						определяет независимое содержимое страницы 
+						(газетная статья, комментарий пользователя, запись в блоге и пр.).<br />
+						Не выделяется визуально, но используется поисковыми системами и браузерами 
+						для лучшего понимания структуры страницы.<br /> 
+						Не может быть наследником элемента &lt;address&gt;.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;article&gt;<br />
+									&nbsp; &nbsp; &lt;h1&gt; Титаник &lt;/h1&gt;<br />
+									&nbsp; &nbsp; &lt;p&gt; <br />
+										&nbsp; &nbsp; &nbsp; &quot;Титаник&quot; 
+										— британский пароход компании 
+										&quot;Уайт Стар Лайн&quot;. Во время первого рейса 
+										14 апреля 1912 года столкнулся с айсбергом 
+										и через 2 часа 40 минут затонул. 
+										На борту находилось 1316 пассажиров и 908 членов экипажа, 
+										всего 2224 человека.<br />
+									&nbsp; &nbsp; &lt;/p&gt; <br />
+								&lt;/article&gt;
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/address.html#address" 
+								hreflang="en" 
+								title="W3C">aside
+							</a>
+						&gt;
+					</td>
+					<td>
+						используется для выделения элементов, 
+						которые не являются частью содержимого, но косвенно с ним связаны.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;article&gt;<br />
+									&nbsp; &nbsp; &lt;h1&gt;Титаник&lt;/h1&gt; <br />
+									&nbsp; &nbsp; &lt;p&gt;<br />
+										&nbsp; &nbsp; &nbsp; &quot;Титаник&quot; 
+										— британский пароход компании 
+										&quot;Уайт Стар Лайн&quot;. Во время первого рейса 
+										14 апреля 1912 года столкнулся с айсбергом 
+										и через 2 часа 40 минут затонул. 
+										На борту находилось 1316 пассажиров и 908 членов экипажа, 
+										всего 2224 человека.<br />
+									&nbsp; &nbsp; &lt;/p&gt;<br />
+									&nbsp; &nbsp; &lt;aside&gt;<br />
+										&nbsp; &nbsp; &nbsp;Гибель Титаника - 
+										это одно из самых крупных кораблекрушений 
+										в истории человечества.<br />
+										&nbsp; &nbsp; &lt;/aside&gt;<br /> 
+								&lt;/article&gt;
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/audio.html#audio" 
+								hreflang="en" 
+								title="W3C">audio
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет встраивать на веб-страницы аудио треки.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>посмотреть атрибуты</summary>
+							<table class="inner-table">
+								<thead>
+									<tr>
+										<th>атрибут</th>
+										<th>значение</th>
+										<th>описание</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>autoplay</td>
+										<td><code>autoplay</code></td>										
+										<td>
+											указывает, что аудио трек должен начинать проигрываться 
+											сразу после загрузки страницы.
+										</td>
+									</tr>
+									<tr>
+										<td>controls</td>
+										<td><code>controls</code></td>									
+										<td>
+											указывает, что кнопки управления 
+											(кнопка начала воспроизведения, регулятор звука и т.д.) 
+											должны быть отображены.
+										</td>
+									</tr>
+									<tr>
+										<td>loop</td>
+										<td><code>loop</code></td>										
+										<td>
+											указывает, что трек после окончания 
+											должен снова начинать проигрываться.
+										</td>
+									</tr>
+									<tr>
+										<td>load</td>
+										<td>
+											<code>
+												auto<br />
+												metadata<br />
+												none
+											</code>
+										</td>
+										<td>
+											указывает, что трек после окончания должен 
+											снова начинать проигрываться.
+										</td>
+									</tr>
+									<tr>
+										<td>src</td>
+										<td><code>url</code></td>										
+										<td>
+											Указывает URL-адрес аудио файла.
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;audio controls=&quot;controls&quot;&gt;<br />
+									&nbsp;&lt;source src=&quot;ghost_k-stop.ogv&quot; 
+										type=&quot;audio/ogg&quot; /&gt;<br /> 
+									&nbsp;&lt;source src=&quot;ghost_k-stop.mp3&quot; 
+										type=&quot;audio/mpeg&quot; /&gt;<br /> 
+									&nbsp;Данный текст будет выведен, если браузер пользователя 
+										не поддерживает элемент audio.<br />
+								&lt;/audio&gt;
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/canvas.html#canvas" 
+								hreflang="en" 
+								title="W3C">canvas
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет рисовать на веб-страницах произвольные фигуры с помощью JavaScript 
+						(или других клиентских скриптов). При создании элемента canvas необходимо задать 
+						атрибут id (определяет имя элемента для доступа к нему из скриптов) 
+						и его размеры с помощью атрибутов width (ширина) и height (высота). 
+						Содержимое помещенное между тэгами будет отображено, 
+						если браузер пользователя не поддерживает canvas.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;canvas id='draw' width='300' height='200'&gt;<br />
+									&nbsp;Вы видите это сообщение, 
+									потому что Ваш браузер не поддерживает canvas.<br />
+								&lt;/canvas&gt;
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/datalist.html#datalist" 
+								hreflang="en" 
+								title="W3C">datalist
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет создать список с данными, 
+						который можно привязать к полю ввода. При введении информации в поле 
+						значения из связанного списка будут выводится в поле как подсказки, 
+						выбрав которые можно автоматически завершить ввод.<br />
+						Для того, чтобы привязать список к полю ввода 
+						используйте атрибут list тэга input.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;input type='text' list='city'&gt;<br />
+								&lt;datalist id='city'&gt;<br />
+									&nbsp;&nbsp;&lt;option label=&quot;Москва&quot; 
+										value=&quot;Москва, Россия&quot; /&gt;<br />
+									&nbsp;&nbsp;&lt;option label=&quot;Санкт-Петербург&quot; 
+										value=&quot;Санкт-Петербург, Россия&quot; /&gt;<br />
+									&nbsp;&nbsp;&lt;option label=&quot;Новосибирск&quot; 
+										value=&quot;Новосибирск, Новосибирская область, 
+										Россия&quot; /&gt;<br />
+									&lt;/datalist&gt;
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/details.html#details" 
+								hreflang="en" 
+								title="W3C">details
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет определить блок с дополнительной информацией, 
+						который пользователь может раскрывать и сворачивать по желанию.<br />
+						С помощью тэга &lt;summary&gt; Вы можете задать для блока произвольный заголовок.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>посмотреть атрибуты</summary>
+							<table class="inner-table">
+								<thead>
+									<tr>
+										<th>атрибут</th>
+										<th>значение</th>
+										<th>описание</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>open</td>
+										<td><code>open</code></td>									
+										<td>
+											указывает, что блок с дополнительной информацией 
+											по умолчанию должен быть раскрыт.
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;p&gt;<br />
+									&lt;strong&gt;Преступление и наказание&lt;/strong&gt; - 
+									роман Фёдора Михайловича Достоевского, 
+									впервые опубликованный в 1866 году 
+									в журнале &quot;Русский вестник&quot;
+								&lt;/p&gt;<br />
+								&lt;details&gt;<br />
+									&nbsp;&lt;summary&gt;Сюжет романа&lt;/summary&gt;<br />
+									&nbsp;&nbsp;Сюжет разворачивается вокруг главного героя, 
+									Родиона Раскольникова, в голове которого созревает 
+									теория преступления. Согласно его идее, 
+									человечество делится на &quot;право имеющих&quot; 
+									и &quot;тварей дрожащих&quot;. &quot;Право имеющие&quot; 
+									(классическим примером является Наполеон) имеют право 
+									совершить убийство или несколько убийств 
+									ради будущих великих свершений.<br />
+								&lt;/details&gt;<br />
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/embed.html#embed" 
+								hreflang="en" 
+								title="W3C">embed
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет встроить внешнее содержимое.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>посмотреть атрибуты</summary>
+							<table class="inner-table">
+								<thead>
+									<tr>
+										<th>атрибут</th>
+										<th>значение</th>
+										<th>описание</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>hidden</td>
+										<td><code>true/ false</code>
+										</td>
+										<td>
+											представляет собой выключатель, который определяет, 
+											отображать объект в окне браузера или нет. 
+											Это особенно удобно для скрытия панели управления 
+											при воспроизведении фоновой музыки. Если этот атрибут указан, 
+											значение атрибутов width и height игнорируется.
+										</td>
+									</tr>
+									<tr>
+										<td>height/ width</td>
+										<td>
+											Любое целое положительное число в пикселах или процентах.
+										</td>
+										<td>
+											атрибуты height/ width устанавливает высоту/ ширину объекта. 
+											В заданные размеры само изображение, например в случае 
+											воспроизведения видеофайла, и панель управления им, 
+											включая кнопки проигрывания, паузы, остановки и т.д. 
+											По этой причине на размер отображаемого объекта 
+											влияет тип файла и применяемый плагин.
+										</td>
+									</tr>
+									<tr>
+										<td>hspace</td>
+										<td>Любое целое положительное число в пикселах</td>
+										<td>
+											можно задать невидимые отступы по горизонтали и вертикали 
+											с помощью атрибутов hspace и vspace. Особенно это актуально 
+											при обтекании объекта текстом, в этом случае необходимо 
+											вокруг него добавить пустое пространство.
+										</td>
+									</tr>
+									<tr>
+										<td>pluginspage</td>
+										<td>
+											Любой корректный <abbr title="Universal Resource Locator, 
+											универсальный указатель ресурсов">URL</abbr>.
+										</td>
+										<td>
+											Если браузер не поддерживает указанный тип файлов, 
+											заданный атрибутом src, то pluginspage используется для того, 
+											чтобы перейти по указанному адресу, откуда можно скачать и 
+											установить необходимый плагин. Браузер сообщает пользователю, 
+											что требуемого плагина для отображения файла нет, 
+											и запрашивает, загружать его или нет.
+										</td>
+									</tr>
+									<tr>
+										<td>src</td>
+										<td>
+											Любой корректный <abbr title="Universal Resource Locator, 
+											универсальный указатель ресурсов">URL</abbr>.
+										</td>
+										<td>
+											Атрибут src указывает путь к файлу, который необходимо 
+											загрузить в окно браузера. Браузер анализирует расширение файла 
+											и решает по нему, какой плагин или внешняя программа требуется 
+											для отображения файла.
+										</td>
+									</tr>
+									<tr>
+										<td>type</td>
+										<td>
+											Не всегда браузер может распознать тип файла по его расширению. 
+											В таких случаях лучше указывать его тип с помощью атрибута type, 
+											который устанавливает
+											<abbr title="Multipurpose Internet 
+											Mail Extensions">MIME</abbr>-тип для данных.
+										</td>
+										<td>
+											Имя <abbr title="Multipurpose Internet 
+											Mail Extensions">MIME</abbr>-типа в любом регистре. 
+											Допускается устанавливать сразу несколько значений, 
+											разделяя их запятыми.
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;embed src=&quot;images/mouse.swf&quot; 
+									width=&quot;400&quot; 
+									height=&quot;300&quot; 
+									type=&quot;application/x-shockwave-flash&quot;
+									pluginspage=&quot;http://www.macromedia.com/go/
+									getflashplayer&quot; /&gt;							
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/figcaption.html#figcaption" 
+								hreflang="en" 
+								title="W3C">figcaption
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет задать подпись для изображения, 
+						заданного с помощью тэга &lt;figure&gt;.<br />
+						Обратите внимание: данный тэг должен располагаться в самом начале 
+						или в самом конце содержимого тэга &lt;figure&gt;.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+									&lt;figure&gt;<br />
+										&nbsp;&lt;img src=&quot;mountimg3.jpg&quot; 
+											width=&quot;300&quot; height=&quot;230&quot; /&gt;<br />
+										&nbsp;&lt;figcaption&gt;Скала &quot;Братья&quot;, Западный 
+											Саян&lt;/figcaption&gt;<br />
+									&lt;/figure&gt;
+								</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/figure.html#figure" 
+								hreflang="en" 
+								title="W3C">figure
+							</a>
+						&gt;
+					</td>
+					<td>
+						используется совместно с тэгом &lt;figcaption&gt; 
+						и позволяет создавать подписи для иллюстраций.<br />
+						Обратите внимание: данный тэг должен располагаться в самом начале 
+						или в самом конце содержимого тэга &lt;figure&gt;.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;figure&gt;<br />
+									&nbsp; &lt;img src=&quot;mountimg3.jpg&quot; 
+										width=&quot;300&quot; height=&quot;230&quot; /&gt;<br />
+									&nbsp; &lt;figcaption&gt;Скала &quot;Братья&quot;, Западный 
+										Саян&lt;/figcaption&gt;<br />
+								&lt;/figure&gt;
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/footer.html#footer" 
+								hreflang="en" 
+								title="W3C">footer
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет определить футер для документа 
+						или сгруппированного (с помощью тэга article или section) содержимого.<br />
+						В футере обычно располагается информация об авторском праве, 
+						авторе документа и могут присутствовать ссылки на другие ресурсы.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+									&lt;footer&gt;<br />
+										&nbsp;bestSite.ru &copy; 2015.<br />
+										&nbsp;Все права защищены. Любое использование материалов 
+										данного сайта без разрешения запрещено.<br />
+									&lt;/footer&gt;
+								</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/header.html#header" 
+								hreflang="en" 
+								title="W3C">header
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет определить заголовочный блок сайта. 
+						В заголовочном блоке обычно располагаются логотип, лозунг сайта, 
+						а также поле поиска и ссылки на другие разделы сайта.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+									&lt;header&gt;<br />
+										&nbsp; &lt;h1&gt;BestSite.ru&lt;/h1&gt;<br />
+										&nbsp; &lt;p&gt;На нашем сайте Вы найдете учебники по 
+										<abbr title="hyper tekst markup language">html5</abbr> 
+										и другим веб-технологиям.&lt;/p&gt;<br />
+									&lt;/header&gt;
+								</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/hgroup.html#hgroup" 
+								hreflang="en" 
+								title="W3C">hgroup
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет определить заголовочный блок сайта. 
+						В заголовочном блоке обычно располагаются логотип, лозунг сайта, 
+						а также поле поиска и ссылки на другие разделы сайта.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+									&lt;hgroup&gt;<br />
+										&nbsp; &lt;h1&gt;BestSite.ru&lt;/h1&gt;<br />
+										&nbsp; &lt;h2&gt;На нашем сайте Вы найдете учебники 
+										по <abbr title="hyper tekst markup language">html5</abbr> 
+										и другим веб-технологиям.&lt;/h2&gt;<br />
+									&lt;/hgroup&gt;
+								</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/keygen.html#keygen" 
+								hreflang="en" 
+								title="W3C">keygen
+							</a>
+						&gt;
+					</td>
+					<td>
+						используется для шифрования канала связи с сервером 
+						(т.е. для установки безопасных соединений защищенных от прослушки, 
+						перехвата, подмены сообщений и т.д.).<br />
+						Данный тэг генерирует открытый и закрытый ключ. 
+						Открытый ключ отправляется на сервер вместе с данными формы, 
+						а закрытый сохраняется в локальной базе ключей.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>посмотреть атрибуты</summary>
+							<table class="inner-table">
+								<thead>
+									<tr>
+										<th>атрибут</th>
+										<th>значение</th>
+										<th>описание</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>autofocus</td>
+										<td><code>autofocus</code></td>										
+										<td>
+											указывает, что элемент должен быть активным 
+											сразу после загрузки страницы.
+										</td>
+									</tr>
+									<tr>
+										<td>challenge</td>
+										<td>строка</td>
+										<td>
+											опознавательная строка, которая будет отправлена на сервер 
+											вместе с отрытым ключом.
+										</td>
+									</tr>
+									<tr>
+										<td>disabled</td>
+										<td><code>disabled</code></td>										
+										<td>
+											указывает, что элемент должен быть неработоспособным.
+										</td>
+									</tr>
+									<tr>
+										<td>form</td>
+										<td>id формы</td>
+										<td>
+											указывает форму, которой принадлежит данный элемент 
+											(элемент может также принадлежать к нескольким формам).
+										</td>
+									</tr>
+									<tr>
+										<td>keytype</td>
+										<td>
+											<abbr title="Rivest, Shamir и Adleman">rsa</abbr><br />			
+											<abbr title="Digital Signature Algorithm">dsa</abbr><br />		
+											<abbr title="Advanced Encryption Standard">aec</abbr><br />		
+										</td>
+										<td>указывает алгоритм шифрования ключей.</td>
+									</tr>
+								</tbody>
+							</table>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;form action=&quot;html5.php&quot;&gt;<br />
+									&nbsp;Укажите длину открытого ключа:<br />
+									&nbsp; &lt;keygen name=&quot;keygen&quot; 
+										keytype=&quot;rsa&quot; /&gt;<br />
+									&nbsp; &lt;input type=&quot;submit&quot; 
+										value=&quot;Отправить&quot; /&gt;<br />
+								&lt;/form&gt;
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/meter.html" 
+								hreflang="en" 
+								title="W3C">mark
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет выделить важный текст.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;p&gt;<br />
+									&nbsp;С помощью 
+									тэга &lt;mark&gt;mark&lt;/mark&gt; 
+									Вы сможете выделять на страницах 
+									&lt;mark&gt;важный&lt;/mark&gt; 
+									текст.<br />
+								&lt;/p&gt;
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/meter.html#meter" 
+								hreflang="en" 
+								title="W3C">meter						   
+							</a>
+						&gt;
+					</td>
+					<td>
+						используется для отображения количественной меры чего-либо 
+						в ограниченном диапазоне.<br />
+						Например данный тэг может использоваться для отображения: 
+						количества занятого места на жестком диске, 
+						количество голосов за определенного кандидата и т.д.<br />
+						Тэг &lt;meter&gt; не должен использоваться для создания полосы загрузки 
+						(используйте тэг &lt;progress&gt;) или отображения количественно меры чего-либо 
+						в неизвестном диапазоне (к примеру 
+						Вы не можете отобразить долю изученных человеком планет 
+						так как общее их количество неизвестно).
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>посмотреть атрибуты</summary>
+							<table class="inner-table">
+								<thead>
+									<tr>
+										<th>атрибут</th>
+										<th>значение</th>
+										<th>описание</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>form</td>
+										<td><code>id формы</code></td>										
+										<td>
+											указывает форму, которой принадлежит данный элемент 
+											(элемент может также принадлежать к нескольким формам).
+										</td>
+									</tr>
+									<tr>
+										<td>high</td>
+										<td>число</td>
+										<td>
+											указывает отрезок диапазона, 
+											значения которого должны считаться высокими.
+										</td>
+									</tr>
+									<tr>
+										<td>low</td>
+										<td>число</td>
+										<td>
+											указывает отрезок диапазона, 
+											значения которого должны считаться низкими.
+										</td>
+									</tr>
+									<tr>
+										<td>min/ max</td>
+										<td>число</td>
+										<td>указывает мин/ максимальное значение диапазона.</td>
+									</tr>
+									<tr>
+										<td>optimum</td>
+										<td>число</td>
+										<td>указывает оптимальное значение диапазона.</td>
+									</tr>
+									<tr>
+										<td>value</td>
+										<td>число</td>
+										<td>указывает текущее значение диапазона.</td>
+									</tr>
+								</tbody>
+							</table>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+									&lt;meter min=&quot;0&quot; max=&quot;100&quot; 
+										value=&quot;70&quot;&gt;&lt;/meter&gt;<br />
+									&lt;meter min=&quot;0&quot; max=&quot;70&quot; 
+										value=&quot;70&quot;&gt;&lt;/meter&gt;<br />
+									&lt;meter min=&quot;0&quot; max=&quot;50&quot; 
+										value=&quot;70&quot;&gt;&lt;/meter&gt;<br />
+								</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/menu.html#menu" 
+								hreflang="en" 
+								title="W3C">menu						   
+							</a>
+						&gt;
+					</td>
+					<td>позволяет создавать контекстные меню и панели инструментов.</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>посмотреть атрибуты</summary>
+							<table class="inner-table">
+								<thead>
+									<tr>
+										<th>атрибут</th>
+										<th>значение</th>
+										<th>описание</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>label</td>
+										<td>текст</td>
+										<td>задает видимый заголовок для меню.</td>
+									</tr>
+									<tr>
+										<td>type</td>
+										<td>
+										 	context<br />
+											toolbar
+										</td>
+										<td>
+											указывает тип меню.<br />
+											context создает контекстное меню.<br /> 
+											toolbar создает панель инструментов.
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+									&lt;menu type=&quot;toolbar&quot;&gt;<br />
+									&nbsp;&lt;li&gt;<br />
+										&nbsp;&nbsp;&lt;menu label=&quot;Файл&quot;&gt;<br />
+										&nbsp;&nbsp;&nbsp;&lt;button type=&quot;button&quot; 	
+											onclick=&quot;new()&quot;&gt;Новый&lt;/button&gt;<br />
+										&nbsp;&nbsp;&nbsp;&lt;button type=&quot;button&quot; 	
+											onclick=&quot;open()&quot;&gt;Открыть&lt;/button&gt;<br />
+										&nbsp;&nbsp;&nbsp;&lt;button type=&quot;button&quot; 	
+											onclick=&quot;save()&quot;&gt;Сохранить&lt;/button&gt;<br />
+									&nbsp;&lt;/li&gt;<br />
+									&nbsp;&lt;li&gt;<br />
+										&nbsp;&nbsp;&lt;menu label=&quot;Помощь&quot;&gt;<br />
+										&nbsp;&nbsp;&nbsp;&lt;button type=&quot;button&quot; 
+											onclick=&quot;copy()&quot;&gt;Справка&lt;/button&gt;<br />
+										&nbsp;&nbsp;&nbsp;&lt;button type=&quot;button&quot;
+											onclick=&quot;paste()&quot;&gt;О 
+											программе&lt;/button&gt;<br />
+										&nbsp;&nbsp;&lt;/menu&gt;<br />
+									&nbsp;&lt;/li&gt;<br />
+									&lt;/menu&gt;
+								</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/nav.html#nav" 
+								hreflang="en" 
+								title="W3C">nav		   
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет создать навигационный блок. 
+						В навигационном блоке обычно содержатся ссылки на другие страницы сайта.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;nav&gt;<br />
+									&nbsp;&lt;a href=&quot;http://www.htmlsite.ru&quot;&lt;
+										My Site&gt;Учебник HTML5&lt;/a&gt;<br />
+									&nbsp;&lt;a href=&quot;http://www.csssite.ru&quot;&lt;
+										My Site&gt;Учебник CSS&lt;/a&gt;<br />
+									&nbsp;&lt;a href=&quot;http://www.jssite.ru&quot;&lt;
+										My Site&gt;Учебник JavaScript&lt;/a&gt;<br />
+								&lt;/nav&gt;
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/output.html#output" 
+								hreflang="en" 
+								title="W3C">output						   
+							</a>
+						&gt;
+					</td>
+					<td>используется для вывода результатов различных расчетов.</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>посмотреть атрибуты</summary>
+							<table class="inner-table">
+								<thead>
+									<tr>
+										<th>атрибут</th>
+										<th>значение</th>
+										<th>описание</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>for</td>
+										<td>id элементов</td>
+										<td>указывает элементы участвующие в расчете.</td>
+									</tr>
+									<tr>
+										<td>form</td>
+										<td>id формы</td>
+										<td>
+											указывает форму, которой принадлежит данный элемент 
+											(элемент может также принадлежать к нескольким формам).
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;form action=&quot;html5.php&quot;&gt;<br />
+									&nbsp;&lt;input name=&quot;first&quot; 
+										type=&quot;text&quot; value=&quot;10&quot;/&gt;<br />
+									&nbsp; X &lt;input name=&quot;second&quot; 
+										type=&quot;text&quot; value=&quot;10&quot; /&gt; = 
+										&lt;output name=&quot;result&quot; 
+										for=&quot;first second&quot;&gt;100&lt;/output&gt;<br />
+									&nbsp;&lt;input type=&quot;button&quot; 	
+										value=&quot;Посчитать&quot; 
+										onclick=&quot;
+											result.value=first.value*second.value&quot; /&gt; <br />
+								&lt;/form&gt;
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/progress.html#progress" 
+								hreflang="en" 
+								title="W3C">progress						   
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет определить полосу отображающую ход выполнения процесса 
+						(например такого как загрузка файла).<br />
+						Обратите внимание: для создания динамической полосы выполнения процесса 
+						используйте JavaScript.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>посмотреть атрибуты</summary>
+							<table class="inner-table">
+								<thead>
+									<tr>
+										<th>атрибут</th>
+										<th>значение</th>
+										<th>описание</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>max</td>
+										<td>число</td>
+										<td>
+											устанавливает сколько действий необходимо совершить 
+											для завершения процесса.
+										</td>
+									</tr>
+									<tr>
+										<td>value</td>
+										<td>число</td>
+										<td>
+											указывает текущее состояние выполнения процесса.
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;progress value=&quot;30&quot; 
+									max=&quot;100&quot;&gt;&lt;/progress&gt;
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/source.html#source" 
+								hreflang="en" 
+								title="W3C">source			   
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет позволяет задать несколько источников воспроизведения 
+						для элементов &lt;audio&gt; и &lt;video&gt;.<br />
+						Браузером будет использован первый источник, который он сможет воспроизвести.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;video width=&quot;300&quot; height=&quot;200&quot; 
+								controls=&quot;controls&quot;&gt;<br />
+									&nbsp; &lt;source src=&quot;mountvideo.ogv&quot; 
+										type=&quot;video/ogg&quot; /&gt;<br />
+									&nbsp; &gt;source src=&quot;mountvideo.mp4&quot; 
+										type=&quot;video/mp4&quot; /&gt;<br />
+									&nbsp; &lt;source src=&quot;mountvideo.webm&quot; 
+										type=&quot;video/webm&quot; /&gt;<br />
+								&lt;/video&gt; 
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/summary.html#summary" 
+								hreflang="en" 
+								title="W3C">summary			   
+							</a>
+						&gt;
+					</td>
+					<td>
+						С помощью тэга &lt;summary&gt; Вы можете задать для блока, 
+						определенного с помощью тэга &lt;details&gt; произвольный заголовок.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;p&gt;Преступление и наказание — роман Фёдора Михайловича 
+									Достоевского, впервые опубликованный в 1866 году 
+									в журнале &quot;Русский вестник&quot;.
+								&lt;/p&gt;<br />
+								&lt;details&gt;<br />
+									&nbsp;&lt;summary&gt;Сюжет романа&lt;/summary&gt;<br />
+									&nbsp;Сюжет разворачивается вокруг главного героя, 
+									Родиона Раскольникова, в голове которого созревает 
+									теория преступления. Согласно его идее, человечество 
+									делится на &quot;право имеющих&quot; и &quot;тварей дрожащих&quot;. 
+									&quot;Право имеющие&quot; (классическим примером является Наполеон) 
+									имеют право совершить убийство или несколько убийств 
+									ради будущих великих свершений.<br />
+								&lt;/details&gt;
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/time.html#time" 
+								hreflang="en" 
+								title="W3C">time						   
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет определить полосу отображающую ход выполнения процесса 
+						(например такого как загрузка файла).<br />
+						Обратите внимание: для создания динамической полосы выполнения 
+						процесса используйте JavaScript.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>посмотреть атрибуты</summary>
+							<table class="inner-table">
+								<thead>
+									<tr>
+										<th>атрибут</th>
+										<th>значение</th>
+										<th>описание</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>datetime</td>
+										<td>датаTвремя</td>
+										<td>
+											устанавливает дату или время. Если данный параметр не задан, 
+											дата или время должны быть заданы в содержимом элемента.
+										</td>
+									</tr>
+									<tr>
+										<td>pubdate</td>
+										<td><code>pubdate</code></td>										
+										<td>
+											указывает дату публикации документа или независимого содержимого 
+											(т.е. содержимого сгруппированного тэгом article).
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;p&gt;Сейчас &lt;time datetime=&quot;13:50&quot;&gt;
+									без десяти два&lt;/time&gt; 
+									- ответил прохожий.&lt;/p&gt;<br />
+								&lt;p&gt;В &lt;time datetime=&quot;31-12-2009&quot;&gt;
+									позапрошлый новый год&lt;/time&gt; он купил машину.&lt;/p&gt;<br />
+								&lt;p&gt;В &lt;time datetime=&quot;2-12-2011T14:00&quot;&gt;пятницу 
+									в два часа дня&lt;/time&gt; 
+									у нас назначена с ним встреча.&lt;/p&gt;<br />
+								&lt;p&gt;Данный пример был опубликован 
+								&lt;time datetime=&quot;01-12-2011&quot;
+									pubdate=&quot;pubdate&quot;&gt;1 Декабря 2011&lt;/time&gt;
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/video.html#video" 
+								hreflang="en" 
+								title="W3C">video						   
+							</a>
+						&gt;
+					</td>
+					<td>позволяет встроить в веб-страницу видео файл.</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>посмотреть атрибуты</summary>
+							<table class="inner-table">
+								<thead>
+									<tr>
+										<th>атрибут</th>
+										<th>значение</th>
+										<th>описание</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>autoplay</td>
+										<td><code>autoplay</code></td>										
+										<td>
+											указывает, что видео файл должен начинать проигрываться 
+											сразу после загрузки страницы.
+										</td>
+									</tr>
+									<tr>
+										<td>controls</td>
+										<td><code>controls</code></td>										
+										<td>
+											указывает, что кнопки управления 
+											(кнопка начала воспроизведение, регулятор звука и т.д.) 
+											должны быть отображены.
+										</td>
+									</tr>
+									<tr>
+										<td>height/ width</td>
+										<td>пиксели</td>
+										<td>
+											Устанавливает ширину/ высоту проигрывателя.
+										</td>
+									</tr>
+									<tr>
+										<td>loop</td>
+										<td><code>loop</code></td>										
+										<td>
+											указывает, что кнопки управления (
+											кнопка начала воспроизведение, регулятор звука и т.д.) 
+											должны быть отображены.
+										</td>
+									</tr>
+									<tr>
+										<td>muted</td>
+										<td><code>muted</code></td>										
+										<td>
+											Приглушает звук видео файла.
+										</td>
+									</tr>
+									<tr>
+										<td>poster</td>
+										<td><code>URL</code></td>										
+										<td>
+											указывает, URL адрес картинки, которая будет отображена 
+											в проигрывателе пока пользователь не нажмет кнопку 
+											начала воспроизведения.
+										</td>
+									</tr>
+									<tr>
+										<td>load</td>
+										<td>
+											<code>
+												auto<br />
+												metadata<br />
+												none<br />
+											</code>
+										</td>
+										<td>
+											load=auto указывает, что видео файл должен начинать загружаться 
+											сразу после загрузки документа.<br /> 
+											load=metadata указывает, что метаданные видео файла 
+											должны начинать загружать сразу после загрузки документа.<br />
+											load=none указывает, что видео файл не должен 
+											начинать загружаться после загрузки документа.
+										</td>
+									</tr>
+									<tr>
+										<td>src</td>
+										<td>URL</td>
+										<td>
+											указывает URL адрес видео файла.
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+									&lt;video width=&quot;300&quot; 
+										height=&quot;200&quot; 
+										controls=&quot;controls&quot;&gt;
+										&lt;source src=&quot;mountvideo.ogv&quot;
+											type=&quot;video/ogg&quot; /&gt;
+										&lt;source src=&quot;mountvideo.mp4&quot; 
+											type=&quot;video/mp4&quot; /&gt;
+										&lt;source src=&quot;mountvideo.webm&quot; 
+											type=&quot;video/webm&quot; /&gt;
+									&lt;/video&gt;  2011&lt;/time&gt;
+							</code>
+						</details>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						&lt;
+							<a class="medium-link" 
+								href="http://www.w3.org/TR/html-markup/wbr.html#wbr" 
+								hreflang="en" 
+								title="W3C">wbr						   
+							</a>
+						&gt;
+					</td>
+					<td>
+						позволяет позволяет указать место, 
+						в котором строка может быть разбита для совершения переноса.
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2">
+						<details>
+							<summary>Посмотреть пример</summary>
+							<code>
+								&lt;p&gt;<br />
+									Одно из названий, претендующее на звание самого 
+									длинного слова русского языка, —<br /> 
+									никотин&lt;wbr /&gt;амид&lt;wbr /&gt;аденин&lt;wbr /&gt;динуклеотид
+									&lt;wbr /&gt;фосфат&lt;wbr /&gt;гидрин (участвует в фотосинтезе 
+									растений) — содержит 40 букв.<br />
+								&lt;/p&gt; 
+							</code>
+						</details>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<footer>
+			<p>Все права защищены</p>
+		</footer>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script>
+			window.jQuery || document.write('<script src="../../js/vendor/jquery-1.11.3.min.js"><\/script>')
+		</script>
+		<script src="../../js/plugins.js"></script>
+		<script src="../../js/main.js"></script>
+
+		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+		<script>
+			(function (b, o, i, l, e, r) {
+				b.GoogleAnalyticsObject = l;
+				b[l] || (b[l] =
+					function () {
+						(b[l].q = b[l].q || []).push(arguments)
+					});
+				b[l].l = +new Date;
+				e = o.createElement(i);
+				r = o.getElementsByTagName(i)[0];
+				e.src = 'https://www.google-analytics.com/analytics.js';
+				r.parentNode.insertBefore(e, r)
+			}(window, document, 'script', 'ga'));
+			ga('create', 'UA-XXXXX-X', 'auto');
+			ga('send', 'pageview');
+		</script>
+	</article>
+</body>
+
+</html>
