@@ -225,6 +225,7 @@ footer {
 	width: 20vw;								/* Ширина первой колонки таблицы */
 }
 
+/* Стиль для внутренних таблиц */
 .inner-table {
 	 width: 75vw; 								/* Ширина внутренней таблицы */
 	 margin: 2vw auto;							/* Центрируем внутреннюю таблицу */
@@ -266,7 +267,7 @@ details summary {										/* Градиент заголовков таблиц
 
 footer {
 	background: 
-		radial-gradient(circle at 2.02% 72.90%, #626962, transparent 100%)
+		radial-gradient(circle at 2.02% 72.90%, #626962, transparent 100%);
 }
 
 /* ********************************************************************************* Shadows */

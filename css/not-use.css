@@ -1,0 +1,49 @@
+/* 
+* Из-за позиционирования вываливается из потока прямо к :hover - в итоге криво с ним работает, 
+* кроме этого в Firefox-е растягивает summary в размер себя. Поскольку в Firefoxe summary и так кривой,
+* считаю, что стоит отказаться от идеи загнутых уголков во встроенных таблицах.
+* Класс не удаляю, потому что красиво
+*/
+
+.folded-corners {
+	position: relative; 									/* если убрать - появятся полоски */
+	
+		-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+}
+
+.folded-corners:before, 
+.folded-corners:after {
+	content: ' ';
+	position: absolute;
+	width: 40%;														/* размеры прозрачных полосок */
+	height: 10px;
+	left: 12px;
+	bottom: 12px;
+	background: transparent;
+
+	-webkit-transform: skew(-5deg) rotate(-5deg); 					/* немного поворачиваем полоски */
+		-moz-transform: skew(-5deg) rotate(-5deg);
+			-ms-transform: skew(-5deg) rotate(-5deg);
+				-o-transform: skew(-15deg) rotate(-5deg);
+				transform: skew(-5deg) rotate(-5deg);
+	
+	-webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+		-moz-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+			box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+	
+	z-index: -1; 									/* прячем полоски под элемент с position absolute */
+}
+
+/* Правая полоска*/
+.folded-corners:after {
+	left: auto;
+	right: 12px;
+
+	-webkit-transform: skew(5deg) rotate(5deg); 									/* задаем перекосы */
+		-moz-transform: skew(5deg) rotate(5deg);
+			-ms-transform: skew(5deg) rotate(5deg);
+				-o-transform: skew(5deg) rotate(5deg);
+				transform: skew(5deg) rotate(5deg);
+}
