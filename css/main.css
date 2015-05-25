@@ -1,3 +1,29 @@
+@font-face {	/* -------------------------------------------------------- Для заголовков */
+	font-family: "MerriWeather";
+	src: url("Metrophobic-webfont.eot");
+	src: local('!'),
+		url("../../fonts/Merriweather-BoldItalic.eot?#iefix") format("embedded-opentype"),
+		url("../../fonts/Merriweather-HeavyItalic.eot?#iefix") format("embedded-opentype"),
+		url("../../fonts/Merriweather-Italic.eot?#iefix") format("embedded-opentype"),
+		url("../../fonts/Merriweather-LightItalic.eot?#iefix") format("embedded-opentype"),
+		url("../../fonts/Merriweather_Light.ttf") format("truetype"),
+		url("../../fonts/Merriweather-Bold.ttf") format("truetype"),
+		url("../../fonts/Merriweather-Regular.ttf") format("truetype"),
+		url("../../fonts/Merriweather-BoldItalic.ttf") format("truetype"),
+		url("../../fonts/Merriweather_UltraBold.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face { /* ---------------------------------------------------------- Для участков с кодом */
+	font-family: "Anonymous"; 									/* Гарнитура шрифта */
+	src: url("../../fonts/Anonymous.ttf");						/* Путь к файлу со шрифтом */
+}
+
+/* ----------------------------------------------------- Neuka - заголовки таблиц Kurale - списки */
+@import url(http://fonts.googleapis.com/css?family=Neucha|Kurale&subset=latin,cyrillic,latin-ext);
+
+
 /*! HTML5 Boilerplate v5.2.0 | MIT License | https://html5boilerplate.com/ */
 
 /*
@@ -88,68 +114,139 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== 
-* 1. Все размеры задаем в vh и vw !!!
-
 */
+
 /* ********************************************************************************* Fonts */
+/*
+* 1. Все размеры задаем в vh и vw, чтобы текст не вываливался из блоков 
+*		при уменьшении размеров окна браузера
+*/
 
 /* Основной шрифт */
 html { 
-    line-height: 1.5;							/* Высота линии */
-	font-family: 'Comic Sans MS'; 				/* Шрифт */
+    line-height: 1.5;							/* Высота межстрочного интервала */
+	font-family: "Comic Sans MS", "Verdana", sans-serif;
     font-size: 1.1vw;							/* Размер основного шрифта */
     color: darkslategray;						/* Цвет текста */
 }
 
-p {	
-	text-indent: 5vw; 							/* Отступ первой строки */
+header {
+	text-align: center;							/* Заголовочная часть по центру */
+	text-transform: uppercase; 					/* Заголовки большими буквами */
+	font-family: "MerriWeather", "Comic Sans MS", sans-serif;
+	color: firebrick;
+}
+
+h3 {
+	margin-left: 15vw; 							/* Заголовки поменьше - по левой стороне */
+	text-transform: uppercase;					/* Тоже большими буквами */
+	font-family: "MerriWeather", "Comic Sans MS", sans-serif;
+	color: brown;
+}
+
+p {
+	text-indent: 3vw;							/* Отступ первой строки */
+}
+
+/* Буквица: Первая буква в каждом абзаце увеличенного размера и выделена цветом */
+p::first-letter {
+	float: left; 								/* Обтекание по правому краю */
+	margin-right: -2.8vw; 						/* text-indent отсчитывается от стилизованной первой буквы */
+	line-height: 3vh; 							/* Положение относительно текста */
+	font-size: 2vw;								/* Размер буквицы */
+	color: lightcoral;		 					/* Цвет буквицы  */
+}
+
+/* Все ссылки */
+a {
+	text-decoration: none;						/* Убираем подчеркивание */
+	color: crimson;
+}
+
+/* Ссылки при наведении */
+a:hover {
+	color: darkorange;							/* Цвет ссылки при наведении */
+	text-decoration: underline;					/* Показываем ссылку */
 }
 
 /* Ссылки крупнее, чем просто в тексте */
 .medium-link {
+	text-decoration: none;						/* Убираем подчеркивание */
 	font-variant: small-caps; 					/* Прописные символы размером со строчные */
 	font-size: 2vw;								/* Размер шрифта как у заголовков в таблице */
 	font-weight: bold;							/* Полужирный шрифт */
-	text-decoration: none;						/* Убираем подчеркивание */
-	color: darkblue;							/* Цвет текста */
+	color: darkslateblue;						/* Цвет текста */
 }
 
 /* Посещенные ссылки */
 .medium-link:visited {
-	color: darkslategray;						/* Цвет текста */
+	color: mediumorchid;						/* Цвет текста */
+}
+
+.medium-link:hover {
+	text-decoration: underline;					/* Показываем ссылку */
+	color: mediumpurple;						/* Цвет текста */
 }
 
 /* Блоки с кодом */
 code {
-	font-family: 'Courier', monospace; 			/* Шрифт */
+	font-family: "Anonymous", "Courier", monospace; 
 	font-size: 1.3vw;							/* Размер шрифта */
 	font-weight: bold;							/* Полужирный шрифт */
 }
 
-.responsive-table caption {	
-	text-transform: uppercase;					/* Все буквы большие */
-	font-size: 2vw;								/* Размер шрифта */
+dfn {
+	font-style: normal;							/* Убрали курсив */
 	font-weight: bold;							/* Полужирный шрифт */
+	font-size: 1.2vw;							/* Шрифт на 0.1 больше основного */
+	color: lightcoral;
 }
 
 /* Заголовки таблицы */
+.responsive-table caption {	
+	text-transform: uppercase;					/* Все буквы большие */
+	font-family: "Neucha", cursive;
+	font-size: 2vw;								/* Размер шрифта */
+	font-weight: bold;							/* Полужирный шрифт */
+	color: firebrick;
+}
+
+/* Заголовочная часть таблицы */
 .responsive-table th {	
 	text-align: center; 						/* Выравниваем текст заголовков по центру */
-	font-family: 'Arial', Helvetica, Verdana, sans-serif;
+	font-family: "Arial", "Helvetica", "Verdana", sans-serif;
 	font-size: 2vw; 							/* Размер шрифта заголовков */
 	font-weight: bold;							/* Полужирное начертание */
 	color: darkslategray;						/* Цвет шрифта заголовков */
 }
 
 .responsive-table th, 
-details summary{
+details summary {
 	text-transform: uppercase;					/* Все буквы большие */
-	font-family: 'Monotype Corsiva', monospace;	/* Шрифт */
+	font-family: "Monotype Corsiva", monospace;	/* Шрифт */
 }
 
 /* Встроенная таблица */
 .inner-table {
 	font-size: 1.3vw;							/* Размер шрифта чуть меньше, чем основной */
+}
+
+article > ul li, 
+article > ol li {
+	line-height: 3.5vh;
+	font-family: "Neucha", cursive;
+	font-size: 1.2vw;
+}
+
+/* Подписи под картинками */ 
+.float-figure figcaption {
+	font-size: small; 							/* Уменьшенный размер шрифта */
+	font-weight: bold;							/* Полужирный курсив */
+	font-style: italic; 
+}
+
+.license {
+	text-align: center;							/* Выравниваем по центру футера */
 }
 
 /* ********************************************************************************* Borders */
@@ -189,13 +286,62 @@ footer {
 	box-sizing: border-box;
 }
 
+body {
+	margin: 2vh 2vw; 							/* Маленькие одинаковые отступы для всего */
+}
+
+main {
+}
+
+article {
+	position: relative;							/* Для загнутых уголков */
+	margin: 5vh 0.5vw;
+	padding: 2vw;
+}
+
+/* Форматируем блок плавающего рисунка. */ 
+.float-figure { 
+	float: left; 								/* Пусть картинки в тексте плавают слева */
+	margin-right: 10vw;							/* Отступ для текста */
+}
+
+.float-figure img {
+	width: 15vw; 								/* Ширина блока с картинкой */
+}
+
+/* Форматируем текст подписи к рисунку */ 
+.float-figure figcaption {
+	max-width: 20vw; 							/* Задаем максимальную ширину для подписи */
+	margin-bottom: 3vh;							/* Отступ снизу */
+	margin-left: 47%;							/* ... и слева */
+}
+
 code {
 	width: 65vw;								/* Ширина внутренних блоков кода */
 	margin: 2vw auto;							/* Центрируем внутренние блоки кода */
 }
 
 footer {
-	height: 10vh;								/* Высота футера */
+	min-height: 10vh;							/* Высота футера */
+}
+
+/* ***************************************************************************** Lists Page-Proof */
+
+/* Все маркированные списки в основном тексте */
+article > ul,
+article > ol {	
+	margin-left: 5vw;
+	margin-top: 3vh;
+	margin-bottom: 3vh;
+}
+
+article > ul li {
+	list-style-type: none; 						/* Убираем исходные маркеры */
+    background: url("../img/ok.png"); 			/* Загружаем картинку */
+	background-repeat: no-repeat;				/* Запрещаем ей повторяться */
+	background-size: 1vw auto;					/* Делаем картинку резиновой */
+	background-position: 0.1vw center;			/* Размещаем ее слева */
+	padding: 0.2vh 2vw;							/* Задаем отступы сверху и снизу */
 }
 
 /* ***************************************************************************** Tables Page-Proof */
@@ -233,7 +379,7 @@ footer {
 
 /* ********************************************************************************* Backgrounds */
 
-.responsive-table tr:hover { 							/*Подсветка рядов таблицы */	
+.responsive-table tr:hover { 							/* Подсветка рядов таблицы */	
 	background: 
 		radial-gradient(circle at 2.02% 52.07%, #ece9e6, transparent 100%),
 		radial-gradient(circle at 97.98% 26.97%, #fff, transparent 100%),
@@ -250,10 +396,16 @@ html { 													/* Градиент страницы */
 		radial-gradient(circle at 50% 50%, #000000, #000000 100%)
 }										
 
+article { 												/* Самый большой блок на странице */
+	background:
+		radial-gradient(circle at 2.02% 16.02%, #ffeeee, transparent 100%),
+		radial-gradient(circle at 97.98% 25.90%, #ddefbb, transparent 100%),
+		radial-gradient(circle at 50% 50%, #f8e57d, #f8e57d 100%)
+}
+
 .responsive-table thead,
 details summary {										/* Градиент заголовков таблиц */
-	background-color: 
-		rgb(197,199,214); /*top colour*/
+	background-color: rgb(197,199,214);		
 	background-image:         
 		linear-gradient(to bottom, rgba(197,199,214, 0.2), rgba(14,100,63, 0.2));
 }
@@ -272,6 +424,52 @@ footer {
 
 /* ********************************************************************************* Shadows */
 
+/* Внутренняя тень для блоков с загнутыми уголками */
+article, 
+.interesting,
+.source-links {	
+	-webkit-box-shadow: 0 5px 10px rgba(65, 89, 123, 0.8), inset 0 0 50px rgba(158, 185, 204, 0.52);
+		-moz-box-shadow: 0 5px 10px rgba(65, 89, 123, 0.8), inset 0 0 50px rgba(158, 185, 204, 0.52);
+			box-shadow: 0 5px 10px rgba(65, 89, 123, 0.8), inset 0 0 50px rgba(158, 185, 204, 0.52);
+}
+
+/* Сами загнутые уголки */
+article:before, 
+article:after {
+	content: ' ';
+	position: absolute;
+	width: 45vw;														/* размеры прозрачных полосок */
+	height: 3vh;
+	left: 1.5vw;											/* Расстояние от левого края для левой полоски */
+	bottom: 4vh;											/* Расстояние снизу для левой полоски */
+	background: transparent;
+
+	-webkit-transform: skew(-5deg) rotate(-5deg); 					/* немного поворачиваем полоски */
+		-moz-transform: skew(-5deg) rotate(-5deg);
+			-ms-transform: skew(-5deg) rotate(-5deg);
+				-o-transform: skew(-15deg) rotate(-5deg);
+					transform: skew(-5deg) rotate(-5deg);
+	
+	-webkit-box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);
+		-moz-box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);
+			box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);
+	
+	z-index: -1; 									/* прячем полоски под элемент с position absolute */
+}
+
+/* Правая полоска*/
+article:after {
+	left: auto;
+	right: 1.5vw; 									/* Расстояние от правого края для правой полоски */
+
+	-webkit-transform: skew(5deg) rotate(5deg); 									/* задаем перекосы */
+		-moz-transform: skew(5deg) rotate(5deg);
+			-ms-transform: skew(5deg) rotate(5deg);
+				-o-transform: skew(5deg) rotate(5deg);
+					transform: skew(5deg) rotate(5deg);
+}
+
+/* Тень футера */
 .responsive-table, 
 footer {
 	box-shadow: 0px 0px 15px darkslategray;
@@ -279,14 +477,53 @@ footer {
 
 /* ********************************************************************************* Misc */
 
-/* ----------------------------------------------- Details -- */
+hr {	
+	border: 0;
+    height: 5px;
+	
+    background:
+		-webkit-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0));
+			-moz-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0));
+				-o-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0));
+					-ms-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0));
+						linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0));
+}		
 
-details[open] summary {
-	display: block;			/* иначе невозможно расположить внутренние элементы */
+/* Текстовые блоки "Интересно", "Важно" и прочие */
+.text-block {
+	background-repeat: no-repeat; 					/* Запрещаем картинке повторяться */
+	background-size: 5vw auto;						/* Делаем ее маленькой */
+	background-position: 1vw center;				/* Клеим к левому краю */
+	padding: 2vh 7vw;								/* Отодвигаем текст */
+	border-radius: 10px;							/* Скругляем уголки */
 }
 
-details[open]>code {
-	display: block; 		/* Только прямого потомкка */
+/* Блок - "Это интересно" */
+.interesting {
+	background-image: url("../img/interesting.png");	
+	border: 0.5vw double lightcoral;
+}
+
+/* Блок со ссылками на источник */
+.source-links {
+	background-image: url("../img/source.png");
+	border: 0.5vw double lightcyan;
+}
+
+.source-links a {	
+	text-decoration: none; 						/* Убираем подчеркивание у ссылок */
+	color: darkslateblue;
+}
+
+.source-links a:visited {
+	color: lightslategray;
+}
+
+/* ----------------------------------------------- Details -- */
+
+details[open] summary,
+details[open] > code {
+	display: block;			/* иначе невозможно расположить внутренние элементы */
 }
 
 details summary::-webkit-details-marker {

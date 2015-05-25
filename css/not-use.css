@@ -47,3 +47,13 @@
 				-o-transform: skew(5deg) rotate(5deg);
 				transform: skew(5deg) rotate(5deg);
 }
+
+/* отображаем ссылки после текста */
+a[href]:after {
+	content: " (" attr(href) ")"; 
+}
+
+a[href="#"],
+a[href="javascript:"] {
+	content: "";
+}
