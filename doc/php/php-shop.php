@@ -23,6 +23,9 @@
 
 	<!-- html5-support (details/summary) supported -->
 	<script src="../../js/vendor/logifill-details-min.js"></script>
+	
+	<!-- user scripts added -->
+	<script src="../../js/main.js"></script>
 </head>
 
 <body>
@@ -36,58 +39,59 @@
 
 	<!-- Add your site or application content here -->
 	<main role="main">
-	
-		<?php
-			if(!$_GET["total"]) {
-				echo 
-					"<form action=\"#\" method=get name=\"miniShop\">
-						<label>Item 1</label> <label>57.15</label>
-						<input type=\"number\" name=\"numberItems1\"><br />
-						
-						<label>Item 2</label> <label>34.67</label>
-						<input type=\"number\" name=\"numberItems2\"><br />
-						
-						<label>Item 3</label> <label>07.17</label>
-						<input type=\"number\" name=\"numberItems3\"><br />
-						
-						<label>Item 4</label> <label>45.89</label>
-						<input type=\"number\" name=\"numberItems4\"><br />
-						
-						<label>Item 5</label> <label>23.15</label>
-						<input type=\"number\" name=\"numberItems5\"><br />
-						
-						<label>Item 6</label> <label>51.50</label>
-						<input type=\"number\" name=\"numberItems6\"><br />
-						
-						<input type=\"submit\" value=\"Посчитать\" name=\"total\" />
-					</form>";
+		<article>
+			<?php
+				if(!$_GET["total"]) {
+					echo 
+						"<form action=\"#\" method=get name=\"miniShop\">
+							<label>Item 1</label> <label>57.15</label>
+							<input type=\"number\" name=\"numberItems1\"><br />
 
-			}
-			else {
-				$countItems = 0;
-				
-				$price = $_GET["numberItems1"] * 57.15 + 
-						$_GET["numberItems2"] * 34.67 + 
-						$_GET["numberItems3"] * 07.17 + 
-						$_GET["numberItems4"] * 45.89 + 
-						$_GET["numberItems5"] * 23.15 + 
-						$_GET["numberItems6"] * 51.50;
-				
-				for($i = 0; $i < count($_GET); $i++) {
-					
-					if($_GET["numberItems".$i]) {
-						$countItems++;
-						$totalCount += $_GET["numberItems".$i];
-					}
+							<label>Item 2</label> <label>34.67</label>
+							<input type=\"number\" name=\"numberItems2\"><br />
+
+							<label>Item 3</label> <label>07.17</label>
+							<input type=\"number\" name=\"numberItems3\"><br />
+
+							<label>Item 4</label> <label>45.89</label>
+							<input type=\"number\" name=\"numberItems4\"><br />
+
+							<label>Item 5</label> <label>23.15</label>
+							<input type=\"number\" name=\"numberItems5\"><br />
+
+							<label>Item 6</label> <label>51.50</label>
+							<input type=\"number\" name=\"numberItems6\"><br />
+
+							<input type=\"submit\" value=\"Посчитать\" name=\"total\" />
+						</form>";
+
 				}
+				else {
+					$countItems = 0;
 
-				echo "Спасибо! Вы приобрели ".$totalCount." товаров 
-					(".$countItems. " артикулов) 
-					на cумму ".$price; 
-				echo "<br /><a href=\"javascript:javascript:history.go(-1)\">Назад</a>";
-				echo "<br /><a href=\"$_SERVER[HTTP_REFERER]\">Вернуться</a>";
-			}
-		?>	
+					$price = $_GET["numberItems1"] * 57.15 + 
+							$_GET["numberItems2"] * 34.67 + 
+							$_GET["numberItems3"] * 07.17 + 
+							$_GET["numberItems4"] * 45.89 + 
+							$_GET["numberItems5"] * 23.15 + 
+							$_GET["numberItems6"] * 51.50;
+
+					for($i = 0; $i < count($_GET); $i++) {
+
+						if($_GET["numberItems".$i]) {
+							$countItems++;
+							$totalCount += $_GET["numberItems".$i];
+						}
+					}
+
+					echo "Спасибо! Вы приобрели ".$totalCount." товаров 
+						(".$countItems. " артикулов) 
+						на cумму ".$price; 
+					echo "<br /><a href=\"javascript:javascript:history.go(-1)\">Назад</a>";
+					echo "<br /><a href=\"$_SERVER[HTTP_REFERER]\">Вернуться</a>";
+				}
+			?>
+		</article>	
 	</main>
 	<footer>
 		<div class="license"> Все права защищены &copy; </div>
