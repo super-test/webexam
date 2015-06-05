@@ -40,6 +40,7 @@
 	<!-- Add your site or application content here -->
 	<main role="main">
 		<article>
+<<<<<<< Updated upstream
 				
 		<!-- ************************************************************** Класс товаров -->
 		
@@ -76,6 +77,8 @@
 			}
 		?>
 		
+=======
+>>>>>>> Stashed changes
 		<!-- ************************************************************** Простейшая форма заказа -->
 		
 			<?php
@@ -129,6 +132,63 @@
 					echo "<br /><a href=\"$_SERVER[HTTP_REFERER]\">Вернуться</a>";
 				}
 			?>
+			
+				
+		<!-- ************************************************************** Класс товаров -->
+		
+		<?php
+			class Template {
+				public $name;					// Название шаблона
+				public $category; 				// Категория шаблона
+				public $price; 					// Цена шаблона
+				public $availability; 			// Наличие на складе
+				
+				function __construct($name, $category, $price=null, $availability=false) {
+					//конструктор, который инициализирует все свойства класса
+					echo "запущен конструктор...<br />";
+					$this->name=$name;
+					$this->category=$category;
+					$this->price=$price;
+					$this->availability =$availability;
+				}
+
+				// деструктор	
+				function __destruct() { 
+					echo "запущен деструктор...<br />";
+				}
+
+				//метод, позволяющий получить информацию о цене.		
+				function getPrice() { 
+					return(is_null($this->price)?‘N/A’:$this->price);
+				}
+
+				//метод, изменяющий значение свойства с ценой на новое.	
+				function setPrice($new_price) { 
+					$this->price=$new_price;
+				}
+			}
+
+			class Site extends Template {
+				public $type;
+				function __construct($name, $type, $category, $price=null, $availability=false) {
+					parent::__construct($name, $category, $price, $availability);
+					$this->type=$type;
+				}
+				
+				function getType() {
+					return $this->type;
+				}
+			}
+
+			class Count {
+				public static $totalCount = 0;
+				
+				public function staticValue() {
+					return self::$my_static;
+				}
+			}
+		?>
+		
 		</article>	
 	</main>
 	<footer>
