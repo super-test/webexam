@@ -40,6 +40,44 @@
 	<!-- Add your site or application content here -->
 	<main role="main">
 		<article>
+				
+		<!-- ************************************************************** Класс товаров -->
+		
+		<?php
+			class Template {
+				public $name;					// Название шаблона
+				public $category; 				// Категория шаблона
+				public $price; 					// Цена шаблона
+				public $availability; 			// Наличие на складе
+				
+				function __construct($name, $category, $price=null, $availability=false) {
+					//конструктор, который инициализирует все свойства класса
+					echo "запущен конструктор...<br />";
+					$this->name=$name;
+					$this->category=$category;
+					$this->price=$price;
+					$this->availability =$availability;
+				}
+
+				// деструктор	
+				function __destruct() { 
+					echo "запущен деструктор...<br />";
+				}
+
+				//метод, позволяющий получить информацию о цене.		
+				function getPrice() { 
+					return(is_null($this->price)?‘N/A’:$this->price);
+				}
+
+				//метод, изменяющий значение свойства с ценой на новое.	
+				function setPrice($new_price) { 
+					$this->price=$new_price;
+				}
+			}
+		?>
+		
+		<!-- ************************************************************** Простейшая форма заказа -->
+		
 			<?php
 				if(!$_GET["total"]) {
 					echo 
@@ -97,13 +135,25 @@
 		<div class="license"> Все права защищены &copy; </div>
 	</footer>
 
+	
+	
+	<!--
+		Подключаем скрипты
+	-->
+	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script>
-		window.jQuery || document.write('<script src="../../js/vendor/jquery-1.11.3.min.js"><\/script>')
+		window.jQuery || document.write('<script src="../../js/vendor/jquery.js"><\/script>')
 	</script>
 	<script src="../../js/plugins.js"></script>
 	<script src="../../js/main.js"></script>
+	<script src="../../js/vendor/modernizr.js"></script>
+	
+	<!-- user scripts added -->
+	<script src="../../js/main.js"></script>
 
+	
+	
 	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 	<script>
 		(function (b, o, i, l, e, r) {
@@ -121,7 +171,6 @@
 		ga('create', 'UA-XXXXX-X', 'auto');
 		ga('send', 'pageview');
 	</script>
-		
 </body>
 
 </html>
