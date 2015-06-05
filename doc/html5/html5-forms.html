@@ -19,10 +19,6 @@
 
 	<link rel="stylesheet" href="../../css/normalize.css">
 	<link rel="stylesheet" href="../../css/main.css">
-	<script src="../../js/vendor/modernizr-2.8.3.min.js"></script>
-
-	<!-- html5-support (details/summary) supported -->
-	<script src="../../js/vendor/logifill-details-min.js"></script>
 </head>
 
 <body>
@@ -35,39 +31,157 @@
 	<!-- Add your site or application content here -->
 	<main role="main">
 		<article>
+			<form action="#" name="registrationForm" spellcheck="false" novalidate>
+				<p>
+					<i>Пожалуйста, заполните форму. Обязательные поля помечены </i><em>*</em>
+				</p>
+				<fieldset>
+					<legend>Контактная информация</legend>
+					
+					<label for="name" >Имя <em>*</em></label>
+					<input type="text" name="nameField" placeholder="Вася" required maxlength="15"><br />
+					
+					<label for="telephone">Телефон</label>
+					<input type="tel"  name="phoneField" placeholder="(111) 222-33-33" autocomplete="on"><br />
+					
+					<label for="email">Email <em>*</em></label>
+					<input type="email"  name="emailField" placeholder="your_login@domain.ru" required><br />
+					
+					<label for="password">Пароль<em>*</em></label>
+					<input type="password"  name="passwordField" autocomplete="off" required><br />
+					
+					<label for="siteField">Url </label>
+					<input type="url"  name="siteField" placeholder="http://www.your_site.ru" disabled>
+				</fieldset>
+				
+				<fieldset>
+					<legend>Персональная информация</legend>
+					
+					<label for="birthField">Дата рождения:</label>
+					<input type="date" name="birthField" min="1997-01-01" max="2070-01-01"><br />
+					
+					<label for="age">Возраст<em>*</em></label>
+					<input type="number"  name="ageFild"  min="18" max="65" placeholder="35" required><br />
+					
+					<label for="gender">Пол</label><br />
+					<input type="radio" id="male" name="genderFields" checked>Мужчина<br />
+					<input type="radio" id="female" name="genderFields">Женщина<br />
+					
+					<label for="featuresFild">Перечислите личные качества</label>
+					<textarea name="featuresFild" placeholder="умный, добрый, обаятельный" readonly></textarea>
+				</fieldset>
 
+				<fieldset>
+					<legend>Выберите ваших любимых животных</legend>
+					<label for="zebraField">
+						<input type="checkbox" name="zebraField"> Зебра
+					</label>
+					<label for="catField">
+						<input type="checkbox" name="catField"> Кошак
+					</label>
+					<label for="anacondaField">
+						<input type="checkbox" name="anacondaField"> Анаконда
+					</label>
+					<label for="humanField">
+						<input type="checkbox" name="humanField"> Человек
+					</label><br />
+					<label for="elephantField">
+						<input type="checkbox" name="elephantField"> Слон
+					</label>
+					<label for="wildebeestField">
+						<input type="checkbox" name="wildebeestField"> Антилопа
+					</label>
+					<label for="pigeonField">
+						<input type="checkbox" name="pigeonField"> Голубь
+					</label>
+					<label for="crabField">
+						<input type="checkbox" name="crabField"> Краб
+					</label>
+				</fieldset>
+				<fieldset>
+					<legend>Education</legend>
+					<label for="educationField">Выберите ВУЗ:</label>
+					<select name="educationField">
+						<option>Imperial College London</option>
+						<option>Massachusetts Institute of Technology (MIT)</option>
+						<option>University of Cambridge</option>
+						<option>Harvard University</option>
+						<option>University of Oxford</option>
+						<option>UCL (University College London)</option>
+						<option>Stanford University</option>
+						<option>California Institute of Technology (Caltech)</option>
+						<option>Princeton University</option>
+						<option selected="selected">Yale University</option>
+					</select><br />
+					<label for="expierenceField">Оцените свой опыт:</label>
+					<input type="range" name="expierenceField" min="3" max="10" value="3" step="1"><br />
+					<label for="salaryField">Предполагаемая зарплата:</label>
+					<input type="text" id="salaryField" list="salaryList">
+					<datalist id="salaryList">
+						<option label="less then $1000" value="minimum"></option>
+						<option label="$1000 - $3000" value="patient"></option>
+						<option label="$3000 - $5000" value="medium"></option>
+						<option label="more than $5000" value="high"></option>
+						<option label="I don't want to work for money" value="I am a little mad :)"></option>
+					</datalist>
+				</fieldset>
+				<fieldset>
+				<legend>Дополнительно</legend>
+					<label for="myFile">Прикрепить фото</label>
+					<input type="file" name="fileField" multiply>			
+				</fieldset>
+				<fieldset>
+					<legend>Выберите любимый цвет</legend>
+					<label for="colorField">Цвет</label>
+					<input type="color" name="myColor"><br>
+				</fieldset>
+				<fieldset>
+				<legend>Отправка данных</legend>
+					<input type="submit" value="Отправить информацию">
+					<input type="reset" value="Очистить форму">
+					<progress name="progressField" value=0 max=3></progress>
+				</fieldset>
+			</form>
 			
-
-		</article>		
+		</article>
+		
 	</main>
-		<footer>
-			<p>Все права защищены</p>
-		</footer>
+	<footer>
+		<p>Все права защищены</p>
+	</footer>
+	
+	<!--
+		Подключаем скрипты
+	-->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script>
+		window.jQuery || document.write('<script src="../../js/vendor/jquery.js"><\/script>')
+	</script>
+	<script src="../../js/plugins.js"></script>
+	<script src="../../js/main.js"></script>
+	<script src="../../js/vendor/modernizr.js"></script>
+	
+	<!-- user scripts added -->
+	<script src="../../js/main.js"></script>
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<script>
-			window.jQuery || document.write('<script src="../../js/vendor/jquery-1.11.3.min.js"><\/script>')
-		</script>
-		<script src="../../js/plugins.js"></script>
-		<script src="../../js/main.js"></script>
-
-		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-		<script>
-			(function (b, o, i, l, e, r) {
-				b.GoogleAnalyticsObject = l;
-				b[l] || (b[l] =
-					function () {
-						(b[l].q = b[l].q || []).push(arguments)
-					});
-				b[l].l = +new Date;
-				e = o.createElement(i);
-				r = o.getElementsByTagName(i)[0];
-				e.src = 'https://www.google-analytics.com/analytics.js';
-				r.parentNode.insertBefore(e, r)
-			}(window, document, 'script', 'ga'));
-			ga('create', 'UA-XXXXX-X', 'auto');
-			ga('send', 'pageview');
-		</script>
+	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+	<script>
+		(function (b, o, i, l, e, r) {
+			b.GoogleAnalyticsObject = l;
+			b[l] || (b[l] =
+				function () {
+					(b[l].q = b[l].q || []).push(arguments)
+				});
+			b[l].l = +new Date;
+			e = o.createElement(i);
+			r = o.getElementsByTagName(i)[0];
+			e.src = 'https://www.google-analytics.com/analytics.js';
+			r.parentNode.insertBefore(e, r)
+		}(window, document, 'script', 'ga'));
+		ga('create', 'UA-XXXXX-X', 'auto');
+		ga('send', 'pageview');
+	</script>
 
 </body>
 

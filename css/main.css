@@ -1,3 +1,6 @@
+/* Не удалось убрать рамку вокруг checkbox-ов */
+/* fieldset в Chrome продолжает рамку под своим label */
+
 @font-face {	/* -------------------------------------------------------- Для заголовков */
 	font-family: "MerriWeather";
 	src: url("Metrophobic-webfont.eot");
@@ -151,10 +154,21 @@ p {
 /* Буквица: Первая буква в каждом абзаце увеличенного размера и выделена цветом */
 p::first-letter {
 	float: left; 								/* Обтекание по правому краю */
-	margin-right: -2.8vw; 						/* text-indent отсчитывается от стилизованной первой буквы */
+	margin-right: -3.1vw; 						/* text-indent отсчитывается от стилизованной 1-й буквы */
+	margin-left: 1vw;
 	line-height: 3vh; 							/* Положение относительно текста */
 	font-size: 2vw;								/* Размер буквицы */
 	color: lightcoral;		 					/* Цвет буквицы  */
+}
+
+q {
+	font-style: italic; 						/* Курсивное начертание текста */
+    color: darkslateblue; 						/* Синий цвет текста */
+    quotes: "\00ab" "\00bb"; 					/* Кавычки в виде двойных угловых скобок */
+}
+
+code q {
+	quotes: "\0027" "\0027";					/* Апостроф (одинарная кавычка) */
 }
 
 /* Все ссылки */
@@ -200,6 +214,12 @@ dfn {
 	font-weight: bold;							/* Полужирный шрифт */
 	font-size: 1.2vw;							/* Шрифт на 0.1 больше основного */
 	color: lightcoral;
+}
+
+em {
+	font-weight: bold;
+	font-style: normal;
+	color: #f00;
 }
 
 /* Заголовки таблицы */
@@ -249,29 +269,19 @@ article > ol li {
 	text-align: center;							/* Выравниваем по центру футера */
 }
 
-/* ********************************************************************************* Borders */
-
-.responsive-table {	
-	border-collapse: collapse;					/* Соединяем рамки таблицы */
-	border: 5px groove darkslategray;			/* Рамка для таблицы */	
+/* Запрещаем скролл */
+textarea {
+	overflow: hidden;
 }
 
-.responsive-table td, 
-.responsive-table th,
-footer {
-	border: 2px inset darkslategray;			/* Рамка для ячеек */
-}
+/* Текст подсказки */
+::-webkit-input-placeholder { color: blueviolet; text-overflow: ellipsis; }
+::-moz-placeholder          { color: blueviolet; text-overflow: ellipsis; }/* Firefox 19+ */
+:-moz-placeholder           { color: blueviolet; text-overflow: ellipsis; }/* Firefox 18- */
+:-ms-input-placeholder      { color: blueviolet; text-overflow: ellipsis; }
 
-.inner-table, 
-.inner-table th, 
-.inner-table tr, 
-.inner-table td {
-	border: 2px ridge darkslategray;   			/* Рамки вложенных таблиц */
-}
-
-footer {
-	border-bottom-left-radius: 50px 120px; 		/* Скругленные уголки */
-	border-bottom-right-radius: 50px 120px;
+*:checked~label {
+	font-weight: bold;
 }
 
 /* ********************************************************************************* Page-Proof */
@@ -377,6 +387,133 @@ article > ul li {
 	 margin: 2vw auto;							/* Центрируем внутреннюю таблицу */
  }
 
+/* ***************************************************************************** Forms Page-Proof */
+
+form {
+	padding: 1vw;
+}
+
+fieldset {
+	display: inline-block;
+	padding: 2vh 1vw;
+	margin: 2vh 1vw;
+	vertical-align: top;
+	width: 40vw;
+}
+
+legend {
+	padding: 0 1vw;
+	font-weight: bold;
+	font-variant: small-caps;
+}
+
+label {
+	display: inline-block;
+	vertical-align: top;
+	width: 8vw;
+	margin: 0.5vw;
+}
+
+input, 
+textarea,
+select {
+	width: 15vw;
+	padding: 1vh 1vw;
+	margin: 1vh 2vw;
+}
+
+textarea {
+	height: 10vh;
+}
+
+select {
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	width: 2vw;
+	height: 3vh;
+}
+
+input[type="button"],
+input[type="file"],
+progress {
+	width: 12vw;
+	padding: 0.1vw;
+}
+
+progress {
+	height: 5vh;
+ 	width: 83vw;
+	margin-top: 3vh;
+}
+
+/* ********************************************************************************* Borders */
+
+fieldset {
+	border: 3px groove darkslategray;
+	border-radius: 10px;
+}
+
+input,
+input:focus, /* Убираем рамки при выделении, так как они не совпадают со скругленными уголками */
+input[type="range"],
+input[type="range"]:focus,
+input[type="checkbox"],
+input[type="checkbox"]:focus,
+input[type="radio"],
+input[type="radio"]:focus,
+textarea,
+textarea:focus,
+select,
+select:focus,
+progress { 
+	outline: none; /* убирает пунктирную рамку только у текстовых полей и селектов */
+	border: 2px solid darkslategray;
+	border-radius: 10px;
+}
+
+/* Некорректно заполненные поля формы */
+:invalid, 
+:out-of-range {
+	border: 2px solid red;
+}
+
+/* Корректно заполненные поля формы */
+:valid,
+:in-range {
+	border: 2px solid green;
+}
+
+/* Поля формы обязательные для заполнения */
+:required {
+	border: 2px solid lightCoral;
+}
+
+.responsive-table,
+form {	
+	border-collapse: collapse;					/* Соединяем рамки таблицы */
+	border: 5px groove lightslategray;			/* Рамка для таблицы */	
+}
+
+.responsive-table td, 
+.responsive-table th,
+footer {
+	border: 2px inset lightslategray;			/* Рамка для ячеек */
+}
+
+.inner-table, 
+.inner-table th, 
+.inner-table tr, 
+.inner-table td {
+	border: 2px ridge darkslategray;   			/* Рамки вложенных таблиц */
+}
+
+footer {
+	border-bottom-left-radius: 50px 120px; 		/* Скругленные уголки */
+	border-bottom-right-radius: 50px 120px;
+}
+
 /* ********************************************************************************* Backgrounds */
 
 .responsive-table tr:hover { 							/* Подсветка рядов таблицы */	
@@ -410,11 +547,22 @@ details summary {										/* Градиент заголовков таблиц
 		linear-gradient(to bottom, rgba(197,199,214, 0.2), rgba(14,100,63, 0.2));
 }
 
-.responsive-table {										/* Градиент фона большой таблицы */			
+.responsive-table, 
+:focus {										/* Градиент фона большой таблицы */			
 	background:
 		radial-gradient(circle at 2.02% 32.98%, #eeefff, transparent 70%),
 		radial-gradient(circle at 97.98% 52.07%, #e4eab5, transparent 70%),
 		radial-gradient(circle at 50% 50%, #e9edef, #e9edef 100%)
+}
+
+input[type="submit"],
+input[type="reset"],
+input[type="file"],
+select, 
+-webkit-progress-bar {
+	background:
+		radial-gradient(circle at 2.02% 32.98%, rgba(216, 195, 202, 0.83), transparent 60%),
+		radial-gradient(circle at 50% 50%, rgba(185, 214, 105, 0.3), rgba(185, 214, 105, 0.42) 100%)
 }
 
 footer {
@@ -427,7 +575,8 @@ footer {
 /* Внутренняя тень для блоков с загнутыми уголками */
 article, 
 .interesting,
-.source-links {	
+.source-links,
+ form {	
 	-webkit-box-shadow: 0 5px 10px rgba(65, 89, 123, 0.8), inset 0 0 50px rgba(158, 185, 204, 0.52);
 		-moz-box-shadow: 0 5px 10px rgba(65, 89, 123, 0.8), inset 0 0 50px rgba(158, 185, 204, 0.52);
 			box-shadow: 0 5px 10px rgba(65, 89, 123, 0.8), inset 0 0 50px rgba(158, 185, 204, 0.52);
@@ -470,10 +619,18 @@ article:after {
 }
 
 /* Тень футера */
-.responsive-table, 
+.responsive-table,
 footer {
 	box-shadow: 0px 0px 15px darkslategray;
  }
+
+input,
+textarea,
+select {
+	box-shadow:	0px 0px 1px darkslategray inset,
+				1px 1px 2px lightGreen inset,
+				2px 2px 3px mistyRose inset;
+}
 
 /* ********************************************************************************* Misc */
 
@@ -546,6 +703,10 @@ details[open] summary:before {
 details[open] summary:before {
 	content: " ⇑ ";			/* значок в закрытом состоянии */
 }
+
+
+/* ********************************************************************************* Animations */
+
 
 /* ==========================================================================
    Helper classes
