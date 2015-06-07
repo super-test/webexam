@@ -169,6 +169,7 @@
 			}
 
 			class Site extends Template {
+				
 				public $type;
 				function __construct($name, $type, $category, $price=null, $availability=false) {
 					parent::__construct($name, $category, $price, $availability);
@@ -181,6 +182,7 @@
 			}
 
 			class Count {
+				
 				public static $totalCount = 0;
 				
 				public function staticValue() {

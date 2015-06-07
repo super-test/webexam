@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="ie=edge">
-	<title>Карта сайта</title>
+	<title>PHP Diary</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -25,43 +25,87 @@
     <![endif]-->
 
 	<!-- Add your site or application content here -->
-	<nav>
-		<h3>Учебные материалы</h3>
-		<ol>
-			<li>HTML5
-				<ol>
-					<li><a href="/doc/html5/html5-history.html">История HTML</a></li>
-					<li><a href="/doc/html5/html5-tags.html">HTML5 Tags</a></li>
-					<li><a href="/doc/html5/html5-forms.html">Формы HTML5</a></li>
-				</ol>
-			</li>
-			<li>PHP
-				<ol>
-					<li><a href="/doc/php/php-shop.php">PHP-Shop</a></li>
-				</ol>
-			</li>
-		</ol>
-	</nav>
-	<hr>
-	<nav>
-		<h3>Примеры</h3>
-		<ul>
-			<li>HTML5
-				<ul>
-					<li><a href="/doc/html5/html5-history.html">HTML5 Текст</a></li>
-					<li><a href="/doc/html5/html5-tags.html">HTML5 Таблица</a></li>
-					<li><a href="/doc/html5/html5-tags.html">HTML5 Details</a></li>
-					<li><a href="/doc/html5/html5-forms.html">Формы HTML5</a></li>
-				</ul>
-			</li>
-			<li>CSS3
-				<ul>
-					<li></li>
-				</ul>
-			</li>
-		</ul>
-	</nav>
-	
+	<article>
+		<?php
+//			ini_set('display_errors',1);
+//			error_reporting(E_ALL);
+
+			/* ****************************************************************** Model */
+			
+			/* --------------------------------------------------------- class for one separate note */
+
+			class Note {
+				public $textNote; // Текст записки
+				public $category; // Категория записки
+
+				function __construct($text="Default Note", $category = "Default category") {
+					// Конструктор, который инициализирует все свойства класса
+					$this->textNote=$text;
+					$this->category=$category;
+				}
+			};
+			
+			/* --------------------------------------------------------- operate items */
+
+			class Organizer {
+				
+				public $notes;
+				
+				function __construct() {
+					// Конструктор, который инициализирует все свойства класса
+					$this->notes=array();
+				}
+				
+				public function addNote(Note $note) {
+					$this->notes[] = $note;					
+				}
+			};
+			
+			/* ****************************************************************** Data */
+				$textData = new Note();
+
+				$index=0;
+					
+				$nameNote = "nameNote".$index;
+				$nameCategory = "nameCategory".$index;
+			
+			/* ****************************************************************** Template */
+			
+			$note_tmpl =
+				"<label>Input Note</label>
+					<input type=\"text\" name=\"{$nameNote}\" value=\"{$textData->textNote}\"><br />
+
+					<label>Input Cathegory</label>
+						<input type=\"text\" name=\"{$nameCategory}\" value=\"{$textData->category}\"><br />";
+			$form_tmpl = 
+				"<form action=\"#\" method=get\">
+					
+					{$note_tmpl}
+					<input type=\"submit\" value=\"Add Note\" name=\"send\" />
+				</form>";		
+
+			/* ****************************************************************** Controller */
+			echo $form_tmpl;				
+
+				
+			if($_GET["send"]) {
+
+				for ($index=0; $index<count($_GET); $index++) {
+					
+					$nameNote = "nameNote".$index;
+					$nameCategory = "nameCategory".$index;
+					
+					$textData->textNote = $_GET[$nameNote.$index];
+					$textData->category = $_GET[$nameCategory.$index];
+					echo $note_tmpl;
+					echo "Thank";
+					echo $form_tmpl;
+				}
+			}
+
+			
+		?>
+	</article>
 	<!--
 		Подключаем скрипты
 	-->

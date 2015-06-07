@@ -1,9 +1,18 @@
 /*
-* *********************************************************************************************Polifills
+* ********************************************************************************************* Polifills
 */
 
-
-
+// Give Modernizr.load a string, an object, or an array of strings and objects
+Modernizr.load([
+	// Presentational polyfills
+	{
+		// Logical list of things we would normally need
+		test: Modernizr.summary,
+	 
+		// Modernizr.load loads css and javascript by default
+		nope : ['../../js/vendor/logifill-details-min.js']
+	} 
+]);
 
 /* 
 * ********************************************************* Java Script Валидация формы для регистрации **
@@ -113,19 +122,3 @@ window.onload = function() {
 	/* ------------------------------------------------ Обновляем значение прогресс -- */
 	
 };
-
-/* 
-* *********************************************************  **
-*/
-
-// Give Modernizr.load a string, an object, or an array of strings and objects
-Modernizr.load([
-	// Presentational polyfills
-	{
-		// Logical list of things we would normally need
-		test: Modernizr.summary,
-	 
-		// Modernizr.load loads css and javascript by default
-		nope : ['../../js/vendor/logifill-details-min.js']
-	} 
-]);
