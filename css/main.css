@@ -288,6 +288,14 @@ textarea {
 	font-weight: bold;
 }
 
+.panel button,
+.panel outline {
+	font-weight: bold;
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 1.1vw;
+}
+
 /* ********************************************************************************* Page-Proof */
 
 /* 
@@ -337,6 +345,14 @@ code {
 
 footer {
 	min-height: 10vh;							/* Высота футера */
+}
+
+/* ***************************************************************************** Media Page-Proof */
+
+video {
+	display: block;								/* Отображаем как блок, чтобы было можно центрировать */
+	width: 41vw;								/* Подбираем ширину до вертикальных полос прокрутки */
+	margin: 5vh auto;							/* Центрируем и немножко отодвигаем сверху */
 }
 
 /* ***************************************************************************** Lists Page-Proof */
@@ -440,16 +456,45 @@ input[type="radio"] {
 }
 
 input[type="button"],
-input[type="file"],
-progress {
+input[type="file"] {
 	width: 12vw;
 	padding: 0.1vw;
 }
 
-progress {
+progress,
+output {
+	display: block;
+	margin: 3vh auto;
+	padding: 1wv;
 	height: 5vh;
  	width: 83vw;
-	margin-top: 3vh;
+}
+
+progress::-webkit-progress-value {
+  background-color: lightgreen;
+}
+
+
+/* Панелька с кнопками для видео */
+.panel {
+	width: 55vw;
+	height 15vh;
+	margin: 2vh auto;
+}
+
+/* Ползунок для видео */
+#volumeCtrl, 
+#videoProgress,
+output {
+	display: block;
+	margin: 2vh auto;
+	width: 45vw;
+	padding: 0.5vh;
+	text-align: center;
+}
+
+.panel button {
+	margin: 0.2vw auto;
 }
 
 /* ********************************************************************************* Borders */
@@ -471,10 +516,30 @@ textarea,
 textarea:focus,
 select,
 select:focus,
-progress { 
+progress,
+output { 
 	outline: none; /* убирает пунктирную рамку только у текстовых полей и селектов */
 	border: 2px solid darkslategray;
 	border-radius: 10px;
+}
+
+/* Стилизуем ползунок для Opera и Chrome */
+input[type='range']::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	background-color: #ffeeee;
+	border: 1px solid darkslategray;
+	width: 20px;
+	height: 20px;
+	border-radius: 10px;
+	cursor: pointer;
+}
+
+input[type='range'] {
+    -webkit-appearance: none;
+} 
+
+.panel button {
+	border-radius: 5px;
 }
 
 /* Некорректно заполненные поля формы */
@@ -537,7 +602,7 @@ html { 													/* Градиент страницы */
 		radial-gradient(circle at 50% 50%, #000000, #000000 100%)
 }										
 
-article { 												/* Самый большой блок на странице */
+article { 												/* Самый большой блок на странице */				
 	background:
 		radial-gradient(circle at 2.02% 16.02%, #ffeeee, transparent 100%),
 		radial-gradient(circle at 97.98% 25.90%, #ddefbb, transparent 100%),
@@ -551,19 +616,27 @@ details summary {										/* Градиент заголовков таблиц
 		linear-gradient(to bottom, rgba(197,199,214, 0.2), rgba(14,100,63, 0.2));
 }
 
-.responsive-table, 
-:focus {										/* Градиент фона большой таблицы */			
+:focus,
+.responsive-table, /* Градиент фона большой таблицы */			
+progress::-webkit-progress-bar {										
 	background:
 		radial-gradient(circle at 2.02% 32.98%, #eeefff, transparent 70%),
 		radial-gradient(circle at 97.98% 52.07%, #e4eab5, transparent 70%),
 		radial-gradient(circle at 50% 50%, #e9edef, #e9edef 100%)
 }
 
+progress::-webkit-progress-value,
+input[type="range"],
+.panel button:focus {
+	background-image:         
+		linear-gradient(to right, rgba(128, 247, 123, 0.3), rgba(27, 49, 2, 0.6));	
+}
+
 input[type="submit"],
 input[type="reset"],
 input[type="file"],
-select, 
--webkit-progress-bar {
+select,
+.panel button {
 	background:
 		radial-gradient(circle at 2.02% 32.98%, rgba(216, 195, 202, 0.83), transparent 60%),
 		radial-gradient(circle at 50% 50%, rgba(185, 214, 105, 0.3), rgba(185, 214, 105, 0.42) 100%)
@@ -630,7 +703,9 @@ footer {
 
 input,
 textarea,
-select {
+select,
+outline,
+#volumeCtrl {
 	box-shadow:	0px 0px 1px darkslategray inset,
 				1px 1px 2px lightGreen inset,
 				2px 2px 3px mistyRose inset;
@@ -707,7 +782,6 @@ details[open] summary:before {
 details[open] summary:before {
 	content: " ⇑ ";			/* значок в закрытом состоянии */
 }
-
 
 /* ********************************************************************************* Animations */
 

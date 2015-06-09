@@ -1,19 +1,3 @@
-/*
-* ********************************************************************************************* Polifills
-*/
-
-// Give Modernizr.load a string, an object, or an array of strings and objects
-Modernizr.load([
-	// Presentational polyfills
-	{
-		// Logical list of things we would normally need
-		test: Modernizr.summary,
-	 
-		// Modernizr.load loads css and javascript by default
-		nope : ['../../js/vendor/logifill-details-min.js']
-	} 
-]);
-
 /* 
 * ********************************************************* Java Script Валидация формы для регистрации **
 */
@@ -21,15 +5,15 @@ Modernizr.load([
 window.onload = function() {
 	
 	var registrationForm = document.querySelector('form[name="registrationForm"]'),
-		name = registrationForm.querySelector('input[name="nameField"]'),		
-		tel = registrationForm.querySelector('input[name="phoneField"]'),		
-		email = registrationForm.querySelector('input[name="emailField"]'),
-		progress = registrationForm.querySelector('progress[name="progressField"]');
+		name = document.querySelector('input[name="nameField"]'),		
+		tel = document.querySelector('input[name="phoneField"]'),		
+		email = document.querySelector('input[name="emailField"]'),
+		progress = document.querySelector('progress[name="progressField"]');
 		
 	var count = 0;
 	
 	/* ------------------------------------------------ Стилизация заполненных полей -- */
-	
+
 	/* Показываем некорректно заполненное поле */
 	function showValid(element) {		
 		element.style.border = '2px dashed green';		
@@ -41,7 +25,7 @@ window.onload = function() {
 	};
 	
 	/* Обновляем значение progress */
-	function updateProgress(count) {
+	function updateFormProgress(count) {
 		progress.value = Math.floor((100 / 70) * count);
 	}
 	
@@ -59,7 +43,7 @@ window.onload = function() {
 			// Инкрементируем счетчик правильных ответов
 			count++;			
 			// Обновляем значение progres
-			updateProgress(count);
+			updateFormProgress(count);
 			
 		} else {
 			showInvalid(element);
@@ -96,7 +80,7 @@ window.onload = function() {
 		// Запускаем проверку 
 		checkField(element, regexp, errorMessage);
 	};
-	
+
 	function validEmail() {
 		
 		var element = this,
@@ -119,6 +103,105 @@ window.onload = function() {
 	if(tel) tel.onchange = validTel;
 	if(email) email.onchange = validEmail;
 	
-	/* ------------------------------------------------ Обновляем значение прогресс -- */
+/* 
+* ********************************************************* Java Script Media **
+*/
 	
+	/* ------------------------------------------------ Находим HTML5-плейер -- */
+	
+	var html5Video = document.querySelector('video');
+
+	/* ------------------------------------------------ Находим HTML5-кнопки -- */
+	
+	var playButton = document.getElementById('play');
+	var pauseButton = document.getElementById('pause');
+	var stopButton = document.getElementById('stop');
+	var muteButton = document.getElementById('mute');
+	var fasterButton = document.getElementById('faster');
+	var slowerButton = document.getElementById('slower');
+	var nsButton = document.getElementById('normalSpeed');	
+	var volumeText = document.getElementById('volumeText');
+	
+	var videoProgress = document.getElementById('videoProgress');
+	
+	/* ------------------------------------------------ Вешаем обработчики -- */
+	
+	playButton.addEventListener('click', play);
+	pauseButton.addEventListener('click', pause);
+	stopButton.addEventListener('click', stop);
+	muteButton.addEventListener('click', muteOrUnmute);
+	fasterButton.addEventListener('click', speedUp);
+	slowerButton.addEventListener('click', slowDown);
+	nsButton.addEventListener('click', normalSpeed);
+	volumeCtrl.addEventListener('change', updateVolume);
+	
+	
+	html5Video.addEventListener('timeupdate', updateVideoProgress);
+	
+	/* ------------------------------------------------ Определяем функции -- */
+	
+	function play() {
+		html5Video.play();
+	}
+
+	function pause() {
+		html5Video.pause();
+	}
+
+	function stop() {
+		html5Video.pause();
+		html5Video.currentTime = 0;
+	}
+	
+	html5Video.volumechange = function(e) {
+		// Звук вкл/ выкл
+		muteButton.value = html5Video.muted ? 'Muted' : 'Unmuted';
+		// Громче/ тише
+		volumeCtrl.value = html5Video.volume;
+	}
+	
+	function muteOrUnmute() {
+		html5Video.muted = !html5Video.muted;
+	}
+	
+	function updateVolume() {
+		html5Video.volume = volumeCtrl.value;
+		volumeText.value = volumeCtrl.value;
+	}
+	
+	function speedUp() {
+		html5Video.play();
+		html5Video.playbackRate += 0.5;
+	}
+
+	function slowDown() {
+		html5Video.play();
+		html5Video.playbackRate -= 0.5;
+	}
+
+	function normalSpeed() {
+		html5Video.play();
+		html5Video.playbackRate = 1;
+	}
+	
+	function updateVideoProgress() {
+		videoProgress.value = html5Video.currentTime / html5Video.duration * 100;
+	}
 };
+
+/*
+/* ********************************************************************************************* Polifills
+*/
+
+	// Полифиллы определены внизу, чтобы успели загрузиться файлы скриптов
+	// Give Modernizr.load a string, an object, or an array of strings and objects
+Modernizr.load([
+	// Presentational polyfills
+	{
+		// Logical list of things we would normally need
+		test: Modernizr.summary,
+	 
+		// Modernizr.load loads css and javascript by default
+		nope : ['../../js/vendor/logifill-details-min.js']
+	} 
+]);

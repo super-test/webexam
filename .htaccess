@@ -1,4 +1,4 @@
 RewriteEngine on
-RewriteRule ^test sef.html [L]
+#RewriteRule ^test sef.html [L]
 AddDefaultCharset UTF-8
 php_flag display_errors 1
