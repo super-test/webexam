@@ -1,3 +1,6 @@
+/* ----------------------------------------------------- Neuka - заголовки таблиц Kurale - списки */
+@import url(http://fonts.googleapis.com/css?family=Neucha|Kurale&subset=latin,cyrillic,latin-ext);
+
 /* Не удалось убрать рамку вокруг checkbox-ов */
 /* fieldset в Chrome продолжает рамку под своим label */
 
@@ -23,8 +26,6 @@
 	src: url("../../fonts/Anonymous.ttf");						/* Путь к файлу со шрифтом */
 }
 
-/* ----------------------------------------------------- Neuka - заголовки таблиц Kurale - списки */
-@import url(http://fonts.googleapis.com/css?family=Neucha|Kurale&subset=latin,cyrillic,latin-ext);
 
 
 /*! HTML5 Boilerplate v5.2.0 | MIT License | https://html5boilerplate.com/ */
@@ -157,11 +158,11 @@ p {
 * увеличенного размера и выделена цветом 
 */
 
-p::first-letter:not(class) {
-	float: left; 								/* Обтекание по правому краю */
+p::first-letter {
+	float: left; 								/* Обтекание по левому краю */
 	margin-right: -3.1vw; 						/* text-indent отсчитывается от стилизованной 1-й буквы */
 	margin-left: 1vw;
-	line-height: 3vh; 							/* Положение относительно текста */
+	line-height: 1.8vh; 						/* Положение относительно текста */
 	font-size: 2vw;								/* Размер буквицы */
 	color: lightcoral;		 					/* Цвет буквицы  */
 }
@@ -285,9 +286,9 @@ textarea {
 
 /* Текст подсказки */
 ::-webkit-input-placeholder { color: blueviolet; text-overflow: ellipsis; }
-::-moz-placeholder          { color: blueviolet; text-overflow: ellipsis; }/* Firefox 19+ */
-:-moz-placeholder           { color: blueviolet; text-overflow: ellipsis; }/* Firefox 18- */
-:-ms-input-placeholder      { color: blueviolet; text-overflow: ellipsis; }
+	::-moz-placeholder          { color: blueviolet; text-overflow: ellipsis; }/* Firefox 19+ */
+		:-moz-placeholder           { color: blueviolet; text-overflow: ellipsis; }/* Firefox 18- */
+			:-ms-input-placeholder      { color: blueviolet; text-overflow: ellipsis; }
 
 *:checked~label {
 	font-weight: bold;
@@ -304,9 +305,9 @@ textarea {
 .text-3d {
 	font-size: 4vw;
 	font-weight: bold;
-	text-align: center;
-	margin: 1em 0;
+	margin: 1vw 0;
 	color: #fff;
+	padding: 1vw;
 	text-shadow:
 		-1px 1px 0 #ddd,
 		-2px 2px 0 #c8c8c8,
@@ -320,7 +321,13 @@ textarea {
 					-2px 8px 8px rgba(0,0,0,.1),
 					-2px 13px 13px rgba(0,0,0,.1);
 }
-
+/* Приводим в нормальный вид первую букву, так как на нее влияет p:first-letter */
+.text-3d::first-letter {
+	float: none;
+	color: inherit;
+	font-size: inherit;
+	margin: inherit;
+}
 /* ********************************************************************************* Page-Proof */
 
 /* 
@@ -344,6 +351,8 @@ article {
 	position: relative;							/* Для загнутых уголков */
 	margin: 5vh 0.5vw;
 	padding: 2vw;
+	min-height: 90vh;
+	min-width: 460px;
 }
 
 /* Форматируем блок плавающего рисунка. */ 
@@ -490,7 +499,7 @@ progress,
 output {
 	display: block;
 	margin: 3vh auto;
-	padding: 1wv;
+	padding: 1vw;
 	height: 5vh;
  	width: 83vw;
 }
@@ -502,27 +511,36 @@ progress::-webkit-progress-value {
 
 /* Панелька с кнопками для видео */
 .panel {
-	width: 55vw;
-	height 15vh;
+	position:relative;
+	width: 80vw;
+	height: 15vh;
 	margin: 2vh auto;
+	text-align: center;
 }
 
 /* Ползунок для видео */
 #volumeCtrl, 
 #videoProgress,
 output {
+	position: relative;
 	display: block;
 	margin: 2vh auto;
 	width: 45vw;
+	height: 4vh;
 	padding: 0.5vh;
 	text-align: center;
 }
 
 .panel button {
+	display: inline-block;
 	margin: 0.2vw auto;
 }
 
 /* ********************************************************************************* Borders */
+
+.text-3d {
+	border: 2vw solid white;
+}
 
 fieldset {
 	border: 3px groove darkslategray;
@@ -673,6 +691,20 @@ footer {
 }
 
 /* ********************************************************************************* Shadows */
+.text-3d {  
+	box-shadow:
+	-1px 1px 0 #ddd,
+	-2px 2px 0 #c8c8c8,
+	-3px 3px 0 #ccc,
+		-4px 4px 0 #b8b8b8,
+		-4px 4px 0 #bbb,
+			0px 1px 1px rgba(0,0,0,.4),
+			0px 2px 2px rgba(0,0,0,.3),
+			-1px 3px 3px rgba(0,0,0,.2),
+				-1px 5px 5px rgba(0,0,0,.1),
+				-2px 8px 8px rgba(0,0,0,.1),
+				-2px 13px 13px rgba(0,0,0,.1);
+}
 
 /* Внутренняя тень для блоков с загнутыми уголками */
 article, 
@@ -743,10 +775,10 @@ hr {
     height: 5px;
 	
     background:
-		-webkit-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0));
-			-moz-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0));
-				-o-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0));
-					-ms-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0));
+		-webkit-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0)),
+			-moz-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0)),
+				-o-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0)),
+					-ms-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0)),
 						linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0));
 }		
 
