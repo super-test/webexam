@@ -1,0 +1,176 @@
+<!doctype html>
+
+<!--
+	Документ загружает фреймы по нажатию соответствующих кнопок
+-->
+
+
+<html class="no-js">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge">
+	<title>Try IT</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<!-- Place favicon.ico in the root directory -->
+	
+	<!--
+		Подключаем скрипты
+	-->
+
+	<!-- vendor scripts added -->
+	<script src="../../js/vendor/modernizr.js"></script>
+	<script src="../../js/plugins.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script>
+		window.jQuery || document.write('<script src="../../js/vendor/jquery.js"><\/script>')
+	</script>
+
+	<!-- user scripts added -->
+	<script src="../../js/main.js"></script>
+
+
+	<link rel="stylesheet" href="../../css/normalize.css">
+	<link rel="stylesheet" href="../../css/main.css">
+</head>
+
+<body>
+	<!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. 
+            Please <a href="http://browsehappy.com/">upgrade your browser</a> 
+            to improve your experience.</p>
+        <![endif]-->
+
+	<!-- Add your site or application content here -->
+	<main role="main">
+		
+		<!-- .................................................................... Строка кода ......  -->
+		
+		<textarea id="codeString" spellcheck="false"></textarea>
+		
+		<!-- .................................................................... Управляющие кнопки ...  -->
+
+		<div class="serverButtons">
+			<button id="runButton">Run</button>
+			<button id="reloadButton">Reload</button>
+		</div>
+		
+		<!-- ..................................................................... Кнопки для Canvas ..  -->
+
+		<div id="canvasAPI">
+			<button title="Запустить Canvas" id="runCanvasButton">Run Canvas</button>
+			<button title="beginPath()" id="beginPath">Новый путь</button>
+			<button title="closePath()" id="closePath">Закрыть путь</button>
+			<button title="clearRect(x, y, width, height)" id="clearCanvas">Очистить</button>
+			<button title="Сохранить холст" id="saveCanvas">Сохранить</button>
+			<button title="Перезагрузить холст" id="reloadCanvas">Перезагрузить</button>
+			<button title="Восстановмть холст" id="restoredCanvas">Восстановить</button>
+			<br>
+		
+			<!-- ..................................................................... Canvas-Трансформации ..  -->
+
+			<button title="translate()" id="moveCanvasButton">Транслировать холст</button>
+			<button title="rotate()" id="rotateCanvasButton">Повернуть Canvas</button>
+			<br>
+			
+			<!-- ..................................................................... Canvas-Линии ..  -->
+
+			<button title="moveTo()" id="moveTo">Начальная точка</button>
+			<button title="lineTo()" id="lineTo">Конечная точка</button>
+			<button title="lineWidth" id="lineWidth">Ширина линии</button>
+			<button title="strokeStyle()" id="strokeStyle">Цвет линии</button>
+			<button title="opasity" id="opasity">Прозрачность</button>			
+			<button title="lineCapRound" id="lineCapRound">Закруглить</button>
+			<button title="lineCapSquare" id="lineCapSquare">Заквадратить</button>
+			<button title="stroke()" id="stroke">Соединить</button>
+			<br>
+
+			<!-- ..................................................................... Canvas-Кривые ..  -->
+
+			<button title="arc()" id="arc">Дуга</button>
+			<button title="bezier()" id="bezier">Кривая</button>
+			<br>
+
+			<!-- ..................................................................... Canvas-Шрифты ..  -->
+
+			<button title="Вставить текст" id="text">Текст</button>
+			<button title="Контур текста" id="borderText">Контур текста</button>
+			<br>
+
+			<!-- ..................................................................... Canvas-Фигуры ..  -->
+
+			<button title="lineJoinRound" id="lineJoinRound">Закруглить вершины</button>
+			<button title="lineJoinBever" id="lineJoinBever">Обрезать вершины</button>
+			<button title="fillStyle()" id="fillStyle">Цвет заливки</button>
+			<button title="fill()" id="fill">Залить</button>
+			<br>
+
+			<!-- ..................................................................... Canvas-Готовые фигуры  -->
+
+			<button title="Прямая линия" id="straightLine">Прямая линия</button>
+			<button title="Нарисовать круг" id="round">Круг</button>
+			<button title="Случайный круг" id="randomRound">Случайный круг</button>
+			<button title="fillRect(x, y, width, height)" id="fillRect">Залитый прямоугольник</button>
+			<button title="strokeRect(x, y, width, height)" id="strokeRect">Залить прямоугольник</button>
+			<button title="Выбрать картинку" id="selectPicture">Выбрать картинку</button>
+			<button title="Загрузить картинку" id="insertPicture">Вставить картинку</button>
+			<button title="Заполнить холст" id="fillCanvas">Заполнить холст</button>
+			<br>
+
+			<!-- ..................................................................... Canvas-Тени ..  -->
+
+			<button id="shadowColor">Цвет тени</button>
+			<button id="shadowBlur">Размытие тени</button>
+			<button id="shadowPosition">Позиция тени</button>
+			<br>
+
+			<!-- ..................................................................... Canvas-Градиенты ..  -->
+
+			<button id="createGradient">Создать градиент</button>
+			<button id="addColor">Добавить цвет</button>
+			<button id="fillGradient">Залить градиентом</button>
+			<button id="linear2">2-хцветный линейный градиент</button>
+			<button id="radial2">2-хцветный радиальный градиент</button>
+			<button id="linearMany">Многоцветный линейный градиент</button>
+			<button id="radialMany">Многоцветный радиальный градиент</button>
+			<br>
+		</div>
+
+		<section>
+		
+			<h2>Try IT</h2>
+			<!-- ..................................................................... Фреймы ..  -->
+			<iframe src="html5-canvas.html" name="contentFrame" id="contentFrame"></iframe>
+
+		</section>
+
+	</main>
+	<footer>
+		<p>Видео и аудио в HTML5</p>
+	</footer>
+	
+	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+	<script>
+		(function(b, o, i, l, e, r) {
+			b.GoogleAnalyticsObject = l;
+			b[l] || (b[l] =
+				function() {
+					(b[l].q = b[l].q || []).push(arguments)
+				});
+			b[l].l = +new Date;
+			e = o.createElement(i);
+			r = o.getElementsByTagName(i)[0];
+			e.src = 'https://www.google-analytics.com/analytics.js';
+			r.parentNode.insertBefore(e, r)
+		}(window, document, 'script', 'ga'));
+		ga('create', 'UA-XXXXX-X', 'auto');
+		ga('send', 'pageview');
+
+	</script>
+
+</body>
+
+</html>

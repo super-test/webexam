@@ -377,8 +377,41 @@ code {
 	margin: 2vw auto;							/* Центрируем внутренние блоки кода */
 }
 
+/* ***************************************************************************** Footer Page-Proof */
+
 footer {
 	min-height: 10vh;							/* Высота футера */
+}
+
+/* ***************************************************************************** Frame Page-Proof */
+
+iframe {
+	height: 30vh;
+	width: 90vw;
+	margin: 5vh auto;
+}
+
+/* ***************************************************************************** Canvas Page-Proof */
+
+#canvasField {
+	position: relative;
+	border: 2px solid darkslategray;
+}
+
+/* Сохранение картинки */
+
+#savedCopyContainer {
+	display: none;
+	position: absolute;
+	top: 4%; left: 81%; right: 0; 
+	width: 250px;
+	height: 150px;
+	border: 4px solid darkslategray;
+}
+
+#savedCopyContainer img {
+	width: 250px;
+	height: 150px;
 }
 
 /* ***************************************************************************** Media Page-Proof */
@@ -391,7 +424,8 @@ video {
 
 /* ***************************************************************************** Lists Page-Proof */
 
-/* Все маркированные списки в основном тексте */
+/* ------------------------------------------ Все маркированные списки в основном тексте */
+
 article > ul,
 article > ol {	
 	margin-left: 5vw;
