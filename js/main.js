@@ -19,6 +19,7 @@ window.onload = function() {
 /* 
 * ********************************************************* Java Script Canvas **
 */
+
 	
 	// FUTURE CANVAS START
 		
