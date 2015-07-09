@@ -6,6 +6,7 @@
 * ********************************************************* Java Script **
 */	
 
+
 window.onload = function() {
 	
 		var mainWindow = window.parent.document;										// Документ с фреймами
@@ -13,6 +14,8 @@ window.onload = function() {
 		var codeStr = mainWindow.getElementById('codeString');							// Строка для кода
 		var img = new Image();												//Создадим картинку для загрузки в Canvas
 	
+
+		
 /* 
 * ********************************************************* Java Script Canvas **
 */

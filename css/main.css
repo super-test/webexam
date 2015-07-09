@@ -1,9 +1,13 @@
 /* FUTURE FONTS IIMPORTED */
 
 /* -------------------------------------------------------- Neuka - заголовки таблиц Kurale - списки */
+
 @import url(http://fonts.googleapis.com/css?family=Neucha|Kurale&subset=latin,cyrillic,latin-ext);
+@import url(http://fonts.googleapis.com/css?family=PT+Mono&subset=cyrillic-ext,latin-ext); /* Для строки с кодом */
+@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono&subset=cyrillic-ext,latin); /* Для кнопок */
 
 /* -------------------------------------------------------- Для заголовков */
+
 @font-face {	
 	
 	font-family: "MerriWeather";
@@ -23,6 +27,7 @@
 }
 
 /* -------------------------------------------------------- Для участков с кодом */
+
 @font-face { 
 	
 	font-family: "Anonymous"; 									/* Гарнитура шрифта */
@@ -105,9 +110,9 @@ fieldset {
  * Allow only vertical resizing of textareas.
  */
 
-textarea {
-    resize: vertical;
-}
+/*textarea {
+ *   resize: vertical;
+/*}
 
 /* ==========================================================================
    Browser Upgrade Prompt
@@ -189,7 +194,6 @@ h3 {
 	color: darkslategray;						/* Цвет шрифта заголовков */
 }
 
-/* FIXME Стрелка в Summary не работает в текущем шрифте */
 .responsive-table th, 
 details summary {
 	text-transform: uppercase;					/* Все буквы большие */
@@ -275,10 +279,6 @@ q {
     quotes: "\00ab" "\00bb"; 					/* Кавычки в виде двойных угловых скобок */
 }
 
-code q {
-	quotes: "\0027" "\0027";					/* Апостроф (одинарная кавычка) */
-}
-
 /* FUTURE CodeBlocks Fonts */
 /* ---------------------------------------------------------------------------------- Блоки с кодом */
 
@@ -286,6 +286,31 @@ code {
 	font-family: "Anonymous", "Courier", monospace; 
 	font-size: 1.3vw;							/* Размер шрифта */
 	font-weight: bold;							/* Полужирный шрифт */
+}
+
+code q {
+	quotes: "\0027" "\0027";					/* Апостроф (одинарная кавычка) */
+}
+
+#codeString {
+	font-family: "Anonymous", "Courier", monospace; 
+	font-size: 1.3vw;							/* Размер шрифта */
+	font-weight: bold;							/* Полужирный шрифт */
+	color: cyan;
+}
+
+/* ---------------------------------------------------------------------------------- Блоки с кнопками */
+
+.serverButton {
+	display: block;								/* Пока что будут по всей ширине страницы сверху */
+}
+
+#canvasAPI button {
+	text-align: left;
+	font-family: 'Ubuntu Mono', "Courier", monospace; 
+	font-size: 1.3vw;							/* Размер шрифта */
+	font-weight: bold;							/* Полужирный шрифт */
+	color: darkred;
 }
 
 /* FUTURE Links Fonts */
@@ -372,7 +397,7 @@ p::first-letter {
 					-2px 13px 13px rgba(0,0,0,.1);
 }
 
-/* FUTURE Page-Proof */
+/* FUTURE PAGE-PROOF */
 /* ---------------------------------------------------------------------------------- Общие правила верстки */
 
 /* Меняем блочную модель для всех элементов */
@@ -381,7 +406,7 @@ p::first-letter {
 }
 
 body {
-	margin: 2vh 2vw; 							/* Маленькие одинаковые отступы для всего */
+	margin: 1vh 1vw; 							/* Маленькие одинаковые отступы для всего */
 }
 
 article {
@@ -403,11 +428,37 @@ pre {
 	tab-size: 4;								/* Размер табуляции */
 }
 
+#codeString {
+	float: left;
+	width: 15vw;
+	max-width: 69vw;
+	height: 80vh;
+	z-index: 100;
+	margin-left: 0;
+}
+
 /* ---------------------------------------------------------------------------------- Блоки с текстом */
 
 /* Текстовые блоки "Интересно", "Важно" и прочие */
 .text-block {
 	padding: 2vh 7vw;								/* Отодвигаем текст */
+}
+
+/* ---------------------------------------------------------------------------------- Блоки с кнопками */
+
+#canvasAPI {
+	float: right;
+	width: 16vw;
+	height: 80vh;
+	margin: 0;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.serverButtons {
+	display: block;
+	margin-bottom: 0;
+	text-align: left;
 }
 
 /* ---------------------------------------------------------------------------------- Рисунки в тексте */
@@ -458,6 +509,7 @@ details[open] summary:before {
 /* ---------------------------------------------------------------------------------- Футер */
 
 footer {
+	clear: both;
 	min-height: 10vh;							/* Высота футера */
 }
 
@@ -584,9 +636,12 @@ output {
 /* ---------------------------------------------------------------------------------- Фреймы */
 
 iframe {
-	height: 30vh;
-	width: 90vw;
-	margin: 5vh auto;
+	position: absolute;
+	width: 97vw;
+	min-height: 80vh;
+	margin-right: -20vw;
+	padding-left: -50vw;
+	padding-top: 0;
 }
 
 /* FUTURE Canvas Page Proof */
@@ -639,8 +694,8 @@ output {
 	height: 4vh;
 }
 
-/* FUTURE BUTTONS && CURSORS*/
-/* ---------------------------------------------------------------------------------- Кнопки */
+/* FUTURE BUTTONS && CURSORS */
+/* ---------------------------------------------------------------------------------- BUTTONS PAGE-PROOF */
 
 /* Кнопки для плейера */
 .panel button {
@@ -648,19 +703,27 @@ output {
 	margin: 0.2vw auto;
 }
 
+#canvasAPI button {
+	position: relative; 						/* Чтобы сработал z-index */
+	width: 16vw;
+	z-index: 100;								/* Выдвигаем вперед */
+}
+
 details summary {
-	cursor: pointer;	 	/* курсор-указатель */
+	cursor: pointer;	 						/* курсор-указатель */
 }
 
 /* FUTURE BORDERS */
 /* ---------------------------------------------------------------------------------- Бордюры для Canvas */
 
-#canvasField {
+#canvasField,
+#savedCopyContainer {
 	border: 2px dashed darkslategray;
 }
 
-#savedCopyContainer {
-	border: 4px solid darkslategray;
+#codeString,
+#canvasAPI {
+	border: 5px solid darkslategray;
 }
 
 /* ---------------------------------------------------------------------------------- Бордюры для текстовых блоков */
@@ -726,7 +789,8 @@ textarea:focus,
 select,
 select:focus,
 progress,
-output { 
+output,
+#canvasAPI { 
 	outline: none;			/* Убираем пунктирную рамку только у текстовых полей и селектов */
 	border: 2px solid darkslategray;
 	border-radius: 10px;
@@ -782,6 +846,28 @@ input[type='range'] {
 /* FUTURE BACKGROUNDS */
 /* ---------------------------------------------------------------------------------- Backgrounds */
 
+.frameHTML {
+	background: url('http://www.subtlepatterns.com/patterns/white_leather.png');
+}
+
+#canvasField  {
+	background: url('http://www.subtlepatterns.com/patterns/pink_rice.png');
+	margin: 0;
+}
+
+#canvasAPI button {
+	opacity: .6;
+}
+
+#canvasAPI button:hover {
+	opacity: 1;
+}
+
+#codeString {
+	background: url('../img/peacock-blues.png');
+	opacity: .4;
+}
+
 progress::-webkit-progress-value {
 	background-color: lightgreen;
 }
@@ -810,7 +896,7 @@ progress::-webkit-progress-value {
 
 html { 
 	background: 
-		radial-gradient(circle at 2.02% 72.90%, #abbaab, transparent 100%),
+		radial-gradient(circle at 2.02% 72.90%, #cecece, transparent 100%),
 		radial-gradient(circle at 97.98% 17.89%, #ffffff, transparent 100%),
 		radial-gradient(circle at 50.00% 49.93%, rgba(255,255,255,0.5), transparent 100%),
 		radial-gradient(circle at 50% 50%, #000000, #000000 100%)
@@ -848,7 +934,8 @@ details summary {
 		linear-gradient(to bottom, rgba(197,199,214, 0.2), rgba(14,100,63, 0.2));
 }
 
-.responsive-table tr:hover { 							/* Подсветка рядов таблицы */	
+.responsive-table tr:hover,
+#canvasAPI button { 							/* Подсветка рядов таблицы */	
 	background: 
 		radial-gradient(circle at 2.02% 52.07%, #ece9e6, transparent 100%),
 		radial-gradient(circle at 97.98% 26.97%, #fff, transparent 100%),
@@ -883,10 +970,21 @@ input[type="range"],
 article, 
 .interesting,
 .source-links,
-form {	
+form {
 	-webkit-box-shadow: 0 5px 10px rgba(65, 89, 123, 0.8), inset 0 0 50px rgba(158, 185, 204, 0.52);
 		-moz-box-shadow: 0 5px 10px rgba(65, 89, 123, 0.8), inset 0 0 50px rgba(158, 185, 204, 0.52);
 			box-shadow: 0 5px 10px rgba(65, 89, 123, 0.8), inset 0 0 50px rgba(158, 185, 204, 0.52);
+}
+
+/* Тень по всем 4-м сторонам */
+#canvasAPI,
+#codeString {
+	position: relative;
+	z-index: 100;
+	
+	-webkit-box-shadow: 0px 1px 15px 8px rgba(107, 146, 132, 0.63);
+		-moz-box-shadow:    0px 1px 15px 8px rgba(107, 146, 132, 0.63);
+			box-shadow:         0px 1px 15px 8px rgba(107, 146, 132, 0.63);
 }
 
 hr {	
@@ -1013,9 +1111,6 @@ article:after {
 				-2px 8px 8px rgba(0,0,0,.1),
 				-2px 13px 13px rgba(0,0,0,.1);
 }
-
-
-/* ----------------------------------------------- Details -- */
 
 /* FUTURE END USER STYLE */
 
