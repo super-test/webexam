@@ -6,11 +6,10 @@
 * ********************************************************* Java Script **
 */	
 
-
 window.onload = function() {
 	
 		var mainWindow = window.parent.document;										// Документ с фреймами
-		var mainIFrame = document.getElementById('contentFrame');						// Фрейм
+		var mainIFrame = mainWindow.getElementById('contentFrame');						// Фрейм
 		var codeStr = mainWindow.getElementById('codeString');							// Строка для кода
 		var img = new Image();												//Создадим картинку для загрузки в Canvas
 	
@@ -19,27 +18,65 @@ window.onload = function() {
 /* 
 * ********************************************************* Java Script Canvas **
 */
-
 	
 	// FUTURE CANVAS START
 		
 	// FUTURE CANVAS IN BROWSER START && END
 	
+		// FIXME Зараза-браузер не понимает разницу между окном во фрейме и окном в браузере
 		// Если Canvas открыт в браузере ...
 		// Иначе интерпретатор ругается, что не может прочитать обработчики из других фреймов
 		// Поскольку все кнопки во фрейме, пока что будет работать только рисование мышкой
-		if(document.location.pathname === "/doc/html5/html5-canvas.html") {
-			var canvas = document.getElementById('canvasField');
+		if(window.location.pathname === "/doc/html5/html5-canvas.html" 
+		   && window.parent.location.pathname !== "/doc/html5/frameset.html") {
+			
+			var canvas = document.getElementById('canvasField');					// Найдем Canvas		
+			var context = canvas.getContext('2d'); 									// Получим context
+			
+			// Устанавливаем интервал
+			setTimeout(drawSquare, 20);
+			
+			// Устанавливаем начальную позицию квадрата
+			var squarePositionX = 300;
+			var squarePositionY = 10;
+			
+			function drawSquare() {
+				
+				// Очищаем холст
+				context.clearRect(0, 0, canvas.width, canvas.height);
+				
+				// Начинаем новый путь, чтобы сбросить предыдущие настройки
+				context.beginPath();
+				
+				// Рисуем квадрат в текущей позиции
+				context.rect(squarePositionX, squarePositionY, 100, 100);
+				context.lineStyle = "#10cffc";
+				context.lineWidth = 1;
+				context.stroke();
+				
+				// Перемещаем квадрат вниз, чтобы перерисовать его в следующем кадре
+				squarePositionY += 1;
+				
+				// Рисуем следующий кадр через 20мс до тех пор, 
+				// пока мячмк не уплывет за пределы холста
+				if(squarePositionY < canvas.height + 5) {
+					setTimeout(drawSquare, 20);
+				}
+			}
+			
 		}	
 	
+	// FUTURE CANVAS IN BROWSER START && END
 	// FUTURE CANVAS IN FRAME START						
-	
+		
+		if(window.location.pathname === "/doc/html5/html5-canvas.html" 
+		   && window.parent.location.pathname === "/doc/html5/frameset.html")
 		// Если в браузере Canvas или страница с фреймами ...
-		if(document.location.pathname === "/doc/html5/frameset.html"
-		   || document.location.pathname === "/doc/html5/html5-canvas.html") {
+		/*if(document.location.pathname === "/doc/html5/frameset.html"
+		   || document.location.pathname === "/doc/html5/html5-canvas.html")*/ {
 			
 			// Если в браузере фрейм
-			if(document.location.pathname === "/doc/html5/frameset.html") {
+			if(window.parent.location.pathname === "/doc/html5/frameset.html") {
 			
 				var canvas = mainIFrame.contentDocument.getElementById('canvasField');	// Обзываем canvas			
 				var context = canvas.getContext('2d'); 									// Получим context
