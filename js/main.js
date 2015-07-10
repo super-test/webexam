@@ -11,10 +11,7 @@ window.onload = function() {
 		var mainWindow = window.parent.document;										// Документ с фреймами
 		var mainIFrame = mainWindow.getElementById('contentFrame');						// Фрейм
 		var codeStr = mainWindow.getElementById('codeString');							// Строка для кода
-		var img = new Image();												//Создадим картинку для загрузки в Canvas
-	
-
-		
+		var img = new Image();												//Создадим картинку для загрузки в Canvas		
 /* 
 * ********************************************************* Java Script Canvas **
 */
@@ -27,8 +24,8 @@ window.onload = function() {
 		// Если Canvas открыт в браузере ...
 		// Иначе интерпретатор ругается, что не может прочитать обработчики из других фреймов
 		// Поскольку все кнопки во фрейме, пока что будет работать только рисование мышкой
-		if(window.location.pathname === "/doc/html5/html5-canvas.html" 
-		   && window.parent.location.pathname !== "/doc/html5/frameset.html") {
+		if(window.parent.location.pathname !== "/doc/html5/frameset.html" 
+		   && window.location.pathname === "/doc/html5/html5-canvas.html") {
 			
 			var canvas = document.getElementById('canvasField');					// Найдем Canvas		
 			var context = canvas.getContext('2d'); 									// Получим context
@@ -62,15 +59,15 @@ window.onload = function() {
 				if(squarePositionY < canvas.height + 5) {
 					setTimeout(drawSquare, 20);
 				}
-			}
+			}											// DrawSquare END
 			
-		}	
+		}			// Canvas and Frame END
 	
 	// FUTURE CANVAS IN BROWSER START && END
 	// FUTURE CANVAS IN FRAME START						
 		
-		if(window.location.pathname === "/doc/html5/html5-canvas.html" 
-		   && window.parent.location.pathname === "/doc/html5/frameset.html") {
+		if(window.parent.location.pathname === "/doc/html5/frameset.html" 
+		   && window.location.pathname === "/doc/html5/html5-canvas.html") {
 			
 			// Если в браузере фрейм
 			if(window.parent.location.pathname === "/doc/html5/frameset.html") {
@@ -101,13 +98,7 @@ window.onload = function() {
 				mainWindow.getElementById('closePath').onclick = function () {
 					codeStr.value += "context.closePath();\n";
 				}
-		
-				/* --------------------------------------------------------------- Очистить холст -- */
-
-				mainWindow.getElementById('clearCanvas').onclick = function () {
-					codeStr.value += "context.clearRect(0, 0, canvas.width, canvas.height);\n";
-				}
-		
+				
 				/* --------------------------------------------------------------- Перезагрузить холст -- */
 
 				mainWindow.getElementById('reloadCanvas').onclick = function () {
@@ -185,7 +176,7 @@ window.onload = function() {
 
 				mainWindow.getElementById('text').onclick = function () {
 					codeStr.value += "context.textBaseline = 'top';\ncontext.font = 'bold 20px Verdana, sans-serif';\ncontext.fillStyle = 'violet';\ncontext.fillText('Hello World:)', 10, 10);\n";
-				}
+				} 
 
 				/* --------------------------------------------------------------- Контур текста -- */
 
@@ -411,7 +402,7 @@ window.onload = function() {
 
 					// FIXME Don't working
 					context.save();
-				}
+				}				// saveCanvas																		
 				
 	// FUTURE Canvas Random Circles
 		
@@ -427,7 +418,7 @@ window.onload = function() {
 					this.radius = radius;
 					this.color = color;
 					this.isSelected = false;
-				}
+				} 											// Circle
 
 				// Кружки будем хранить в массиве, чтобы к ним удобно обращаться
 				var circles = [];
@@ -566,10 +557,166 @@ window.onload = function() {
 						isDragging = false;
 					}
 			
+				}				// randomRound		
+			
+			
+	// FUTURE Canvas Animated Balls
+	
+				// Тип данных, представляющий отдельный мячик
+				function Ball(x, y, dx, dy, radius) {
+					this.x = x;
+					this.y = y;
+					this.dx = dx;										// Скорость изменения абсциссы
+					this.dy = dy;										// Скорость изменения ординаты
+					this.radius = radius;
+					this.strokeColor = 'black';
+					this.fillColor = 'red';
+				}											// Ball
+				
+				// Массив, содержащий информацию обо всех мячиках на холсте
+				var balls = [];
+				
+				mainWindow.getElementById('addBall').onclick = function () {
+
+					// Устанавливаем размер мячика
+					var radius = parseFloat(mainWindow.getElementById('ballSize').value);
+
+					// Создаем новый мячик
+					var ball = new Ball(50, 50, 1, 1, radius);
+
+					// Сохраняем его в массиве
+					balls.push(ball);
+					
+					drawFrame();
+
+				} 			// addBall END
+				
+				function drawFrame() {
+
+					// Очистить холст
+					context.clearRect(0, 0, canvas.width, canvas.height);
+
+					// Вызываем метод beginPath(), чтобы убедиться,
+					// что мы не рисуем часть уже нарисованного содержимого холста
+					context.beginPath();
+
+					// Перебираем все мячики
+					for(var i=0; i < balls.length; i++) {
+						
+						// Перемещаем каждый мячик в его новую позицию
+						var ball = balls[i];
+						ball.x += ball.dx;
+						ball.y += ball.dy;
+
+						// Добавляем эффект "гравитации", который ускоряет падение мячика
+						if ((ball.y) < canvas.height) ball.dy += 0.22;
+
+						// Добавляем эффект "трения", который замедляет движение мячика
+						ball.dx = ball.dx * 0.998;
+
+						// Если мячик натолкнулся на край холста, отбиваем его
+						if ((ball.x + ball.radius > canvas.width) || (ball.x - ball.radius < 0)) {
+							ball.dx = -ball.dx;
+						}
+
+						// Если мячик упал вниз, отбиваем его, но слегка уменьшаем скорость
+						if ((ball.y + ball.radius > canvas.height) || (ball.y - ball.radius < 0)) { 
+							ball.dy = -ball.dy * 0.6; 
+						}
+
+						// Проверяем, хочет ли пользователь соединительные линии
+						if (!mainWindow.getElementById("connectedBalls").checked) {
+							context.beginPath();
+							context.fillStyle = ball.fillColor;
+						}
+						else {
+							context.fillStyle = "white";
+						}
+
+						// Рисуем мячик
+						context.arc(ball.x, ball.y, ball.radius, 0, Math.PI*2);
+						context.lineWidth = 5;
+						context.fill();
+						context.stroke(); 
+						
+						setTimeout(drawFrame, 20);
+					}
+				} 											// drawFrame() END
+				
+				setTimeout(drawFrame, 20);
+
+				function ballClick(e) {
+					
+					// Координаты щелчка мышью
+					var clickX = e.pageX - canvas.offsetLeft;
+					var clickY = e.pageY - canvas.offsetTop;
+
+					for(var i in balls) {
+						var ball = balls[i];
+
+						// Проверка попадания
+						if ((clickX > (ball.x - ball.radius)) && (clickX < (ball.x + ball.radius))) {
+							if ((clickY > (ball.y - ball.radius)) && (clickY < (ball.y + ball.radius)))	{
+								// Изменить скорость мячика
+								ball.dx += 2;
+								ball.dy += 3;
+								return;
+							}
+						}
+					}
+
+				} 											// ballClick(e)
+				
+				canvas.onmousewheel = ballClick;
+				
+				/* --------------------------------------------------------------- Очистить холст -- */
+
+				mainWindow.getElementById('clearCanvas').onclick = function () {
+					codeStr.value += "context.clearRect(0, 0, canvas.width, canvas.height);\n";
+					balls = [];
+					circles = [];
+					clearInterval();
 				}
-			}
+
+				
+		} // Если в браузере фрейм
 			
 	// FUTURE Canvas Drawing with mouse
+			
+			var isDrawing = false;
+			
+			function startDrawing(e) {
+
+					// Без var!!!
+					isDrawing = true;													
+					context.beginPath();
+
+					// Нажатием левой кнопки мыши помещаем "кисть" на холст
+					context.moveTo(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+				} 									// Start Drawing end
+				
+			function draw(e) {
+
+					if (isDrawing === true) {
+
+						// Определяем текущие координаты указателя мыши относительно документа
+						// clientX/clientY определило бы координаты относительно окна
+
+						// FIXME Попробовать сделать Canvas резиновым (e.clientX)
+
+						var x = e.pageX - canvas.offsetLeft;
+						var y = e.pageY - canvas.offsetTop;
+
+						// Рисуем линию до новой координаты
+						context.lineTo(x, y);
+						context.stroke();
+					}
+				} 											// Draw end
+
+			// Вызывается на onmouseup и onmousedown
+			function stopDrawing() {				
+					isDrawing = false;
+			} 										// stopDrawing()
 
 			// Подключим требуемые для рисования события
 			canvas.onmousedown = startDrawing;
@@ -577,44 +724,9 @@ window.onload = function() {
 			canvas.onmouseout = stopDrawing;
 			canvas.onmousemove = draw;
 
-			var isDrawing = false;
-
-			function startDrawing(e) {
-
-				// Без var!!!
-				isDrawing = true;													
-				context.beginPath();
-				
-				// Нажатием левой кнопки мыши помещаем "кисть" на холст
-				context.moveTo(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
-			}
-
-			function draw(e) {
-
-				if (isDrawing === true) {
-
-					// Определяем текущие координаты указателя мыши относительно документа
-					// clientX/clientY определило бы координаты относительно окна
-					
-					// FIXME Попробовать сделать Canvas резиновым (e.clientX)
-					
-					var x = e.pageX - canvas.offsetLeft;
-					var y = e.pageY - canvas.offsetTop;
-
-					// Рисуем линию до новой координаты
-					context.lineTo(x, y);
-					context.stroke();
-				}
-			}
-
-			// Вызывается на onmouseup и onmousedown
-			function stopDrawing() {				
-				isDrawing = false;
-			}
-
+			
 		
-		} // FUTURE CANVAS IN FRAME END
-	
+		};	// FUTURE canvas or canvas in CANVAS IN FRAME END
 /* 
 * ********************************************************* Java Script Валидация формы для регистрации **
 */
@@ -622,8 +734,8 @@ window.onload = function() {
 	// FUTURE FORM VALIDATE START
 		
 		// Если формы открыты в браузере или во фрейме (интерпретатор ругает нечитаемые события)
-		else if(document.location.pathname === "/doc/html5/frameset.html"
-		   || document.location.pathname === "/doc/html5/html5-forms.html") {
+		if(window.parent.location.pathname !== "/doc/html5/frameset.html" 
+	   		&& window.location.pathname === "/doc/html5/html5-forms.html") {
 
 			var registrationForm = document.querySelector('form[name="registrationForm"]'),
 				name = document.querySelector('input[name="nameField"]'),		
@@ -735,8 +847,8 @@ window.onload = function() {
 	
 	// FUTURE MEDIA
 
-		else if(document.location.pathname === "/doc/html5/frameset.html"
-		   || document.location.pathname === "/doc/html5/html5-media.html") {
+		if(window.parent.location.pathname !== "/doc/html5/frameset.html" 
+	   		&& window.location.pathname === "/doc/html5/html5-media.html") {
 
 		/* --------------------------------------------------------------- Находим HTML5-плейер -- */
 
@@ -821,7 +933,6 @@ window.onload = function() {
 				videoProgress.value = html5Video.currentTime / html5Video.duration * 100;
 			}
 		}
-	};
 
 	/* 
 	* ********************************************************* jQuery **
@@ -855,6 +966,7 @@ window.onload = function() {
 // FUTURES POLIFILLS
 
 // FUTURES MODERNIZR
+}																	// Windows.onload
 
 Modernizr.load([
 	
@@ -866,4 +978,4 @@ Modernizr.load([
 		// Если поддержки нет, то ищем полифилл здесь
 		nope : ['../../js/vendor/logifill-details-min.js']
 	} 
-]);
+]); 
