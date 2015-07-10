@@ -70,10 +70,7 @@ window.onload = function() {
 	// FUTURE CANVAS IN FRAME START						
 		
 		if(window.location.pathname === "/doc/html5/html5-canvas.html" 
-		   && window.parent.location.pathname === "/doc/html5/frameset.html")
-		// Если в браузере Canvas или страница с фреймами ...
-		/*if(document.location.pathname === "/doc/html5/frameset.html"
-		   || document.location.pathname === "/doc/html5/html5-canvas.html")*/ {
+		   && window.parent.location.pathname === "/doc/html5/frameset.html") {
 			
 			// Если в браузере фрейм
 			if(window.parent.location.pathname === "/doc/html5/frameset.html") {
@@ -400,17 +397,17 @@ window.onload = function() {
 				mainWindow.getElementById('saveCanvas').onclick = function () {
 
 					// Находим элемент <img>
-					var imageCopy = 
-						document.getElementById('contentFrame').contentDocument.getElementById('savedImageCopy');
-					var imageContainer = 
-						document.getElementById('contentFrame').contentDocument.getElementById('savedCopyContainer');
-
+					var imageCopy = mainIFrame.contentDocument.getElementById('savedImageCopy');
+					
 					// Отображаем данные холста в элементе <img>
 					imageCopy.src = canvas.toDataURL();
+					
+					var imageContainer = mainIFrame.contentDocument.getElementById('savedCopyContainer');
 
 					// Показываем элемент <div>, делая изображение видимым
 					// делая изображение видимым
-					imageContainer.style.display = "block";
+					imageCopy.style.display = 'inline-block';
+					imageContainer.style.display = 'block';
 
 					// FIXME Don't working
 					context.save();

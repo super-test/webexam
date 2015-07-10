@@ -656,12 +656,23 @@ iframe {
 /* FIXME Кривая картинка */
 /* Блок для картинки */
 #savedCopyContainer,
-#savedCopyContainer img {
+#savedImageCopy {
 	display: none;										/* Сначала прячем */
 	position: absolute;									/* Позиционируем */
-	top: 4%; left: 75%; right: 15%; 
-	width: 350px;						/* Размеры в пикселях, так как отсчитываются похоже, от стардартного Canvas??? */
-	height: 150px;
+	top: 4%; left: 5%; right: 80%; 
+	width: 600px;
+	height: 350px;
+}
+
+#savedImageCopy {
+	margin: 10px;
+	width: 550px;
+	height: 300px;
+	
+}
+
+#savedCopyContainer p {
+	margin-top: 300px;
 }
 
 /* FUTURE Media Page Proof */
@@ -1318,3 +1329,7 @@ article:after {
         page-break-after: avoid;
     }
 }
+
+
+
+
