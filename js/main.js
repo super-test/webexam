@@ -411,12 +411,15 @@ window.onload = function() {
 				// TODO Добавмть прямоугольники, квадраты, треугольники ...
 
 				// Создадим себе объект Circle для создания случайных кругов
-				function Circle(x, y, radius, color) {
+				function Circle(x, y, dx, dy, radius, color, borderColor) {
 
 					this.x = x;															// Координаты
 					this.y = y;															// Координаты
+					this.dx = dx;										// Скорость изменения абсциссы
+					this.dy = dy;										// Скорость изменения ординаты
 					this.radius = radius;
 					this.color = color;
+					this.borderColor = borderColor;
 					this.isSelected = false;
 				} 											// Circle
 
@@ -440,16 +443,24 @@ window.onload = function() {
 					}
 
 					// Устанавливаем произвольный размер и позицию круга
-					var radius = randomFromTo(10, 60);
+					var randomRadius = randomFromTo(10, 60);
+					var inputValue = parseFloat(mainWindow.getElementById('ballSize').value);
+					var radius = (inputValue === 15)
+						? randomRadius
+						: inputValue;
 					var x = randomFromTo(0, canvas.width);
 					var y = randomFromTo(0, canvas.height);
-
+					var dx = randomFromTo(0.1, 0.9);
+					var dy = randomFromTo(0.1, 0.9);
+					
+					// FIXME Добавить больше цветов для красивости
 					// Окрашиваем круг произвольным цветом
 					var colors = ["green", "blue", "red", "yellow", "magenta", "orange", "brown", "purple", "pink"];
 					var color = colors[randomFromTo(0, 8)];
+					var borderColor = colors[randomFromTo(0, 8)];
 
 					// Создаем новый круг
-					var circle = new Circle(x, y, radius, color);
+					var circle = new Circle(x, y, dx, dy, radius, color, borderColor);
 
 					// Сохраняем его в массиве
 					circles.push(circle);
@@ -464,7 +475,7 @@ window.onload = function() {
 						context.clearRect(0, 0, canvas.width, canvas.height);
 
 						// Перебираем круги в массиве
-						for(var i=0; i < circles.length; i++) {
+						for(var i = 0; i < circles.length; i++) {
 							var circle = circles[i];
 
 							// Рисуем текущий круг
@@ -472,14 +483,14 @@ window.onload = function() {
 							context.beginPath();
 							context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
 							context.fillStyle = circle.color;
-							context.strokeStyle = "black";
+							context.strokeStyle = circle.borderColor;
 
 							// Выделяем выбранный круг рамкой (потребуется позже)
 							if (circle.isSelected) {
-								context.lineWidth = 5;
+								context.lineWidth = 7;
 							}
 							else {
-								context.lineWidth = 1;
+								context.lineWidth = 3;
 							}
 							
 							// Запоминаем цвет и рамку в контекст
@@ -562,7 +573,7 @@ window.onload = function() {
 			
 	// FUTURE Canvas Animated Balls
 	
-				// Тип данных, представляющий отдельный мячик
+/*				// Тип данных, представляющий отдельный мячик
 				function Ball(x, y, dx, dy, radius) {
 					this.x = x;
 					this.y = y;
@@ -571,9 +582,9 @@ window.onload = function() {
 					this.radius = radius;
 					this.strokeColor = 'black';
 					this.fillColor = 'red';
-				}											// Ball
+				}		*/									// Ball
 				
-				// Массив, содержащий информацию обо всех мячиках на холсте
+				/*// Массив, содержащий информацию обо всех мячиках на холсте
 				var balls = [];
 				
 				mainWindow.getElementById('addBall').onclick = function () {
@@ -667,13 +678,12 @@ window.onload = function() {
 
 				} 											// ballClick(e)
 				
-				canvas.onmousewheel = ballClick;
+				canvas.onclick = ballClick;*/
 				
 				/* --------------------------------------------------------------- Очистить холст -- */
 
 				mainWindow.getElementById('clearCanvas').onclick = function () {
 					codeStr.value += "context.clearRect(0, 0, canvas.width, canvas.height);\n";
-					balls = [];
 					circles = [];
 					clearInterval();
 				}
@@ -719,14 +729,14 @@ window.onload = function() {
 			} 										// stopDrawing()
 
 			// Подключим требуемые для рисования события
-			canvas.onmousedown = startDrawing;
+			canvas.ondblclick = startDrawing;
 			canvas.onmouseup = stopDrawing;
 			canvas.onmouseout = stopDrawing;
 			canvas.onmousemove = draw;
 
 			
 		
-		};	// FUTURE canvas or canvas in CANVAS IN FRAME END
+		};	// FUTURE Canvas/ Canvas in IN FRAME END
 /* 
 * ********************************************************* Java Script Валидация формы для регистрации **
 */
