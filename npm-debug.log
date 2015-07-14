@@ -1,0 +1,165 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/bin/node',
+1 verbose cli   '/usr/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'node-theseus' ]
+2 info using npm@1.4.28
+3 info using node@v0.10.39
+4 verbose node symlink /usr/bin/node
+5 verbose cache add [ 'node-theseus', null ]
+6 verbose cache add name=undefined spec="node-theseus" args=["node-theseus",null]
+7 verbose parsed url { protocol: null,
+7 verbose parsed url   slashes: null,
+7 verbose parsed url   auth: null,
+7 verbose parsed url   host: null,
+7 verbose parsed url   port: null,
+7 verbose parsed url   hostname: null,
+7 verbose parsed url   hash: null,
+7 verbose parsed url   search: null,
+7 verbose parsed url   query: null,
+7 verbose parsed url   pathname: 'node-theseus',
+7 verbose parsed url   path: 'node-theseus',
+7 verbose parsed url   href: 'node-theseus' }
+8 silly lockFile c3347942-node-theseus node-theseus
+9 verbose lock node-theseus /home/allenka/.npm/c3347942-node-theseus.lock
+10 silly lockFile c3347942-node-theseus node-theseus
+11 silly lockFile c3347942-node-theseus node-theseus
+12 verbose addNamed [ 'node-theseus', '' ]
+13 verbose addNamed [ null, '*' ]
+14 silly lockFile b0cce04f-node-theseus node-theseus@
+15 verbose lock node-theseus@ /home/allenka/.npm/b0cce04f-node-theseus.lock
+16 silly addNameRange { name: 'node-theseus', range: '*', hasData: false }
+17 verbose request where is /node-theseus
+18 verbose request registry https://registry.npmjs.org/
+19 verbose request id e25aa969b09bc3db
+20 verbose url raw /node-theseus
+21 verbose url resolving [ 'https://registry.npmjs.org/', './node-theseus' ]
+22 verbose url resolved https://registry.npmjs.org/node-theseus
+23 verbose request where is https://registry.npmjs.org/node-theseus
+24 info trying registry request attempt 1 at 17:15:32
+25 http GET https://registry.npmjs.org/node-theseus
+26 http 200 https://registry.npmjs.org/node-theseus
+27 silly registry.get cb [ 200,
+27 silly registry.get   { server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+27 silly registry.get     etag: '"7AZ1B045UVCUIMJ42E7QM9UUX"',
+27 silly registry.get     'content-type': 'application/json',
+27 silly registry.get     'cache-control': 'max-age=60',
+27 silly registry.get     'content-length': '18463',
+27 silly registry.get     'accept-ranges': 'bytes',
+27 silly registry.get     date: 'Thu, 02 Jul 2015 15:15:33 GMT',
+27 silly registry.get     via: '1.1 varnish',
+27 silly registry.get     age: '0',
+27 silly registry.get     connection: 'keep-alive',
+27 silly registry.get     'x-served-by': 'cache-fra1229-FRA',
+27 silly registry.get     'x-cache': 'MISS',
+27 silly registry.get     'x-cache-hits': '0',
+27 silly registry.get     'x-timer': 'S1435850133.062614,VS0,VE328',
+27 silly registry.get     vary: 'Accept' } ]
+28 silly addNameRange number 2 { name: 'node-theseus', range: '*', hasData: true }
+29 silly addNameRange versions [ 'node-theseus',
+29 silly addNameRange   [ '0.0.1',
+29 silly addNameRange     '0.0.2',
+29 silly addNameRange     '0.0.3',
+29 silly addNameRange     '0.0.4',
+29 silly addNameRange     '0.0.5',
+29 silly addNameRange     '0.0.6',
+29 silly addNameRange     '0.0.7',
+29 silly addNameRange     '0.0.8',
+29 silly addNameRange     '0.0.9',
+29 silly addNameRange     '0.1.0',
+29 silly addNameRange     '0.2.0',
+29 silly addNameRange     '0.2.1',
+29 silly addNameRange     '0.2.2',
+29 silly addNameRange     '0.2.3',
+29 silly addNameRange     '0.2.4',
+29 silly addNameRange     '0.2.5',
+29 silly addNameRange     '0.2.6' ] ]
+30 verbose addNamed [ 'node-theseus', '0.2.6' ]
+31 verbose addNamed [ '0.2.6', '0.2.6' ]
+32 silly lockFile fe962e75-node-theseus-0-2-6 node-theseus@0.2.6
+33 verbose lock node-theseus@0.2.6 /home/allenka/.npm/fe962e75-node-theseus-0-2-6.lock
+34 silly lockFile 29b08857-e-theseus-node-theseus-0-2-6-tgz https://registry.npmjs.org/node-theseus/-/node-theseus-0.2.6.tgz
+35 verbose lock https://registry.npmjs.org/node-theseus/-/node-theseus-0.2.6.tgz /home/allenka/.npm/29b08857-e-theseus-node-theseus-0-2-6-tgz.lock
+36 verbose addRemoteTarball [ 'https://registry.npmjs.org/node-theseus/-/node-theseus-0.2.6.tgz',
+36 verbose addRemoteTarball   '489d67c8352cdae56eaee062014563ebce3e2c30' ]
+37 info retry fetch attempt 1 at 17:15:33
+38 verbose fetch to= /tmp/npm-19247-llGycIGF/registry.npmjs.org/node-theseus/-/node-theseus-0.2.6.tgz
+39 http GET https://registry.npmjs.org/node-theseus/-/node-theseus-0.2.6.tgz
+40 http 200 https://registry.npmjs.org/node-theseus/-/node-theseus-0.2.6.tgz
+41 silly lockFile 29b08857-e-theseus-node-theseus-0-2-6-tgz https://registry.npmjs.org/node-theseus/-/node-theseus-0.2.6.tgz
+42 silly lockFile 29b08857-e-theseus-node-theseus-0-2-6-tgz https://registry.npmjs.org/node-theseus/-/node-theseus-0.2.6.tgz
+43 silly lockFile fe962e75-node-theseus-0-2-6 node-theseus@0.2.6
+44 silly lockFile fe962e75-node-theseus-0-2-6 node-theseus@0.2.6
+45 silly lockFile b0cce04f-node-theseus node-theseus@
+46 silly lockFile b0cce04f-node-theseus node-theseus@
+47 silly resolved [ { name: 'node-theseus',
+47 silly resolved     description: 'wrapper of the node command for debugging scripts with Theseus',
+47 silly resolved     license: 'MIT',
+47 silly resolved     author: { name: 'Tom Lieber', email: 'tom@alltom.com' },
+47 silly resolved     version: '0.2.6',
+47 silly resolved     preferGlobal: true,
+47 silly resolved     main: 'node-theseus',
+47 silly resolved     repository:
+47 silly resolved      { type: 'git',
+47 silly resolved        url: 'https://github.com/adobe-research/node-theseus.git' },
+47 silly resolved     bin: { 'node-theseus': './bin/node-theseus' },
+47 silly resolved     dependencies:
+47 silly resolved      { fondue: '0.6.x',
+47 silly resolved        ws: '0.4.x',
+47 silly resolved        minimatch: '0.2.x',
+47 silly resolved        'source-map-support': '0.2.x' },
+47 silly resolved     keywords: [ 'source', 'trace', 'instrumentation', 'debugging' ],
+47 silly resolved     gitHead: '71f843e4be918d99417c8b824288506f7c84409d',
+47 silly resolved     bugs: { url: 'https://github.com/adobe-research/node-theseus/issues' },
+47 silly resolved     homepage: 'https://github.com/adobe-research/node-theseus',
+47 silly resolved     _id: 'node-theseus@0.2.6',
+47 silly resolved     scripts: {},
+47 silly resolved     _shasum: '489d67c8352cdae56eaee062014563ebce3e2c30',
+47 silly resolved     _from: 'node-theseus@',
+47 silly resolved     _npmVersion: '2.0.0-alpha-5',
+47 silly resolved     _npmUser: { name: 'alltom', email: 'tom@alltom.com' },
+47 silly resolved     maintainers: [ [Object] ],
+47 silly resolved     dist:
+47 silly resolved      { shasum: '489d67c8352cdae56eaee062014563ebce3e2c30',
+47 silly resolved        tarball: 'http://registry.npmjs.org/node-theseus/-/node-theseus-0.2.6.tgz' },
+47 silly resolved     directories: {},
+47 silly resolved     _resolved: 'https://registry.npmjs.org/node-theseus/-/node-theseus-0.2.6.tgz' } ]
+48 info install node-theseus@0.2.6 into /usr/lib
+49 info installOne node-theseus@0.2.6
+50 verbose lib/node_modules/node-theseus unbuild
+51 verbose tar unpack /home/allenka/.npm/node-theseus/0.2.6/package.tgz
+52 silly lockFile 191bed78-sr-lib-node-modules-node-theseus tar:///usr/lib/node_modules/node-theseus
+53 verbose lock tar:///usr/lib/node_modules/node-theseus /home/allenka/.npm/191bed78-sr-lib-node-modules-node-theseus.lock
+54 silly lockFile 9a5089d8-m-node-theseus-0-2-6-package-tgz tar:///home/allenka/.npm/node-theseus/0.2.6/package.tgz
+55 verbose lock tar:///home/allenka/.npm/node-theseus/0.2.6/package.tgz /home/allenka/.npm/9a5089d8-m-node-theseus-0-2-6-package-tgz.lock
+56 silly gunzTarPerm modes [ '775', '664' ]
+57 error Error: EACCES, mkdir '/usr/lib/node_modules/node-theseus'
+57 error  { [Error: EACCES, mkdir '/usr/lib/node_modules/node-theseus']
+57 error   errno: 3,
+57 error   code: 'EACCES',
+57 error   path: '/usr/lib/node_modules/node-theseus',
+57 error   fstream_type: 'Directory',
+57 error   fstream_path: '/usr/lib/node_modules/node-theseus',
+57 error   fstream_class: 'DirWriter',
+57 error   fstream_stack:
+57 error    [ '/usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23',
+57 error      '/usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53',
+57 error      'Object.oncomplete (fs.js:108:15)' ] }
+58 error Please try running this command again as root/Administrator.
+59 error System Linux 3.16.0-41-generic
+60 error command "/usr/bin/node" "/usr/bin/npm" "install" "-g" "node-theseus"
+61 error cwd /home/allenka/public_html/webexam
+62 error node -v v0.10.39
+63 error npm -v 1.4.28
+64 error path /usr/lib/node_modules/node-theseus
+65 error fstream_path /usr/lib/node_modules/node-theseus
+66 error fstream_type Directory
+67 error fstream_class DirWriter
+68 error code EACCES
+69 error errno 3
+70 error stack Error: EACCES, mkdir '/usr/lib/node_modules/node-theseus'
+71 error fstream_stack /usr/lib/node_modules/npm/node_modules/fstream/lib/dir-writer.js:36:23
+71 error fstream_stack /usr/lib/node_modules/npm/node_modules/mkdirp/index.js:46:53
+71 error fstream_stack Object.oncomplete (fs.js:108:15)
+72 verbose exit [ 3, true ]

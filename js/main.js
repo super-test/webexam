@@ -1,9 +1,10 @@
 // FIXME Исправить JSLint
 // TODO Подогнать размер автоматических фигур, градиентов и пр. под реальные размеры холста
-// TODO Добавмть анимацию
 
-/*
-* ********************************************************* Java Script **
+/* 
+* ********************************************************************************************************
+* ***************************************************************************************** JAVA SCRIPT **
+* ********************************************************************************************************
 */	
 
 window.onload = function() {
@@ -24,13 +25,13 @@ window.onload = function() {
 		// Если Canvas открыт в браузере ...
 		// Иначе интерпретатор ругается, что не может прочитать обработчики из других фреймов
 		// Поскольку все кнопки во фрейме, пока что будет работать только рисование мышкой
-		if(window.parent.location.pathname !== "/doc/html5/frameset.html" 
-		   && window.location.pathname === "/doc/html5/html5-canvas.html") {
+		if(window.parent.location.pathname !== '/doc/html5/frameset.html' 
+		   && window.location.pathname === '/doc/html5/html5-canvas.html') {
 			
 			var canvas = document.getElementById('canvasField');					// Найдем Canvas		
 			var context = canvas.getContext('2d'); 									// Получим context
 			
-			// Устанавливаем интервал
+			// Устанавливаем интервал для анимированных кругов ГЛОБАЛЬНО
 			setTimeout(drawSquare, 20);
 			
 			// Устанавливаем начальную позицию квадрата
@@ -66,11 +67,11 @@ window.onload = function() {
 	// FUTURE CANVAS IN BROWSER START && END
 	// FUTURE CANVAS IN FRAME START						
 		
-		if(window.parent.location.pathname === "/doc/html5/frameset.html" 
-		   && window.location.pathname === "/doc/html5/html5-canvas.html") {
+		if(window.parent.location.pathname === '/doc/html5/frameset.html' 
+		   && window.location.pathname === '/doc/html5/html5-canvas.html') {
 			
 			// Если в браузере фрейм
-			if(window.parent.location.pathname === "/doc/html5/frameset.html") {
+			if(window.parent.location.pathname === '/doc/html5/frameset.html') {
 			
 				var canvas = mainIFrame.contentDocument.getElementById('canvasField');	// Обзываем canvas			
 				var context = canvas.getContext('2d'); 									// Получим context
@@ -402,7 +403,7 @@ window.onload = function() {
 
 					// FIXME Don't working
 					context.save();
-				}				// saveCanvas																		
+				}						// saveCanvas																		
 				
 	// FUTURE Canvas Random Circles
 		
@@ -421,21 +422,19 @@ window.onload = function() {
 					this.color = color;
 					this.borderColor = borderColor;
 					this.isSelected = false;
-				} 											// Circle
+				} 																							// Circle()
 
 				// Кружки будем хранить в массиве, чтобы к ним удобно обращаться
 				var circles = [];
 				
 				// Жмем на кнопку - создаем случайный круг
-				mainWindow.getElementById('randomRound').onclick = function () {					
+				mainWindow.getElementById('randomRound').onclick = function () { 							// Случайный круг
 					
 					// Вешаем события здесь, чтобы они имелм доступ к функциям
-					canvas.onclick = canvasClick;
-					canvas.onmousedown = canvasClick;   
-					canvas.ondblclick = stopDragging;
+					canvas.onmouseclick = canvasClick;
+					canvas.onmouseup = canvasClick;
+					canvas.onmousedown = stopDragging;
 					canvas.onmousemove = dragCircle;
-			
-					// Создаем объект Java Script
 					
 					// Генерируем произвольные числа в заданном диапазоне
 					function randomFromTo(from, to) {
@@ -453,11 +452,15 @@ window.onload = function() {
 					var dx = randomFromTo(0.1, 0.9);
 					var dy = randomFromTo(0.1, 0.9);
 					
-					// FIXME Добавить больше цветов для красивости
 					// Окрашиваем круг произвольным цветом
-					var colors = ["green", "blue", "red", "yellow", "magenta", "orange", "brown", "purple", "pink"];
-					var color = colors[randomFromTo(0, 8)];
-					var borderColor = colors[randomFromTo(0, 8)];
+					var colors = [
+						'red', 'green', 'blue', 'yellow', 'orange', 'rosybrown', 'magenta', 'brown', 'purple', 'pink', 
+						'coral', 'indianred', 'lime', 'seagreen', 'teal', 'cadetblue', 'steelblue', 'slategray', 
+						'blueviolet', 'crimson'					
+					];
+					
+					var color = colors[randomFromTo(0, 20)];
+					var borderColor = colors[randomFromTo(0, 20)];
 
 					// Создаем новый круг
 					var circle = new Circle(x, y, dx, dy, radius, color, borderColor);
@@ -476,6 +479,7 @@ window.onload = function() {
 
 						// Перебираем круги в массиве
 						for(var i = 0; i < circles.length; i++) {
+							
 							var circle = circles[i];
 
 							// Рисуем текущий круг
@@ -485,7 +489,7 @@ window.onload = function() {
 							context.fillStyle = circle.color;
 							context.strokeStyle = circle.borderColor;
 
-							// Выделяем выбранный круг рамкой (потребуется позже)
+							// Выделяем выбранный круг рамкой, чтобы показать выделение
 							if (circle.isSelected) {
 								context.lineWidth = 7;
 							}
@@ -496,14 +500,14 @@ window.onload = function() {
 							// Запоминаем цвет и рамку в контекст
 							context.fill();
 							context.stroke(); 
-						}
-					}
-		
+						} 																					// for
+					}																						// drawCircles
+					
 					var previousSelectedCircle;
 					
 					// Кликаем на кружок
 					function canvasClick(e) {
-						
+
 						// FIXME Попробовать сделать Canvas резиновым (e.clientX)
 						
 						// Получаем координаты клика
@@ -511,7 +515,7 @@ window.onload = function() {
 						var clickY = e.pageY - canvas.offsetTop;
 
 						// Проверяем, щелкнули ли no кругу
-						for(var i=circles.length-1; i>=0; i--) {
+						for(var i = circles.length - 1; i >= 0; i--) {
 							var circle = circles[i];
 
 							// С помощью теоремы Пифагора вычисляем расстояние от 
@@ -522,9 +526,10 @@ window.onload = function() {
 							// Определяем, находится ли точка, в которой щелкнули, в данном круге
 							if (distanceFromCenter <= circle.radius) {
 								
-								// Сбрасываем предыдущий выбранный круг	
+								// Сбрасываем предыдущий выбранный круг	и останавливаем анимацию
 								if (previousSelectedCircle != null) {
 									previousSelectedCircle.isSelected = false;
+									clearTimeout(timeOutId);
 								}
 								
 								previousSelectedCircle = circle;
@@ -534,11 +539,12 @@ window.onload = function() {
 								drawCircles();
 
 								isDragging = true;
-								// Прекращаем проверку
-								return;
+								
+								// Прекращаем анимацию
+								clearTimeout(timeOutId);
 							}
-						}
-					}
+						} 																					// if
+					} 																						// canvasClick(e)
 			
 					var isDragging = false;
 
@@ -562,134 +568,86 @@ window.onload = function() {
 								drawCircles();
 							}
 						}
-					}			
+					} 																						// dragCircle()	
 		
 					function stopDragging() {
 						isDragging = false;
-					}
-			
-				}				// randomRound		
-			
-			
-	// FUTURE Canvas Animated Balls
-	
-/*				// Тип данных, представляющий отдельный мячик
-				function Ball(x, y, dx, dy, radius) {
-					this.x = x;
-					this.y = y;
-					this.dx = dx;										// Скорость изменения абсциссы
-					this.dy = dy;										// Скорость изменения ординаты
-					this.radius = radius;
-					this.strokeColor = 'black';
-					this.fillColor = 'red';
-				}		*/									// Ball
+					}			
+				}																							// randomRound	
 				
-				/*// Массив, содержащий информацию обо всех мячиках на холсте
-				var balls = [];
+	// FUTURE Canvas Animate Round
 				
-				mainWindow.getElementById('addBall').onclick = function () {
-
-					// Устанавливаем размер мячика
-					var radius = parseFloat(mainWindow.getElementById('ballSize').value);
-
-					// Создаем новый мячик
-					var ball = new Ball(50, 50, 1, 1, radius);
-
-					// Сохраняем его в массиве
-					balls.push(ball);
-					
-					drawFrame();
-
-				} 			// addBall END
-				
-				function drawFrame() {
+				mainWindow.getElementById('animateRound').onclick = function fallBalls () {
 
 					// Очистить холст
-					context.clearRect(0, 0, canvas.width, canvas.height);
-
-					// Вызываем метод beginPath(), чтобы убедиться,
-					// что мы не рисуем часть уже нарисованного содержимого холста
-					context.beginPath();
-
+					context.clearRect(0, 0, canvas.width, canvas.height);					
+					
 					// Перебираем все мячики
-					for(var i=0; i < balls.length; i++) {
-						
+					for(var i = 0; i < circles.length; i++) {						
+
 						// Перемещаем каждый мячик в его новую позицию
-						var ball = balls[i];
-						ball.x += ball.dx;
-						ball.y += ball.dy;
+						var circle = circles[i];
+						circle.x += circle.dx;
+						circle.y += circle.dy;
 
 						// Добавляем эффект "гравитации", который ускоряет падение мячика
-						if ((ball.y) < canvas.height) ball.dy += 0.22;
+						if ((circle.y) < canvas.height) circle.dy += 0.22;
 
 						// Добавляем эффект "трения", который замедляет движение мячика
-						ball.dx = ball.dx * 0.998;
+						circle.dx = circle.dx * 0.998;
 
 						// Если мячик натолкнулся на край холста, отбиваем его
-						if ((ball.x + ball.radius > canvas.width) || (ball.x - ball.radius < 0)) {
-							ball.dx = -ball.dx;
+						if ((circle.x + circle.radius > canvas.width) || (circle.x - circle.radius < 0)) {
+							circle.dx = -circle.dx;
 						}
 
 						// Если мячик упал вниз, отбиваем его, но слегка уменьшаем скорость
-						if ((ball.y + ball.radius > canvas.height) || (ball.y - ball.radius < 0)) { 
-							ball.dy = -ball.dy * 0.6; 
+						if ((circle.y + circle.radius > canvas.height) || (circle.y - circle.radius < 0)) { 
+							circle.dy = -circle.dy * 0.6; 
 						}
-
-						// Проверяем, хочет ли пользователь соединительные линии
-						if (!mainWindow.getElementById("connectedBalls").checked) {
-							context.beginPath();
-							context.fillStyle = ball.fillColor;
+						
+						// Рисуем текущий круг
+						context.globalAlpha = 0.65;
+						context.beginPath();
+						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI*2);
+						context.fillStyle = circle.color;
+						context.strokeStyle = circle.borderColor;
+						
+						// Выделяем выбранный круг рамкой
+						if (circle.isSelected) {
+							context.lineWidth = 7;
 						}
 						else {
-							context.fillStyle = "white";
+							context.lineWidth = 3;
 						}
-
-						// Рисуем мячик
-						context.arc(ball.x, ball.y, ball.radius, 0, Math.PI*2);
-						context.lineWidth = 5;
+							
+						// Запоминаем цвет и рамку в контекст
 						context.fill();
 						context.stroke(); 
-						
-						setTimeout(drawFrame, 20);
 					}
-				} 											// drawFrame() END
-				
-				setTimeout(drawFrame, 20);
-
-				function ballClick(e) {
 					
-					// Координаты щелчка мышью
-					var clickX = e.pageX - canvas.offsetLeft;
-					var clickY = e.pageY - canvas.offsetTop;
-
-					for(var i in balls) {
-						var ball = balls[i];
-
-						// Проверка попадания
-						if ((clickX > (ball.x - ball.radius)) && (clickX < (ball.x + ball.radius))) {
-							if ((clickY > (ball.y - ball.radius)) && (clickY < (ball.y + ball.radius)))	{
-								// Изменить скорость мячика
-								ball.dx += 2;
-								ball.dy += 3;
-								return;
-							}
-						}
-					}
-
-				} 											// ballClick(e)
-				
-				canvas.onclick = ballClick;*/
+					// Снова запускаем анимацию
+					timeOutId = setTimeout(fallBalls, 20);
+					
+				}
 				
 				/* --------------------------------------------------------------- Очистить холст -- */
 
 				mainWindow.getElementById('clearCanvas').onclick = function () {
-					codeStr.value += "context.clearRect(0, 0, canvas.width, canvas.height);\n";
+					
+					// Все-все чистим
+					clearTimeout(timeOutId);
 					circles = [];
-					clearInterval();
+					codeStr.value += "context.clearRect(0, 0, canvas.width, canvas.height);\n";
+					
+					// События для рисования куда-то делись - подключаем их еще раз
+					canvas.ondblclick = startDrawing;
+					canvas.onmouseup = stopDrawing;
+					canvas.onmousemove = draw;			
 				}
 
 				
-		} // Если в браузере фрейм
+			} 																						// Если в браузере фрейм
 			
 	// FUTURE Canvas Drawing with mouse
 			
@@ -697,51 +655,48 @@ window.onload = function() {
 			
 			function startDrawing(e) {
 
-					// Без var!!!
-					isDrawing = true;													
-					context.beginPath();
+				// Без var!!!
+				isDrawing = true;													
+				context.beginPath();
 
-					// Нажатием левой кнопки мыши помещаем "кисть" на холст
-					context.moveTo(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
-				} 									// Start Drawing end
-				
+				// Нажатием левой кнопки мыши помещаем "кисть" на холст
+				context.moveTo(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+			} 																							// StartDrawing end
+			
+			// Собственно рисование				
 			function draw(e) {
+				
+				if (isDrawing === true) {
 
-					if (isDrawing === true) {
+					// FIXME Попробовать сделать Canvas резиновым (e.clientX)
+						
+					// Определяем текущие координаты указателя мыши относительно документа
+					// clientX/clientY определило бы координаты относительно окна???????????
+					var x = e.pageX - canvas.offsetLeft;
+					var y = e.pageY - canvas.offsetTop;
 
-						// Определяем текущие координаты указателя мыши относительно документа
-						// clientX/clientY определило бы координаты относительно окна
-
-						// FIXME Попробовать сделать Canvas резиновым (e.clientX)
-
-						var x = e.pageX - canvas.offsetLeft;
-						var y = e.pageY - canvas.offsetTop;
-
-						// Рисуем линию до новой координаты
-						context.lineTo(x, y);
-						context.stroke();
-					}
-				} 											// Draw end
+					// Рисуем линию до новой координаты
+					context.lineTo(x, y);
+					context.stroke();
+				}
+			} 																									// Draw end
 
 			// Вызывается на onmouseup и onmousedown
 			function stopDrawing() {				
-					isDrawing = false;
-			} 										// stopDrawing()
+				isDrawing = false;
+			} 																								// stopDrawing()
 
 			// Подключим требуемые для рисования события
 			canvas.ondblclick = startDrawing;
 			canvas.onmouseup = stopDrawing;
-			canvas.onmouseout = stopDrawing;
-			canvas.onmousemove = draw;
-
-			
+			canvas.onmousemove = draw;			
 		
-		};	// FUTURE Canvas/ Canvas in IN FRAME END
+		};																			// FUTURE Canvas/ Canvas in IN FRAME END
 /* 
 * ********************************************************* Java Script Валидация формы для регистрации **
 */
 	
-	// FUTURE FORM VALIDATE START
+		// FUTURE FORM VALIDATE START
 		
 		// Если формы открыты в браузере или во фрейме (интерпретатор ругает нечитаемые события)
 		if(window.parent.location.pathname !== "/doc/html5/frameset.html" 
@@ -851,9 +806,9 @@ window.onload = function() {
 			if(email) email.onchange = validEmail;
 		} 																			// FUTURE FORM VALIDATE END
 	
-	/* 
-	* ********************************************************* Java Script Media **
-	*/
+/* 
+* ********************************************************* Java Script Media **
+*/
 	
 	// FUTURE MEDIA
 
@@ -907,8 +862,10 @@ window.onload = function() {
 			}
 
 			html5Video.volumechange = function(e) {
+				
 				// Звук вкл/ выкл
 				muteButton.value = html5Video.muted ? 'Muted' : 'Unmuted';
+				
 				// Громче/ тише
 				volumeCtrl.value = html5Video.volume;
 			}
@@ -925,28 +882,34 @@ window.onload = function() {
 			}
 
 			function speedUp() {
+				
 				html5Video.play();
 				html5Video.playbackRate += 0.5;
 			}
 
 			function slowDown() {
+				
 				html5Video.play();
 				html5Video.playbackRate -= 0.5;
 			}
 
 			function normalSpeed() {
+				
 				html5Video.play();
 				html5Video.playbackRate = 1;
 			}
 
 			function updateVideoProgress() {
+				
 				videoProgress.value = html5Video.currentTime / html5Video.duration * 100;
 			}
 		}
 
-	/* 
-	* ********************************************************* jQuery **
-	*/	
+/* 
+* ********************************************************************************************************
+* ********************************************************************************************** JQUERY **
+* ********************************************************************************************************
+*/
 
 	$(document).ready(function (e) {
 

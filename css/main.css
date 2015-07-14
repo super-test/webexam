@@ -305,12 +305,17 @@ code q {
 	display: block;								/* Пока что будут по всей ширине страницы сверху */
 }
 
-#canvasAPI button {
+#canvasAPI button,
+#canvasAPI input[type='number'] {
 	text-align: left;
 	font-family: 'Ubuntu Mono', "Courier", monospace; 
 	font-size: 1.3vw;							/* Размер шрифта */
 	font-weight: bold;							/* Полужирный шрифт */
 	color: darkred;
+}
+
+#canvasAPI input[type='number'] {
+	font-size: 1vw;
 }
 
 /* FUTURE Links Fonts */
@@ -618,9 +623,14 @@ input[type="radio"] {
 }
 
 input[type="button"],
-input[type="file"] {
-	width: 12vw;
-	padding: 0.1vw;								/* Отступы */
+input[type="file"],
+#canvasAPI input[type='number'] {
+	width: 14vw;
+	padding: 0.3vw;								/* Отступы */
+}
+
+#canvasAPI input[type='number'] {
+	margin: 0.2vw;
 }
 
 progress,
@@ -902,11 +912,13 @@ input[type='range'] {
 	margin: 0;
 }
 
-#canvasAPI button {
+#canvasAPI button,
+#canvasAPI input {
 	opacity: .6;
 }
 
-#canvasAPI button:hover {
+#canvasAPI button:hover,
+#canvasAPI input:hover {
 	opacity: 1;
 }
 
