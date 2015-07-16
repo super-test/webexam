@@ -12,7 +12,8 @@ window.onload = function() {
 		var mainWindow = window.parent.document;										// Документ с фреймами
 		var mainIFrame = mainWindow.getElementById('contentFrame');						// Фрейм
 		var codeStr = mainWindow.getElementById('codeString');							// Строка для кода
-		var img = new Image();												//Создадим картинку для загрузки в Canvas		
+		var img = new Image();												//Создадим картинку для загрузки в Canvas	
+	var timeOutId;
 /* 
 * ********************************************************* Java Script Canvas **
 */
@@ -506,7 +507,7 @@ window.onload = function() {
 					var previousSelectedCircle;
 					
 					// Назначаем глобальный идентификатор для clearTimeOut()
-					timeOutId = setTimeout(function(){fallBalls()}, 20);
+					//timeOutId = setTimeout(function(){fallBalls()}, 20);
 					
 					// Добавляем звук на клик
 					var clickSound = new Audio('../../media/popup.mp3');
@@ -634,8 +635,7 @@ window.onload = function() {
 					}
 					
 					// Снова запускаем анимацию
-					timeOutId = setTimeout(fallBalls, 20);
-					
+					timeOutId = setTimeout(fallBalls, 20);					
 				}
 				
 				/* --------------------------------------------------------------- Очистить холст -- */
