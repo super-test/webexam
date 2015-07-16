@@ -505,6 +505,12 @@ window.onload = function() {
 					
 					var previousSelectedCircle;
 					
+					// Назначаем глобальный идентификатор для clearTimeOut()
+					timeOutId = setTimeout(function(){fallBalls()}, 20);
+					
+					// Добавляем звук на клик
+					var clickSound = new Audio('../../media/popup.mp3');
+
 					// Кликаем на кружок
 					function canvasClick(e) {
 
@@ -540,6 +546,7 @@ window.onload = function() {
 
 								isDragging = true;
 								
+								clickSound.play();
 								// Прекращаем анимацию
 								clearTimeout(timeOutId);
 							}
