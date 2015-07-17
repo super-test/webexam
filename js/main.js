@@ -13,7 +13,7 @@ window.onload = function() {
 		var mainIFrame = mainWindow.getElementById('contentFrame');						// Фрейм
 		var codeStr = mainWindow.getElementById('codeString');							// Строка для кода
 		var img = new Image();												//Создадим картинку для загрузки в Canvas	
-	var timeOutId;
+		var timeOutId;
 /* 
 * ********************************************************* Java Script Canvas **
 */
@@ -63,7 +63,43 @@ window.onload = function() {
 				}
 			}											// DrawSquare END
 			
-		}			// Canvas and Frame END
+		}
+	
+	// FUTURE HTML5-STORAGE START
+	
+		if(window.parent.location.pathname !== '/doc/html5/frameset.html' 
+			&& window.location.pathname === '/doc/html5/html5-storage.html') {
+
+			// Получаем кнопки сохранения
+			var saveInStorage = document.getElementById('saveDataInStorage').value;
+			var loadFromStorage = document.getElementById('loadDataFromStorage').value;
+			
+			// Сохраняем данные
+			function saveData() {
+				
+				// Получаем значения текстовых полей
+				var localData = document.getElementById('inputLocalData').value;
+				var sessionData = document.getElementById('inputSessionData').value;
+				
+				// Сохраняем текст, введенный в текстовом поле, в локальном хранилище
+				localStorage.setItem('localData', localData);
+				// Сохраняем текст, введенный в текстовом поле, в хранилище сессий
+				sessionStorage.setItem('sessionData', sessionData);
+			}
+			
+			// Выгружаем данные
+			function loadData() {
+
+				// Загружаем сохраненные данные из хранилищ
+				document.getElementById('inputLocalData').value = localStorage.getItem('localData');
+				document.getElementById('inputSessionData').value = sessionStorage.getItem('sessionData');
+			}
+			
+			// Вешаем обработчики
+			saveDataInStorage.onclick = saveData;
+			loadDataFromStorage.onclick = loadData;
+			
+		} 		// Canvas no Frame END
 	
 	// FUTURE CANVAS IN BROWSER START && END
 	// FUTURE CANVAS IN FRAME START						

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>Canvas</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<!-- Place favicon.ico in the root directory -->
+
+		<!--
+			Подключаем скрипты
+		-->
+
+		<!-- vendor scripts added -->
+		<script src="../../js/vendor/modernizr.js"></script>
+		<script src="../../js/plugins.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script>
+			window.jQuery || document.write('<script src="../../js/vendor/jquery.js"><\/script>')
+		</script>
+
+		<!-- user scripts added -->
+		<script src="../../js/main.js"></script>
+
+		<!-- vendor stylesheets -->
+		<link rel="stylesheet" href="../../css/normalize.css">
+		<!-- user stylesheets -->
+		<link rel="stylesheet" href="../../css/main.css">
+	</head>
+
+	<body>
+		<fieldset>
+			<legend>Веб-хранилище</legend>
+			<label for="inputLocalData">Этот текст сохранится в локальном хранилище:</label>
+				<input id="inputLocalData"><br>
+			<label for="inputSessionData">Этот текст сохранится в хранилище данных сессии:</label>
+				<input id="inputSessionData">
+		</fieldset>
+		
+		<div>
+			<button id="saveDataInStorage">Сохранить</button>
+			<button id="loadDataFromStorage">Загрузить</button>
+		</div>
+	</body>
+
+</html>
