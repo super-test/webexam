@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta http-equiv="x-ua-compatible" content="ie=edge">
-		<title>Canvas</title>
+		<title>WEB-Storage</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -33,18 +33,46 @@
 	</head>
 
 	<body>
-		<fieldset>
-			<legend>Веб-хранилище</legend>
-			<label for="inputLocalData">Этот текст сохранится в локальном хранилище:</label>
-				<input id="inputLocalData"><br>
-			<label for="inputSessionData">Этот текст сохранится в хранилище данных сессии:</label>
-				<input id="inputSessionData">
-		</fieldset>
-		
-		<div>
-			<button id="saveDataInStorage">Сохранить</button>
-			<button id="loadDataFromStorage">Загрузить</button>
-		</div>
+	<main role="main">
+		<article>
+
+				<div class="apiButtons">
+					<button id="saveInLocalStorage">Сохранить в локальном хранилище</button><br />
+					<button id="saveInSessionStorage">Сохранить в сессионном хранилище</button><br />
+					<button id="showLocalStorage">Показать локальное хранилище</button><br />
+					<button id="showSessionStorage">Показать сессионное хранилище</button><br />
+					<button id="clearLocalStorage">Очистить локальное хранилище</button><br />
+					<button id="clearSessionStorage">Очистить сессионное хранилище</button><br />
+				</div>
+				
+				<div class="fieldsetWrap">
+				
+					<fieldset>
+						<legend>Локальное хранилище</legend>
+						<label for="keyLocalData">Ключ:</label>
+							<input id="keyLocalData"><br />
+						<label for="inputLocalData">Данные:</label>
+							<input id="inputLocalData">
+					</fieldset>
+
+					<fieldset>
+						<legend>Сессионное хранилище</legend>
+						<label for="keySessionlData">Ключ:</label>	
+							<input id="keySessionData"><br />
+						<label for="inputSessionData">Данные:</label>
+							<input id="inputSessionData">
+					</fieldset>
+
+
+					<div id="storageData">
+						<table id="localItemsList"></table>
+						<table id="sessionItemsList"></table>
+					</div>
+				
+				</div>
+				
+			</article>
+		</main>
 	</body>
 
 </html>

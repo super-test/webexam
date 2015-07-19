@@ -65,39 +65,199 @@ window.onload = function() {
 			
 		}
 	
+/* 
+* ********************************************************* Java Script Storage **
+*/
+	
 	// FUTURE HTML5-STORAGE START
 	
 		if(window.parent.location.pathname !== '/doc/html5/frameset.html' 
 			&& window.location.pathname === '/doc/html5/html5-storage.html') {
-
-			// Получаем кнопки сохранения
-			var saveInStorage = document.getElementById('saveDataInStorage').value;
-			var loadFromStorage = document.getElementById('loadDataFromStorage').value;
 			
-			// Сохраняем данные
-			function saveData() {
+			// Получаем инпуты для ключей и значений
+			var keyLocal = document.getElementById('keyLocalData');
+			var dataLocal = document.getElementById('inputLocalData');
+			var keySession = document.getElementById('keySessionData');
+			var dataSession = document.getElementById('inputSessionData');
+			
+			// Получаем кнопки для сохранения
+			var saveInLocal = document.getElementById('saveInLocalStorage');
+			var saveInSession = document.getElementById('saveInSessionStorage');
+			
+			var showLocal = document.getElementById('showLocalStorage');
+			var showSession = document.getElementById('showSessionStorage');
+			
+			// Получаем табличку
+			var localList = document.getElementById('localItemsList');
+			var sessionList = document.getElementById('sessionItemsList');
+			var clearLocal = document.getElementById('clearLocalStorage');
+			var clearSession = document.getElementById('clearSessionStorage');
+			
+	// ----------------------------------------------------------------- Сохраняем данные --
+			
+			// Сохраняем данные в локальном хранилище
+			function saveLocalData() {
 				
-				// Получаем значения текстовых полей
-				var localData = document.getElementById('inputLocalData').value;
-				var sessionData = document.getElementById('inputSessionData').value;
-				
-				// Сохраняем текст, введенный в текстовом поле, в локальном хранилище
-				localStorage.setItem('localData', localData);
-				// Сохраняем текст, введенный в текстовом поле, в хранилище сессий
-				sessionStorage.setItem('sessionData', sessionData);
+				// Сохраняем ключ и значение в локальном хранилище
+				localStorage.setItem(keyLocal.value, dataLocal.value);
 			}
 			
-			// Выгружаем данные
-			function loadData() {
+			// Сохраняем данные в сессионном хранилище
+			function saveSessionData() {
 
-				// Загружаем сохраненные данные из хранилищ
-				document.getElementById('inputLocalData').value = localStorage.getItem('localData');
-				document.getElementById('inputSessionData').value = sessionStorage.getItem('sessionData');
+				// Сохраняем ключ и значение в локальном хранилище
+				sessionStorage.setItem(keySession.value, dataSession.value);
+			}
+			
+	// ----------------------------------------------------------------- Показываем данные --
+			
+			// Показываем данные локального хранилища			
+			function showLocalItems() {
+				
+				// Очищаем табличку
+				localList.innerHTML = "";
+				
+				if(localStorage.length === 0) {
+					var noneItem = document.createElement('tr');
+					var noneTd = document.createElement('td');
+					
+					noneTd.innerHTML = "You have no items in your list!";
+					
+					noneItem.appendChild(noneTd);
+					localList.appendChild(noneItem);
+				}
+				
+				if(localStorage.length > 0) {
+				// Перебираем хранилище
+				for (var i = 0; i < localStorage.length; i++) {
+					
+					// Присваиваем значения во временные переменные
+					var key = localStorage.key(i);
+					var data = localStorage.getItem(localStorage.key(i));
+					
+					// Создаем элементы таблички
+					var newItem = document.createElement('tr');
+					var tdKey = document.createElement('td');
+					var tdValue = document.createElement('td');
+					
+					// Создаем ячейку с кнопкой для удаления
+					var tdDel = document.createElement('td');					
+					var del = document.createElement('input');
+					del.type = 'button';
+					del.value = 'Delete';
+					del.style.backgroundRepeat = 'no-repeat';
+					del.style.backgroundSize = 'contain';
+					
+					// Чуть украсим - через стили не работает
+					document.getElementById('storageData').style.backgroundImage 
+						= "url('http://www.subtlepatterns.com/patterns/white_leather.png')";
+					del.style.backgroundImage	 
+						= "url('../../img/del.png')";
+					del.style.backgroundColor = 'white';
+					
+					// Заполняем табличку
+					tdKey.innerHTML = key;
+					tdValue.innerHTML = data;					
+					
+					// Вставляем заполненные данные в DOM
+					localList.appendChild(newItem);
+					newItem.appendChild(tdKey);
+					newItem.appendChild(tdValue);
+					tdDel.appendChild(del);
+					newItem.appendChild(tdDel);	
+					
+					// Передаем key в обработчик (иначе - не доступен)
+					del.key = key;
+					// Вешаем динамический обработчик
+					del.onclick = new Function("localStorage.removeItem(this.key)"); 
+				}
+			}
+		}
+			
+		// Показываем данные сессионного хранилища			
+		function showSessionItems() {
+
+				// Очищаем табличку
+				sessionList.innerHTML = "";
+
+				if(sessionStorage.length === 0) {
+					var noneItem = document.createElement('tr');
+					var noneTd = document.createElement('td');
+
+					noneTd.innerHTML = "You have no items in temporary list!";
+
+					noneItem.appendChild(noneTd);
+					sessionList.appendChild(noneItem);
+				}
+
+				if(sessionStorage.length > 0) {
+					// Перебираем хранилище
+					for (var i = 0; i < sessionStorage.length; i++) {
+
+						// Присваиваем значения во временные переменные
+						var key = sessionStorage.key(i);
+						var data = sessionStorage.getItem(sessionStorage.key(i));
+
+						// Создаем элементы таблички
+						var newItem = document.createElement('tr');
+						var tdKey = document.createElement('td');
+						var tdValue = document.createElement('td');
+
+						// Создаем ячейку с кнопкой для удаления
+						var tdDel = document.createElement('td');					
+						var del = document.createElement('input');
+						del.type = 'button';
+						del.value = 'Delete';
+						del.style.backgroundRepeat = 'no-repeat';
+						del.style.backgroundSize = 'contain';
+
+						// Чуть украсим - через стили не работает
+						document.getElementById('storageData').style.backgroundImage 
+							= "url('http://www.subtlepatterns.com/patterns/white_leather.png')";
+						del.style.backgroundImage	 
+							= "url('../../img/del.png')";
+						del.style.backgroundColor = 'white';
+
+
+						// Заполняем табличку
+						tdKey.innerHTML = key;
+						tdValue.innerHTML = data;
+
+
+						// Вставляем заполненные данные в DOM
+						sessionList.appendChild(newItem);
+						newItem.appendChild(tdKey);
+						newItem.appendChild(tdValue);
+						tdDel.appendChild(del);
+						newItem.appendChild(tdDel);	
+
+						// Передаем key в обработчик (иначе - не доступен)
+						del.key = key;
+						// Вешаем динамический обработчик
+						del.onclick = new Function("sessionStorage.removeItem(this.key)"); 
+					}
+				}
+			}
+			
+			// Очистить локальное хранилище
+			
+			function clearLocalStorage() {
+				localStorage.clear();
+			}
+			
+			// Очистить сессионное хранилище
+			
+			function clearSessionStorage() {
+				sessionStorage.clear();
 			}
 			
 			// Вешаем обработчики
-			saveDataInStorage.onclick = saveData;
-			loadDataFromStorage.onclick = loadData;
+			saveInLocal.onclick = saveLocalData;
+			saveInSession.onclick = saveSessionData;
+			showLocal.onclick = showLocalItems;
+			showSession.onclick = showSessionItems;
+			clearLocal.onclick = clearLocalStorage;
+			clearSession.onclick = clearSessionStorage;
 			
 		} 		// Canvas no Frame END
 	
