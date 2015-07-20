@@ -37,12 +37,13 @@
 		<article>
 
 				<div class="apiButtons">
-					<button id="saveInLocalStorage">Сохранить в локальном хранилище</button><br />
-					<button id="saveInSessionStorage">Сохранить в сессионном хранилище</button><br />
-					<button id="showLocalStorage">Показать локальное хранилище</button><br />
-					<button id="showSessionStorage">Показать сессионное хранилище</button><br />
-					<button id="clearLocalStorage">Очистить локальное хранилище</button><br />
-					<button id="clearSessionStorage">Очистить сессионное хранилище</button><br />
+					<button id="saveInLocalStorage">Save in Local</button><br />
+					<button id="saveInSessionStorage">Save in Session</button><br />
+					<button id="showLocalStorage">Show Local</button><br />
+					<button id="showSessionStorage">Show Session</button><br />
+					<button id="clearLocalStorage">Clear Local</button><br />
+					<button id="clearSessionStorage">Clear Session</button><br />
+					<button id="saveBirthData">Save Birthday</button><br />
 				</div>
 				
 				<div class="fieldsetWrap">
@@ -53,6 +54,14 @@
 							<input id="keyLocalData"><br />
 						<label for="inputLocalData">Данные:</label>
 							<input id="inputLocalData">
+					</fieldset>
+					
+					<fieldset id="enterBirthday">
+						<legend>Birthday Book</legend>
+						<label for="inputName">Имя:</label>
+							<input type="text" id="inputName"><br />
+						<label for="inputBirthday">Дата рождения:</label>
+							<input type="date" id="inputBirthDay"><br />
 					</fieldset>
 
 					<fieldset>

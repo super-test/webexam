@@ -83,6 +83,7 @@ window.onload = function() {
 			// Получаем кнопки для сохранения
 			var saveInLocal = document.getElementById('saveInLocalStorage');
 			var saveInSession = document.getElementById('saveInSessionStorage');
+			var saveObject = document.getElementById('saveObjectInLocal');
 			
 			var showLocal = document.getElementById('showLocalStorage');
 			var showSession = document.getElementById('showSessionStorage');
@@ -92,6 +93,12 @@ window.onload = function() {
 			var sessionList = document.getElementById('sessionItemsList');
 			var clearLocal = document.getElementById('clearLocalStorage');
 			var clearSession = document.getElementById('clearSessionStorage');
+			
+			var birthdayBook = document.getElementById('enterBirthday');
+			birthdayBook.style.float = 'right';
+			var nameField = document.getElementById('inputName');
+			var birthField = document.getElementById('inputBirthDay');
+			var saveBirthButton = document.getElementById('saveBirthData');
 			
 	// ----------------------------------------------------------------- Сохраняем данные --
 			
@@ -107,6 +114,80 @@ window.onload = function() {
 
 				// Сохраняем ключ и значение в локальном хранилище
 				sessionStorage.setItem(keySession.value, dataSession.value);
+			}
+	
+	// ----------------------------------------------------------------- Сохраняем Дату Рождения --
+			
+
+			function showBirthday(person) {
+
+				// Создаем div для вывода оставшейся до дня рождения даты
+				var dateDiv = document.createElement('span');
+				
+				// Вставляем его в DOM
+				birthdayBook.appendChild(dateDiv);
+				
+				// Опять преобразуем в объект и передадим в showPerson
+				var restoredPerson = JSON.parse(localStorage.getItem(person.name));
+				
+				// Показываем сегодняшнюю дату
+				var todayDate = new Date();
+				var personDate = new Date(restoredPerson.dateOfBirth);
+				
+				// Создаем какую-то хрень для преобразования дат ??????
+				var todayString = new Intl.DateTimeFormat("ru", {
+					weekday: "long",
+					year: "numeric", 
+					month: "long", 
+					day: "numeric"}).format(todayDate);
+				
+				// Преобразовываем в дату день рождения объекта
+				var birthDate = new Date(personDate);
+				
+				// Еще раз создаем какую-то хрень для преобразования дат
+				birthDate = new Intl.DateTimeFormat("ru", {
+					weekday: "long",
+					year: "numeric", 
+					month: "long", 
+					day: "numeric"}).format(birthDate);
+				
+				// Считаем разницу в формате Date
+				var difference = personDate - todayDate;
+				difference = Math.round(difference / 1000 / 60 / 60/ 24);
+				
+				if(difference === 0 || difference === -1) {
+					var gift = document.createElement('img');
+					gift.src = '../../img/gift.png';
+					dateDiv.appendChild(gift);
+					var textGift = document.createElement('span');
+					textGift.className = 'dinamic';
+					textGift.innerHTML = 'marry Christmas';
+					dateDiv.appendChild(textGift);
+				} else {
+					dateDiv.className = 'dinamic';
+					// Смотрим, что получилось ...
+					dateDiv.innerHTML = 
+						'Сегодня ' + todayString + '<br />' + 
+						'День рождения ' + restoredPerson.name + ' ' + birthDate + '<br />' +
+						'Будем праздновать через ' + difference + ' дн.<br />';
+				}
+			}
+			
+			function saveBirthday() {
+				
+				// Создаём объект
+				var person = {
+					'name': 'Имя',
+					'dateOfBirth': "Дата рождения"
+				};
+				
+				// Внесем в него пользовательские данные, преобразуем в JSON и сохраним в localStorage
+				person.name = nameField.value;
+				person.dateOfBirth = birthField.value;
+				localStorage.setItem(person.name, JSON.stringify(person));
+				
+				// Вызовем функцию для показа сообщения
+				showBirthday(person);
 			}
 			
 	// ----------------------------------------------------------------- Показываем данные --
@@ -169,7 +250,7 @@ window.onload = function() {
 					// Передаем key в обработчик (иначе - не доступен)
 					del.key = key;
 					// Вешаем динамический обработчик
-					del.onclick = new Function("localStorage.removeItem(this.key)"); 
+					del.onclick = new Function('localStorage.removeItem(this.key)'); 
 				}
 			}
 		}
@@ -234,7 +315,7 @@ window.onload = function() {
 						// Передаем key в обработчик (иначе - не доступен)
 						del.key = key;
 						// Вешаем динамический обработчик
-						del.onclick = new Function("sessionStorage.removeItem(this.key)"); 
+						del.onclick = new Function('sessionStorage.removeItem(this.key)'); 
 					}
 				}
 			}
@@ -258,6 +339,7 @@ window.onload = function() {
 			showSession.onclick = showSessionItems;
 			clearLocal.onclick = clearLocalStorage;
 			clearSession.onclick = clearSessionStorage;
+			saveBirthButton.onclick = saveBirthday;
 			
 		} 		// Canvas no Frame END
 	
