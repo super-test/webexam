@@ -257,7 +257,7 @@ window.onload = function() {
 			
 		// Показываем данные сессионного хранилища			
 		function showSessionItems() {
-
+			
 				// Очищаем табличку
 				sessionList.innerHTML = "";
 
@@ -332,7 +332,19 @@ window.onload = function() {
 				sessionStorage.clear();
 			}
 			
+			// Сработает только если сразу после события открыть другую страницу того же сайта!!!!!!!!
+			// В качестве измененного ключа видит Modernizer))))
+			// Сплошной глюк ...
+			function storageChanged(event) {
+				alert('URL: ' + event.url + '\n' +
+					  'KEY' + event.key + '\n' + 
+					  'OLD VALUE' + event.oldValue + '\n' + 
+					  'NEW VALUE' + event.newValue + '\n' +
+					  'STORAGE AREA' + event.storageArea + '\n');
+			}
+			
 			// Вешаем обработчики
+			window.onstorage = storageChanged;
 			saveInLocal.onclick = saveLocalData;
 			saveInSession.onclick = saveSessionData;
 			showLocal.onclick = showLocalItems;
