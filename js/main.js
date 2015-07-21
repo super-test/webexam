@@ -9,11 +9,11 @@
 
 window.onload = function() {
 	
-		var mainWindow = window.parent.document;										// Документ с фреймами
-		var mainIFrame = mainWindow.getElementById('contentFrame');						// Фрейм
-		var codeStr = mainWindow.getElementById('codeString');							// Строка для кода
-		var img = new Image();												//Создадим картинку для загрузки в Canvas	
-		var timeOutId;
+	var mainWindow = window.parent.document;							// Документ с фреймами
+	var mainIFrame = mainWindow.getElementById('contentFrame');			// Фрейм
+	var codeStr = mainWindow.getElementById('codeString');				// Строка для кода
+	var img = new Image();												// Картинка для загрузки в Canvas	
+	var timeOutId;
 /* 
 * ********************************************************* Java Script Canvas **
 */
@@ -22,48 +22,48 @@ window.onload = function() {
 		
 	// FUTURE CANVAS IN BROWSER START && END
 	
-		// FIXME Зараза-браузер не понимает разницу между окном во фрейме и окном в браузере
-		// Если Canvas открыт в браузере ...
-		// Иначе интерпретатор ругается, что не может прочитать обработчики из других фреймов
-		// Поскольку все кнопки во фрейме, пока что будет работать только рисование мышкой
-		if(window.parent.location.pathname !== '/doc/html5/frameset.html' 
-		   && window.location.pathname === '/doc/html5/html5-canvas.html') {
+	// FIXME Зараза-браузер не понимает разницу между окном во фрейме и окном в браузере
+	// Если Canvas открыт в браузере ...
+	// Иначе интерпретатор ругается, что не может прочитать обработчики из других фреймов
+	// Поскольку все кнопки во фрейме, пока что будет работать только рисование мышкой
+	if(window.parent.location.pathname !== '/doc/html5/frameset.html' 
+	   && window.location.pathname === '/doc/html5/html5-canvas.html') {
 			
-			var canvas = document.getElementById('canvasField');					// Найдем Canvas		
-			var context = canvas.getContext('2d'); 									// Получим context
+		var canvas = document.getElementById('canvasField');					// Найдем Canvas		
+		var context = canvas.getContext('2d'); 									// Получим context
 			
-			// Устанавливаем интервал для анимированных кругов ГЛОБАЛЬНО
-			setTimeout(drawSquare, 20);
+		// Устанавливаем интервал для анимированных кругов ГЛОБАЛЬНО
+		setTimeout(drawSquare, 20);
 			
-			// Устанавливаем начальную позицию квадрата
-			var squarePositionX = 300;
-			var squarePositionY = 10;
+		// Устанавливаем начальную позицию квадрата
+		var squarePositionX = 300;
+		var squarePositionY = 10;
 			
-			function drawSquare() {
+		function drawSquare() {
 				
-				// Очищаем холст
-				context.clearRect(0, 0, canvas.width, canvas.height);
+			// Очищаем холст
+			context.clearRect(0, 0, canvas.width, canvas.height);
 				
-				// Начинаем новый путь, чтобы сбросить предыдущие настройки
-				context.beginPath();
+			// Начинаем новый путь, чтобы сбросить предыдущие настройки
+			context.beginPath();
 				
-				// Рисуем квадрат в текущей позиции
-				context.rect(squarePositionX, squarePositionY, 100, 100);
-				context.lineStyle = "#10cffc";
-				context.lineWidth = 1;
-				context.stroke();
-				
-				// Перемещаем квадрат вниз, чтобы перерисовать его в следующем кадре
-				squarePositionY += 1;
-				
-				// Рисуем следующий кадр через 20мс до тех пор, 
-				// пока мячмк не уплывет за пределы холста
-				if(squarePositionY < canvas.height + 5) {
-					setTimeout(drawSquare, 20);
-				}
-			}											// DrawSquare END
+			// Рисуем квадрат в текущей позиции
+			context.rect(squarePositionX, squarePositionY, 100, 100);
+			context.lineStyle = "#10cffc";
+			context.lineWidth = 1;
+			context.stroke();
 			
-		}
+			// Перемещаем квадрат вниз, чтобы перерисовать его в следующем кадре
+			squarePositionY += 1;
+				
+			// Рисуем следующий кадр через 20мс до тех пор, 
+			// пока мячмк не уплывет за пределы холста
+			if(squarePositionY < canvas.height + 5) {
+				setTimeout(drawSquare, 20);
+			}
+		}											// DrawSquare END
+			
+	}
 	
 /* 
 * ********************************************************* Java Script Storage **
@@ -101,6 +101,7 @@ window.onload = function() {
 			var saveBirthButton = document.getElementById('saveBirthData');
 			
 			var searchButton = document.getElementById('localSearchButton');
+			var inputFile = document.getElementById('fileInput');
 			
 	// ----------------------------------------------------------------- Сохраняем данные --
 			
@@ -194,23 +195,23 @@ window.onload = function() {
 			
 	// ----------------------------------------------------------------- Показываем данные --
 			
-			// Показываем данные локального хранилища			
-			function showLocalItems() {
+		// Показываем данные локального хранилища			
+		function showLocalItems() {
 				
-				// Очищаем табличку
-				localList.innerHTML = "";
+			// Очищаем табличку
+			localList.innerHTML = "";
 				
-				if(localStorage.length === 0) {
-					var noneItem = document.createElement('tr');
-					var noneTd = document.createElement('td');
+			if(localStorage.length === 0) {
+				var noneItem = document.createElement('tr');
+				var noneTd = document.createElement('td');
 					
-					noneTd.innerHTML = "You have no items in your list!";
+				noneTd.innerHTML = "You have no items in your list!";
 					
-					noneItem.appendChild(noneTd);
-					localList.appendChild(noneItem);
-				}
+				noneItem.appendChild(noneTd);
+				localList.appendChild(noneItem);
+			}
 				
-				if(localStorage.length > 0) {
+			if(localStorage.length > 0) {
 				// Перебираем хранилище
 				for (var i = 0; i < localStorage.length; i++) {
 					
@@ -253,9 +254,12 @@ window.onload = function() {
 					del.key = key;
 					// Вешаем динамический обработчик
 					del.onclick = new Function('localStorage.removeItem(this.key)'); 
-				}
-			}
-		}
+					
+				} 		// FOR END
+					
+			} // IF END
+				
+		} // SHOW LOCAL ITEMS END
 			
 		// Показываем данные сессионного хранилища			
 		function showSessionItems() {
@@ -318,26 +322,29 @@ window.onload = function() {
 						del.key = key;
 						// Вешаем динамический обработчик
 						del.onclick = new Function('sessionStorage.removeItem(this.key)'); 
-					}
-				}
-			}
+						
+					} // FOR END
+					
+				} 							// IF END
 			
-			// Очистить локальное хранилище
+		} 								// SHOW SESSION ITEMS() END
 			
-			function clearLocalStorage() {
+		// Очистить локальное хранилище
+			
+		function clearLocalStorage() {
 				localStorage.clear();
 			}
 			
-			// Очистить сессионное хранилище
+		// Очистить сессионное хранилище
 			
-			function clearSessionStorage() {
+		function clearSessionStorage() {
 				sessionStorage.clear();
 			}
 			
-			// Сработает только если сразу после события открыть другую страницу того же сайта!!!!!!!!
-			// В качестве измененного ключа видит Modernizer))))
-			// Сплошной глюк ...
-			function storageChanged(event) {
+		// Сработает только если сразу после события открыть другую страницу того же сайта!!!!!!!!
+		// В качестве измененного ключа видит Modernizer))))
+		// Сплошной глюк ...
+		function storageChanged(event) {
 				alert('URL: ' + event.url + '\n' +
 					  'KEY: ' + event.key + '\n' + 
 					  'OLD VALUE: ' + event.oldValue + '\n' + 
@@ -345,8 +352,8 @@ window.onload = function() {
 					  'STORAGE AREA: ' + event.storageArea + '\n');
 			}
 			
-			// Функция поиска
-			function searchData() {
+		// Функция поиска
+		function searchData() {
 				
 				// Переменные для хранилища, поиска и результата
 				var searchField;
@@ -364,6 +371,7 @@ window.onload = function() {
 					searchResult = dataLocal;
 					console.log(searchField + ' ' + searchKey);
 				}
+				
 				// Если в сессионном хранилище что-то есть ...
 				if(keySession.value !== '') { 
 					
@@ -411,21 +419,71 @@ window.onload = function() {
 						else {
 							searchResult.value = searchField.getItem(searchKey);
 						}
-					}
-				}
-			}
+					} 							// IF END
+					
+				} 																			// FOR END
+			} 									// SEARCH DATA() END
 			
-			// Вешаем обработчики
-			window.onstorage = storageChanged;
-			saveInLocal.onclick = saveLocalData;
-			saveInSession.onclick = saveSessionData;
-			showLocal.onclick = showLocalItems;
-			showSession.onclick = showSessionItems;
-			clearLocal.onclick = clearLocalStorage;
-			clearSession.onclick = clearSessionStorage;
-			saveBirthButton.onclick = saveBirthday;
-			searchButton.onclick = searchData;
-		} 		// Canvas no Frame END
+
+/* 
+* ********************************************************* Java Script FileAPI **
+*/
+		var dropBox = document.getElementById('dropBox');
+		
+		function ignoreDrag(e) {
+				
+			// Обеспечиваем, чтобы никто другой не получил это событие, 
+			// т.к. мы выполняем операцию перетаскивания
+			e.stopPropagation();
+			e.preventDefault();
+		}
+			
+		function drop(e) {
+			
+			// Аннулируем это событие для всех других
+			e.stopPropagation();
+			e.preventDefault();
+
+			// Получаем перемещенные файлы
+			var data = e.dataTransfer;
+			var files = data.files;
+
+			// Передаем полученный файл функции для обработки файлов
+			processFiles(files);
+			
+		}
+			
+		function processFiles(files) {
+			var file = files[0];
+
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				// Используем URL изображения для заполнения фона
+				dropBox.style.backgroundImage = "url('" + e.target.result + "')";
+			};
+
+			// Начинаем считывать изображение
+			reader.readAsDataURL(file);
+			
+		}
+			
+		// Вешаем обработчики
+		window.onstorage = storageChanged;
+		saveInLocal.onclick = saveLocalData;
+		saveInSession.onclick = saveSessionData;
+		showLocal.onclick = showLocalItems;
+		showSession.onclick = showSessionItems;
+		clearLocal.onclick = clearLocalStorage;
+		clearSession.onclick = clearSessionStorage;
+		saveBirthButton.onclick = saveBirthday;
+		searchButton.onclick = searchData;
+		inputFile.onchange =  processFiles;
+		dropBox.ondragenter = ignoreDrag;
+		dropBox.ondragover = ignoreDrag;
+		dropBox.ondrop = drop;
+			
+	} // Canvas no Frame END
 	
 	// FUTURE CANVAS IN BROWSER START && END
 	// FUTURE CANVAS IN FRAME START						
