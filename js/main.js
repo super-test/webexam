@@ -100,6 +100,8 @@ window.onload = function() {
 			var birthField = document.getElementById('inputBirthDay');
 			var saveBirthButton = document.getElementById('saveBirthData');
 			
+			var searchButton = document.getElementById('localSearchButton');
+			
 	// ----------------------------------------------------------------- Сохраняем данные --
 			
 			// Сохраняем данные в локальном хранилище
@@ -161,7 +163,7 @@ window.onload = function() {
 					dateDiv.appendChild(gift);
 					var textGift = document.createElement('span');
 					textGift.className = 'dinamic';
-					textGift.innerHTML = 'marry Christmas';
+					textGift.innerHTML = 'marry Christmas<br />';
 					dateDiv.appendChild(textGift);
 				} else {
 					dateDiv.className = 'dinamic';
@@ -337,10 +339,80 @@ window.onload = function() {
 			// Сплошной глюк ...
 			function storageChanged(event) {
 				alert('URL: ' + event.url + '\n' +
-					  'KEY' + event.key + '\n' + 
-					  'OLD VALUE' + event.oldValue + '\n' + 
-					  'NEW VALUE' + event.newValue + '\n' +
-					  'STORAGE AREA' + event.storageArea + '\n');
+					  'KEY: ' + event.key + '\n' + 
+					  'OLD VALUE: ' + event.oldValue + '\n' + 
+					  'NEW VALUE: ' + event.newValue + '\n' +
+					  'STORAGE AREA: ' + event.storageArea + '\n');
+			}
+			
+			// Функция поиска
+			function searchData() {
+				
+				// Переменные для хранилища, поиска и результата
+				var searchField;
+				var searchResult;
+				var searchKey;
+				
+				// Если в локальном хранилище что-то есть ...
+				if(keyLocal.value !== '') { 
+					
+					// Объявляем локальное хранилище
+					searchField = window.localStorage; 
+					// Переменную для искомую строку
+					searchKey = keyLocal.value;
+					// Переменную для результата
+					searchResult = dataLocal;
+					console.log(searchField + ' ' + searchKey);
+				}
+				// Если в сессионном хранилище что-то есть ...
+				if(keySession.value !== '') { 
+					
+					// Объявляем сессионное хранилище
+					searchField = window.sessionStorage; 
+					searchKey = keySession.value;
+					searchResult = dataSession;
+					console.log(searchField + ' ' + searchKey);
+				}
+				
+				// Перебираем локальное или сессионное хранилище
+				for(var i = 0; i < searchField.length; i++) {
+					
+					// Если значение найдено
+					if(searchField.key(i) === searchKey) {
+						
+						// Если найден JSON объект
+						if(searchField.getItem(searchKey).substr(0,1) == '{') {
+							
+							// Очищаем поле
+							keyLocal.value = '';							
+							// То ключ заносим в инпут для имени
+							nameField.value = searchKey;
+							
+							// Преобразуем найденное значение в JSON,
+							// чтобы выцепить оттуда строчку с датой 
+							// (регуляркой - очень лень)
+							var obj = JSON.parse(searchField.getItem(nameField.value));
+							// Выковыриваем дату из JSON-объекта
+							var d = new Date(JSON.stringify(obj.dateOfBirth));
+							
+							// Приводим ее к формату, который переварит input type='date'
+							var year = d.getFullYear();
+							var month = d.getMonth();
+							month = parseInt(month);
+							month++;
+							// type='date' не понимает день и месяц без нолика
+							if(month <= 9) { month = '0' + month; }
+							var day = d.getDate();
+							if(day <= 9) { day = '0' + day; }
+							// Склеиваем в кучу полученные значения и показываем их
+							birthField.value = year + '-' + month + '-' + day;
+						}
+						// Для не JSON-объектов все намного проще
+						else {
+							searchResult.value = searchField.getItem(searchKey);
+						}
+					}
+				}
 			}
 			
 			// Вешаем обработчики
@@ -352,7 +424,7 @@ window.onload = function() {
 			clearLocal.onclick = clearLocalStorage;
 			clearSession.onclick = clearSessionStorage;
 			saveBirthButton.onclick = saveBirthday;
-			
+			searchButton.onclick = searchData;
 		} 		// Canvas no Frame END
 	
 	// FUTURE CANVAS IN BROWSER START && END
