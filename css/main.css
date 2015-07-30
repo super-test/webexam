@@ -8,8 +8,8 @@
 
 /* -------------------------------------------------------- Для заголовков */
 
-@font-face {	
-	
+@font-face {
+
 	font-family: "MerriWeather";
 	src: url("Metrophobic-webfont.eot");
 	src: local('!'),
@@ -28,8 +28,8 @@
 
 /* -------------------------------------------------------- Для участков с кодом */
 
-@font-face { 
-	
+@font-face {
+
 	font-family: "Anonymous"; 									/* Гарнитура шрифта */
 	src: url("../../fonts/Anonymous.ttf");						/* Путь к файлу со шрифтом */
 }
@@ -127,7 +127,7 @@ fieldset {
 
 /* ==========================================================================
    Author's custom styles
-   ========================================================================== 
+   ==========================================================================
 */
 
 /* NOTE Все размеры задаем в vh и vw, чтобы текст не вываливался из блоковп при уменьшении размеров окна браузера */
@@ -137,7 +137,7 @@ fieldset {
 /* FUTURE FONTS */
 /* ---------------------------------------------------------------------------------- Основной шрифт */
 
-html { 
+html {
     line-height: 1.5;							/* Высота межстрочного интервала */
     font-size: 1.1vw;							/* Размер основного шрифта */
 	font-family: "Comic Sans MS", "Verdana", sans-serif;
@@ -177,7 +177,7 @@ h3 {
 }
 
 /* Заголовки таблицы */
-.responsive-table caption {	
+.responsive-table caption {
 	text-transform: uppercase;					/* Все буквы большие */
 	font-weight: bold;							/* Полужирный шрифт */
 	font-size: 2vw;								/* Размер шрифта */
@@ -186,7 +186,7 @@ h3 {
 }
 
 /* Заголовочная часть таблицы */
-.responsive-table th {	
+.responsive-table th {
 	text-align: center; 						/* Выравниваем текст заголовков по центру */
 	font-weight: bold;							/* Полужирное начертание */
 	font-size: 2vw; 							/* Размер шрифта заголовков */
@@ -194,7 +194,7 @@ h3 {
 	color: darkslategray;						/* Цвет шрифта заголовков */
 }
 
-.responsive-table th, 
+.responsive-table th,
 details summary {
 	text-transform: uppercase;					/* Все буквы большие */
 	font-family: "Monotype Corsiva", monospace;	/* Шрифт */
@@ -241,7 +241,7 @@ a:hover {
 
 /* ---------------------------------------------------------------------------------- Cсылки для текстовых блоков */
 
-.source-links a {	
+.source-links a {
 	text-decoration: none; 						/* Убираем подчеркивание у ссылок */
 	color: darkslateblue;
 }
@@ -251,14 +251,23 @@ a:hover {
 }
 
 /* FUTURE Image Fonts */
-/* ---------------------------------------------------------------------------------- Подписи под картинками */ 
+/* ---------------------------------------------------------------------------------- Подписи под картинками */
 
-/* Форматируем текст подписи к рисунку */ 
+/* Форматируем текст подписи к рисунку */
 .float-figure figcaption {
 	font-size: small; 							/* Уменьшенный размер шрифта */
 	font-weight: bold;							/* Полужирный курсив */
-	font-style: italic; 
+	font-style: italic;
 }
+
+#dropBox {
+	text-align: center;
+}
+
+#dropBox div {
+	font-family: Verdana, Arial, sans-serif;
+}
+
 
 /* FUTURE Definition Fonts */
 /* ---------------------------------------------------------------------------------- Определения в тексте */
@@ -283,7 +292,7 @@ q {
 /* ---------------------------------------------------------------------------------- Блоки с кодом */
 
 code {
-	font-family: "Anonymous", "Courier", monospace; 
+	font-family: "Anonymous", "Courier", monospace;
 	font-size: 1.3vw;							/* Размер шрифта */
 	font-weight: bold;							/* Полужирный шрифт */
 }
@@ -293,7 +302,7 @@ code q {
 }
 
 #codeString {
-	font-family: "Anonymous", "Courier", monospace; 
+	font-family: "Anonymous", "Courier", monospace;
 	font-size: 1.3vw;							/* Размер шрифта */
 	font-weight: bold;							/* Полужирный шрифт */
 	color: cyan;
@@ -308,7 +317,7 @@ code q {
 .apiButtons button,
 .apiButtons input[type='number'] {
 	text-align: left;
-	font-family: 'Ubuntu Mono', "Courier", monospace; 
+	font-family: 'Ubuntu Mono', "Courier", monospace;
 	font-size: 1.3vw;							/* Размер шрифта */
 	font-weight: bold;							/* Полужирный шрифт */
 	color: darkred;
@@ -321,7 +330,7 @@ code q {
 /* FUTURE Links Fonts */
 /* ---------------------------------------------------------------------------------- Списки в основном тексте */
 
-article > ul li, 
+article > ul li,
 article > ol li {
 	line-height: 3.5vh;							/* Высота линии */
 	font-family: "Neucha", cursive;				/* Шрифт */
@@ -369,7 +378,7 @@ legend {
 }
 
 /* Ползунок для видео */
-#volumeCtrl, 
+#volumeCtrl,
 #videoProgress,
 output {
 	text-align: center;							/* Текст в центре */
@@ -454,21 +463,9 @@ article {
 
 #dropBox {
 	margin: 15px;
-	width: 300px;
-	height: 300px;
-	border: 5px dashed gray;
-	border-radius: 8px;
-	background: lightyellow;
-	background-size: 100%;
-	background-repeat: no-repeat;
-	text-align: center;
-}
+	width: 65vw;
+	height: 20vh;
 
-#dropBox div {
-	margin: 100px 70px;
-	color: orange;
-	font-size: 25px;
-	font-family: Verdana, Arial, sans-serif;
 }
 
 /* ---------------------------------------------------------------------------------- Блоки с кодом */
@@ -517,8 +514,8 @@ pre {
 
 /* ---------------------------------------------------------------------------------- Рисунки в тексте */
 
-/* Форматируем блок плавающего рисунка. */ 
-.float-figure { 
+/* Форматируем блок плавающего рисунка. */
+.float-figure {
 	float: left; 								/* Пусть картинки в тексте плавают слева */
 	margin-right: 10vw;							/* Отступ для текста */
 }
@@ -577,7 +574,7 @@ footer {
 }
 
 /* Заголовок больших таблиц */
-.responsive-table caption {						
+.responsive-table caption {
 	margin-top: 2vh;							/* Поля для заголовка */
 	margin-bottom: 5vh;
 }
@@ -587,7 +584,7 @@ footer {
 	height: 10vh;								/* Высота заголовочной части */
 }
 
-.responsive-table td, 
+.responsive-table td,
 .responsive-table th {
 	padding: 1vw; 								/* Отступы в заголовочной части */
 }
@@ -625,7 +622,7 @@ footer {
 
 /* Правила для списков непосредственно в <article> еще есть в summary */
 article > ul,
-article > ol {	
+article > ol {
 	margin-left: 5vw;
 	margin-top: 3vh;
 	margin-bottom: 3vh;
@@ -652,7 +649,7 @@ form {
 }
 
 .fieldsetWrap fieldset {
-	width: 35vw;
+	width: 32vw;/* Задаем только ширину, чтобы можно было добавлять содержимое */
 }
 
 fieldset {
@@ -660,8 +657,16 @@ fieldset {
 	vertical-align: top;						/* Выравниваем их по верхней линии */
 	margin: 2vh 1vw;							/* Поля */
 	padding: 2vh 1vw;							/* Отступы */
-	width: 40vw;								/* Задаем только ширину, чтобы можно было добавлять содержимое */
 	outline: 0;
+}
+
+fieldset:nth-child(-n+2) {
+	float: left;
+}
+
+fieldset:nth-last-child(2) {
+	width: 80wv;
+	margin: 1vh auto;
 }
 
 legend {
@@ -676,7 +681,7 @@ label {
 }
 
 /* Инпуты */
-input, 
+input,
 textarea,
 select {
 	margin: 1vh 2vw;							/* Поля */
@@ -742,7 +747,7 @@ iframe {
 #savedImageCopy {
 	display: none;										/* Сначала прячем */
 	position: absolute;									/* Позиционируем */
-	top: 4%; left: 5%; right: 80%; 
+	top: 4%; left: 5%; right: 80%;
 	width: 600px;
 	height: 350px;
 }
@@ -751,7 +756,7 @@ iframe {
 	margin: 10px;
 	width: 550px;
 	height: 300px;
-	
+
 }
 
 #savedCopyContainer p {
@@ -777,7 +782,7 @@ video {
 }
 
 /* Ползунок для видео */
-#volumeCtrl, 
+#volumeCtrl,
 #videoProgress,
 output {
 	position: relative;							/* ????????????????????? */
@@ -825,7 +830,7 @@ details summary {
 
 /* Трек */
 ::-webkit-scrollbar-track {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
 	border-radius: 10px;
 }
 
@@ -876,20 +881,20 @@ details summary {
 /* ---------------------------------------------------------------------------------- Бордюры для таблиц */
 
 .responsive-table,
-form {	
+form {
 	border-collapse: collapse;					/* Соединяем рамки таблицы */
-	border: 5px groove lightslategray;			/* Рамка для таблицы */	
+	border: 5px groove lightslategray;			/* Рамка для таблицы */
 }
 
-.responsive-table td, 
+.responsive-table td,
 .responsive-table th,
 footer {
 	border: 2px inset lightslategray;			/* Рамка для ячеек */
 }
 
-.inner-table, 
-.inner-table th, 
-.inner-table tr, 
+.inner-table,
+.inner-table th,
+.inner-table tr,
 .inner-table td {
 	border: 2px ridge darkslategray;   			/* Рамки вложенных таблиц */
 }
@@ -926,7 +931,7 @@ select,
 select:focus,
 progress,
 output,
-.apiButtons { 
+.apiButtons {
 	outline: none;			/* Убираем пунктирную рамку только у текстовых полей и селектов */
 	border: 2px solid darkslategray;
 	border-radius: 10px;
@@ -946,12 +951,12 @@ input[type='range']::-webkit-slider-thumb {
 /* Прячем стандартный ползунок для Opera и Chrome */
 input[type='range'] {
 	-webkit-appearance: none;
-} 
+}
 
 /* ---------------------------------------------------------------------------------- HTML5 Валидация полей форм */
 
 /* Некорректно заполненные поля формы */
-:invalid, 
+:invalid,
 :out-of-range {
 	border: 2px solid red;
 }
@@ -977,6 +982,11 @@ input[type='range'] {
 
 .text-3d {
 	border: 2vw solid white;
+}
+
+#dropBox {
+	border: 5px dotted gray;
+	border-radius: 5px;
 }
 
 /* FUTURE BACKGROUNDS */
@@ -1010,6 +1020,12 @@ progress::-webkit-progress-value {
 	background-color: lightgreen;
 }
 
+#dropBox {
+	background: lightyellow;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
 /* ---------------------------------------------------------------------------------- Фон для блоков с текстом */
 
 /* Текстовые блоки "Интересно", "Важно" и прочие */
@@ -1032,17 +1048,17 @@ progress::-webkit-progress-value {
 /* FUTURE GRADIENTS */
 /* ---------------------------------------------------------------------------------- Page Gradients */
 
-html { 
-	background: 
+html {
+	background:
 		radial-gradient(circle at 2.02% 72.90%, #cecece, transparent 100%),
 		radial-gradient(circle at 97.98% 17.89%, #ffffff, transparent 100%),
 		radial-gradient(circle at 50.00% 49.93%, rgba(255,255,255,0.5), transparent 100%),
 		radial-gradient(circle at 50% 50%, #000000, #000000 100%)
-}										
+}
 
 article,
 #localItemsList tr td,
-#sessionItemsList tr td { 			
+#sessionItemsList tr td {
 	background:
 		radial-gradient(circle at 2.02% 16.02%, #ffeeee, transparent 100%),
 		radial-gradient(circle at 97.98% 25.90%, #ddefbb, transparent 100%),
@@ -1050,7 +1066,7 @@ article,
 }
 
 footer {
-	background: 
+	background:
 		radial-gradient(circle at 2.02% 72.90%, #626962, transparent 100%);
 }
 
@@ -1059,7 +1075,7 @@ footer {
 /* Градиент фона большой таблицы */
 :focus,
 .responsive-table,
-progress::-webkit-progress-bar {										
+progress::-webkit-progress-bar {
 	background:
 		radial-gradient(circle at 2.02% 32.98%, #eeefff, transparent 70%),
 		radial-gradient(circle at 97.98% 52.07%, #e4eab5, transparent 70%),
@@ -1068,18 +1084,18 @@ progress::-webkit-progress-bar {
 
 /* Градиент заголовков таблиц */
 .responsive-table thead,
-details summary {										
-	background-color: rgb(197,199,214);		
-	background-image:         
+details summary {
+	background-color: rgb(197,199,214);
+	background-image:
 		linear-gradient(to bottom, rgba(197,199,214, 0.2), rgba(14,100,63, 0.2));
 }
 
 .responsive-table tr:hover,
-.apiButtons button { 							/* Подсветка рядов таблицы */	
-	background: 
+.apiButtons button { 							/* Подсветка рядов таблицы */
+	background:
 		radial-gradient(circle at 2.02% 52.07%, #ece9e6, transparent 100%),
 		radial-gradient(circle at 97.98% 26.97%, #fff, transparent 100%),
-		radial-gradient(circle at 50% 50%, #000, #000 100%)			
+		radial-gradient(circle at 50% 50%, #000, #000 100%)
 }
 
 /* ---------------------------------------------------------------------------------- Forms Gradients */
@@ -1100,14 +1116,14 @@ select,
 progress::-webkit-progress-value,
 input[type="range"],
 .panel button:focus {
-	background-image:         
-		linear-gradient(to right, rgba(128, 247, 123, 0.3), rgba(27, 49, 2, 0.6));	
+	background-image:
+		linear-gradient(to right, rgba(128, 247, 123, 0.3), rgba(27, 49, 2, 0.6));
 }
 
 /* FUTURE SHADOWS */
 /* ---------------------------------------------------------------------------------- Page Shadows */
 
-article, 
+article,
 .interesting,
 .source-links,
 form {
@@ -1121,13 +1137,13 @@ form {
 #codeString {
 	position: relative;
 	z-index: 100;
-	
+
 	-webkit-box-shadow: 0px 1px 15px 8px rgba(107, 146, 132, 0.63);
 		-moz-box-shadow:    0px 1px 15px 8px rgba(107, 146, 132, 0.63);
 			box-shadow:         0px 1px 15px 8px rgba(107, 146, 132, 0.63);
 }
 
-hr {	
+hr {
 	border: 0;
 	height: 5px;
 
@@ -1168,7 +1184,7 @@ outline,
 
 /* -------------------------------------------------------------- Загнутые уголки для страницы */
 
-article:before, 
+article:before,
 article:after {
 	content: ' ';
 	position: absolute;
@@ -1177,14 +1193,14 @@ article:after {
 	left: 1.5vw;											/* Расстояние от левого края для левой полоски */
 	bottom: 4vh;											/* Расстояние снизу для левой полоски */
 	background: transparent;								/* Левая полоска прозрачная */
-	
+
 	/* Настраиваем поворот */
-	-webkit-transform: skew(-5deg) rotate(-5deg); 			
+	-webkit-transform: skew(-5deg) rotate(-5deg);
 		-moz-transform: skew(-5deg) rotate(-5deg);
 			-ms-transform: skew(-5deg) rotate(-5deg);
 				-o-transform: skew(-15deg) rotate(-5deg);
 					transform: skew(-5deg) rotate(-5deg);
-	
+
 	/* Настраиваем тень */
 	-webkit-box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);
 		-moz-box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);
@@ -1207,7 +1223,7 @@ article:after {
 
 /* -------------------------------------------------------------- Загнутые уголки для блоков на странице */
 
-article:before, 
+article:before,
 article:after {
 	content: ' ';
 	position: absolute;
@@ -1244,7 +1260,7 @@ article:after {
 
 /* -------------------------------------------------------------- Text 3D */
 
-.text-3d {  
+.text-3d {
 	box-shadow:
 	-1px 1px 0 #ddd,
 	-2px 2px 0 #c8c8c8,
@@ -1265,7 +1281,7 @@ article:after {
 /* ==========================================================================
    Helper classes
    ========================================================================== */
-	  
+
 /*
  * Hide visually and from screen readers:
  */

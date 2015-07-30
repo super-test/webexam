@@ -44,54 +44,68 @@
 					<button id="clearLocalStorage">Clear Local</button><br />
 					<button id="clearSessionStorage">Clear Session</button><br />
 					<button id="saveBirthData">Save Birthday</button><br />
-					<button id="localSearchButton">Search In Local</button><br />
+					<button id="localSearchButton">Search In Storage</button><br />
 				</div>
-				
+
 				<div class="fieldsetWrap">
-				
-					<fieldset id="enterBirthday">
-						<legend>Birthday Book</legend>
-						<label for="inputName">Имя:</label>
-							<input type="text" id="inputName"><br />
-						<label for="inputBirthday">Дата рождения:</label>
-							<input type="date" id="inputBirthDay"><br />
-					</fieldset>
-					
+
 					<fieldset>
 						<legend>Локальное хранилище</legend>
 						<label for="keyLocalData">Ключ:</label>
 							<input id="keyLocalData"><br />
 						<label for="inputLocalData">Данные:</label>
 							<input id="inputLocalData">
-					</fieldset>					
+					</fieldset>
 
 					<fieldset>
 						<legend>Сессионное хранилище</legend>
-						<label for="keySessionlData">Ключ:</label>	
+						<label for="keySessionlData">Ключ:</label>
 							<input id="keySessionData"><br />
 						<label for="inputSessionData">Данные:</label>
 							<input id="inputSessionData">
-					</fieldset>	
-						
+					</fieldset>
+
+					<fieldset id="enterBirthday">
+						<legend>Birthday Book</legend>
+						<label for="inputName">Имя:</label>
+							<input type="text" id="inputName"><br />
+						<label for="inputBirthday">Дата рождения:</label>
+							<input type="date" id="inputBirthDay"><br />
+
+					</fieldset>
+
 					<fieldset>
-					
+
 						<legend>Play With FileAPI</legend>
 						<input id="fileInput" type="file">
 						<img id="thumbnail">
-						
+
 					</fieldset>
 
-					<div id="dropBox">
-						<div>Перетащите изображение сюда...</div>
-					</div>
+
+					<fieldset>
+
+						<legend>Drag Image</legend>
+						<div id="dropBox"></div>
+
+					</fieldset>
 
 					<div id="storageData">
 						<table id="localItemsList"></table>
 						<table id="sessionItemsList"></table>
 					</div>
-				
+
 				</div>
-				
+
+
+			<p><img src="../../img/gift.png" alt="" contextmenu="edit"></p>
+			<menu type="context" id="edit">
+				<command label="Вырезать"></command>
+				<command label="Копировать"></command>
+				<command label="Вставить"></command>
+			</menu>
+
+
 			</article>
 		</main>
 	</body>

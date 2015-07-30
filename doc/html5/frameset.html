@@ -16,7 +16,7 @@
 
 	<link rel="apple-touch-icon" href="apple-touch-icon.png">
 	<!-- Place favicon.ico in the root directory -->
-	
+
 	<!--
 		Подключаем скрипты
 	-->
@@ -31,7 +31,7 @@
 
 	<!-- user scripts added -->
 	<script src="../../js/main.js"></script>
-	
+
 	<!-- css added -->
 	<link rel="stylesheet" href="../../css/normalize.css">
 	<link rel="stylesheet" href="../../css/main.css">
@@ -39,13 +39,13 @@
 
 <body>
 	<!--[if lt IE 8]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. 
-            Please <a href="http://browsehappy.com/">upgrade your browser</a> 
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser.
+            Please <a href="http://browsehappy.com/">upgrade your browser</a>
             to improve your experience.</p>
         <![endif]-->
 
 	<!-- Add your site or application content here -->
-	<main role="main">		
+	<main role="main">
 
 		<header>
 		<!-- .................................................................... Управляющие кнопки ...  -->
@@ -54,39 +54,40 @@
 				<button id="reloadButton">Reload</button>
 			</div>
 		</header>
-		
-		
+
+
 		<!-- ..................................................................... Фреймы ..  -->
-		
+
 		<iframe src="html5-canvas.html" name="contentFrame" id="contentFrame"></iframe>
-		
+
 		<!-- .................................................................... Строка кода ......  -->
-		
-		<textarea id="codeString" spellcheck="false"></textarea>		
-		
+
+		<textarea id="codeString" spellcheck="false"></textarea>
+
 		<!-- ..................................................................... Кнопки для Canvas ..  -->
 
 		<div class="apiButtons">
 			<button title="Запустить Canvas" id="runCanvasButton">Запустить Canvas</button>
+			<button title="Очистить строку с кодом" id="clearCodeString">Сбросить код</button>
 			<button title="beginPath()" id="beginPath">Начать новый путь</button>
 			<button title="closePath()" id="closePath">Закрыть путь</button>
 			<button title="clearRect(x, y, width, height)" id="clearCanvas">Очистить</button>
 			<button title="Сохранить холст" id="saveCanvas">Сохранить</button>
 			<button title="Перезагрузить холст" id="reloadCanvas">Перезагрузить</button>
 			<button title="Восстановмть холст" id="restoredCanvas">Восстановить</button>
-		
+
 			<!-- ..................................................................... Canvas-Трансформации ..  -->
 
 			<button title="translate()" id="moveCanvasButton">Транслировать холст</button>
 			<button title="rotate()" id="rotateCanvasButton">Повернуть Canvas</button>
-			
+
 			<!-- ..................................................................... Canvas-Линии ..  -->
 
 			<button title="moveTo()" id="moveTo">Начальная точка</button>
 			<button title="lineTo()" id="lineTo">Конечная точка</button>
 			<button title="lineWidth" id="lineWidth">Ширина линии</button>
 			<button title="strokeStyle()" id="strokeStyle">Цвет линии</button>
-			<button title="opasity" id="opasity">Прозрачность</button>			
+			<button title="opasity" id="opasity">Прозрачность</button>
 			<button title="lineCapRound" id="lineCapRound">Закруглить</button>
 			<button title="lineCapSquare" id="lineCapSquare">Заквадратить</button>
 			<button title="stroke()" id="stroke">Соединить</button>
@@ -137,12 +138,11 @@
 			<button id="linearMany">Многоцветный линейный градиент</button>
 			<button id="radialMany">Многоцветный радиальный градиент</button>
 		</div>
-
 	</main>
 	<footer>
 		<p>Фрейм для экспериментов</p>
 	</footer>
-	
+
 	<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 	<script>
 		(function(b, o, i, l, e, r) {

@@ -1,0 +1,318 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "Package Control Messages\n========================\n\nSublimerge Pro:\n--------------\n\n  Sublimerge has just been installed. Thanks!\n  \n  It is highly recommended to restart Sublime Text before first use.\n  ------------------------------------------------------------------\n  \n  Simplified usage instructions\n  =============================\n  \n  In file view:\n  \n      [ctrl]+[alt]+[d]                - display Quick Panel with Sublimerge commands available for current view\n  \n  In diff view:\n  \n      [/]                             - display Differences Navigator\n      [down]                          - select the next difference (only single selection is possible)\n      [up]                            - select the previous difference (only single selection is possible)\n      [left]                          - merge selected change(s) from right to left\n      [right]                         - merge selected change(s) from left to right\n      [shift]+[left]                  - merge all changes from right to left\n      [shift]+[right]                 - merge all changes from left to right\n      [ctrl]+[enter]                  - toggle edit mode (currently in 2-way diff view only)\n      [ctrl]+[alt]+[left click]       - select/deselect change block (multiple selection is possible)\n      [ctrl]+[shift]+[left click]     - merge selected changes from left to right\n      [ctrl]+[shift]+[right click]    - merge selected changes from right to left\n  \n  In directories diff view:\n  \n      [enter]                         - enter subdirectory (if differs) or diff selected text file\n      [down]                          - select next file/directory\n      [up]                            - select previous file/directory or navigate one level up\n      [ctrl]+[alt]+[left click]       - select/deselect change block (multiple selection is possible)\n      [right]                         - apply selected change from left to right\n      [left]                          - apply all changes from left to right\n      [shift]+[left]                  - apply selected change from right to left\n      [shift]+[right]                 - apply all changes from right to left\n  \n  \n  Licensing\n  =========\n  \n  If you like Sublimerge, please support development by buying a license. It doesn't cost much! :)\n  \n  \n  Solving most common problems\n  ============================\n  \n  Sublimerge doesn't work. Console reports: \"ImportError: No module named 'sublimerge'\"\n  \n  If you installed Sublimerge using Package Control, please make sure that you use its final version.\n  Alpha does not install Sublimerge properly. You can also try Manual Installation (please view\n  sublimerge.com/installation.html for more details)\n  \n  \n  See also\n  ========\n  \n  If you are using Gerrit Code Review, please take a look at SublimeGerrit - the full featured\n  Gerrit Code Review integration for Sublime Text - http://www.sublimegerrit.com/\n  \n  \n  More information\n  ================\n  \n  For more information, troubleshooting, customizing settings and more, please visit www.sublimerge.com\n  \n  ",
+			"settings":
+			{
+				"buffer_size": 3077,
+				"line_ending": "Unix",
+				"name": "Package Control Messages",
+				"scratch": true
+			}
+		},
+		{
+			"file": "js/main.js",
+			"settings":
+			{
+				"buffer_size": 71145,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "doc/html5/html5-canvas.html",
+			"settings":
+			{
+				"buffer_size": 1480,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 457.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"colo",
+				"Colorsublime: Install Theme"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			]
+		],
+		"width": 560.0
+	},
+	"console":
+	{
+		"height": 958.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/allenka/public_html/webexam",
+		"/home/allenka/public_html/webexam/doc",
+		"/home/allenka/public_html/webexam/doc/html5",
+		"/home/allenka/public_html/webexam/js"
+	],
+	"file_history":
+	[
+		"/home/allenka/.config/sublime-text-3/Packages/PlainTasks/PlainTasks (Linux).sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/User/Notes.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/PlainNotes/Notes.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/User/Colorsublime.sublime-settings",
+		"/home/allenka/public_html/webexam/webexam.sublime-project",
+		"/home/allenka/.config/sublime-text-3/Packages/Colorsublime/Colorsublime.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/User/View In Browser.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/User/LiveReload.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/LiveReload/LiveReload.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/View In Browser/View In Browser.sublime-settings"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3077,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3067,
+								3067
+							]
+						],
+						"settings":
+						{
+							"auto_indent": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"word_wrap": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1294.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 71145,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5124.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "doc/html5/html5-canvas.html",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 1480,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 38.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "webexam.sublime-project",
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 269.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

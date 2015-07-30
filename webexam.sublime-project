@@ -1,0 +1,14 @@
+{
+    "folders":
+    [
+        {
+            "path": "/home/allenka/public_html/webexam"
+        }
+    ],
+    "settings": {
+        "sublime-view-in-browser": {
+            "baseUrl": "http://webexam",
+            "basePath": "/home/allenka/public_html/webexam"
+        }
+    }
+}
