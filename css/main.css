@@ -649,23 +649,24 @@ form {
 }
 
 .fieldsetWrap fieldset {
-	width: 32vw;/* Задаем только ширину, чтобы можно было добавлять содержимое */
+	width: 32vw;								/* Задаем только ширину, чтобы можно было добавлять содержимое */
 }
 
 fieldset {
 	display: inline-block;						/* Показываем по 2 филдсета в ряд */
 	vertical-align: top;						/* Выравниваем их по верхней линии */
+	width: 42vw;
 	margin: 2vh 1vw;							/* Поля */
 	padding: 2vh 1vw;							/* Отступы */
 	outline: 0;
 }
 
-fieldset:nth-child(-n+2) {
+.fieldsetWrap fieldset:nth-child(-n+2) {
 	float: left;
 }
 
-fieldset:nth-last-child(2) {
-	width: 80wv;
+.fieldsetWrap fieldset:nth-last-child(2) {
+	width: 70vw;
 	margin: 1vh auto;
 }
 
