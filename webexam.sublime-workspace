@@ -21,15 +21,7 @@
 			"file": "js/main.js",
 			"settings":
 			{
-				"buffer_size": 71145,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "doc/html5/html5-canvas.html",
-			"settings":
-			{
-				"buffer_size": 1480,
+				"buffer_size": 90550,
 				"line_ending": "Unix"
 			}
 		}
@@ -66,7 +58,7 @@
 				"Package Control: Remove Package"
 			]
 		],
-		"width": 560.0
+		"width": 571.0
 	},
 	"console":
 	{
@@ -94,6 +86,7 @@
 	],
 	"file_history":
 	[
+		"/home/allenka/public_html/webexam/js/main.js",
 		"/home/allenka/.config/sublime-text-3/Packages/PlainTasks/PlainTasks (Linux).sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/User/Notes.sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/PlainNotes/Notes.sublime-settings",
@@ -109,7 +102,7 @@
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -123,6 +116,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"clearTimeout",
+			"name",
+			"табл",
+			"setItem",
+			"appendChild",
+			"@memberof",
+			"todayString",
+			"method"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -140,7 +141,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -166,10 +167,10 @@
 							"word_wrap": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1294.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -178,7 +179,7 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 71145,
+						"buffer_size": 90550,
 						"regions":
 						{
 						},
@@ -195,36 +196,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5124.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "doc/html5/html5-canvas.html",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 1480,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 2856.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -235,7 +207,7 @@
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 36.0
 	},
 	"input":
 	{
@@ -272,7 +244,7 @@
 	"project": "webexam.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 68.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -286,12 +258,12 @@
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 625.0,
 		"last_filter": "",
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 475.0
 	},
 	"select_symbol":
 	{
@@ -306,11 +278,11 @@
 	"settings":
 	{
 	},
-	"show_minimap": true,
+	"show_minimap": false,
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 269.0,
+	"side_bar_width": 212.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

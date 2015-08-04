@@ -28,12 +28,13 @@
         <article>
             <pre class="prettyprint source linenums"><code>/*jshint es5: true, evil: true*/
 
-/**
+/** 2734
  * @author aLLenka
  * @copyright Можно все :)
  * @version Будем считать, что 0.0.0, так как проект еще ни разу не был готов
  */
 
+// JSDOC -./node_modules/.bin/jsdoc js/main.js
 // FIXME Попытаться исправить JSLint
 // TODO Подогнать размер автоматических фигур, градиентов и пр. под реальные размеры холста
 
@@ -45,27 +46,51 @@
 // BOOKMARK Window.onload
 
 /**
- * @callback {function} Anonimous
- * @listens {object} window
- * @event HTML/Frame objects:onload
- *
  * @summary Весь JS-код начнет выполняться после полной загрузки документа
+ * @see {@link https://developer.mozilla.org/ru/docs/Web/API/GlobalEventHandlers/onload}
  */
 window.onload = (function() {
 
-	/** @type {object} --------- Главное окно с фреймами в браузере */
+	/**
+	 * @summary Главное окно с фреймами в браузере
+	 * @name mainWindow
+	 * @type {object}
+	 */
 	var mainWindow = window.parent.document;
-	/** @type {object} --------- Фрейм в главном окне */
+
+	/**
+	 * @summary Фрейм в главном окне
+	 * @name mainIFrame
+	 * @type {object}
+	 */
 	var mainIFrame = mainWindow.getElementById('contentFrame');
 
-	/** @type {HTML-Element} -- &lt;textarea> дает возможность пользователю отредактировать JS-код перед выполнением */
+	/**
+	 * @summary &amp;lt;textarea&amp;gt; - Здесь можно отредактировать JS-код перед выполнением
+	 * @name codeStr
+	 * @type {object}
+	 */
 	var codeStr = mainWindow.getElementById('codeString');
-	/** @type {object} ------- JS-объект для манипуляций с картинкой в которую можно сохранить содержимое Canvas */
+
+	/**
+	 * @summary JS-объект для манипуляций с изображением
+	 * @name img
+	 * @type {object}
+	 */
 	var img = new Image();
 
-	/** @type {function} ----- Идентификатор установки таймера для fallBalls() */
+	/**
+	 * @summary Идентификатор установки таймера для fallBalls()
+	 * @name timeoutIDForFallBalls
+	 * @type {function}
+	 */
 	var timeoutIDForFallBalls;
-	/** @type {function} ----- Идентификатор установки таймера для drawSquare() */
+
+	/**
+	 * @summary Идентификатор установки таймера для drawSquare()
+	 * @name timeoutIDForDrawSquare
+	 * @type {function}
+	 */
 	var timeoutIDForDrawSquare;
 
 /*
@@ -78,132 +103,183 @@ window.onload = (function() {
  */
 // BOOKMARK .......................................................... CANVAS
 
-	/* Если в браузере Canvas ... */
+	/** Если в браузере Canvas ... */
 	if(window.parent.location.pathname !== '/doc/html5/frameset.html' &amp;&amp; window.location.pathname === '/doc/html5/html5-canvas.html') {
 
 // BOOKMARK DrawSquare()
 
-		/* Находим Canvas и получаем контекст */
+		/** Находим Canvas и получаем Context */
 
-		/** @type {HTML-Element} ---- Найдем холст на странице */
+		/**
+		 * @summary Холст
+		 * @name canvas
+		 * @type {object}
+		 */
 		var canvas = document.getElementById('canvasField');
-		/** @type {Object} ---------- Получим контекст */
+
+		/**
+		 * @summary Контекст рисования
+		 * @name context
+		 * @type {Object}
+		 */
 		var context = canvas.getContext('2d');
 
 		/* Определяем внешний вид для падающего квадрата */
 
-		/** @type {number} ---------- Начальная X-координата падающего квадрата */
+		/**
+		 * @summary Начальная X-координата падающего квадрата
+		 * @name squarePositionX
+		 * @type {number}
+		 */
 		var squarePositionX = 300;
-		/** @type {number} ---------- Начальная Y-координата падающего квадрата */
+
+		/**
+		 * @summary Начальная Y-координата падающего квадрата
+		 * @name squarePositionY
+		 * @type {number}
+		 */
 		var squarePositionY = 10;
-		/** @type {number} ---------- Ширина падающего квадрата */
+
+		/**
+		 * @summary Ширина падающего квадрата
+		 * @name squareWidth
+		 * @type {number}
+		 */
 		var squareWidth = 100;
-		/** @type {number} ---------- Высота падающего квадрата */
+
+		/**
+		 * @summary Высота падающего квадрата
+		 * @name squareHeight
+		 * @type {number}
+		 */
 		var squareHeight = 100;
-		/** @type {string} ---------- Цвет рамки падающего квадрата */
+
+		/**
+		 * @summary Цвет рамки падающего квадрата
+		 * @name squareBorderColor
+		 * @type {string}
+		 */
 		var squareBorderColor = 'darkslategray';
-		/** @type {number} ---------- Ширина рамки падающего квадрата */
+
+		/**
+		 * @summary Ширина рамки падающего квадрата
+		 * @name squareBorderWidth
+		 * @type {number}
+		 */
 		var squareBorderWidth = 5;
 
-		/** @type {number} ----- Средний таймаут для любой корректной анимации */
+		/**
+		 * @summary Средний таймаут для любой корректной анимации
+		 * @name averageTimeout
+		 * @type {number}
+		 */
 		var averageTimeout = 20;
 
 		/**
-		 * @function drawSquare
-		 *
-		 * @description ---- Очищаем холст
-		 * ----------------- Если квадрат в пределах холста, рисуем квадрат
-		 * ----------------- Если квадрат за пределами - обнуляем таймаут
-		 * @summary -------- При открытии страницы в браузере появляется падающий квадрат
+		 * @summary При открытии страницы в браузере появляется падающий квадрат
+		 * @name drawSquare
+		 * @type {function}
+		 * @description Если квадрат в пределах холста, рисуем квадрат
+		 * Если квадрат за пределами - обнуляем таймаут
 		 */
 		var drawSquare = function() {
 
 			/**
-			 * @method clearRect объекта context
-			 * @param {number} - X-координата верхнего левого угла очищаемого прямоугольника
-			 * @param {number} - Y-координата верхнего левого угла очищаемого прямоугольника
-			 * @param {number} - Ширина очищаемого прямоугольника (свойство width HTML-объекта canvas)
-			 * @param {number} - Высота очищаемого прямоугольника (свойство height HTML-объекта canvas)
-			 *
-			 * @summary -------- Очищает прямоугольник с заданными координатами
+		 	 * @summary Полностью очищает холст
+			 * @property {method} - clearRect - Очищает прямоугольник с заданными координатами
+			 * @param {number} - x - X-координата верхнего левого угла очищаемого прямоугольника
+			 * @param {number} - y - Y-координата верхнего левого угла очищаемого прямоугольника
+			 * @param {number} - width - Ширина очищаемого прямоугольника (свойство width HTML-объекта canvas)
+			 * @param {number} - height - Высота очищаемого прямоугольника (свойство height HTML-объекта canvas)
+			 * @static
 			 */
 			context.clearRect(0, 0, canvas.width, canvas.height);
 
 			/**
-			 * @method beginPath объекта context
-			 * @summary ---------------- Сбрасывает предыдущие стили
-			 */
+			 * @summary Сбрасывает предыдущие стили
+			 * @property {method} beginPath - Сбрасывает предыдущие стили
+			 * @type {method} 
+			 * @static
+			 */			 
 			context.beginPath();
 
 			/**
-			 * @method rect объекта context
-			 * @param {number} --- squarePositionX - X-координата верхнего левого угла прямоугольника
-			 * @param {number} --- squarePositionY - Y-координата верхнего левого угла прямоугольника
-			 * @param {number} --- squareWidth ----- Ширина прямоугольника
-			 * @param {number} --- squareHeight ---- Высота прямоугольника
-			 *
-			 * @description ------ Рисует прямоугольник с заданными координатами
-			 * @summary ---------- Рисуем квадрат в текущей позиции
+			 * @summary Рисует падающий квадрат
+			 * @property {method} - rect - Рисует квадрат c заданными координатами в текущей позиции
+			 * @param {number} - squarePositionX - X-координата верхнего левого угла прямоугольника
+			 * @param {number} - squarePositionY - Y-координата верхнего левого угла прямоугольника
+			 * @param {number} - squareWidth - Ширина прямоугольника
+			 * @param {number} - squareHeight - Высота прямоугольника
+			 * @static
 			 */
 			context.rect(squarePositionX, squarePositionY, squareWidth, squareHeight);
 
-			/* Определяем свойства данного контекста */
+			/** Определяем свойства данного контекста */
 
-			/** @property {string} объекта context - Устанавливаем цвет линии */
+			/**
+			 * @summary Устанавливает цвет для рамки круга
+			 * @property {string} - strokeStyle - Устанавливает цвет линии
+			 * @static 
+			 */
 			context.strokeStyle = squareBorderColor;
 
-			/** @property {number} объекта context - Устанавливаем ширину линии в пикселях */
+			/**
+			 * @summary Устанавливает ширину рамки круга
+			 * @property {number} lineWidth - Устанавливает ширину линии
+			 * @static 
+			 */
 			context.lineWidth = squareBorderWidth;
 
 			/**
-			 * @method stroke объекта context
-			 * @summary ---------- Обрисовываем квадрат
+			 * @summary Обрисовываем квадрат
+			 * @property {method} stroke - Обрисовывает линию 
+			 * @static 
 			 */
 			context.stroke();
 
 			/**
-			 * @type {number} - Y-координата падающего квадрата
-			 * @summary ------- Перемещаем квадрат по Y-оси вниз
+			 * @summary Перемещаем квадрат по Y-оси вниз
+			 * @type {number}
 			 */
 			squarePositionY += 1;
 
 			/**
-			 * @description -- Если текущая координата по Y-оси &lt; высоты холста + ширина бордера квадрата ...
+			 * @summary - Если текущая координата по Y-оси &lt; высоты холста + ширина бордера квадрата ...
 			 */
 			if (squarePositionY &lt; canvas.height + squareBorderWidth) {
 
 				/**
-				 * @method setTimeout
-				 * @param {function} ------ drawSquare ----- рисует квадрат
-				 * @param {number} -------- averageTimeout - таймаут для анимации
-				 *
-				 * @summary --------------- Устанавливаем таймаут для анимации
+				 * @summary Устанавливаем таймаут для анимации
+				 * @callback setTimeout
+				 * @memberof window 
+				 * @param {function} - drawSquare - рисует квадрат
+				 * @param {number} - averageTimeout - таймаут для анимации
 				 */
 				setTimeout(drawSquare, averageTimeout);
 
-			/* Иначе - прекращаем анимацию */
+			/** Иначе - прекращаем анимацию */
 			} else {
 
 				/**
-				 * @method clearTimeout
-				 * @param {function} ----- timeoutIDForDrawSquare - Идентификатор для повторяемой функции
-				 *
-				 * @summary -------------- Обнуляем таймаут
+				 * @summary Обнуляем таймаут для анимации			 * 
+				 * @callback clearTimeout
+				 * @memberof window 
+				 * @param {function} - timeoutIDForDrawSquare - Идентификатор для повторяемой функции
 				 */
 				clearTimeout(timeoutIDForDrawSquare);
 
 			}
-
 		};
 
 // BOOKMARK DrawSquare END
 
 		/**
+		 * @summary Первоначальная установка анимации падающего квадрата
+		 * @name timeoutIDForDrawSquare
 		 * @callback setTimeout
-		 * @param {function} ------------ drawSquare ----- Начнет рисовать падающий квадрат
-		 * @param {number} -------------- averageTimeout - Количество миллисекунд до следующего запуска
+		 * @param {function} - drawSquare - Начнет рисовать падающий квадрат
+		 * @param {number} - averageTimeout - Количество миллисекунд до следующего запуска
 		 *
-		 * @summary --------------------- Первоначальная установка анимации падающего квадрата
 		 */
 		timeoutIDForDrawSquare = setTimeout(drawSquare, averageTimeout);
     }
@@ -213,166 +289,259 @@ window.onload = (function() {
 */
 // BOOKMARK .......................................................... HTML5-STORAGE
 
-	/* Если в браузере Хранилище ... */
+	/** Если в браузере страница с хранилищем ... */
 	if (window.parent.location.pathname !== '/doc/html5/frameset.html' &amp;&amp; window.location.pathname === '/doc/html5/html5-storage.html') {
 
-		/* Получаем инпуты */
+		/** Получаем инпуты */
 
-		/** @type {HTML-Element} - &lt;input> для ключа в Локальном хранилище */
+		/**
+		 * @summary &amp;lt;input&amp;gt для ввода ключа в Локальное хранилище
+		 * @name keyLocal
+		 * @type {object}
+		 */
 		var keyLocal = document.getElementById('keyLocalData');
-		/** @type {HTML-Element} - &lt;input> для значения в Локальном хранилище */
+
+		/**
+		 * @summary &amp;lt;input&amp;gt для ввода ключа в Локальное хранилище
+		 * @name dataLocal
+		 * @type {object}
+		 */
 		var dataLocal = document.getElementById('inputLocalData');
-		/** @type {HTML-Element} - &lt;input> для ключа в Сессионном хранилище */
+
+		/**
+		 * @summary &amp;lt;input&amp;gt для ввода ключа в Сессионное хранилище
+		 * @name keySession
+		 * @type {object}
+		 */
 		var keySession = document.getElementById('keySessionData');
-		/** @type {HTML-Element} - &lt;input> для значения в Сессионном хранилище */
+
+		/**
+		 * @summary &amp;lt;input&amp;gt для ввода значения в Сессионное хранилище
+		 * @name dataSession
+		 * @type {object}
+		 */
 		var dataSession = document.getElementById('inputSessionData');
-		/** @type {HTML-Element} - &lt;input> для drag'n'drop image */
+
+		/**
+		 * @summary &amp;lt;input&amp;gt для drag'n'drop image
+		 * @name dataSession
+		 * @type {object}
+		 */
 		var inputFile = document.getElementById('fileInput');
 
-		/* Получаем кнопки для манипуляций */
+		/**Получаем кнопки для манипуляций */
 
-		/** @type {HTML-Element} - кнопка Save in Local */
+		/**
+		 * @summary Кнопка Save in Local
+		 * @name saveInLocal
+		 * @type {object}
+		 */
 		var saveInLocal = document.getElementById('saveInLocalStorage');
-		/** @type {HTML-Element} - кнопка Save in Session */
+
+		/**
+		 * @summary Кнопка Save in Session
+		 * @name saveInSession
+		 * @type {object}
+		 */
 		var saveInSession = document.getElementById('saveInSessionStorage');
-		/** @type {HTML-Element} - кнопка Clear Local */
+
+		/**
+		 * @summary Кнопка Clear Local
+		 * @name clearLocal
+		 * @type {object}
+		 */
 		var clearLocal = document.getElementById('clearLocalStorage');
-		/** @type {HTML-Element} - кнопка Clear Session */
+
+		/**
+		 * @summary Кнопка Clear Session
+		 * @name clearSession
+		 * @type {object}
+		 */
 		var clearSession = document.getElementById('clearSessionStorage');
-		/** @type {HTML-Element} - кнопка Save Birthday */
+
+		/**
+		 * @summary Кнопка Save Birthday
+		 * @name saveBirthButton
+		 * @type {object}
+		 */
 		var saveBirthButton = document.getElementById('saveBirthData');
-		/** @type {HTML-Element} - кнопка Search In Local */
+
+		/**
+		 * @summary Кнопка Search In Local
+		 * @name searchButton
+		 * @type {object}
+		 */
 		var searchButton = document.getElementById('localSearchButton');
 
-		/** @type {HTML-Element} - кнопка Show Local */
+		/**
+		 * @summary Кнопка Show Local
+		 * @name showLocal
+		 * @type {object}
+		 */
 		var showLocal = document.getElementById('showLocalStorage');
-		/** @type {HTML-Element} - кнопка Show Session */
+
+		/**
+		 * @summary Кнопка Show Session
+		 * @name showSession
+		 * @type {object}
+		 */
 		var showSession = document.getElementById('showSessionStorage');
 
-		/* Получаем таблицы c данными из хранилищ */
+		/** Получаем таблицы c данными из хранилищ */
 
-		/** @type {HTML-Element} - таблица с данными локального хранилища */
+		/**
+		 * @summary Динамическая таблица для данных из локального хранилища {@link localList}
+		 * @name localList
+		 * @type {object}
+		 */
 		var localList = document.getElementById('localItemsList');
-		/** @type {HTML-Element} - таблица с данными сессионного хранилища */
+
+		/**
+		 * @summary Динамическая таблица {@link localList} с данными сессионного хранилища {@link sessionList}
+		 * @name sessionList
+		 * @type {object}
+		 */
 		var sessionList = document.getElementById('sessionItemsList');
 
-		/** @type {HTML-Element} - fieldset для birthdayBook */
+		/**
+		 * @summary &amp;lt;fieldset&amp;gt; для Birthday Book
+		 * @name birthdayBook
+		 * @type {object}
+		 */
 		var birthdayBook = document.getElementById('enterBirthday');
-		/** @type {HTML-Element} - &lt;input> для ввода имени */
+
+		/**
+		 * @summary &amp;lt;input&amp;gt; для ввода имени
+		 * @name nameField
+		 * @type {object}
+		 */
 		var nameField = document.getElementById('inputName');
-		/** @type {HTML-Element} - &lt;input> для ввода даты рождения */
+
+		/**
+		 * @summary &amp;lt;input&amp;gt; для ввода даты рождения
+		 * @name birthField
+		 * @type {object}
+		 */
 		var birthField = document.getElementById('inputBirthDay');
 
 		// ----------------------------------------------------------------- Сохраняем данные --
 // BOOKMARK SaveData()
 
 		/**
-		 * @function saveLocalData
-		 *
-		 * @description - Сохраняет пару ключ-значение в Локальном хранилище
-		 * @summary - Сохраняем данные в Локальном хранилище
+		 * @summary - Сохраняет данные в Локальном хранилище
+		 * @name saveLocalData
+		 * @type {function}
 		 */
 		var saveLocalData = function () {
 
 			/**
-			 * @method setItem объекта localStorage
-			 * @param {string} - Ключ, введенный в &lt;input>
-			 * @param {string} - Значение, введенное в &lt;input>
-			 *
-			 * @description - Сохраняем пару ключ и значение в локальном хранилище
+			 * @summary Сохраняет данные в локальном хранилище
+			 * @property {method} - setItem - Сохраняет пару ключ и значение в локальном хранилище		 
+			 * @param {string} - keyLocal.value - Ключ, введенный в &amp;lt;input&amp;gt;
+			 * @param {string} - dataLocal.value - Значение, введенное в &amp;lt;input&amp;gt; 
+			 * @static 
 			 */
 			localStorage.setItem(keyLocal.value, dataLocal.value);
 
 		};
 
 		/**
-		 * @function saveSessionData
-		 *
-		 * @description - Сохраняет пару ключ-значение в Сессионном хранилище
-		 * @summary - Сохраняем данные в Сессионном хранилище
+		 * @summary - Сохраняет пару ключ-значение в Сессионном хранилище
+		 * @name saveSessionData
+		 * @type {function}
 		 */
 		var saveSessionData = function () {
 
 			/**
-			 * @method setItem объекта sessionStorage
-			 * @param {string} - Ключ, введенный в &lt;input>
-			 * @param {string} - Значение, введенное в &lt;input>
-			 *
-			 * @description - Сохраняем пару ключ и значение в сессионном хранилище
+			 * @summary Сохраняет данные в в сессионном хранилище
+			 * @property {method} - setItem - Сохраняет пару ключ и значение в сессионном хранилище		 
+			 * @param {string} - keySession.value - Ключ, введенный в &amp;lt;input&amp;gt;
+			 * @param {string} - dataSession.value - Значение, введенное в &amp;lt;input&amp;gt; 
+			 * @static
 			 */
 			sessionStorage.setItem(keySession.value, dataSession.value);
+
 		};
 
 		// ----------------------------------------------------------------- Сохраняем Дату Рождения --
 // BOOKMARK ShowBirthday()
 
 		/**
-		 * @function showBirthday
-		 * @param {object} - объект с именем и датой рождения
+		 * @summary При сохранении объекта показывает сколько дней осталось до дня рождения
+		 * @name showBirthday
+		 * @type {function}
+		 * @param {object} - person - объект с именем и датой рождения
 		 *
-		 * @description - Создаем HTML для вывода дат
-		 * -------------- Считаем сколько дней осталось до дня рождения
-		 * -------------- Если день рождения сегодня - дарим картинку
-		 * -------------- Иначе, говорим когда праздник
-		 * @summary - При сохранении объекта показывает сколько дней осталось до дня рождения
+		 * @description Создаем HTML для вывода дат
+		 * Считаем сколько дней осталось до дня рождения
+		 * Если день рождения сегодня - дарим картинку
+		 * Иначе, говорим когда праздник
 		 */
 		var showBirthday = function(person) {
 
-			/* Готовим HTML для вывода информации */
-
-			/** @type {HTML-Element} - Создаем &lt;span> для вsвода даты рождения */
-			var dateDiv = document.createElement('span');
-			/** ---------------------- Крепим созданный &lt;span> в fieldset */
-			birthdayBook.appendChild(dateDiv);
-
-			/* Готовим объекты */
+			/** Готовим HTML для вывода информации */
 
 			/**
-			 * @type {object} --- JS-объект восстановленный из Локального хранилища
-			 *
-			 * @description ----- Находим JSON-объект по полю name в Локальном хранилище
-			 * ------------------ Преобразовываем его в Java Script-объект
-			 * ------------------ Сохраняем в restoredPerson
+			 * @summary Создаем динамический &amp;lt;span&amp;gt; для ввода даты рождения
+			 * @name dateDiv
+			 * @type {object}
+			 */
+			var dateDiv = document.createElement('span');
+
+			/**
+			 * @summary Крепим созданный &amp;lt;span&amp;gt; в &amp;lt;fieldset&amp;gt;
+			 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+			 * @param {object} dateDiv - динамический &amp;lt;span&amp;gt; для ввода даты рождения
+			 * @static
+			 */
+			birthdayBook.appendChild(dateDiv);
+
+			/** Готовим объекты */
+
+			/**
+			 * @summary JS-объект из Локального хранилища
+			 * @name restoredPerson
+			 * @type {object}
+			 * @description Находим JSON-объект по полю name в Локальном хранилище,
+			 * Преобразовываем его в JS-объект
+			 * Сохраняем в restoredPerson
 			 */
 			var restoredPerson = JSON.parse(localStorage.getItem(person.name));
 
-			/* Готовим даты */
+			/** Готовим даты */
 
-			/* @type {Date} ---- Сохраняем сегодняшнюю дату в переменную */
+			/**
+			 * @summary Сохраняем сегодняшнюю дату в переменную
+			 * @name todayDate
+			 * @type {Date}
+			 */
 			var todayDate = new Date();
-			/* @type {Date} ---- Сохраняем в переменную дату рождения объекта */
+
+			/**
+			 * @summary Сохраняем в переменную дату рождения объекта
+			 * @name personDate
+			 * @type {Date}
+			 */
 			var personDate = new Date(restoredPerson.dateOfBirth);
 
 			/**
-			 * @type {string} ------- Сегодняшняя дата в строковом представлении
-			 * @param {Date} -------- Дата для преобразования
-			 * @constructs
-			 * @property {string} --- ru - локализация для преобразования
-			 * @property {string} --- weekday - формат (свойство объекта Intl.DateTimeFormat)
-			 * @property {string} --- year - формат (свойство объекта Intl.DateTimeFormat)
-			 * @property {string} --- month - формат (свойство объекта Intl.DateTimeFormat)
-			 * @property {string} --- day - формат (свойство объекта Intl.DateTimeFormat)
-			 *
-			 * @description --------- Oбъект Intl.DateTimeFormat конструирует строку из даты
+			 * @summary Сегодняшняя дата в строковом представлении
+			 * @name todayString
+			 * @type {string}
+			 * @see {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat} for further information
 			 */
-			var todayString = new Intl.DateTimeFormat("ru", {
-				weekday: "long",
-				year: "numeric",
-				month: "long",
-				day: "numeric"
+			var todayString = new Intl.DateTimeFormat('ru', {
+				weekday: 'long',
+				year: 'numeric',
+				month: 'long',
+				day: 'numeric'
 			}).format(todayDate);
 
 			/**
-			 * @type {string} ------- День рождения объекта в строковом представлении
-			 * @param {Date} -------- Дата для преобразования
-			 * @constructs
-			 * @property {string} --- ru - локализация для преобразования
-			 * @property {string} --- weekday - формат (свойство объекта Intl.DateTimeFormat)
-			 * @property {string} --- year - формат (свойство объекта Intl.DateTimeFormat)
-			 * @property {string} --- month - формат (свойство объекта Intl.DateTimeFormat)
-			 * @property {string} --- day - формат (свойство объекта Intl.DateTimeFormat)
-			 *
-			 * @description --------- Oбъект Intl.DateTimeFormat конструирует строку из даты
+			 * @summary День рождения объекта в строковом представлении
+			 * @name birthDate
+			 * @type {string}
+			 * @see {@link https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat} for further information
 			 */
 			var birthDate = new Intl.DateTimeFormat("ru", {
 				weekday: "long",
@@ -381,47 +550,104 @@ window.onload = (function() {
 				day: "numeric"
 			}).format(birthDate);
 
-			/** @type {Date} ---------- Разница между сегодняшним днем и датой рождения в секундах */
+			/**
+			 * @summary Разница между сегодняшним днем и датой рождения в секундах
+			 * @name difference
+			 * @type {number}
+			 */
 			var difference = personDate - todayDate;
-			/** @type {number} -------- Преобразовываем миллисекунды в дни */
+
+			/**
+			 * @summary Преобразовываем миллисекунды в дни
+			 * @type {number}
+			 */
 			difference = Math.round(difference / 1000 / 60 / 60 / 24);
 
-			/* Если разницы нет, или разница меньше 1 дня (24 часов) */
+			/** Если разницы нет, или разница меньше 1 дня (24 часов) */
 			if (difference === -1 || difference === 0) {
 
-				/** @type {HTML Element} ------- Создаем картинку-подарок */
+				/**
+				 * @summary Создаем &amp;lt;img&amp;gt; - картинку-подарок
+				 * @name gift
+				 * @type {object}
+				 * @property {string} src - Физический адрес картинки-подарка
+				 */
 				var gift = document.createElement('img');
-				/** @type {HTML Element} ------- Создаем &lt;span> для поздравления */
-				var textGift = document.createElement('span');
 
-				/** @property {string} --------- Заносим в свойство src картинки ее физический адрес */
+				/**
+				 * @summary Заносим в свойство src картинки ее физический адрес
+				 * @property {string} src - Физический адрес картинки-подарка
+				 * @static
+				 */
 				gift.src = '../../img/gift.png';
-				/** @type {string} ------------- Заносим в &lt;span> текст поздравления */
+
+				/**
+				 * @summary Создаем &amp;lt;span&amp;gt; для поздравления
+				 * @name textGift
+				 * @type {object}
+				 * @property {string} src - &amp;lt;span&amp;gt; для поздравления
+				 */
+				var textGift = document.createElement('span');				
+
+				/**
+				 * @summary Заносим в &amp;lt;span&amp;gt; текст поздравления
+				 * @property {string} innerHTML - Заносит текст в HTML
+				 * @static
+				 */
 				textGift.innerHTML = 'Happy Birthday&lt;br />';
-				/** @property {string} --------- Украшаем немного */
+
+				/** 
+				 * @summary Добавляет класс 'dinamic'
+				 * @property {string} - className - Присваивает класс HTML-объекту
+				 * @static
+				 */
 				textGift.className = 'dinamic';
 
-				/** @method -------------------- Крепим картинку c текстом в fieldset */
+				
+				/** 
+				 * @summary Крепит картинку c текстом в fieldset
+				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+				 * @static
+				 */
 				dateDiv.appendChild(gift);
 				dateDiv.appendChild(textGift);
 
-			/* Если день рождения был 2 дня назад или больше ... */
+			/** Если день рождения был 2 дня назад или больше ... */
 			} else if (difference &lt; -1) {
 
-				/* @property {string} ---------- Украшаем вывод информации по дате */
+				/** 
+				 * @summary Добавляет класс dinamic
+				 * @property {string} - className - Присваивает класс HTML-объекту
+				 * @static
+				 */
 				dateDiv.className = 'dinamic';
-				/* @property {string} ---------- Выводим информацию на экран */
+
+				/**
+				 * @summary Выводим информацию о дате рождения на экран
+				 * @property {string} innerHTML - Заносит текст в HTML
+				 * @static
+				 */
 				dateDiv.innerHTML =
 
 					'Сегодня ' + todayString + '&lt;br />' +
 					'День рождения ' + restoredPerson.name + ' ' + birthDate + '&lt;br />' +
 					'Ваш день рождения был ' + Math.abs(difference) + ' дн. назад&lt;br />';
 
+			/** Иначе (день рождения был +- 24 часа) ... */		
 			} else {
 
-				/* @property {string} ---------- Украшаем вывод информации по дате */
+				/** 
+				 * @summary Добавляет класс dinamic
+				 * @property {string} - className - Присваивает класс HTML-объекту
+				 * @static
+				 */
 				dateDiv.className = 'dinamic';
-				/* @property {string} ---------- Выводим информацию на экран */
+
+				/**
+				 * @summary Выводим информацию о дате рождения на экран
+				 * @property {string} innerHTML - Заносит текст в HTML
+				 * @static
+				 */
 				dateDiv.innerHTML =
 
 					'Сегодня ' + todayString + '&lt;br />' +
@@ -429,43 +655,59 @@ window.onload = (function() {
 					'Будем праздновать через ' + difference + ' дн.&lt;br />';
 
 			}
-
 		};
 
 // BOOKMARK SaveBirthday()
 
 		/**
-		 * @function saveBirthday
-		 *
-		 * @description ---------- Создаем объект для хранения пары имя-дата рождения
-		 * ----------------------- Сохраняем в объект данные
-		 * ----------------------- Вызываем showBirthday(), чтобы подсчитать и показать сохраняемую информацию
-		 * @summary -------------- Сохраняем объект в локальное хранилище
+		 * @summary Сохраняет объект и показывает сколько дней осталось до дня рождения
+		 * @name saveBirthday
+		 * @type {function}
+		 * @description Создаем объект для хранения пары имя-дата рождения
+		 * Сохраняем в объект данные
+		 * Вызываем showBirthday(), чтобы подсчитать и показать сохраняемую информацию
+		 * @summary  Сохраняем объект в локальное хранилище
 		 */
 		var saveBirthday = function () {
 
 			/**
-			 * @type {object} -------- Создаём объект
-			 * @property {string} ---- Имя объекта
-			 * @property {Date} ------ Дата рождения
+			 * @summary Создаем объект для сохранения имени и даты рождения
+			 * @name person
+			 * @type {object}
+			 * @property {string} - name - Имя объекта
+			 * @property {Date} - dateOfBirth - Дата рождения объекта
 			 */
 			var person = {
 				'name': 'Имя',
 				'dateOfBirth': "Дата рождения"
 			};
 
-			/** @property {string} --- person.name ----------- Имя сохраняемого объекта из &lt;input> */
+			/**
+			 * @summary Считывает имя объекта из HTML
+			 * @property {string} name - Имя объекта
+			 * @static
+			 */
 			person.name = nameField.value;
-			/** @property {Date} ----- person.dateOfBirth ---- Дата рождения из &lt;input> */
+
+			/**
+			 * @summary Считывает дату рождения объекта из из HTML
+			 * @property {Date} dateOfBirth - Дата рождения объекта
+			 * @static
+			 */
 			person.dateOfBirth = birthField.value;
-			/** @method объекта localStorage ----------------- Конвертируем в JSON и сoхраняем в Локальное хранилище */
+
+			/**
+			 * @summary Конвертируем в JSON и сoхраняем в Локальное хранилище
+			 * @property {method} setItem - Сохраняет пару ключ-значение в Локальном хранилище
+			 * @param {string} - person.name - Имя объекта
+			 * @param {string} - JSON.stringify(person) - JSON-объект, преобразованный в строку
+			 * @static
+			 */
 			localStorage.setItem(person.name, JSON.stringify(person));
 
 			/**
-			 * @function showBirthday
+			 * @summary Подсчитывает даты и выводит информацию на экран
 			 * @param {object} - person - имя и дата рождения
-			 *
-			 * @summary ----------------- Подсчитывает даты и выводит информацию на экран
 			 */
 			showBirthday(person);
 		};
@@ -474,110 +716,221 @@ window.onload = (function() {
 // BOOKMARK ShowLocalItems()
 
 		/**
-		 * @function showLocalItems
+		 * @name showLocalItems
+		 * @type {function}
 		 *
-		 * @description ---------- Если в Локальном хранилище пустота ...
-		 * ----------------------- Показываем, что здесь ничего нет
-		 * ----------------------- Иначе - создаем динамическую табличку
-		 * ----------------------- Циклом бежим по всем данным
-		 * ----------------------- Если находим JSON-объект, то конвертируем его
-		 * ----------------------- Заполняем ими табличку
-		 * ----------------------- К каждой паре ключ-значение добавляем кнопку "Удалить"
-		 * ----------------------- Вешаем на кнопку динамический обработчик на клик
-		 * @summary -------------- Показываем в табличке содержимое локального хранилища
+		 * @description Если в Локальном хранилище пустота ...
+		 * Показываем, что здесь ничего нет
+		 * Иначе - создаем динамическую табличку {@link localList}
+		 * Циклом бежим по всем данным
+		 * Если находим JSON-объект, то конвертируем его
+		 * Заполняем ими табличку {@link localList}
+		 * К каждой паре ключ-значение добавляем кнопку "Удалить"
+		 * Вешаем на кнопку динамический обработчик на клик
+		 * @summary Показываем в табличке {@link localList} содержимое локального хранилища
 		 */
 		var showLocalItems = function () {
 
-			/* Очищаем табличку */
+			/**
+			 * @summary Очищает {@link localList} 
+			 * @property {string} innerHTML - Вставляет текст в HTML
+			 * @static
+			 */
 			localList.innerHTML = '';
 
-			/* Если в Локальном хранилище пустота ... */
+			/** Если в Локальном хранилище пустота ... */
 			if (localStorage.length === 0) {
 
-				/* @type {HTML Element} - Создаем ряд */
+				/**
+				 * @summary Создает ряд для {@link localList}
+				 * @name noneItem
+				 * @type {object}
+				 */
 				var noneItem = document.createElement('tr');
-				/* @type {HTML Element} - Создаем ячейку */
+				
+				/**
+				 * @summary Создаем ячейку для {@link localList}
+				 * @name noneTd
+				 * @type {object}
+				 */
 				var noneTd = document.createElement('td');
 
-				/* @property {string} ------ Пишем в нее, что все пусто */
+				/**
+				 * @summary Показываем, что в Локальном хранилище нет данных
+				 * @property {string} innerHTML - Вставляет текст в HTML
+				 * @static
+				 */
 				noneTd.innerHTML = "You have no items in your list!";
-				/* @method элемента HTML --- Вставляем ячейку в ряд */
+
+				/** 
+				 * @summary Крепит ячейку в ряд
+				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+				 * @static
+				 */
 				noneItem.appendChild(noneTd);
-				/* @method элемента HTML --- Вставляем ряд в пустой список */
+
+				/** 
+				 * @summary Крепит ряд в {@link localList}
+				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+				 * @static
+				 */
 				localList.appendChild(noneItem);
 
 			}
 
-			/* Если в Локальном хранилище что-то есть ... */
+			/** Если в Локальном хранилище что-то есть ... */
 			if (localStorage.length > 0) {
 
-				/* Пробегаем по всем элементам */
+				/** Пробегаем по всем элементам */
 				for (var i = 0; i &lt; localStorage.length; i++) {
 
-					/* Присваиваем значения текущей пары во временные переменные */
+					/** Присваиваем значения текущей пары во временные переменные */
 
-					/** @type {string} ---------- Временная переменная для ключа */
+					/**
+					 * @summary Временная переменная для ключа
+					 * @name key
+					 * @type {string}
+					 */
 					var key = localStorage.key(i);
-					/** @type {object | string} - Временная переменная для значения (JSON-объект) */
+
+					/**
+					 * @summary Временная переменная для значения (JSON-объект)
+					 * @name data
+					 * @type {object | string}
+					 */
 					var data = localStorage.getItem(key);
 
-					/* Создаем элементы таблички */
+					/** Создаем элементы таблички {@link localList} */
 
-					/* @type {HTML Element} - Создаем ряд */
+					/**
+					 * @summary Создает новый ряд для {@link localList}
+					 * @name newItem
+					 * @type {object}
+					 */
 					var newItem = document.createElement('tr');
-					/* @type {HTML Element} - Создаем ячейку для ключа */
+
+					/**
+					 * @summary Создает ячейку для ключа
+					 * @name tdKey
+					 * @type {object}
+					 */
 					var tdKey = document.createElement('td');
-					/* @type {HTML Element} - Создаем ячейку для значения */
+
+					/**
+					 * @summary Создает ячейку для значения
+					 * @name tdValue
+					 * @type {object}
+					 */
 					var tdValue = document.createElement('td');
 
-					/* @type {HTML Element} - Создаем ячейку для удаления */
+					/**
+					 * @summary Создает ячейку для удаления					 
+					 * @name tdDel
+					 * @type {object}
+					 */
 					var tdDel = document.createElement('td');
-					/* @type {HTML Element} - Создаем кнопку для удаления */
+
+					/**
+					 * @summary Создает кнопку для удаления					 
+					 * @name del
+					 * @type {object}
+					 */
 					var del = document.createElement('input');
-					/* @property {string} --- Адрес картинки для удаления */
+
+					/**
+					 * @summary Стилизуем кнопку для удаления
+					 * @property {method} style - Добавляет CSS-свойства к HTML-Элементу
+					 */
 					del.style.backgroundImage = "url('../../img/del.png')";
 
+						/** @property {string} - type - Это кнопка */
 						del.type = 'button';
+						/** @property {string} - value - На ней написано Delete */
 						del.value = 'Delete';
+						/** @property {string} - backgroundRepeat - Фон не повторяется */
 						del.style.backgroundRepeat = 'no-repeat';
+						/** @property {string} - backgroundSize - Картинка по размеру фона */
 						del.style.backgroundSize = 'contain';
+						/** @property {string} - backgroundColor - Фон кнопки белого цвета */
 						del.style.backgroundColor = 'white';
 
-					/* @property {string} - Паттерн для фона таблицы */
+					/** @property {string} backgroundImage - Паттерн для фона таблицы {@link localList} */
 					document.getElementById('storageData').style.backgroundImage = "url('http://www.subtlepatterns.com/patterns/white_leather.png')";
 
-					/* Заполняем табличку */
+					/** Заполняем табличку */
+
+					/**
+					 * @summary Заносим ключ в таблицу {@link localList}
+					 * @property {string} innerHTML - Вставляет текст в HTML
+					 * @static
+					 */
 					tdKey.innerHTML = key;
-					/* Проверяем значение поля на наличие JSON-объекта */
+
+					/** Проверяем значение поля на наличие JSON-объекта */
 					if (data.substr(0, 1) === '{') {
 
-						/* Если да - то парсим */
+						/** Если да - то парсим */
 						tdValue.innerHTML = JSON.parse(data).dateOfBirth;
 
 					} else {
-						/* Если значение - простая строка, тогда просто присваиваем */
+
+						/**
+						 * @description Если значение {@link data} - простая строка, 
+						 * тогда присваиваем значение в ячейку {@link tdValue}
+						 * @property {string} innerHTML - Вставляет текст в HTML
+						 * @static
+						 */
 						tdValue.innerHTML = data;
 					}
 
-					/* @method - Вставляем ряд в таблицу */
+					/** 
+					 * @summary Крепит Вставляем ряд {@link newItem} в таблицу {@link localList}
+					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+					 * @static
+					 */
 					localList.appendChild(newItem);
-					/* @method - Вставляем в ряд ячейку с ключом */
+
+					/** 
+					 * @summary Крепит в ряд ячейку с ключом {@link tdKey}
+					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+					 * @static
+					 */
 					newItem.appendChild(tdKey);
-					/* @method - Вставляем в ряд ячейку с датой рождения */
+
+					/** 
+					 * @summary Крепит в ряд ячейку с датой рождения {@link tdValue}
+					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+					 * @static
+					 */
 					newItem.appendChild(tdValue);
-					/* @method - Вставляем в ячейку кнопку для удаления */
+
+					/** 
+					 * @summary Крепит в ряд в ячейку кнопку для удаления {@link del}
+					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+					 * @static
+					 */
 					tdDel.appendChild(del);
-					/* @method - Вставляем ячейку с кнопкой в ряд */
+
+					/** 
+					 * @summary Крепит ячейку {@link tdDel} с кнопкой в ряд
+					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+					 * @static
+					 */
 					newItem.appendChild(tdDel);
 
-					/* @property {string} Присваиваем key как свойство в кнопку (иначе - не доступен) */
+					/** 
+					 * @description Присваиваем {@link key} как свойство в кнопку {@link del} 
+					 * (иначе - не доступно)
+					 * @property {string} - key - 
+					 * @static
+					 */
+					 /** @property {string} Присваиваем key как свойство в кнопку (иначе - не доступен) */
 					del.key = key;
+					
 					/**
-					 * @method объекта localStorage - Удаляет данные из Локального хранилища
-					 * @listens {HTML Element} ------ Кнопка Delete в таблице
-					 * @event onclick:MouseEvent
-					 *
-					 * @description ----------------- Создаем динамический обработчик и вешаем его на кнопку удаления
+					 * @summary Удаляет данные из текущей строки из Локального хранилища
+					 * @listens click:mouseEvent
+					 * @description Создаем динамический обработчик и вешаем его на кнопку удаления
 					 */
 					del.onclick = new Function('localStorage.removeItem(this.key)');
 
@@ -590,88 +943,207 @@ window.onload = (function() {
 // BOOKMARK ShowSessionItems()
 
 		/**
-		 * @function showSessionItems
+		 * @name showLocalItems
+		 * @type {function}
 		 *
-		 * @description ---------- Если в Сессионном хранилище пустота ...
-		 * ----------------------- Показываем, что здесь ничего нет
-		 * ----------------------- Иначе - создаем динамическую табличку
-		 * ----------------------- Циклом бежим по всем данным
-		 * ----------------------- Заполняем ими табличку
-		 * ----------------------- К каждой паре ключ-значение добавляем кнопку "Удалить"
-		 * ----------------------- Вешаем на кнопку динамический обработчик на клик
-		 * @summary -------------- Показываем в табличке содержимое Сессионного хранилища
+		 * @description Если в Сессионном хранилище пустота ...
+		 * Показываем, что здесь ничего нет
+		 * Иначе - создаем динамическую табличку {@link sessionList}
+		 * Циклом бежим по всем данным
+		 * Заполняем ими табличку {@link sessionList}
+		 * К каждой паре ключ-значение добавляем кнопку "Удалить"
+		 * Вешаем на кнопку динамический обработчик на клик
+		 * @summary Показываем в табличке {@link sessionList} содержимое Сессионного хранилища
 		 */
 		var showSessionItems = function () {
 
-			/* Очищаем табличку */
+			/**
+			 * @summary Очищает таблицу {@link sessionList}
+			 * @property {string} innerHTML - Вставляет текст в HTML
+			 * @static
+			 */
 			sessionList.innerHTML = '';
 
-			/* Если в табличке пусто, показываем, что здесь ничего нет ... */
+			/** Если в табличке {@link sessionList} пусто, показываем, что здесь ничего нет ... */
 			if (sessionStorage.length === 0) {
 
-				/** @type {HTML Element} ----- Создаем ряд */
+				/**
+				 * @summary Создает ряд для {@link sessionList}
+				 * @name noneItem
+				 * @type {object}
+				 */
 				var noneItem = document.createElement('tr');
-				/** @type {HTML Element} ----- Создаем ячейку */
+				
+				/**
+				 * @summary Показываем, что в Сессионном хранилище нет данных
+				 * @property {string} innerHTML - Вставляет текст в HTML
+				 * @static
+				 */
 				var noneTd = document.createElement('td');
-				/** @property {HTML Element} - Пишем в нее, что здесь пусто */
+
+				/**
+				 * @summary Показываем, что в Сессионном хранилище нет данных
+				 * @property {string} innerHTML - Вставляет текст в HTML
+				 * @static
+				 */
 				noneTd.innerHTML = "You have no items in temporary list!";
-				/** @method ------------------ Клеим готовую ячейку в ряд */
+				
+				/** 
+				 * @summary Крепит ячейку в ряд
+				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+				 * @static
+				 */
 				noneItem.appendChild(noneTd);
-				/** @method ------------------ Клеим ряд в таблицу для хранилища сессий */
+				
+				/** 
+				 * @summary Крепит ряд в {@link sessionList}
+				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+				 * @static
+				 */
 				sessionList.appendChild(noneItem);
 
 			}
 
-			/* Если в табличке что-то есть ... */
+			/** Если в табличке {@link sessionList} что-то есть ... */
 			if (sessionStorage.length > 0) {
 
-				/* Циклом бежим по хранилищу ...*/
+				/** Циклом бежим по хранилищу ...*/
 				for (var i = 0; i &lt; sessionStorage.length; i++) {
 
-					/* Присваиваем значения во временные переменные ... */
-					/* @type {HTML Element} - Текущий ключ */
+					/** Присваиваем значения во временные переменные ... */
+
+					/**
+					 * @summary Временная переменная для ключа
+					 * @name key
+					 * @type {string}
+					 */
 					var key = sessionStorage.key(i);
-					/* @type {HTML Element} - И текущее значение */
+					
+					/**
+					 * @summary Временная переменная для значения (JSON-объект)
+					 * @name data
+					 * @type {object | string}
+					 */
 					var data = sessionStorage.getItem(sessionStorage.key(i));
 
-					/* Создаем табличку для показа найденных данных */
-					/* @type {HTML Element} - Ряд */
+					/** Создаем динамическую табличку {@link sessionList} для показа найденных данных */
+
+					/**
+					 * @summary Создает новый ряд для {@link sessionList}
+					 * @name newItem
+					 * @type {object}
+					 */
 					var newItem = document.createElement('tr');
-					/* @type {HTML Element} - Ячейку для ключа */
+
+					/**
+					 * @summary Создает ячейку для ключа
+					 * @name tdKey
+					 * @type {object}
+					 */
 					var tdKey = document.createElement('td');
-					/* @type {HTML Element} - Ячейку для значения */
+
+					/**
+					 * @summary Создает ячейку для значения
+					 * @name tdValue
+					 * @type {object}
+					 */
 					var tdValue = document.createElement('td');
-					/* @type {HTML Element} - Ячейку для кнопки DELETE */
+
+					/**
+					 * @summary Создает ячейку для удаления					 
+					 * @name tdDel
+					 * @type {object}
+					 */
 					var tdDel = document.createElement('td');
-					/* @type {HTML Element} - И саму кнопку DELETE */
+
+					/**
+					 * @summary Создает кнопку для удаления					 
+					 * @name del
+					 * @type {object}
+					 */
 					var del = document.createElement('input');
+					/** @property {string} - type - Это кнопка */
 						del.type = 'button';
+						/** @property {string} - value - На ней написано Delete */
 						del.value = 'Delete';
+						/** @property {string} - backgroundRepeat - Фон не повторяется */
 						del.style.backgroundRepeat = 'no-repeat';
+						/** @property {string} - backgroundSize - Картинка по размеру фона */					
 						del.style.backgroundSize = 'contain';
 
-					/* Добавим табличке фон ... */
+					/** @property {string} backgroundImage - Паттерн для фона таблицы {@link sessionList} */
 					document.getElementById('storageData').style.backgroundImage = "url('http://www.subtlepatterns.com/patterns/white_leather.png')";
+					/** @property {string} backgroundImage - Картинка для кнопки Удалить {@link del} */
 					del.style.backgroundImage = "url('../../img/del.png')";
+					/** @property {string} backgroundColore - Фон кнопки {@link del} белый */
 					del.style.backgroundColor = 'white';
 
-					/* Заполним табличку данными */
+					/** Заполним табличку {@link sessionList} данными */
 
-					/* @type {HTML Element} - Ключ из временной переменной */
+					/**
+					 * @summary Заносим ключ в таблицу {@link sessionList}
+					 * @property {string} innerHTML - Вставляет текст в HTML
+					 * @static
+					 */
 					tdKey.innerHTML = key;
-					/* @type {HTML Element} - Данные */
+
+					/**
+					 * @summary Заносим значение в таблицу {@link sessionList}
+					 * @property {string} innerHTML - Вставляет текст в HTML
+					 * @static
+					 */
 					tdValue.innerHTML = data;
 
-					/* Вставляем таблицу в DOM */
+					/** Вставляем таблицу {@link sessionList} в DOM */
+
+					/** 
+					 * @summary Крепит ряд в {@link sessionList}
+					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+					 * @static
+					 */
 					sessionList.appendChild(newItem);
+
+					/** 
+					 * @summary Крепит в ряд ячейку с ключом {@link tdKey}
+					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+					 * @static
+					 */
 					newItem.appendChild(tdKey);
+
+					/** 
+					 * @summary Крепит в ряд ячейку с датой рождения {@link tdValue}
+					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+					 * @static
+					 */
 					newItem.appendChild(tdValue);
+
+					/** 
+					 * @summary Крепит в ряд в ячейку кнопку для удаления {@link del}
+					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+					 * @static
+					 */
 					tdDel.appendChild(del);
+
+					/** 
+					 * @summary Крепит ячейку {@link tdDel} с кнопкой в ряд
+					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+					 * @static
+					 */
 					newItem.appendChild(tdDel);
 
-					/* Текущий ключ в качестве свойства присваиваем в кнопку */
+					/** 
+					 * @description Присваиваем {@link key} как свойство в кнопку {@link del} 
+					 * (иначе - не доступно)
+					 * @property {string} - key - 
+					 * @static
+					 */
 					del.key = key;
-					/* Таким образом у нас получится повесить динамический обработчик */
+					
+					/**
+					 * @summary Удаляет данные из текущей строки из Локального хранилища
+					 * @listens click:mouseEvent
+					 * @description Создаем динамический обработчик и вешаем его на кнопку удаления
+					 */
 					del.onclick = new Function('sessionStorage.removeItem(this.key)');
 
 				} // FOR END
@@ -681,16 +1153,18 @@ window.onload = (function() {
 		}; // SHOW SESSION ITEMS() END
 
 		/**
-		 * @function clearLocalStorage
 		 * @summary Очистка Локального хранилища
+		 * @name clearLocalStorage
+		 * @type {function}
 		 */
 		var clearLocalStorage = function () {
 			localStorage.clear();
 		};
 
 		/**
-		 * @function clearSessionStorage
 		 * @summary Очистка Сессионного хранилища
+		 * @name clearSessionStorage
+		 * @type {function}
 		 */
 		var clearSessionStorage = function () {
 			sessionStorage.clear();
@@ -699,15 +1173,15 @@ window.onload = (function() {
 // BOOKMARK Storage Event
 
 		/**
-		 * @function
-		 * @iistens
-		 * @event onstorage:Misc Events
+		 * @summary Сплошной глюк ...
+		 * @name storageChanged
+		 * @type {function}
+		 * @iistens onstorage:Misc Events
 		 *
-		 * @description - Абсолютно бредовое событие
-		 * -------------- Срабатывает (причем 2 раза) только если после изменения хранилища
-		 * -------------- Открыть в браузере другую страницу того же сайта
-		 * -------------- В качестве измененного ключа видит Modernizr
-		 * @summary ----- Сплошной глюк ...
+		 * @description Абсолютно бредовое событие
+		 * Срабатывает (причем 2 раза) только если после изменения хранилища
+		 * Открыть в браузере другую страницу того же сайта
+		 * В качестве измененного ключа видит Modernizr
 		 */
 		var storageChanged = function (event) {
 			alert('URL: ' + event.url + '\n' +
@@ -720,96 +1194,167 @@ window.onload = (function() {
 // BOOKMARK SearchData()
 
 		/**
-		 * @function searchData
-		 *
-		 * @description - Ищет данные в локальном либо сессионном хранилище
-		 * -------------- Вводим ключ для поиска в input для ключа
-		 * -------------- Либо Локального, либо Сессионного хранилища
-		 * -------------- В зависимости, где хотим искать (Имена и даты тоже можно)
-		 * -------------- Жмем кнопку поиска - видим результат
-		 * @summary - При сохранении объекта показывает сколько дней осталось до дня рождения
+		 * @summary - Ищет данные в локальном либо сессионном хранилище
+		 * @name searchData
+		 * @type {function}
+		 * @description Вводим ключ для поиска в &amp;lt;input&amp;gt; 
+		 * (можно имена и даты)
+		 * для ключа либо Локального, либо Сессионного хранилища
+		 * (в зависимости, от того, где хотим искать) 
+		 * Жмем кнопку поиска - видим результат
 		 */
 		var searchData = function () {
 
-			/* Объявляем переменные здесь, чтобы были доступны из функций */
+			/** Объявляем переменные здесь, чтобы были доступны из функций */
 
-			/** @type {object} - Локальное или Сессионное хранилище */
+			/**
+			 * @summary Локальное или Сессионное хранилище
+			 * @name searchField
+			 * @type {object}
+			 */
 			var searchField;
-			/** @type {string} - Ключ поиска */
+
+			/**
+			 * @name searchKey
+			 * @summary Ключ поиска
+			 * @type {string}
+			 */
 			var searchKey;
-			/** @type {string} - Результат */
+
+			/**
+			 * @name searchResult
+			 * @summary Результат
+			 * @type {string}
+			 */
 			var searchResult;
 
-			/* Если в &lt;input> Локального хранилища что-то есть ... */
+			/** Если в &lt;input> Локального хранилища что-то есть ... */
 			if (keyLocal.value !== '') {
 
-				/** @type {object} - Значит в Локальном хранилище */
+				/**
+				 * @description Если в &amp;lt;input&amp;gt; для Локального хранилища есть данные,
+				 * то в поле для поиска запоминаем объект Локального хранилища
+				 * @type {object}
+				 */
 				searchField = window.localStorage;
-				/* @type {string} -- Ищем по введенному в поле ключу */
+
+				/**
+				 * @summary Ищем по введенному в поле ключу
+				 * @type {string}
+				 */
 				searchKey = keyLocal.value;
-				/* @type {string} -- Данные, которые ему соответствуют */
+
+				/**
+				 * @summary Данные, которые ему соответствуют
+				 * @type {string}
+				 */
 				searchResult = dataLocal;
 
 			}
 
-			/* Если что-то есть в &lt;input> Сесссионного хранилища ... */
+			/** Если что-то есть в &amp;lt;input&amp;gt; Сесссионного хранилища ... */
 			if (keySession.value !== '') {
 
-				/** @type {object} - Значит будем искать в нем */
+				/**
+				 * @description Если в &amp;lt;input&amp;gt; для Сессионного хранилища есть данные,
+				 * то в поле для поиска запоминаем объект Сессионного хранилища
+				 * @type {object}
+				 */
 				searchField = window.sessionStorage;
-				/* @type {string} -- Ищем по введенному в поле ключу */
+
+				/**
+				 * @summary Ищем по введенному в поле ключу
+				 * @type {string}
+				 */
 				searchKey = keySession.value;
-				/* @type {string} -- Данные, которые ему соответствуют */
+
+				/**
+				 * @summary Данные, которые ему соответствуют
+				 * @type {string}
+				 */
 				searchResult = dataSession;
 
 			}
 
-			/* Собственно поиск : Бежим по хранилищу ... */
+			/** Собственно поиск : Бежим по хранилищу ... */
 			for (var i = 0; i &lt; searchField.length; i++) {
 
-				/* И просто сравниваем ключи ... */
+				/** И просто сравниваем ключи ... */
 				if (searchField.key(i) === searchKey) {
 
-					/* Если найден JSON объект */
+					/** Если найден JSON объект */
 					if (searchField.getItem(searchKey).substr(0, 1) == '{') {
 
-						/* @type {HTML Element} - Очищаем поле соответствующего хранилища ... */
+						/** 
+						 * @summary Очищаем значение
+						 * @property {string} - value - Значение, содержащееся в Локальном хранилище 
+						 */
 						keyLocal.value = '';
-						/* @type {HTML Element} - Заносим ключ в &lt;input> для имени */
+
+						/** 
+						 * @summary Показываем значение ключа поиска из &amp;lt;input&amp;gt;-a для имени
+						 * @property {string} - value - Значение, содержащееся в Локальном хранилище 
+						 */
 						nameField.value = searchKey;
 
-						/* @type {string} - Конвертируем JSON и выдираем из него строку с датой */
+						/**
+						 * @summary Конвертируем JSON и достаем из него строку с датой
+						 * @name obj
+						 * @type {string}
+						 */
 						var obj = JSON.parse(searchField.getItem(nameField.value));
-						/* @type {Date} --- Полученную строку превращаем в дату */
+
+						/**
+						 * @summary Полученную строку превращаем в дату
+						 * @name dtn
+						 * @type {Date}
+						 */
 						var dtn = new Date(JSON.stringify(obj.dateOfBirth));
 
-						/* Приводим эту дату к формату, который переварит input type='date' */
+						/**
+						 * @summary Приводим год к формату, который переварит input type='date'
+						 * @name year
+						 * @type {Data}
+						 */
 						var year = dtn.getFullYear();
 
+						/**
+						 * @summary Приводим месяц к формату, который переварит input type='date'
+						 * @name month
+						 * @type {Data}
+						 */
 						var month = dtn.getMonth();
+
+						/**
+						 * @summary Преобразовываем месяц в число и инкрементируем его
+						 * @name month
+						 * @type {number}
+						 */
 						month = parseInt(month);
+
+						/** В Java Script месяцы отсчитываются от 0 */
 						month++;
 
-						/* @type {number} - &lt;input type='date' не понимает день и месяц без нолика */
+						/** &lt;input type='date' не понимает день и месяц без нолика */
 						if (month &lt;= 9) {
 
-							/* Добавляем его для значений меньше 10 */
+							/** Добавляем его для значений меньше 10 */
 							month = '0' + month;
 						}
 
-						/* Аналогично с днями ... */
+						/** Аналогично с днями ... */
 						var day = dtn.getDate();
 
 						if (day &lt;= 9) {
 							day = '0' + day;
 						}
 
-						/* Теперь склеиваем в кучу полученные значения и показываем их */
+						/** Теперь склеиваем в кучу полученные значения и показываем их */
 						birthField.value = year + '-' + month + '-' + day;
 
 					} else {
 
-						/* Для не JSON-объектов все намного проще */
+						/** Для не JSON-объектов все намного проще */
 						searchResult.value = searchField.getItem(searchKey);
 
 					}
@@ -826,115 +1371,156 @@ window.onload = (function() {
  */
 // BOOKMARK .......................................................... DRAG'N'DROP
 
-		/** @type {HTML Element} Ищем поле для вставки картинки */
+		/**
+		 * @summary Поле для вставки картинки
+		 * @name dropBox
+		 * @type {object}
+		 */
 		var dropBox = document.getElementById('dropBox');
 
 		/**
-		 * @function ignoreDrag
-		 * @param event e:MouseEvents
-		 * @listens
+		 * @summary Запрещаем всплывание
+		 * @name ignoreDrag
+		 * @type {function}
+		 * @param {event} e:mouseEvent Событие перетаскивания
+		 * @description Обеспечиваем, чтобы никто другой не получил это событие,
+		 * пока мы выполняем операцию перетаскивания
 		 */
 		var ignoreDrag = function (e) {
 
-			/** Обеспечиваем, чтобы никто другой не получил это событие,
-			 * пока мы выполняем операцию перетаскивания
-			 */
 			e.stopPropagation();
 			e.preventDefault();
 
 		};
 
 		/**
-		 * @function drop
-		 * @param event e:MouseEvents
-		 * @listens
+		 * @summary Получаем перемещенные файлы и передаем их на обработку
+		 * @name drop
+		 * @type {function}
+		 * @param {event} e:mouseEvent Событие drop
 		 */
 		var drop = function (e) {
 
-			/* Аннулируем это событие для всех других */
+			/** Аннулируем это событие для всех других */
 			e.stopPropagation();
 			e.preventDefault();
 
-			/* Получаем перемещенные файлы */
+			/** Получаем перемещенные файлы */
 			var data = e.dataTransfer;
 			var files = data.files;
 
-			/* Передаем полученный файл функции для обработки файлов */
+			/** Передаем полученный файл функции для обработки файлов */
 			processFiles(files);
 
 		};
 
 		/**
-		 * @function processFiles
-		 * @param files
+		 * @summary Обрабатывает дропнутые файлы
+		 * @name processFiles
+		 * @type {function}
+		 * @param {Array.&lt;file>} files Массив с дропнутыми файлами (если их несколько)
 		 */
 		var processFiles = function (files) {
 
+			/**
+			 * @summary Первый элемент массива с дропнутыми файлами
+			 * @name file
+			 * @type {Array.&lt;file>}
+			 */
 			var file = files[0];
-			/* Запускаем файл-ридер */
+
+			/** 
+			* @summary Запускаем файл-ридер
+			* @name reader
+			* @type {object}
+			*/
 			var reader = new FileReader();
 
 			/**
-			 * @function drop
+			 * @listens onload:documentEvent
+			 * @type {object}
+			 * @listens onload:DocumentEvent
 			 * @param event e:MouseEvents
-			 * @listens
+			 * @summary После полной загрузки ридера заполняем фон изображением
 			 */
 			reader.onload = function(e) {
 
-				/* Используем URL изображения для заполнения фона */
+				/** Используем URL изображения для заполнения фона */
 				dropBox.style.backgroundImage = "url('" + e.target.result + "')";
 				dropBox.style.width = files[0].width;
 				dropBox.style.height = files[0].style.height;
 
 			};
 
-			/* Начинаем считывать изображение */
+			/** Начинаем считывать изображение */
 			reader.readAsDataURL(file);
 
 		};
 
 // BOOKMARK STORAGE LISTENERS
 
-		// Вешаем обработчики для хранилища
+		/** Вешаем обработчики для хранилища */
+
+		/** @listens onstorage:storageEvent Изменение Локального хранилища */
 		window.onstorage = storageChanged;
+		/** @listens click:mouseEvent Нажатие на кнопку Save In Local */
 		saveInLocal.addEventListener('click', saveLocalData, false);
+		/** @listens click:mouseEvent Нажатие на кнопку Save In Session */
 		saveInSession.onclick = saveSessionData;
+		/** @listens click:mouseEvent Нажатие на кнопку Show Local */
 		showLocal.onclick = showLocalItems;
+		/** @listens click:mouseEvent Нажатие на кнопку Show Session */
 		showSession.onclick = showSessionItems;
+		/** @listens click:mouseEvent Нажатие на кнопку Сlear Local */
 		clearLocal.onclick = clearLocalStorage;
+		/** @listens click:mouseEvent Нажатие на кнопку Сlear Session */
 		clearSession.onclick = clearSessionStorage;
+		/** @listens click:mouseEvent Нажатие на кнопку Save Birthday */
 		saveBirthButton.onclick = saveBirthday;
+		/** @listens click:mouseEvent Нажатие на кнопку Search */
 		searchButton.onclick = searchData;
+		/** @listens onchange:DOM-Event Загрузка файла в &amp;lt;input&amp;gt; */
 		inputFile.onchange = processFiles;
+		/** @listens ondragenter:DOM-Event Начало перетаскивания */
 		dropBox.ondragenter = ignoreDrag;
+		/** @listens ondragover:DOM-Event Перетаскивание файлов */
 		dropBox.ondragover = ignoreDrag;
+		/** @listens ondrop:DOM-Event Дроп */
 		dropBox.ondrop = drop;
 
 	} // STORAGE END
 
 // BOOKMARK .......................................................... CANVAS IN FRAME
 
-	/* Если в браузере фрейм, а во фрейме Canvas ... */
+	/** Если в браузере фрейм, а во фрейме Canvas ... */
 	if (window.parent.location.pathname === '/doc/html5/frameset.html' &amp;&amp; window.location.pathname === '/doc/html5/html5-canvas.html') {
 
-		/* Если в браузере фрейм ... */
+		/** Если в браузере фрейм ... */
 		if (window.parent.location.pathname === '/doc/html5/frameset.html') {
 
-			/** @type {HTML Element} - Находим Canvas */
+			/**
+			 * @summary Находим Canvas
+			 * @name canvas
+			 * @type {object}
+			 */
 			var canvas = mainIFrame.contentDocument.getElementById('canvasField');
-			/** @type {object} - Получаем Context */
+
+			/**
+			 * @summary Получаем Context
+			 * @name context
+			 * @type {object}
+			 */
 			var context = canvas.getContext('2d');
 
-/* --------------------------------------------------------------- Запустить Canvas -- */
+/** --------------------------------------------------------------- Запустить Canvas -- */
 // NOTE Почему в таком случае не работает обычный RUN??????
 
 			/**
-			 * @type {HTML Element} - Кнопка Запустить Canvas
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary Кнопка Запустить Canvas
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Считывает содержимое строки с кодом
-			 * -------------- Запускает результат на выполнение в eval
+			 * и запускает результат на выполнение в eval
 			 */
 			mainWindow.getElementById('runCanvasButton').onclick = function() {
 				eval(codeStr.value);
@@ -943,9 +1529,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Очистить строку с кодом -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Сбросить код
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary Кнопка Сбросить код
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Обнуляет содержимое строки с кодом
 			 */
@@ -958,9 +1544,9 @@ window.onload = (function() {
 // BOOKMARK CANVAS Begin Path()
 
 			/**
-			 * @type {HTML Element} - Кнопка Начать новый путь
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary Кнопка Начать новый путь
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Сбрасывает предыдущие настройки
 			 */
@@ -971,9 +1557,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Закрыть путь -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Закрыть путь
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary Кнопка Закрыть путь
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Сбрасывает текушие настройки
 			 */
@@ -985,9 +1571,9 @@ window.onload = (function() {
 // BOOKMARK CANVAS холст
 
 			/**
-			 * @type {HTML Element} - Кнопка Перезагрузить
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Перезагрузить
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Очистить холст, оставив все настройки как было
 			 */
@@ -999,9 +1585,9 @@ window.onload = (function() {
 // FIXME Кнопка Восстановить - Don't working
 
 			/**
-			 * @type {HTML Element} - Кнопка Восстановить
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Восстановить
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Должна бы восстанавливать предыдущие настройки
 			 */
@@ -1012,9 +1598,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Сдвмнуть сетку -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Транслировать холст
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Транслировать холст
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Сдвигает холст на 100px влево и вниз
 			 */
@@ -1025,9 +1611,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Повернуть сетку -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка  Повернуть Canvas
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка  Повернуть Canvas
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Сдвигает холст на 5 радиан? влево и вниз
 			 */
@@ -1039,9 +1625,9 @@ window.onload = (function() {
 // BOOKMARK Canvas Lines
 
 			/**
-			 * @type {HTML Element} - Кнопка Начальная точка
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Начальная точка
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Ставит каретку на 300px по X-оси (вдоль) и на 100px по Y-оси (сверху вниз)
 			 */
@@ -1052,9 +1638,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Конечная точка -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Конечная точка
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Конечная точка
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Ставит каретку на 500px по X-оси (вдоль) и на 100px по Y-оси (сверху вниз)
 			 */
@@ -1065,9 +1651,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Ширина линии -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Ширина линии
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Ширина линии
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Устанавливает ширину линии в 10px
 			 */
@@ -1078,9 +1664,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Цвет линии -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Цвет линии
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Цвет линии
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Линия будет красного цвета
 			 */
@@ -1091,9 +1677,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Закруглить концы линии -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Закруглить
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Закруглить
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Закругляет концы линии
 			 */
@@ -1104,9 +1690,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Заквадратить концы линии -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Заквадратить
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Заквадратить
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Концы линии будут квадратными
 			 */
@@ -1117,9 +1703,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Соединить концы -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Соединить
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Соединить
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Соединяет начальную и конечную точки
 			 */
@@ -1131,9 +1717,9 @@ window.onload = (function() {
 // BOOKMARK Canvas Text
 
 			/**
-			 * @type {HTML Element} - Кнопка Текст
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Текст
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Рисует текст
 			 */
@@ -1149,9 +1735,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Контур текста -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Контур текста
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Контур текста
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Рисует текст, обведенный контуром
 			 */
@@ -1170,9 +1756,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Прямая линия -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Прямая линия
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Прямая линия
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Рисует прямую линию
 			 */
@@ -1183,9 +1769,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Кривая -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Кривая
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Кривая
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Рисует кривую
 			 */
@@ -1199,9 +1785,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Дуга -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Дуга
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Дуга
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Рисует дугу
 			 */
@@ -1214,9 +1800,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Круг -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Круг
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Круг
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Рисует круг
 			 */
@@ -1229,9 +1815,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Залитый прямоугольник -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Залитый прямогольник
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Залитый прямогольник
+			 * @type {HTML-Eleement}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Рисует закрашенный прямоугольник
 			 */
@@ -1242,9 +1828,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Незалитый прямоугольник -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Незалитый прямоугольник
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Незалитый прямоугольник
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Рисует незакрашенный прямоугольник
 			 */
@@ -1256,9 +1842,9 @@ window.onload = (function() {
 // BOOKMARK Вершины фигур
 
 			/**
-			 * @type {HTML Element} - Кнопка Закруглить вершины
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Закруглить вершины
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Закругляет вершины фигуры
 			 */
@@ -1267,9 +1853,9 @@ window.onload = (function() {
 			};
 
 			/**
-			 * @type {HTML Element} - Кнопка Обрезать вершины
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Обрезать вершины
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Вершины фигуры будут уголком
 			 */
@@ -1280,9 +1866,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Залить -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Залить
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Залить
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Залить фигуру
 			 */
@@ -1294,9 +1880,9 @@ window.onload = (function() {
 // BOOKMARK Canvas Colors
 
 			/**
-			 * @type {HTML Element} - Кнопка Цвет заливки
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Цвет заливки
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Установить цвет заливки
 			 */
@@ -1307,9 +1893,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Прозрачность -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Прозрачность
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Прозрачность
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Устанавливает прозрачность
 			 */
@@ -1321,9 +1907,9 @@ window.onload = (function() {
 // BOOKMARK Canvas Shadows
 
 			/**
-			 * @type {HTML Element} - Кнопка Цвет тени
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Цвет тени
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Устанавливает цвет для тени
 			 */
@@ -1334,9 +1920,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Размытие тени -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Размытие тени
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Размытие тени
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Устанавливает размытие тени в пикселах
 			 */
@@ -1347,9 +1933,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Расположение -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Расположение тени
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Расположение тени
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Устанавливает сдвиг тени
 			 */
@@ -1361,9 +1947,9 @@ window.onload = (function() {
 // BOOKMARK Canvas Градиенты
 
 			/**
-			 * @type {HTML Element} - Кнопка Создать градиент
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Создать градиент
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Создает линейный градиент
 			 */
@@ -1374,9 +1960,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Добавить цвет -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Добавить цвет
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Добавить цвет
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Добавляет цвет к градиенту
 			 */
@@ -1387,9 +1973,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Залить градиентом -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Залить градиентом
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Залить градиентом
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Устанавливает градиентную заливку
 			 */
@@ -1402,9 +1988,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Двухцветный линейный -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Двухцветный линейный
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Двухцветный линейный
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Устанавливает градиентную заливку
 			 */
@@ -1420,9 +2006,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Двухцветный радиальный -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Двухцветный радиальный
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Двухцветный радиальный
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Устанавливает градиентную заливку
 			 */
@@ -1438,9 +2024,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Многоцветный линейный -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Многоцветный линейный
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Многоцветный линейный
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Устанавливает градиентную заливку
 			 */
@@ -1459,9 +2045,9 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Многоцветный радиальный -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Многоцветный радиальный
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Многоцветный радиальный
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Устанавливает градиентную заливку
 			 */
@@ -1482,13 +2068,17 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Выбрать картинку -- */
 
 
-			/** @type {object} - Создаем картинку для экспериментов */
+			/**
+			 * @summary Создаем картинку для экспериментов
+			 * @name canvasImage
+			 * @type {object}
+			 */
 			var canvasImage = new Image();
 
 			/**
-			 * @type {HTML Element} - Кнопка Выбрать картинку
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Выбрать картинку
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Выбираем картинку
 			 */
@@ -1499,14 +2089,13 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Загрузить картинку -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Загрузить картинку
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Загрузить картинку
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
-			 * @description - Загрузить картинку
-			 * -------------- Выбираем и грузим двумя разными действиями
-			 * -------------- Чтобы картинка успела загрузиться
-			 * -------------- После того, как она получит src
+			 * @description - Выбираем и грузим двумя разными действиями,
+			 * чтобы картинка успела загрузиться
+			 * после того, как она получит src
 			 */
 			mainWindow.getElementById('insertPicture').onclick = function() {
 				codeStr.value =
@@ -1517,9 +2106,9 @@ window.onload = (function() {
 // BOOKMARK Save Canvas()
 
 			/**
-			 * @type {HTML Element} - Кнопка Заполнить холст
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Заполнить холст
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Загрузить картинку
 			 */
@@ -1535,23 +2124,34 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Сохранить холст в файл -- */
 
 			/**
-			 * @type {HTML Element} - Кнопка Сохранить содержимое холста в файл
-			 * @listens
-			 * @event click:MouseEvents
+			 * @summary - Кнопка Сохранить содержимое холста в файл
+			 * @type {object}
+			 * @listens click:MouseEvents
 			 *
 			 * @description - Сохранить Canvas
 			 */
 			mainWindow.getElementById('saveCanvas').onclick = function() {
 
-				/** @type {object} - Воспользуемся элементом &lt;img> */
+				/**
+				 * @summary Контейнер для сохранения изображения
+				 * @name imageCopy
+				 * @type {object}
+				 */
 				var imageCopy = mainIFrame.contentDocument.getElementById('savedImageCopy');
 
-				/** Переносим в картинку содержимое холста */
+				/** @property {string} src - Переносим в картинку содержимое холста */
 				imageCopy.src = canvas.toDataURL();
-				/* @type {HTML Element} - Находим на странице div с нашей картинкой */
+
+				/**
+				 * @summary &amp;lt;div&amp;gt; с картинкой для сохранения canvas
+				 * @name imageContainer
+				 * @type {object}
+				 */
 				var imageContainer = mainIFrame.contentDocument.getElementById('savedCopyContainer');
-				/* Показываем &lt;div> заодно с картинкой */
+
+				/** @property {string} style - Показываем &amp;lt;div&amp;gt; заодно с картинкой */
 				imageCopy.style.display = 'inline-block';
+				/** @property {string} style - Позиционируем &amp;lt;div&amp;gt; с картинкой */
 				imageContainer.style.display = 'block';
 
 				// FIXME Don't working
@@ -1563,16 +2163,17 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Случайный круг -- */
 
 			/**
-			 * @constructs circle
-			 * @type {object} x ---------------- случайный круг
-			 * @property {number} x ------------ текущая x-координата
-			 * @property {number} y ------------ текущая y-координата
-			 * @property {number} dx ----------- индекс изменения абсциссы
-			 * @property {number} dy ----------- индекс изменения ординаты
-			 * @property {number} radius ------- радиус круга
-			 * @property {string} color -------- цвет круга
-			 * @property {string} borderColor -- цвет рамки
-			 * @property {boolean} isSelected -- метка для круга, выбранного в текущий момент
+			 * @constructor Circle
+			 * @type {object}
+			 * @property {number} x Текущая x-координата
+			 * @property {number} y Текущая y-координата
+			 * @property {number} dx Индекс изменения абсциссы
+			 * @property {number} dy Индекс изменения ординаты
+			 * @property {number} radius Радиус круга
+			 * @property {string} color Цвет круга
+			 * @property {string} borderColor Цвет рамки
+			 * @property {boolean} isSelected Метка для круга, выбранного в текущий момент
+			 * @returns {Circle}
 			 */
 			function Circle(x, y, dx, dy, radius, color, borderColor) {
 
@@ -1587,143 +2188,263 @@ window.onload = (function() {
 
 			} // Circle()
 
-			/** @type {object} - Массив для хранения кругов */
-			var circles = [];
 			/**
-			 * @type (HTML Element}
-			 * @listens
-			 * @event click:MouseEvent
-			 *
-			 * @summary Создаем случайный круг
+			 * @summary Массив для хранения кругов
+			 * @name circles
+			 * @type {Array&lt;Circle>}
+			 */
+			var circles = [];
+
+			/**
+			 * @summary Кнопка Случайный круг
+			 * @listens click:MouseEvent
+			 * @type {object}
 			 */
 			mainWindow.getElementById('randomRound').onclick = function() {
 
 				/** Вешаем события здесь, чтобы они имелм доступ к функциям */
+
+				/** @listens onmouseclick:mouseEvent Клик на Canvas */
 				canvas.onmouseclick = canvasClick;
+				/** @listens onmouseup:mouseEvent отКлик на Canvas */
 				canvas.onmouseup = canvasClick;
+				/** @listens onmousedown:mouseEvent Выход из Canvas */
 				canvas.onmousedown = stopDragging;
+				/** @listens onmousemove:mouseEvent Движение мыши */
 				canvas.onmousemove = dragCircle;
 
 				/**
-				 * @function randomFromTo
+				 * @summary - Генерирует произвольные числа в заданном диапазоне
+				 * @name randomFromTo
+				 * @type {function}
 				 * @param {number} from - Начало диапазона
-				 * @param {number} to --- Конец диапазона
-				 * @returns {Number} ---- Случайное число
-				 *
-				 * @summary ------------- Генерирует произвольные числа в заданном диапазоне
+				 * @param {number} to - Конец диапазона
+				 * @returns {number} - Случайное число
 				 */
 				function randomFromTo(from, to) {
 					return Math.floor(Math.random() * (to - from + 1) + from);
 				}
 
-				/** @type {number} --- Радиус круга - случайное число от 10 до 60 */
+				/**
+				 * @summary Радиус круга - Случайное число от 10 до 60
+				 * @name randomRadius
+				 * @type {number}
+				 */
 				var randomRadius = randomFromTo(10, 60);
-				/** @type {number} --- Введенное в &lt;input> пользовательское число */
+
+				/**
+				 * @summary Введенное в &amp;lt;input&amp;gt; пользовательское число
+				 * @name inputValue
+				 * @type {number}
+				 */
 				var inputValue = parseFloat(mainWindow.getElementById('ballSize').value);
-				/** @type {number} --- Если в &lt;input> пользовательское значение, то устанавливаем его */
+
+				/**
+				 * @summary Если в &amp;lt;input&amp;gt; пользовательское значение, то устанавливаем его
+				 * @name radius
+				 * @type {number}
+				 */
 				var radius = (inputValue === 15) ? randomRadius : inputValue;
-				/** @type {number} --- Случайная Х-координата положения круга */
+
+				/**
+				 * @summary Случайная Х-координата положения круга
+				 * @name x
+				 * @type {number}
+				 */
 				var x = randomFromTo(0, canvas.width);
-				/** @type {number} --- Случайная Y-координата положения круга */
+
+				/**
+				 * @summary Случайная Y-координата положения круга
+				 * @name y
+				 * @type {number}
+				 */
 				var y = randomFromTo(0, canvas.height);
-				/** @type {number} --- Случайное ускорение по X-оси */
+
+				/**
+				 * @summary Случайное ускорение по X-оси
+				 * @type {number}
+				 */
 				var dx = randomFromTo(0.1, 0.9);
-				/** @type {number} --- Случайное ускорение по Y-оси */
+
+				/**
+				 * @summary Случайное ускорение по Y-оси
+				 * @name dy
+				 * @type {number}
+				 */
 				var dy = randomFromTo(0.1, 0.9);
 
-				/** @type {object} --- Массив с цветами для выбора случайного цвета */
+				/**
+				 * @summary Массив с цветами для выбора случайного цвета
+				 * @name colors
+				 * @type {Array.&lt;string>}
+				 */
 				var colors = [
 					'red', 'green', 'blue', 'yellow', 'orange', 'rosybrown', 'magenta', 'brown', 'purple', 'pink',
 					'coral', 'indianred', 'lime', 'seagreen', 'teal', 'cadetblue', 'steelblue', 'slategray',
 					'blueviolet', 'crimson'
 				];
 
-				/** @type {string} - Выбираем случайный цвет для круга */
+				/**
+				 * @summary Выбираем случайный цвет для круга
+				 * @name color
+				 * @type {string}
+				 */
 				var color = colors[randomFromTo(0, 20)];
-				/** @type {string} - Выбираем случайный цвет для радиуса круга */
+
+				/**
+				 * @summary Выбираем случайный цвет для радиуса круга
+				 * @name borderColor
+				 * @type {string}
+				 */
 				var borderColor = colors[randomFromTo(0, 20)];
 
-				/** @type {object} - Создаем круг */
+				/**
+				 * @summary Создаем круг
+				 * @name circle
+				 * @type {Circle}
+				 */
 				var circle = new Circle(x, y, dx, dy, radius, color, borderColor);
 
-				/* Сохраняем круг в массив */
+				/** @property {method} push - Сохраняем круг в массив */
 				circles.push(circle);
 
 				/** Рисуем круги из массива */
 				drawCircles();
 
-				/** @function drawCircles - Рисует круг на холсте */
+				/** 
+				 * @summary - Рисует круг на холсте 
+				 * @name drawCircles
+				 * @type {function} 
+				 */
 				function drawCircles() {
 
-					/** @method clearRect - Очищает холст */
+					/** @property {method} clearRect - Очищает холст */
 					context.clearRect(0, 0, canvas.width, canvas.height);
 
 					/** Бежим по массиву */
 					for (var i = 0; i &lt; circles.length; i++) {
 
-						/** Присваиваем текущий круг в переменную */
+						/**
+						 * @summary Присваиваем текущий круг в переменную 
+						 * @name circle
+						 * @type {Circle}
+						 */
 						var circle = circles[i];
 
-						/** Устанавливаем прозрачность для кругов */
+						/**
+						 * @summary Устанавливаем прозрачность для кругов
+						 * @property {number} globalAlpha
+						 */
 						context.globalAlpha = 0.65;
-						/** Начинаем новый путь, чтобы круги рисовались разных цветов */
+
+						/**
+						 * @summary Начинает новый путь
+						 * @property {method} beginPath Новый путь, чтобы круги рисовались разных цветов
+						 */
 						context.beginPath();
-						/** Рисуем текущий круг */
+
+						/**
+						 * @summary Рисует дугу
+						 * @property {method} arc Рисует текущий круг
+						 */
 						context.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
-						/** @method fillStyle - Закрашиваем круг */
+
+						/**
+						 * @summary Устанавливает цвет заливки
+						 * @property {method} fillStyle Закрашивает круг
+						 */
 						context.fillStyle = circle.color;
-						/** @method strokeStyle - Закрашиваем бордер */
+
+						/**
+						 * @summary Устанавливает цвет линии
+						 * @property {method} strokeStyle Закрашиваем бордер
+						 */
 						context.strokeStyle = circle.borderColor;
 
-						/** Если круг выбран, то выделяем выбранный круг рамкой, чтобы показать выделение */
+						/** 
+						 * Если круг выбран, то выделяем выбранный круг рамкой, 
+						 * чтобы показать выделение 
+						 */
 						if (circle.isSelected) {
+
 							context.lineWidth = 7;
+
 						} else {
+
 							context.lineWidth = 3;
 						}
 
-						/** Закрашиваем круг */
+						/**
+						 * @summary Заливает холст
+						 * @property {method} strokeStyle Закрашивает круг
+						 */
 						context.fill();
-						/** Закрашиваем рамку */
+
+						/**
+						 * @summary Закрашивает линию
+						 * @property {method} strokeStyle Закрашивает рамку
+						 */
 						context.stroke();
 
 					} // for
 
 				} // drawCircles
 
-				/** @type {object} - Выбранный круг */
+				/**
+				 * @summary Выбранный круг
+				 * @name previousSelectedCircle
+				 * @type {Circle}
+				 */
 				var previousSelectedCircle;
 
-				/** @type {object} - Создаем звук для клика */
+				/**
+				 * @summary Создаем звук для клика
+				 * @name clickSound
+				 * @type {object}
+				 */
 				var clickSound = new Audio('../../media/popup.mp3');
 
 				/**
-				 * @function canvasClick
-				 * @listens
-				 * @event click:mouseClick - клик по кругу
-				 * @
-				 * @description ------------ Проверяем, был ли щелчок по кругу
-				 * @------------------------ Если да, то делаем круг выбранным и перерисовываем холст
-				 * @summary ---------------- Проверяем клик
+				 * @name canvasClick
+				 * @type {function}
+				 * @param click:mouseClick
+				 *
+				 * @description Проверяем был ли клик по кругу или по холсту.
+				 * Если по кругу, то делаем круг выбранным и перерисовываем холст
 				 */
 				function canvasClick(e) {
 
 					// FIXME Попробовать сделать Canvas резиновым (e.clientX)
 
-					/** @type {number} - Выясняем X-координату клика */
+					/**
+					 * @summary Выясняем X-координату клика
+					 * @name clickX
+					 * @type {number}
+					 */
 					var clickX = e.pageX - canvas.offsetLeft;
-					/** @type {number} - Выясняем Y-координату клика */
+
+					/**
+					 * @summary Выясняем Y-координату клика
+					 * @name clickY
+					 * @type {number}
+					 */
 					var clickY = e.pageY - canvas.offsetTop;
 
 					/** Бежим по массиву с кругами и проверяем - попали ли по кругу */
 					for (var i = circles.length - 1; i >= 0; i--) {
 
-						/** Присваиваем текущий круг в переменную */
+						/**
+						 * @summary Присваиваем текущий круг в переменную
+						 * @name circle
+						 * @type {Circle}
+						 */
 						var circle = circles[i];
 
 						/**
-						 * С помощью теоремы Пифагора вычисляем расстояние от
+						 * @description С помощью теоремы Пифагора вычисляем расстояние от
 						 * точки, в которой щелкнули, до центра текущего круга
+						 * @name distanceFromCenter
+						 * @type {number}
 						 */
 						var distanceFromCenter =
 							Math.sqrt(Math.pow(circle.x - clickX, 2) + Math.pow(circle.y - clickY, 2));
@@ -1737,37 +2458,55 @@ window.onload = (function() {
 								clearTimeout(timeoutIDForFallBalls);
 							}
 
-							/** Запоминаем выбранный круг в переменную */
+							/**
+							 * @summary Запоминаем выбранный круг в переменную
+							 * @type {Circle}
+							 */
 							previousSelectedCircle = circle;
 
-							/** Делаем текущий круг выбранным и перерисовываем круги */
+							/** 
+							 * @summary Делаем текущий круг выбранным и перерисовываем круги 
+							 * @property {boolean} isSelected Выбран или не выбран круг
+							 */
 							circle.isSelected = true;
+
+							/** Рисуем текущий круг */
 							drawCircles();
 
 							/** Разрешаем перетаскивание */
 							isDragging = true;
 
-							/** Играем звук */
+							/** @property {method} play Играем звук */
 							clickSound.play();
 
-							/** Останавливаем анимацию */
+							/**
+							 * @summary Обнуляет таймаут для анимации			 * 
+							 * @callback clearTimeout
+							 * @memberof window 
+							 * @param {function} - timeoutIDForFallBalls - id для повторяемой функции
+							 */
 							clearTimeout(timeoutIDForFallBalls);
 
 						}
 					} // if
 				} // canvasClick(e)
 
-				/** Запрещаем перетаскивание */
+				/** 
+				 * @summary Запрещаем перетаскивание
+				 * @name isDragging
+				 * @type {boolean}
+				 */
 				var isDragging = false;
 
 // BOOKMARK DragCircle()
 
 				/**
-				 * @function dragCircle
-				 * @param {event} click:mouseEvent
-				 * @description ------------ Проверяем, установлена ли возможность перетаскивания
-				 * @------------------------ Если да, то обнуляем таймаут анимации
-				 * @summary ---------------- Проверяем клик
+				 * @summary Двигаем круг
+				 * @name dragCircle
+				 * @param {event} click:mouseEvent Клик по кругу
+				 * @description Проверяем, установлена ли возможность перетаскивания.
+				 * Если да, то обнуляем таймаут анимации,
+				 * вычисляем координаты мыши и передвигаем к ним круг
 				 */
 				function dragCircle(e) {
 
@@ -1781,11 +2520,23 @@ window.onload = (function() {
 						if (previousSelectedCircle !== null) {
 
 							/** Запоминаем координаты мыши */
+
+							/**
+							 * @summary x-координата выбранного круга
+							 * @name x
+							 * @type {number}
+							 */
 							var x = e.pageX - canvas.offsetLeft;
+							/**
+							 * @summary y-координата выбранного круга
+							 * @name y
+							 * @type {number}
+							 */
 							var y = e.pageY - canvas.offsetTop;
 
-							/** Передвигаем круг к новым координатам */
+							/** @property {number} x x-координата мыши */
 							previousSelectedCircle.x = x;
+							/** @property {number} y y-координата мыши */
 							previousSelectedCircle.y = y;
 
 							/** Перерисовываем холст */
@@ -1795,7 +2546,11 @@ window.onload = (function() {
 					}
 				} // dragCircle()
 
-				/** @function stopDragging - Остановка перетаскивания */
+				/** 
+				 * @summary Остановка перетаскивания 
+				 * @name stopDragging
+				 * @type {function}
+				 */
 				function stopDragging() {
 					isDragging = false;
 				}
@@ -1804,58 +2559,92 @@ window.onload = (function() {
 // BOOKMARK Canvas FallBalls()
 
 			/**
-			 * @type (HTML Element}
-			 * @listens
-			 * @event click:MouseEvent
-			 *
-			 * @summary ------- Анимируем круги
+			 * @summary Кнопка Анимировать круги
+			 * @type {object}
+			 * @listens click:MouseEvent
 			 */
 			mainWindow.getElementById('animateRound').onclick = function fallBalls() {
 
-				/** Очищаем холст */
+				/** @property {method} clearRect - Очищает холст */
 				context.clearRect(0, 0, canvas.width, canvas.height);
 
 				/** Перебираем наши мячики */
 				for (var i = 0; i &lt; circles.length; i++) {
 
 					/** Перемещаем текущий мячик в новую позицию */
+
+					/**
+					 * @summary Запоминаем текущий круг в переменную
+					 * @name circle
+					 * @type Circle
+					 */
 					var circle = circles[i];
+
 					/** Учитываем случайное ускорение */
+
+					/** @property {number} x Текущая x-координата круга */
 					circle.x += circle.dx;
+					/** @property {number} y Текущая y-координата круга */
 					circle.y += circle.dy;
 
 					/** Добавляем эффект "гравитации", который ускоряет падение мячика */
-					if ((circle.y) &lt; canvas.height) circle.dy += 0.22;
+
+					if ((circle.y) &lt; canvas.height) {
+
+						/** @property {number} y Текущая y-координата круга */
+						circle.dy += 0.22;
+					}
 
 					/** Добавляем эффект "трения", который замедляет движение мячика */
+
+					/** @property {number} dx Коэффициент ускорения круга */
 					circle.dx = circle.dx * 0.998;
 
 					/** Если мячик натолкнулся на край холста, отбиваем его */
 					if ((circle.x + circle.radius > canvas.width) || (circle.x - circle.radius &lt; 0)) {
+
+						/** @property {number} dx Коэффициент ускорения круга */
 						circle.dx = -circle.dx;
 					}
 
 					/** Если мячик упал вниз, отбиваем его, но слегка уменьшаем скорость */
 					if ((circle.y + circle.radius > canvas.height) || (circle.y - circle.radius &lt; 0)) {
+
+						/** @property {number} dy Коэффициент ускорения круга */
 						circle.dy = -circle.dy * 0.6;
 					}
 
 					/** Рисуем текущий мячик */
+
+					/** @property {number} globalAlpha Коэффициент прозрачности круга */
 					context.globalAlpha = 0.65;
+					/** @property {method} beginPath Начинает новый путь */
 					context.beginPath();
+					/** @property {method} arc Рисует круг */
 					context.arc(circle.x, circle.y, circle.radius, 0, Math.PI * 2);
+					/** @property {method} fillStyle Устанавливаем цвет для круга */
 					context.fillStyle = circle.color;
+					/** @property {method} strokeStyle Устанавливаем цвет для рамки */
 					context.strokeStyle = circle.borderColor;
 
-					/** Если текущий мячик выбран, то рисуем ему рамку */
+					/** Если текущий мячик выбран, то рисуем ему толстую рамку */
 					if (circle.isSelected) {
+
+						/** @property {number} lineWidth Устанавливаем ширину рамки */
 						context.lineWidth = 7;
+
+					/** Если нет, то рисуем ему тонкую рамку */
 					} else {
+
+						/** @property {number} lineWidth Устанавливаем ширину рамки */
 						context.lineWidth = 3;
 					}
 
 					/** Запоминаем цвет и рамку в контекст */
+
+					/** @property {method} fill Закрашивает круг */
 					context.fill();
+					/** @property {method} stroke Закрашивает рамку */
 					context.stroke();
 				}
 
@@ -1868,24 +2657,41 @@ window.onload = (function() {
 // BOOKMARK ClearCanvas
 
 			/**
-			 * @type (HTML Element}
-			 * @listens
-			 * @event click:MouseEvent
-			 *
-			 * @description ------- Очищаем холст
-			 * @description ------- Удаляем круги из массива
-			 * @description ------- Обнуляем таймаут
+			 * @summary Очищаем холст
+			 * @type {object}
+			 * @listens click:MouseEvent			 *
+			 * @description Удаляем круги из массива
+			 * Обнуляем таймаут
 			 */
 			mainWindow.getElementById('clearCanvas').onclick = function() {
 
-				/** Все-все чистим */
+				/** @property {function} clearTimeout Обнуляет таймаут для fallBalls */
 				clearTimeout(timeoutIDForFallBalls);
+
+				/** Очищает массив */
 				circles = [];
+
+				/** @property {function} clearRect Полностью очищает Canvas */
 				context.clearRect(0, 0, canvas.width, canvas.height);
 
 				/** События для рисования куда-то делись - подключаем их еще раз ?????????? */
+
+				/**
+				 * @type {object}
+				 * @listens ondblclick:mouseEvent
+				 */
 				canvas.ondblclick = startDrawing;
+
+				/**
+				 * @type {object}
+				 * @listens onmouseup:mouseEvent
+				 */
 				canvas.onmouseup = stopDrawing;
+
+				/**
+				 * @type {object}
+				 * @listens onmousemove:mouseEvent
+				 */
 				canvas.onmousemove = draw;
 
 			}
@@ -1893,36 +2699,46 @@ window.onload = (function() {
 
 // BOOKMARK Canvas Drawing with mouse
 
-		/** Запрещаем перетаскивание*/
+		/** 
+		 * @summary Запрещаем перетаскивание
+		 * @name isDrawing
+		 * @type {boolean}
+		 */
 		var isDrawing = false;
 
 		/**
-		 * @functiion startDrawing
-		 * @listen
-		 * @event dblclick:mouseEvent
-		 * @
-		 * @description - Начинаем рисовать мышкой
+		 * @summary Устанавливает точку - куда рисовать
+		 * @name startDrawing
+		 * @type {function}
+		 * @param {event} e dblclick:mouseEvent Двойной клик по холсту
 		 */
 		function startDrawing(e) {
 
-			/** Без var, чтобы все знали!!! */
+			/** 
+			 * @summary Возможность рисования
+			 * Без var, чтобы все знали!!! 
+			 * @name isDrawing
+			 * @type {boolean}
+			 */
 			isDrawing = true;
-			/** Новый путь, чтобы линия началась точно под мышкой */
+
+			/** @property {function} beginPath Начинаем путь точно под мышкой */
 			context.beginPath();
 
-			/** Ставим точку - куда рисовать */
+			/** @property {function} moveTo Устанавливаем координаты - куда рисовать */
 			context.moveTo(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+
 		} // StartDrawing end
 
 		/**
-		 * @functiion draw
-		 * @listen
-		 * @event mouseMove:mouseEvent
-		 * @
-		 * @description - Рисуем, пока мышка двигается по холсту
+		 * @summary Рисует мышкой по холсту
+		 * @name draw
+		 * @type {function}
+		 * @param {event} e mouseMove:mouseEvent Движение мыши
 		 */
 		function draw(e) {
 
+			/** Если рисовать можно ... */
 			if (isDrawing === true) {
 
 				// FIXME Попробовать сделать Canvas резиновым (e.clientX)
@@ -1932,7 +2748,18 @@ window.onload = (function() {
 				 * clientX/clientY определило бы координаты относительно окна???????????
 				 */
 
+				/** 
+				 * @summary Запоминаем x-координату мыши
+				 * @name x 
+				 * @type {number} 
+				 */
 				var x = e.pageX - canvas.offsetLeft;
+
+				/** 
+				 * @summary Запоминаем y-координату мыши
+				 * @name y 
+				 * @type {number} 
+				 */
 				var y = e.pageY - canvas.offsetTop;
 
 				/** Рисуем куда запомнили */
@@ -1942,19 +2769,21 @@ window.onload = (function() {
 		} // Draw end
 
 		/**
-		 * @function stopDrawing
-		 * @listens
-		 * @event onmouseUp:mouseEvent
-		 *
-		 * @description Запрещаем рисование
+		 * @summary Запрещаем рисование
+		 * @name stopDrawing
+		 * @type {function}
 		 */
 		function stopDrawing() {
 			isDrawing = false;
 		} // stopDrawing()
 
 		/** Подключим требуемые для рисования события */
+
+		/** @listen ondblclick:mouseEvent Начинает рисование мышкой */
 		canvas.ondblclick = startDrawing;
+		/** @listen onmouseup:mouseEvent Заканчивает рисование мышкой */
 		canvas.onmouseup = stopDrawing;
+		/** @listen onmouseup:mouseEvent Заканчивает рисует мышкой */
 		canvas.onmousemove = draw;
 
 	}; // Canvas/ Canvas in IN FRAME END
@@ -1968,47 +2797,71 @@ window.onload = (function() {
 	/** Если формы открыты в браузере, а не во фрейме */
 	if (window.parent.location.pathname !== '/doc/html5/frameset.html' &amp;&amp; window.location.pathname === '/doc/html5/html5-forms.html') {
 
-		/** @type {HTML Element} - Форма для регистрации */
+		/**
+		 * @summary Форма для регистрации
+		 * @name registrationForm
+		 * @type {object}
+		 */
 		var registrationForm = document.querySelector('form[name="registrationForm"]'),
-			/** @type {HTML Element} - Поле для ввода имени */
+			/**
+			 * @summary Поле для ввода имени
+			 * @name name
+			 * @type {object}
+			 */
 			name = document.querySelector('input[name="nameField"]'),
-			/** @type {HTML Element} - Поле для ввода телефона */
+			/**
+			 * @summary Поле для ввода телефона
+			 * @name tel
+			 * @type {object}
+			 */
 			tel = document.querySelector('input[name="phoneField"]'),
-			/** @type {HTML Element} - Поле для ввода почты */
+			/**
+			 * @summary Поле для ввода почты
+			 * @name email
+			 * @type {object}
+			 */
 			email = document.querySelector('input[name="emailField"]'),
-			/** @type {HTML Element} - Прогресс - будет показывать статус заполнения полей */
+			/**
+			 * @summary Cтатус заполнения полей
+			 * @name progress
+			 * @type {object}
+			 */
 			progress = document.querySelector('progress[name="progressField"]');
 
-		/** Будем считать корректно заполненные поля*/
+		/**
+		 * @summary Количество корректно заполненных полей
+		 * @name count
+		 * @type {number}
+		 */
 		var count = 0;
 
 // BOOKMARK Стилизация полей
 
 		/**
-		 * @function showValid
-		 * @param {HTML Element}
-		 *
-		 * @summary - Показываем корректно заполненное поле
+		 * @summary Показывает корректно заполненное поле
+		 * @name showValid
+		 * @type {function}
+		 * @param {object} element &amp;lt;input&amp;gt; с введенными данными
 		 */
 		function showValid(element) {
 			element.style.border = '2px dashed green';
 		};
 
 		/**
-		 * @function showInvalid
-		 * @param {HTML Element}
-		 *
-		 * @summary - Показываем некорректно заполненное поле
+		 * @summary Показывает некорректно заполненное поле
+		 * @name showInValid
+		 * @type {function}
+		 * @param {object} element &amp;lt;input&amp;gt; с введенными данными
 		 */
 		function showInvalid(element) {
 			element.style.border = '2px dashed red';
 		};
 
 		/**
-		 * @function updateFormProgress
-		 * @param {number} - Количество коректно заполненных полей
-		 *
-		 * @summary - Обновляем значение прогресса
+		 * @summary Обновляет значение прогресса
+		 * @name updateFormProgress
+		 * @type {function}
+		 * @param {number} count Количество коректно заполненных полей
 		 */
 		function updateFormProgress(count) {
 			progress.value = Math.floor((100 / 70) * count);
@@ -2016,27 +2869,30 @@ window.onload = (function() {
 
 // BOOKMARK Проверка всех полей
 
-
 		/**
-		 * @function checkField
-		 * @param {HTML Element} - Проверяемое поле
-		 * @param {string} ------- Паттерн для проверки
-		 * @param {number} ------- Сообщение об ошибке для пользователя
-		 *
-		 * @description ---------- Сравниваем содержимое поля с паттерном
-		 * ----------------------- Если они равны ...
-		 * -------------------------- Инкрементируем счетчик правильно заполненных полей
-		 * -------------------------- Показываем корректно заполненное поле
-		 * ----------------------- Иначе ...
-		 * -------------------------- Показываем некорректно заполненное поле
-		 * @summary ----------------- Проверяем корректность заполнения всех полей
+		 * @summary Проверяет корректность заполнения всех полей
+		 * @name checkField
+		 * @type {function}
+		 * @param {object} element &amp;lt;input&amp;gt; с введенными данными
+		 * @param {string} regexp Паттерн для проверки
+		 * @param {string} errorMessage Сообщение об ошибке для пользователя
+		 * @description Сравниваем содержимое поля с паттерном
+		 * Если они равны ...
+		 * Инкрементируем счетчик правильно заполненных полей
+		 * Показываем корректно заполненное поле
+		 * Иначе ...
+		 * Показываем некорректно заполненное поле
 		 */
 		function checkField(element, regexp, errorMessage) {
 
-			/** type {string} - Запоминаем значение поля в переменную */
+			/**
+			 * @summary Запоминаем значение поля в переменную
+			 * @name value
+			 * @type {string}
+			 */
 			var value = element.value;
 
-			/** @method test - Проверяем совпадение с регулярным выражением */
+			/** Проверяем совпадение с регулярным выражением */
 			if (regexp.test(value)) {
 
 				/** Если да, то обводим элемент зелененьким */
@@ -2065,25 +2921,34 @@ window.onload = (function() {
 		// чтобы проверять их в одной функции, поэтому пока что так :(
 
 		/**
-		 * @function validName
-		 * @description ---------- Проверяем значение имени
-		 * ----------------------- Если они равны ...
-		 * @description ---------- Инкрементируем счетчик правильно заполненных полей
-		 * @description ---------- Показываем корректно заполненное поле
-		 * @description ---------- Иначе ...
-		 * @description ---------- Показываем некорректно заполненное поле
-		 * @summary -------------- Проверяем корректность заполнения имени
+		 * @summary Проверяет корректность заполнения имени
+		 * @name validName
+		 * @type {function}
+		 * @description Проверяем значение имени
+		 * Если они равны ...
+		 * Инкрементируем счетчик правильно заполненных полей
+		 * Показываем корректно заполненное поле
+		 * Иначе ...
+		 * Показываем некорректно заполненное поле
 		 */
 		function validName() {
 
-			/** @type {HTML Element} Запоминаем проверяемый элемент */
+			/**
+			 * @summary Запоминаем проверяемый элемент
+			 * @name element
+			 * @type {object}
+			 */
 			var element = this,
 				/** И присваиваем соответствующее сообщение об ошибке */
 				errMessage = 'Имя задано неверно';
 
 			/**
-			 * Пропускаем только латинские или русские буквы и пробел между первым и вторым словом
-			 * (если второе слово есть). Оба слова могут начинаться с большой буквы
+			 * @summary Регулярное выражение для проверки
+			 * @name regexp
+			 * @type {string}
+			 * @description Пропускаем только латинские или русские буквы 
+			 * и пробел между первым и вторым словом (если оно есть). 
+			 * Оба слова могут начинаться с большой буквы
 			 */
             var regexp = /^[А-Я]{0,1}[а-я]{1,15}( [А-Я]{0,1}[а-я]{1,15}){0,1}$|^[A-Z]{0,1}[a-z]{1,15}( [A-Z]{0,1}[a-z]{1,15}){0,1}$/;
 
@@ -2094,23 +2959,33 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Проверяем корректность введенного телефона */
 
 		/**
-		 * @function validTel
-		 * @description ---------- Проверяем введенный телефон
-		 * ----------------------- Если он корректный
-		 * @description ------------- Инкрементируем счетчик правильно заполненных полей
-		 * @description ------------- Показываем корректно заполненное поле
-		 * @description ---------- Иначе ...
-		 * @description ------------- Показываем некорректно заполненное поле
-		 * @summary ----------------- Проверяем корректность заполнения телефона
+		 * @summary Проверяем введенный телефон
+		 * @name validTel
+		 * @type {function}
+		 * @description Проверяем введенный телефон
+		 * Если он корректный ...
+		 * Инкрементируем счетчик правильно заполненных полей
+		 * Показываем корректно заполненное поле
+		 * Иначе ...
+		 * Показываем некорректно заполненное поле
 		 */
         function validTel() {
 
-			/** @type {HTML Element} Запоминаем проверяемый элемент */
+			/**
+			 * @summary Запоминаем проверяемый элемент
+			 * @name element
+			 * @type {object}
+			 */
 			var element = this,
 				/** И присваиваем соответствующее сообщение об ошибке */
 				errorMessage = 'Номер задан неправильно';
 
-			/** Пропускаем номер строго в формате (012) 345-67-89 */
+			/**
+			 * @summary Регулярное выражение для проверки
+			 * @name regexp
+			 * @type {string}
+			 * @description Пропускаем номер строго в формате (012) 345-67-89 
+			 */
 			var regexp = /^\([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}$/;
 
 			/** Запускаем проверку */
@@ -2118,24 +2993,32 @@ window.onload = (function() {
 		};
 
 		/**
-		 * @function validEmail
-		 * @description ---------- Проверяем введенную почту
-		 * ----------------------- Если все в порядке
-		 * @description ------------- Инкрементируем счетчик правильно заполненных полей
-		 * @description ------------- Показываем корректно заполненное поле
-		 * @description ---------- Иначе ...
-		 * @description ------------- Показываем некорректно заполненное поле
-		 * @summary ----------------- Проверяем корректность заполнения телефона
+		 * @summary Проверяем введенную почту
+		 * @name validEmail
+		 * @type {function}
+		 * @description Проверяем введенную почту
+		 * Если все в порядке
+		 * Инкрементируем счетчик правильно заполненных полей
+		 * Показываем корректно заполненное поле
+		 * Иначе ...
+		 * Показываем некорректно заполненное поле
 		 */
         function validEmail() {
 
-			/** @type {HTML Element} Запоминаем проверяемый элемент */
+			/**
+			 * @summary Запоминаем проверяемый элемент
+			 * @name element
+			 * @type {object}
+			 */
 			var element = this,
 				/** И присваиваем соответствующее сообщение об ошибке */
 				errorMessage = 'Email задан неправильно';
 
 			/**
-			 * Пропускаем до 15 символов a-z0-9_- перед собачкой,
+			 * @summary Регулярное выражение для проверки
+			 * @name regexp
+			 * @type {string}
+			 * @description Пропускаем до 15 символов a-z0-9_- перед собачкой,
 			 * Также это может быть до 4 слов, разделенных точками.
 			 * Затем собачка и имя домена (1 - 15 символов).
 			 * Затем доменная зона - от 2 до 6 латинских букв
@@ -2149,11 +3032,11 @@ window.onload = (function() {
 /* --------------------------------------------------------------- Вешаем обработчики на проверяемые поля -- */
 
 		/** Вешаем обработчики */
-		/** @event onchange - Если изменится значение поля имени */
+		/** @listen onchange:mouseEvent - Если изменится значение поля имени */
 		if (name) name.onchange = validName;
-		/** @event onchange - Если изменится значение поля ввода телефона */
+		/** @listen onchange:mouseEvent - Если изменится значение поля ввода телефона */
 		if (tel) tel.onchange = validTel;
-		/** @event onchange - Если изменится значение поля ввода почты */
+		/** @listen onchange:mouseEvent - Если изменится значение поля ввода почты */
 		if (email) email.onchange = validEmail;
 	} // FORM VALIDATE END
 
@@ -2167,116 +3050,218 @@ window.onload = (function() {
 
 /* --------------------------------------------------------------- Находим HTML5-плейер -- */
 
-		/** @type {HTML Element} - Нам понадобится кино */
+		/**
+		 * @summary HTML5 плейер
+		 * @name html5Video
+		 * @type {object}
+		 */
 		var html5Video = document.querySelector('video');
 
 /* --------------------------------------------------------------- Находим HTML5-кнопки -- */
 
-		/** @type {HTML Element} - И кнопки, чтобы мы могли что-то с ним сделать */
+		/**
+		 * @summary Кнопка Play
+		 * @name playButton
+		 * @type {object}
+		 */
 		var playButton = document.getElementById('play');
+
+		/**
+		 * @summary Кнопка Pause
+		 * @name pauseButton
+		 * @type {object}
+		 */
 		var pauseButton = document.getElementById('pause');
+
+		/**
+		 * @summary Кнопка Stop
+		 * @name stopButton
+		 * @type {object}
+		 */
 		var stopButton = document.getElementById('stop');
+
+		/**
+		 * @summary Кнопка Mute
+		 * @name muteButton
+		 * @type {object}
+		 */
 		var muteButton = document.getElementById('mute');
+
+		/**
+		 * @summary Кнопка Faster
+		 * @name fasterButton
+		 * @type {object}
+		 */
 		var fasterButton = document.getElementById('faster');
+
+		/**
+		 * @summary Кнопка Slower
+		 * @name slowerButton
+		 * @type {object}
+		 */
 		var slowerButton = document.getElementById('slower');
+
+		/**
+		 * @summary Кнопка Normal Speed
+		 * @name nsButton
+		 * @type {object}
+		 */
 		var nsButton = document.getElementById('normalSpeed');
+
+		/**
+		 * @summary Текстовый показатель громкости
+		 * @name volumeText
+		 * @type {object}
+		 */
 		var volumeText = document.getElementById('volumeText');
 
-		/** @type {HTML Element} - и прогресс, чтобы мы видели сколько видео осталось посмотреть */
+		/**
+		 * @summary Прогресс-Бар показывает длительность просмотра
+		 * @name videoProgress
+		 * @type {object}
+		 */
 		var videoProgress = document.getElementById('videoProgress');
 
 /* --------------------------------------------------------------- Вешаем обработчики -- */
 
-		/** @event click:mouseEvent */
+		/** @listen click:mouseEvent - Нажатие на кнопку Play */
 		playButton.addEventListener('click', play);
-		/** @event click:mouseEvent */
+		/** @listen click:mouseEvent - Нажатие на кнопку Pause */
 		pauseButton.addEventListener('click', pause);
-		/** @event click:mouseEvent */
+		/** @listen click:mouseEvent - Нажатие на кнопку Stop */
 		stopButton.addEventListener('click', stop);
-		/** @event click:mouseEvent */
+		/** @listen click:mouseEvent - Нажатие на кнопку Mute */
 		muteButton.addEventListener('click', muteOrUnmute);
-		/** @event click:mouseEvent */
+		/** @listen click:mouseEvent - Нажатие на кнопку Faster */
 		fasterButton.addEventListener('click', speedUp);
-		/** @event click:mouseEvent */
+		/** @listen click:mouseEvent - Нажатие на кнопку Slower */
 		slowerButton.addEventListener('click', slowDown);
-		/** @event click:mouseEvent */
+		/** @listen click:mouseEvent - Нажатие на кнопку Normal Speed */
 		nsButton.addEventListener('click', normalSpeed);
-		/** @event change:mouseEvent */
+		/** @listen change:mouseEvent - Изменение значения ProgressBar */
 		volumeCtrl.addEventListener('change', updateVolume);
 
-		/** @event change:mediaElement */
+		/** @listen change:mediaElement - Изменение времени просмотра */
 		html5Video.addEventListener('timeupdate', updateVideoProgress);
 
 /* --------------------------------------------------------------- Определяем функции -- */
 
-		/** @function play */
+		/**
+		 * @summary Начать просмотр
+		 * @name play
+		 * @type {function}
+		 */
 		function play() {
 			html5Video.play();
 		}
 
-		/** @function pause */
+		/**
+		 * @summary Приостановить просмотр
+		 * @name pause
+		 * @type {function}
+		 */
 		function pause() {
 			html5Video.pause();
 		}
 
-		/** @function stop */
+		/**
+		 * @summary Остановить просмотр
+		 * @name stop
+		 * @type {function}
+		 */
 		function stop() {
 
+			/** @property {function} pause Останавливаем просмотр */
 			html5Video.pause();
-			/** @property {number} - Обнуляем время */
+			/** @property {number} currentTime Обнуляем время */
 			html5Video.currentTime = 0;
 		}
 
-		/** @event change - обновляем значение прогресса */
+		/** 
+		 * @property {function} volumechange  Изменение громкости
+		 * @param {event} e change:mediaEvent Изменение громкости
+		 */
 		html5Video.volumechange = function(e) {
 
-			/** Сначала запоминаем состояние */
+			/** @property {boolean} value Запоминаем в кнопку есть звук или нет */
 			muteButton.value = html5Video.muted ? 'Muted' : 'Unmuted';
 
-			/** Затем передаем его в ползунок */
+			/** @property {string} value Передаем значение в ползунок */
 			volumeCtrl.value = html5Video.volume;
 		}
 
-		/** @function muteOrUnmute - Если звук включен - тогда выключаем и наоборот*/
+		/**
+		 * @summary Если звук включен - тогда выключает и наоборот
+		 * @name muteOrUnmute
+		 * @type {function}
+		 */
 		function muteOrUnmute() {
 			html5Video.muted = !html5Video.muted;
 		}
 
-		/** @function  updateVolume - Приравниваем высоту звука к положению ползунка */
+		/**
+		 * @summary Приравнивает высоту звука к положению ползунка
+		 * @name updateVolume
+		 * @type {function}
+		 */
 		function updateVolume() {
 
 			// FIXME Volume Text выводится с дикими 8-ю цифрами после запятой
 
-			/** Звук видео равен положению ползунка */
+			/** @property volume Уровень звука видео равен положению ползунка */
 			html5Video.volume = volumeCtrl.value;
-			/** Показываем цифровое значение высоты звука */
+			/** @property value Показывает цифровое значение высоты звука */
 			volumeText.value = volumeCtrl.value;
 		}
 
-		/** @function speedUp - Быстрее */
+		/**
+		 * @summary Ускорение просмотра
+		 * @name speedUp
+		 * @type {function}
+		 */
 		function speedUp() {
 
+			/** @property {function} play Проигрывание видео */
 			html5Video.play();
+			/** @property {number} playbackRate Индекс скорости просмотра */
 			html5Video.playbackRate += 0.5;
 		}
 
-		/** @function slowDown - Медленнее */
+		/**
+		 * @summary Замедление скорости просмотра
+		 * @name slowDown
+		 * @type {function}
+		 */
 		function slowDown() {
 
+			/** @property {function} play Проигрывание видео */
 			html5Video.play();
+			/** @property {number} playbackRate Индекс скорости просмотра */
 			html5Video.playbackRate -= 0.5;
 		}
 
-		/** @function normalSpeed - Нормальная скорость */
+		/**
+		 * @summary Нормальная скорость просмотра
+		 * @name normalSpeed
+		 * @type {function}
+		 */
 		function normalSpeed() {
 
+			/** @property {function} play Проигрывание видео */
 			html5Video.play();
+			/** @property {number} playbackRate Индекс скорости просмотра */
 			html5Video.playbackRate = 1;
 		}
 
 		// FIXME Попытка округлить показатель высоты звука в прогресс оказалась неудачной
+		/**
+		 * @summary Рассчет цифрового значения уровня звука
+		 * @name updateVideoProgress
+		 * @type {function}
+		 */
 		function updateVideoProgress() {
 
+			/** @property value Уровень звука в progressBar */
 			videoProgress.value = html5Video.currentTime / html5Video.duration * 100;
 
 		}
@@ -2295,15 +3280,39 @@ $(document).ready(function(e) {
 
 // BOOKMARK Кнопки управления фреймами
 
-	/** Кнопка TryIT - Запустить содержимое кодовой строки на выполнение в eval */
+	/**
+	 * @summary - Кнопка TryIT
+	 * @type {object}
+	 * @listens click:MouseEvents
+	 *
+	 * @description - Запускает содержимое кодовой строки на выполнение в eval
+	 */
 	$('#runButton').click(function() {
+
+		/**
+		 * @summary Переменная для строки кода
+		 * @name code
+		 * @type {string}
+		 */
 		var code = '';
 		code = window.parent.$('#codeString').val();
 		eval('window.parent.' + code);
 	});
 
-	/** Кнопка Reload - Перезагрузить окно браузера */
+	/**
+	 * @summary - Кнопка Reload
+	 * @type {object}
+	 * @listens click:MouseEvents
+	 *
+	 * @description - Перезагружает окно браузера
+	 */
 	$('#reloadButton').click(function() {
+
+		/**
+		 * @summary Переменная для строки кода
+		 * @name code
+		 * @type {string}
+		 */
 		var code = $('#codeString').val();
 		window.parent.location.reload();
 	});
@@ -2319,16 +3328,24 @@ $(document).ready(function(e) {
 // ВOOKMARKS .......................................................... POLIFILLS
 
 // BOOKMARK MODERNIZR                                                                    // Windows.onload
-
+/**
+ * @summary CSS and JavaScript loader * 
+ * @returns {object} Modernizr
+ * @see {@link http://modernizr.com/docs/#installing} for more details
+ */
 Modernizr.load([
-
-	/** FUTURES HTML5 Details/ Summary Support */
 	{
-		/** Тестим summary в браузере */
+		/**
+		 * @summary Проверка поддержки summary в браузере
+		 * @property {function} test - Проверяет поддержку HTML5 и CSS3 возможностей
+		 */
 		test: Modernizr.summary,
 
 		// FIXME - Проверить работает ли вообще это чудо-диво
-		/** Если поддержки нет, то ищем полифилл здесь */
+		/**
+		 * @summary Если поддержки нет, то ищем полифилл здесь
+		 * @property {function} nope - Загружает указанный скрипт
+		 */
 		nope: ['../../js/vendor/logifill-details-min.js']
 	}
 ]);
@@ -2342,15 +3359,13 @@ Modernizr.load([
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="circle.html">circle</a></li><li><a href="window.onload-showBirthday.html">showBirthday</a></li></ul><h3>Events</h3><ul><li><a href="global.html#event:change:mediaElement">change:mediaElement</a></li><li><a href="global.html#event:change:mouseEvent">change:mouseEvent</a></li><li><a href="global.html#event:click:mouseEvent">click:mouseEvent</a></li><li><a href="global.html#event:dblclick:mouseEvent@">dblclick:mouseEvent
-@</a></li><li><a href="global.html#event:change-%25D0%25BE%25D0%25B1%25D0%25BD%25D0%25BE%25D0%25B2%25D0%25BB%25D1%258F%25D0%25B5%25D0%25BC%25D0%25B7%25D0%25BD%25D0%25B0%25D1%2587%25D0%25B5%25D0%25BD%25D0%25B8%25D0%25B5%25D0%25BF%25D1%2580%25D0%25BE%25D0%25B3%25D1%2580%25D0%25B5%25D1%2581%25D1%2581%25D0%25B0">change - обновляем значение прогресса</a></li><li><a href="global.html#event:HTML/Frameobjects:onload">HTML/Frame objects:onload</a></li><li><a href="global.html#event:onchange-%25D0%2595%25D1%2581%25D0%25BB%25D0%25B8%25D0%25B8%25D0%25B7%25D0%25BC%25D0%25B5%25D0%25BD%25D0%25B8%25D1%2582%25D1%2581%25D1%258F%25D0%25B7%25D0%25BD%25D0%25B0%25D1%2587%25D0%25B5%25D0%25BD%25D0%25B8%25D0%25B5%25D0%25BF%25D0%25BE%25D0%25BB%25D1%258F%25D0%25B2%25D0%25B2%25D0%25BE%25D0%25B4%25D0%25B0%25D0%25BF%25D0%25BE%25D1%2587%25D1%2582%25D1%258B">onchange - Если изменится значение поля ввода почты</a></li><li><a href="global.html#event:onchange-%25D0%2595%25D1%2581%25D0%25BB%25D0%25B8%25D0%25B8%25D0%25B7%25D0%25BC%25D0%25B5%25D0%25BD%25D0%25B8%25D1%2582%25D1%2581%25D1%258F%25D0%25B7%25D0%25BD%25D0%25B0%25D1%2587%25D0%25B5%25D0%25BD%25D0%25B8%25D0%25B5%25D0%25BF%25D0%25BE%25D0%25BB%25D1%258F%25D0%25B2%25D0%25B2%25D0%25BE%25D0%25B4%25D0%25B0%25D1%2582%25D0%25B5%25D0%25BB%25D0%25B5%25D1%2584%25D0%25BE%25D0%25BD%25D0%25B0">onchange - Если изменится значение поля ввода телефона</a></li><li><a href="global.html#event:onchange-%25D0%2595%25D1%2581%25D0%25BB%25D0%25B8%25D0%25B8%25D0%25B7%25D0%25BC%25D0%25B5%25D0%25BD%25D0%25B8%25D1%2582%25D1%2581%25D1%258F%25D0%25B7%25D0%25BD%25D0%25B0%25D1%2587%25D0%25B5%25D0%25BD%25D0%25B8%25D0%25B5%25D0%25BF%25D0%25BE%25D0%25BB%25D1%258F%25D0%25B8%25D0%25BC%25D0%25B5%25D0%25BD%25D0%25B8">onchange - Если изменится значение поля имени</a></li><li><a href="global.html#event:mouseMove:mouseEvent@">mouseMove:mouseEvent
-@</a></li><li><a href="global.html#event:onclick:MouseEvent">onclick:MouseEvent</a></li><li><a href="global.html#event:onstorage:MiscEvents">onstorage:Misc Events</a></li></ul><h3>Global</h3><ul><li><a href="global.html#------------------%25D0%259A%25D0%25BB%25D0%25B5%25D0%25B8%25D0%25BC%25D0%25B3%25D0%25BE%25D1%2582%25D0%25BE%25D0%25B2%25D1%2583%25D1%258E%25D1%258F%25D1%2587%25D0%25B5%25D0%25B9%25D0%25BA%25D1%2583%25D0%25B2%25D1%2580%25D1%258F%25D0%25B4">------------------ Клеим готовую ячейку в ряд</a></li><li><a href="global.html#------------------%25D0%259A%25D0%25BB%25D0%25B5%25D0%25B8%25D0%25BC%25D1%2580%25D1%258F%25D0%25B4%25D0%25B2%25D1%2582%25D0%25B0%25D0%25B1%25D0%25BB%25D0%25B8%25D1%2586%25D1%2583%25D0%25B4%25D0%25BB%25D1%258F%25D1%2585%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B8%25D0%25BB%25D0%25B8%25D1%2589%25D0%25B0%25D1%2581%25D0%25B5%25D1%2581%25D1%2581%25D0%25B8%25D0%25B9">------------------ Клеим ряд в таблицу для хранилища сессий</a></li><li><a href="global.html#--------------------%25D0%259A%25D1%2580%25D0%25B5%25D0%25BF%25D0%25B8%25D0%25BC%25D0%25BA%25D0%25B0%25D1%2580%25D1%2582%25D0%25B8%25D0%25BD%25D0%25BA%25D1%2583c%25D1%2582%25D0%25B5%25D0%25BA%25D1%2581%25D1%2582%25D0%25BE%25D0%25BC%25D0%25B2fieldset">-------------------- Крепим картинку c текстом в fieldset</a></li><li><a href="global.html#beginPath%25D0%25BE%25D0%25B1%25D1%258A%25D0%25B5%25D0%25BA%25D1%2582%25D0%25B0context">beginPath объекта context</a></li><li><a href="global.html#checkField">checkField</a></li><li><a href="global.html#clearLocalStorage">clearLocalStorage</a></li><li><a href="global.html#clearRect-%25D0%259E%25D1%2587%25D0%25B8%25D1%2589%25D0%25B0%25D0%25B5%25D1%2582%25D1%2585%25D0%25BE%25D0%25BB%25D1%2581%25D1%2582">clearRect - Очищает холст</a></li><li><a href="global.html#clearRect%25D0%25BE%25D0%25B1%25D1%258A%25D0%25B5%25D0%25BA%25D1%2582%25D0%25B0context">clearRect объекта context</a></li><li><a href="global.html#clearSessionStorage">clearSessionStorage</a></li><li><a href="global.html#clearTimeout">clearTimeout</a></li><li><a href="global.html#dragCircle">dragCircle</a></li><li><a href="global.html#drawCircles-%25D0%25A0%25D0%25B8%25D1%2581%25D1%2583%25D0%25B5%25D1%2582%25D0%25BA%25D1%2580%25D1%2583%25D0%25B3%25D0%25BD%25D0%25B0%25D1%2585%25D0%25BE%25D0%25BB%25D1%2581%25D1%2582%25D0%25B5">drawCircles - Рисует круг на холсте</a></li><li><a href="global.html#drawSquare">drawSquare</a></li><li><a href="global.html#fillStyle-%25D0%2597%25D0%25B0%25D0%25BA%25D1%2580%25D0%25B0%25D1%2588%25D0%25B8%25D0%25B2%25D0%25B0%25D0%25B5%25D0%25BC%25D0%25BA%25D1%2580%25D1%2583%25D0%25B3">fillStyle - Закрашиваем круг</a></li><li><a href="global.html#muteOrUnmute-%25D0%2595%25D1%2581%25D0%25BB%25D0%25B8%25D0%25B7%25D0%25B2%25D1%2583%25D0%25BA%25D0%25B2%25D0%25BA%25D0%25BB%25D1%258E%25D1%2587%25D0%25B5%25D0%25BD-%25D1%2582%25D0%25BE%25D0%25B3%25D0%25B4%25D0%25B0%25D0%25B2%25D1%258B%25D0%25BA%25D0%25BB%25D1%258E%25D1%2587%25D0%25B0%25D0%25B5%25D0%25BC%25D0%25B8%25D0%25BD%25D0%25B0%25D0%25BE%25D0%25B1%25D0%25BE%25D1%2580%25D0%25BE%25D1%2582">muteOrUnmute - Если звук включен - тогда выключаем и наоборот</a></li><li><a href="global.html#nope">nope</a></li><li><a href="global.html#normalSpeed-%25D0%259D%25D0%25BE%25D1%2580%25D0%25BC%25D0%25B0%25D0%25BB%25D1%258C%25D0%25BD%25D0%25B0%25D1%258F%25D1%2581%25D0%25BA%25D0%25BE%25D1%2580%25D0%25BE%25D1%2581%25D1%2582%25D1%258C">normalSpeed - Нормальная скорость</a></li><li><a href="global.html#pause">pause</a></li><li><a href="global.html#play">play</a></li><li><a href="global.html#processFiles">processFiles</a></li><li><a href="global.html#randomFromTo">randomFromTo</a></li><li><a href="global.html#rect%25D0%25BE%25D0%25B1%25D1%258A%25D0%25B5%25D0%25BA%25D1%2582%25D0%25B0context">rect объекта context</a></li><li><a href="global.html#saveBirthday">saveBirthday</a></li><li><a href="global.html#saveLocalData">saveLocalData</a></li><li><a href="global.html#saveSessionData">saveSessionData</a></li><li><a href="global.html#searchData">searchData</a></li><li><a href="global.html#setItem%25D0%25BE%25D0%25B1%25D1%258A%25D0%25B5%25D0%25BA%25D1%2582%25D0%25B0localStorage">setItem объекта localStorage</a></li><li><a href="global.html#setItem%25D0%25BE%25D0%25B1%25D1%258A%25D0%25B5%25D0%25BA%25D1%2582%25D0%25B0sessionStorage">setItem объекта sessionStorage</a></li><li><a href="global.html#showBirthday">showBirthday</a></li><li><a href="global.html#showInvalid">showInvalid</a></li><li><a href="global.html#showLocalItems">showLocalItems</a></li><li><a href="global.html#showSessionItems">showSessionItems</a></li><li><a href="global.html#showValid">showValid</a></li><li><a href="global.html#slowDown-%25D0%259C%25D0%25B5%25D0%25B4%25D0%25BB%25D0%25B5%25D0%25BD%25D0%25BD%25D0%25B5%25D0%25B5">slowDown - Медленнее</a></li><li><a href="global.html#speedUp-%25D0%2591%25D1%258B%25D1%2581%25D1%2582%25D1%2580%25D0%25B5%25D0%25B5">speedUp - Быстрее</a></li><li><a href="global.html#stop">stop</a></li><li><a href="global.html#stopDragging-%25D0%259E%25D1%2581%25D1%2582%25D0%25B0%25D0%25BD%25D0%25BE%25D0%25B2%25D0%25BA%25D0%25B0%25D0%25BF%25D0%25B5%25D1%2580%25D0%25B5%25D1%2582%25D0%25B0%25D1%2581%25D0%25BA%25D0%25B8%25D0%25B2%25D0%25B0%25D0%25BD%25D0%25B8%25D1%258F">stopDragging - Остановка перетаскивания</a></li><li><a href="global.html#stroke%25D0%25BE%25D0%25B1%25D1%258A%25D0%25B5%25D0%25BA%25D1%2582%25D0%25B0context">stroke объекта context</a></li><li><a href="global.html#strokeStyle-%25D0%2597%25D0%25B0%25D0%25BA%25D1%2580%25D0%25B0%25D1%2588%25D0%25B8%25D0%25B2%25D0%25B0%25D0%25B5%25D0%25BC%25D0%25B1%25D0%25BE%25D1%2580%25D0%25B4%25D0%25B5%25D1%2580">strokeStyle - Закрашиваем бордер</a></li><li><a href="global.html#test">test</a></li><li><a href="global.html#test-%25D0%259F%25D1%2580%25D0%25BE%25D0%25B2%25D0%25B5%25D1%2580%25D1%258F%25D0%25B5%25D0%25BC%25D1%2581%25D0%25BE%25D0%25B2%25D0%25BF%25D0%25B0%25D0%25B4%25D0%25B5%25D0%25BD%25D0%25B8%25D0%25B5%25D1%2581%25D1%2580%25D0%25B5%25D0%25B3%25D1%2583%25D0%25BB%25D1%258F%25D1%2580%25D0%25BD%25D1%258B%25D0%25BC%25D0%25B2%25D1%258B%25D1%2580%25D0%25B0%25D0%25B6%25D0%25B5%25D0%25BD%25D0%25B8%25D0%25B5%25D0%25BC">test - Проверяем совпадение с регулярным выражением</a></li><li><a href="global.html#updateFormProgress">updateFormProgress</a></li><li><a href="global.html#updateVolume-%25D0%259F%25D1%2580%25D0%25B8%25D1%2580%25D0%25B0%25D0%25B2%25D0%25BD%25D0%25B8%25D0%25B2%25D0%25B0%25D0%25B5%25D0%25BC%25D0%25B2%25D1%258B%25D1%2581%25D0%25BE%25D1%2582%25D1%2583%25D0%25B7%25D0%25B2%25D1%2583%25D0%25BA%25D0%25B0%25D0%25BA%25D0%25BF%25D0%25BE%25D0%25BB%25D0%25BE%25D0%25B6%25D0%25B5%25D0%25BD%25D0%25B8%25D1%258E%25D0%25BF%25D0%25BE%25D0%25BB%25D0%25B7%25D1%2583%25D0%25BD%25D0%25BA%25D0%25B0">updateVolume - Приравниваем высоту звука к положению ползунка</a></li><li><a href="global.html#validEmail">validEmail</a></li><li><a href="global.html#validName">validName</a></li><li><a href="global.html#validTel">validTel</a></li><li><a href="global.html#%25D0%25BE%25D0%25B1%25D1%258A%25D0%25B5%25D0%25BA%25D1%2582%25D0%25B0localStorage-----------------%25D0%259A%25D0%25BE%25D0%25BD%25D0%25B2%25D0%25B5%25D1%2580%25D1%2582%25D0%25B8%25D1%2580%25D1%2583%25D0%25B5%25D0%25BC%25D0%25B2JSON%25D0%25B8%25D1%2581o%25D1%2585%25D1%2580%25D0%25B0%25D0%25BD%25D1%258F%25D0%25B5%25D0%25BC%25D0%25B2%25D0%259B%25D0%25BE%25D0%25BA%25D0%25B0%25D0%25BB%25D1%258C%25D0%25BD%25D0%25BE%25D0%25B5%25D1%2585%25D1%2580%25D0%25B0%25D0%25BD%25D0%25B8%25D0%25BB%25D0%25B8%25D1%2589%25D0%25B5">объекта localStorage ----------------- Конвертируем в JSON и сoхраняем в Локальное хранилище</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Circle.html">Circle</a></li></ul><h3>Global</h3><ul><li><a href="global.html#averageTimeout">averageTimeout</a></li><li><a href="global.html#birthDate">birthDate</a></li><li><a href="global.html#birthdayBook">birthdayBook</a></li><li><a href="global.html#birthField">birthField</a></li><li><a href="global.html#borderColor">borderColor</a></li><li><a href="global.html#canvas">canvas</a></li><li><a href="global.html#canvasClick">canvasClick</a></li><li><a href="global.html#canvasImage">canvasImage</a></li><li><a href="global.html#checkField">checkField</a></li><li><a href="global.html#circle">circle</a></li><li><a href="global.html#circles">circles</a></li><li><a href="global.html#clearLocal">clearLocal</a></li><li><a href="global.html#clearLocalStorage">clearLocalStorage</a></li><li><a href="global.html#clearSession">clearSession</a></li><li><a href="global.html#clearSessionStorage">clearSessionStorage</a></li><li><a href="global.html#clickSound">clickSound</a></li><li><a href="global.html#clickX">clickX</a></li><li><a href="global.html#clickY">clickY</a></li><li><a href="global.html#code">code</a></li><li><a href="global.html#codeStr">codeStr</a></li><li><a href="global.html#color">color</a></li><li><a href="global.html#colors">colors</a></li><li><a href="global.html#context">context</a></li><li><a href="global.html#count">count</a></li><li><a href="global.html#data">data</a></li><li><a href="global.html#dataLocal">dataLocal</a></li><li><a href="global.html#dataSession">dataSession</a></li><li><a href="global.html#dateDiv">dateDiv</a></li><li><a href="global.html#del">del</a></li><li><a href="global.html#difference">difference</a></li><li><a href="global.html#distanceFromCenter">distanceFromCenter</a></li><li><a href="global.html#dragCircle">dragCircle</a></li><li><a href="global.html#draw">draw</a></li><li><a href="global.html#drawCircles">drawCircles</a></li><li><a href="global.html#drawSquare">drawSquare</a></li><li><a href="global.html#drop">drop</a></li><li><a href="global.html#dropBox">dropBox</a></li><li><a href="global.html#dtn">dtn</a></li><li><a href="global.html#dy">dy</a></li><li><a href="global.html#element">element</a></li><li><a href="global.html#email">email</a></li><li><a href="global.html#fasterButton">fasterButton</a></li><li><a href="global.html#file">file</a></li><li><a href="global.html#gift">gift</a></li><li><a href="global.html#html5Video">html5Video</a></li><li><a href="global.html#ignoreDrag">ignoreDrag</a></li><li><a href="global.html#imageContainer">imageContainer</a></li><li><a href="global.html#imageCopy">imageCopy</a></li><li><a href="global.html#img">img</a></li><li><a href="global.html#inputValue">inputValue</a></li><li><a href="global.html#isDragging">isDragging</a></li><li><a href="global.html#isDrawing">isDrawing</a></li><li><a href="global.html#key">key</a></li><li><a href="global.html#keyLocal">keyLocal</a></li><li><a href="global.html#keySession">keySession</a></li><li><a href="global.html#localList">localList</a></li><li><a href="global.html#mainIFrame">mainIFrame</a></li><li><a href="global.html#mainWindow">mainWindow</a></li><li><a href="global.html#month">month</a></li><li><a href="global.html#muteButton">muteButton</a></li><li><a href="global.html#muteOrUnmute">muteOrUnmute</a></li><li><a href="global.html#name">name</a></li><li><a href="global.html#nameField">nameField</a></li><li><a href="global.html#newItem">newItem</a></li><li><a href="global.html#noneItem">noneItem</a></li><li><a href="global.html#noneTd">noneTd</a></li><li><a href="global.html#nope">nope</a></li><li><a href="global.html#normalSpeed">normalSpeed</a></li><li><a href="global.html#nsButton">nsButton</a></li><li><a href="global.html#obj">obj</a></li><li><a href="global.html#pause">pause</a></li><li><a href="global.html#pauseButton">pauseButton</a></li><li><a href="global.html#person">person</a></li><li><a href="global.html#personDate">personDate</a></li><li><a href="global.html#play">play</a></li><li><a href="global.html#playButton">playButton</a></li><li><a href="global.html#previousSelectedCircle">previousSelectedCircle</a></li><li><a href="global.html#processFiles">processFiles</a></li><li><a href="global.html#progress">progress</a></li><li><a href="global.html#radius">radius</a></li><li><a href="global.html#randomFromTo">randomFromTo</a></li><li><a href="global.html#randomRadius">randomRadius</a></li><li><a href="global.html#reader">reader</a></li><li><a href="global.html#regexp">regexp</a></li><li><a href="global.html#registrationForm">registrationForm</a></li><li><a href="global.html#restoredPerson">restoredPerson</a></li><li><a href="global.html#saveBirthButton">saveBirthButton</a></li><li><a href="global.html#saveBirthday">saveBirthday</a></li><li><a href="global.html#saveInLocal">saveInLocal</a></li><li><a href="global.html#saveInSession">saveInSession</a></li><li><a href="global.html#saveLocalData">saveLocalData</a></li><li><a href="global.html#saveSessionData">saveSessionData</a></li><li><a href="global.html#searchButton">searchButton</a></li><li><a href="global.html#searchData">searchData</a></li><li><a href="global.html#searchField">searchField</a></li><li><a href="global.html#searchKey">searchKey</a></li><li><a href="global.html#searchResult">searchResult</a></li><li><a href="global.html#sessionList">sessionList</a></li><li><a href="global.html#showBirthday">showBirthday</a></li><li><a href="global.html#showInValid">showInValid</a></li><li><a href="global.html#showLocal">showLocal</a></li><li><a href="global.html#showLocalItems">showLocalItems</a></li><li><a href="global.html#showSession">showSession</a></li><li><a href="global.html#showValid">showValid</a></li><li><a href="global.html#slowDown">slowDown</a></li><li><a href="global.html#slowerButton">slowerButton</a></li><li><a href="global.html#speedUp">speedUp</a></li><li><a href="global.html#squareBorderColor">squareBorderColor</a></li><li><a href="global.html#squareBorderWidth">squareBorderWidth</a></li><li><a href="global.html#squareHeight">squareHeight</a></li><li><a href="global.html#squarePositionX">squarePositionX</a></li><li><a href="global.html#squarePositionY">squarePositionY</a></li><li><a href="global.html#squareWidth">squareWidth</a></li><li><a href="global.html#startDrawing">startDrawing</a></li><li><a href="global.html#stop">stop</a></li><li><a href="global.html#stopButton">stopButton</a></li><li><a href="global.html#stopDragging">stopDragging</a></li><li><a href="global.html#stopDrawing">stopDrawing</a></li><li><a href="global.html#storageChanged">storageChanged</a></li><li><a href="global.html#tdDel">tdDel</a></li><li><a href="global.html#tdKey">tdKey</a></li><li><a href="global.html#tdValue">tdValue</a></li><li><a href="global.html#tel">tel</a></li><li><a href="global.html#test">test</a></li><li><a href="global.html#textGift">textGift</a></li><li><a href="global.html#timeoutIDForDrawSquare">timeoutIDForDrawSquare</a></li><li><a href="global.html#timeoutIDForFallBalls">timeoutIDForFallBalls</a></li><li><a href="global.html#todayDate">todayDate</a></li><li><a href="global.html#todayString">todayString</a></li><li><a href="global.html#updateFormProgress">updateFormProgress</a></li><li><a href="global.html#updateVideoProgress">updateVideoProgress</a></li><li><a href="global.html#updateVolume">updateVolume</a></li><li><a href="global.html#validEmail">validEmail</a></li><li><a href="global.html#validName">validName</a></li><li><a href="global.html#validTel">validTel</a></li><li><a href="global.html#value">value</a></li><li><a href="global.html#videoProgress">videoProgress</a></li><li><a href="global.html#volumeText">volumeText</a></li><li><a href="global.html#x">x</a></li><li><a href="global.html#y">y</a></li><li><a href="global.html#year">year</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Thu Jul 30 2015 18:55:40 GMT+0200 (CEST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.2</a> on Tue Aug 04 2015 14:25:23 GMT+0200 (CEST)
 </footer>
 
 <script> prettyPrint(); </script>
