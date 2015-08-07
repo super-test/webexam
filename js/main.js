@@ -170,9 +170,9 @@ window.onload = (function() {
 			/**
 			 * @summary Сбрасывает предыдущие стили
 			 * @property {method} beginPath - Сбрасывает предыдущие стили
-			 * @type {method} 
+			 * @type {method}
 			 * @static
-			 */			 
+			 */
 			context.beginPath();
 
 			/**
@@ -191,21 +191,21 @@ window.onload = (function() {
 			/**
 			 * @summary Устанавливает цвет для рамки круга
 			 * @property {string} - strokeStyle - Устанавливает цвет линии
-			 * @static 
+			 * @static
 			 */
 			context.strokeStyle = squareBorderColor;
 
 			/**
 			 * @summary Устанавливает ширину рамки круга
 			 * @property {number} lineWidth - Устанавливает ширину линии
-			 * @static 
+			 * @static
 			 */
 			context.lineWidth = squareBorderWidth;
 
 			/**
 			 * @summary Обрисовываем квадрат
-			 * @property {method} stroke - Обрисовывает линию 
-			 * @static 
+			 * @property {method} stroke - Обрисовывает линию
+			 * @static
 			 */
 			context.stroke();
 
@@ -223,7 +223,7 @@ window.onload = (function() {
 				/**
 				 * @summary Устанавливаем таймаут для анимации
 				 * @callback setTimeout
-				 * @memberof window 
+				 * @memberof window
 				 * @param {function} - drawSquare - рисует квадрат
 				 * @param {number} - averageTimeout - таймаут для анимации
 				 */
@@ -233,9 +233,9 @@ window.onload = (function() {
 			} else {
 
 				/**
-				 * @summary Обнуляем таймаут для анимации			 * 
+				 * @summary Обнуляем таймаут для анимации			 *
 				 * @callback clearTimeout
-				 * @memberof window 
+				 * @memberof window
 				 * @param {function} - timeoutIDForDrawSquare - Идентификатор для повторяемой функции
 				 */
 				clearTimeout(timeoutIDForDrawSquare);
@@ -408,10 +408,10 @@ window.onload = (function() {
 
 			/**
 			 * @summary Сохраняет данные в локальном хранилище
-			 * @property {method} - setItem - Сохраняет пару ключ и значение в локальном хранилище		 
+			 * @property {method} - setItem - Сохраняет пару ключ и значение в локальном хранилище
 			 * @param {string} - keyLocal.value - Ключ, введенный в &lt;input&gt;
-			 * @param {string} - dataLocal.value - Значение, введенное в &lt;input&gt; 
-			 * @static 
+			 * @param {string} - dataLocal.value - Значение, введенное в &lt;input&gt;
+			 * @static
 			 */
 			localStorage.setItem(keyLocal.value, dataLocal.value);
 
@@ -426,9 +426,9 @@ window.onload = (function() {
 
 			/**
 			 * @summary Сохраняет данные в в сессионном хранилище
-			 * @property {method} - setItem - Сохраняет пару ключ и значение в сессионном хранилище		 
+			 * @property {method} - setItem - Сохраняет пару ключ и значение в сессионном хранилище
 			 * @param {string} - keySession.value - Ключ, введенный в &lt;input&gt;
-			 * @param {string} - dataSession.value - Значение, введенное в &lt;input&gt; 
+			 * @param {string} - dataSession.value - Значение, введенное в &lt;input&gt;
 			 * @static
 			 */
 			sessionStorage.setItem(keySession.value, dataSession.value);
@@ -559,7 +559,7 @@ window.onload = (function() {
 				 * @type {object}
 				 * @property {string} src - &lt;span&gt; для поздравления
 				 */
-				var textGift = document.createElement('span');				
+				var textGift = document.createElement('span');
 
 				/**
 				 * @summary Заносим в &lt;span&gt; текст поздравления
@@ -568,15 +568,15 @@ window.onload = (function() {
 				 */
 				textGift.innerHTML = 'Happy Birthday<br />';
 
-				/** 
+				/**
 				 * @summary Добавляет класс 'dinamic'
 				 * @property {string} - className - Присваивает класс HTML-объекту
 				 * @static
 				 */
 				textGift.className = 'dinamic';
 
-				
-				/** 
+
+				/**
 				 * @summary Крепит картинку c текстом в fieldset
 				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 				 * @static
@@ -587,7 +587,7 @@ window.onload = (function() {
 			/** Если день рождения был 2 дня назад или больше ... */
 			} else if (difference < -1) {
 
-				/** 
+				/**
 				 * @summary Добавляет класс dinamic
 				 * @property {string} - className - Присваивает класс HTML-объекту
 				 * @static
@@ -605,10 +605,10 @@ window.onload = (function() {
 					'День рождения ' + restoredPerson.name + ' ' + birthDate + '<br />' +
 					'Ваш день рождения был ' + Math.abs(difference) + ' дн. назад<br />';
 
-			/** Иначе (день рождения был +- 24 часа) ... */		
+			/** Иначе (день рождения был +- 24 часа) ... */
 			} else {
 
-				/** 
+				/**
 				 * @summary Добавляет класс dinamic
 				 * @property {string} - className - Присваивает класс HTML-объекту
 				 * @static
@@ -704,7 +704,7 @@ window.onload = (function() {
 		var showLocalItems = function () {
 
 			/**
-			 * @summary Очищает {@link localList} 
+			 * @summary Очищает {@link localList}
 			 * @property {string} innerHTML - Вставляет текст в HTML
 			 * @static
 			 */
@@ -719,7 +719,7 @@ window.onload = (function() {
 				 * @type {object}
 				 */
 				var noneItem = document.createElement('tr');
-				
+
 				/**
 				 * @summary Создаем ячейку для {@link localList}
 				 * @name noneTd
@@ -734,14 +734,14 @@ window.onload = (function() {
 				 */
 				noneTd.innerHTML = "You have no items in your list!";
 
-				/** 
+				/**
 				 * @summary Крепит ячейку в ряд
 				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 				 * @static
 				 */
 				noneItem.appendChild(noneTd);
 
-				/** 
+				/**
 				 * @summary Крепит ряд в {@link localList}
 				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 				 * @static
@@ -796,14 +796,14 @@ window.onload = (function() {
 					var tdValue = document.createElement('td');
 
 					/**
-					 * @summary Создает ячейку для удаления					 
+					 * @summary Создает ячейку для удаления
 					 * @name tdDel
 					 * @type {object}
 					 */
 					var tdDel = document.createElement('td');
 
 					/**
-					 * @summary Создает кнопку для удаления					 
+					 * @summary Создает кнопку для удаления
 					 * @name del
 					 * @type {object}
 					 */
@@ -847,7 +847,7 @@ window.onload = (function() {
 					} else {
 
 						/**
-						 * @description Если значение {@link data} - простая строка, 
+						 * @description Если значение {@link data} - простая строка,
 						 * тогда присваиваем значение в ячейку {@link tdValue}
 						 * @property {string} innerHTML - Вставляет текст в HTML
 						 * @static
@@ -855,50 +855,50 @@ window.onload = (function() {
 						tdValue.innerHTML = data;
 					}
 
-					/** 
+					/**
 					 * @summary Крепит Вставляем ряд {@link newItem} в таблицу {@link localList}
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
 					localList.appendChild(newItem);
 
-					/** 
+					/**
 					 * @summary Крепит в ряд ячейку с ключом {@link tdKey}
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
 					newItem.appendChild(tdKey);
 
-					/** 
+					/**
 					 * @summary Крепит в ряд ячейку с датой рождения {@link tdValue}
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
 					newItem.appendChild(tdValue);
 
-					/** 
+					/**
 					 * @summary Крепит в ряд в ячейку кнопку для удаления {@link del}
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
 					tdDel.appendChild(del);
 
-					/** 
+					/**
 					 * @summary Крепит ячейку {@link tdDel} с кнопкой в ряд
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
 					newItem.appendChild(tdDel);
 
-					/** 
-					 * @description Присваиваем {@link key} как свойство в кнопку {@link del} 
+					/**
+					 * @description Присваиваем {@link key} как свойство в кнопку {@link del}
 					 * (иначе - не доступно)
-					 * @property {string} - key - 
+					 * @property {string} - key -
 					 * @static
 					 */
 					 /** @property {string} Присваиваем key как свойство в кнопку (иначе - не доступен) */
 					del.key = key;
-					
+
 					/**
 					 * @summary Удаляет данные из текущей строки из Локального хранилища
 					 * @listens click:mouseEvent
@@ -945,7 +945,7 @@ window.onload = (function() {
 				 * @type {object}
 				 */
 				var noneItem = document.createElement('tr');
-				
+
 				/**
 				 * @summary Показываем, что в Сессионном хранилище нет данных
 				 * @property {string} innerHTML - Вставляет текст в HTML
@@ -959,15 +959,15 @@ window.onload = (function() {
 				 * @static
 				 */
 				noneTd.innerHTML = "You have no items in temporary list!";
-				
-				/** 
+
+				/**
 				 * @summary Крепит ячейку в ряд
 				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 				 * @static
 				 */
 				noneItem.appendChild(noneTd);
-				
-				/** 
+
+				/**
 				 * @summary Крепит ряд в {@link sessionList}
 				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 				 * @static
@@ -990,7 +990,7 @@ window.onload = (function() {
 					 * @type {string}
 					 */
 					var key = sessionStorage.key(i);
-					
+
 					/**
 					 * @summary Временная переменная для значения (JSON-объект)
 					 * @name data
@@ -1022,14 +1022,14 @@ window.onload = (function() {
 					var tdValue = document.createElement('td');
 
 					/**
-					 * @summary Создает ячейку для удаления					 
+					 * @summary Создает ячейку для удаления
 					 * @name tdDel
 					 * @type {object}
 					 */
 					var tdDel = document.createElement('td');
 
 					/**
-					 * @summary Создает кнопку для удаления					 
+					 * @summary Создает кнопку для удаления
 					 * @name del
 					 * @type {object}
 					 */
@@ -1040,7 +1040,7 @@ window.onload = (function() {
 						del.value = 'Delete';
 						/** @property {string} - backgroundRepeat - Фон не повторяется */
 						del.style.backgroundRepeat = 'no-repeat';
-						/** @property {string} - backgroundSize - Картинка по размеру фона */					
+						/** @property {string} - backgroundSize - Картинка по размеру фона */
 						del.style.backgroundSize = 'contain';
 
 					/** @property {string} backgroundImage - Паттерн для фона таблицы {@link sessionList} */
@@ -1068,49 +1068,49 @@ window.onload = (function() {
 
 					/** Вставляем таблицу {@link sessionList} в DOM */
 
-					/** 
+					/**
 					 * @summary Крепит ряд в {@link sessionList}
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
 					sessionList.appendChild(newItem);
 
-					/** 
+					/**
 					 * @summary Крепит в ряд ячейку с ключом {@link tdKey}
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
 					newItem.appendChild(tdKey);
 
-					/** 
+					/**
 					 * @summary Крепит в ряд ячейку с датой рождения {@link tdValue}
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
 					newItem.appendChild(tdValue);
 
-					/** 
+					/**
 					 * @summary Крепит в ряд в ячейку кнопку для удаления {@link del}
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
 					tdDel.appendChild(del);
 
-					/** 
+					/**
 					 * @summary Крепит ячейку {@link tdDel} с кнопкой в ряд
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
 					newItem.appendChild(tdDel);
 
-					/** 
-					 * @description Присваиваем {@link key} как свойство в кнопку {@link del} 
+					/**
+					 * @description Присваиваем {@link key} как свойство в кнопку {@link del}
 					 * (иначе - не доступно)
-					 * @property {string} - key - 
+					 * @property {string} - key -
 					 * @static
 					 */
 					del.key = key;
-					
+
 					/**
 					 * @summary Удаляет данные из текущей строки из Локального хранилища
 					 * @listens click:mouseEvent
@@ -1142,6 +1142,12 @@ window.onload = (function() {
 			sessionStorage.clear();
 		};
 
+/*
+* ********************************************************* WEB DATA BASE **
+*/
+// BOOKMARK .......................................................... WEB DATA BASE
+
+
 // BOOKMARK Storage Event
 
 		/**
@@ -1155,13 +1161,13 @@ window.onload = (function() {
 		 * Открыть в браузере другую страницу того же сайта
 		 * В качестве измененного ключа видит Modernizr
 		 */
-		var storageChanged = function (event) {
+		/*var storageChanged = function (event) {
 			alert('URL: ' + event.url + '\n' +
 					'KEY: ' + event.key + '\n' +
 					'OLD VALUE: ' + event.oldValue + '\n' +
 					'NEW VALUE: ' + event.newValue + '\n' +
 					'STORAGE AREA: ' + event.storageArea + '\n');
-		};
+		};*/
 
 // BOOKMARK SearchData()
 
@@ -1169,10 +1175,10 @@ window.onload = (function() {
 		 * @summary - Ищет данные в локальном либо сессионном хранилище
 		 * @name searchData
 		 * @type {function}
-		 * @description Вводим ключ для поиска в &lt;input&gt; 
+		 * @description Вводим ключ для поиска в &lt;input&gt;
 		 * (можно имена и даты)
 		 * для ключа либо Локального, либо Сессионного хранилища
-		 * (в зависимости, от того, где хотим искать) 
+		 * (в зависимости, от того, где хотим искать)
 		 * Жмем кнопку поиска - видим результат
 		 */
 		var searchData = function () {
@@ -1257,15 +1263,15 @@ window.onload = (function() {
 					/** Если найден JSON объект */
 					if (searchField.getItem(searchKey).substr(0, 1) == '{') {
 
-						/** 
+						/**
 						 * @summary Очищаем значение
-						 * @property {string} - value - Значение, содержащееся в Локальном хранилище 
+						 * @property {string} - value - Значение, содержащееся в Локальном хранилище
 						 */
 						keyLocal.value = '';
 
-						/** 
+						/**
 						 * @summary Показываем значение ключа поиска из &lt;input&gt;-a для имени
-						 * @property {string} - value - Значение, содержащееся в Локальном хранилище 
+						 * @property {string} - value - Значение, содержащееся в Локальном хранилище
 						 */
 						nameField.value = searchKey;
 
@@ -1401,7 +1407,7 @@ window.onload = (function() {
 			 */
 			var file = files[0];
 
-			/** 
+			/**
 			* @summary Запускаем файл-ридер
 			* @name reader
 			* @type {object}
@@ -1434,7 +1440,7 @@ window.onload = (function() {
 		/** Вешаем обработчики для хранилища */
 
 		/** @listens onstorage:storageEvent Изменение Локального хранилища */
-		window.onstorage = storageChanged;
+		//window.onstorage = storageChanged;
 		/** @listens click:mouseEvent Нажатие на кнопку Save In Local */
 		saveInLocal.addEventListener('click', saveLocalData, false);
 		/** @listens click:mouseEvent Нажатие на кнопку Save In Session */
@@ -2283,10 +2289,10 @@ window.onload = (function() {
 				/** Рисуем круги из массива */
 				drawCircles();
 
-				/** 
-				 * @summary - Рисует круг на холсте 
+				/**
+				 * @summary - Рисует круг на холсте
 				 * @name drawCircles
-				 * @type {function} 
+				 * @type {function}
 				 */
 				function drawCircles() {
 
@@ -2297,7 +2303,7 @@ window.onload = (function() {
 					for (var i = 0; i < circles.length; i++) {
 
 						/**
-						 * @summary Присваиваем текущий круг в переменную 
+						 * @summary Присваиваем текущий круг в переменную
 						 * @name circle
 						 * @type {Circle}
 						 */
@@ -2333,9 +2339,9 @@ window.onload = (function() {
 						 */
 						context.strokeStyle = circle.borderColor;
 
-						/** 
-						 * Если круг выбран, то выделяем выбранный круг рамкой, 
-						 * чтобы показать выделение 
+						/**
+						 * Если круг выбран, то выделяем выбранный круг рамкой,
+						 * чтобы показать выделение
 						 */
 						if (circle.isSelected) {
 
@@ -2436,8 +2442,8 @@ window.onload = (function() {
 							 */
 							previousSelectedCircle = circle;
 
-							/** 
-							 * @summary Делаем текущий круг выбранным и перерисовываем круги 
+							/**
+							 * @summary Делаем текущий круг выбранным и перерисовываем круги
 							 * @property {boolean} isSelected Выбран или не выбран круг
 							 */
 							circle.isSelected = true;
@@ -2452,9 +2458,9 @@ window.onload = (function() {
 							clickSound.play();
 
 							/**
-							 * @summary Обнуляет таймаут для анимации			 * 
+							 * @summary Обнуляет таймаут для анимации			 *
 							 * @callback clearTimeout
-							 * @memberof window 
+							 * @memberof window
 							 * @param {function} - timeoutIDForFallBalls - id для повторяемой функции
 							 */
 							clearTimeout(timeoutIDForFallBalls);
@@ -2463,7 +2469,7 @@ window.onload = (function() {
 					} // if
 				} // canvasClick(e)
 
-				/** 
+				/**
 				 * @summary Запрещаем перетаскивание
 				 * @name isDragging
 				 * @type {boolean}
@@ -2518,8 +2524,8 @@ window.onload = (function() {
 					}
 				} // dragCircle()
 
-				/** 
-				 * @summary Остановка перетаскивания 
+				/**
+				 * @summary Остановка перетаскивания
 				 * @name stopDragging
 				 * @type {function}
 				 */
@@ -2671,7 +2677,7 @@ window.onload = (function() {
 
 // BOOKMARK Canvas Drawing with mouse
 
-		/** 
+		/**
 		 * @summary Запрещаем перетаскивание
 		 * @name isDrawing
 		 * @type {boolean}
@@ -2686,9 +2692,9 @@ window.onload = (function() {
 		 */
 		function startDrawing(e) {
 
-			/** 
+			/**
 			 * @summary Возможность рисования
-			 * Без var, чтобы все знали!!! 
+			 * Без var, чтобы все знали!!!
 			 * @name isDrawing
 			 * @type {boolean}
 			 */
@@ -2720,17 +2726,17 @@ window.onload = (function() {
 				 * clientX/clientY определило бы координаты относительно окна???????????
 				 */
 
-				/** 
+				/**
 				 * @summary Запоминаем x-координату мыши
-				 * @name x 
-				 * @type {number} 
+				 * @name x
+				 * @type {number}
 				 */
 				var x = e.pageX - canvas.offsetLeft;
 
-				/** 
+				/**
 				 * @summary Запоминаем y-координату мыши
-				 * @name y 
-				 * @type {number} 
+				 * @name y
+				 * @type {number}
 				 */
 				var y = e.pageY - canvas.offsetTop;
 
@@ -2918,8 +2924,8 @@ window.onload = (function() {
 			 * @summary Регулярное выражение для проверки
 			 * @name regexp
 			 * @type {string}
-			 * @description Пропускаем только латинские или русские буквы 
-			 * и пробел между первым и вторым словом (если оно есть). 
+			 * @description Пропускаем только латинские или русские буквы
+			 * и пробел между первым и вторым словом (если оно есть).
 			 * Оба слова могут начинаться с большой буквы
 			 */
             var regexp = /^[А-Я]{0,1}[а-я]{1,15}( [А-Я]{0,1}[а-я]{1,15}){0,1}$|^[A-Z]{0,1}[a-z]{1,15}( [A-Z]{0,1}[a-z]{1,15}){0,1}$/;
@@ -2956,7 +2962,7 @@ window.onload = (function() {
 			 * @summary Регулярное выражение для проверки
 			 * @name regexp
 			 * @type {string}
-			 * @description Пропускаем номер строго в формате (012) 345-67-89 
+			 * @description Пропускаем номер строго в формате (012) 345-67-89
 			 */
 			var regexp = /^\([0-9]{3}\) [0-9]{3}-[0-9]{2}-[0-9]{2}$/;
 
@@ -3149,7 +3155,7 @@ window.onload = (function() {
 			html5Video.currentTime = 0;
 		}
 
-		/** 
+		/**
 		 * @property {function} volumechange  Изменение громкости
 		 * @param {event} e change:mediaEvent Изменение громкости
 		 */
@@ -3301,7 +3307,7 @@ $(document).ready(function(e) {
 
 // BOOKMARK MODERNIZR                                                                    // Windows.onload
 /**
- * @summary CSS and JavaScript loader * 
+ * @summary CSS and JavaScript loader *
  * @returns {object} Modernizr
  * @see {@link http://modernizr.com/docs/#installing} for more details
  */

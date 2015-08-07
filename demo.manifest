@@ -1,0 +1,20 @@
+CACHE MANIFEST
+
+https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js
+http://fonts.googleapis.com/css?family=Neucha|Kurale&subset=latin,cyrillic,latin-ext
+http://fonts.googleapis.com/css?family=PT+Mono&subset=cyrillic-ext,latin-ext
+http://fonts.googleapis.com/css?family=Ubuntu+Mono&subset=cyrillic-ext,latin
+fonts/Merriweather_Light.ttf
+https://www.google-analytics.com/analytics.js
+http://www.subtlepatterns.com/patterns/white_leather.png
+js/main.js
+js/plugins.js
+js/vendor/jquery.js
+js/vendor/modernizr.js 
+js/vendor/logifill-details-min.js
+css/main.css
+css/normalize.css
+doc/html5/frameset.html
+doc/html5/html5-canvas.html
+img/peacock-blues.png
+favicon.ico
