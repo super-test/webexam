@@ -1,18 +1,7 @@
-[HTML5 Boilerplate homepage](https://html5boilerplate.com) | [Documentation
-table of contents](TOC.md)
 
-# Usage
+# WEB-Forms
 
-Once you have cloned or downloaded HTML5 Boilerplate, creating a site or app
-usually involves the following:
-
-1. Set up the basic structure of the site.
-2. Add some content, style, and functionality.
-3. Run your site locally to see how it looks.
-4. (Optionally run a build script to automate the optimization of your site -
-   e.g. [ant build script](https://github.com/h5bp/ant-build-script))
-5. Deploy your site.
-
+1. Информация, введенная в поля формы сохраняется в Локальном хранилище и восстанавливается при следующей загрузке
 
 ## Basic structure
 

@@ -2854,7 +2854,8 @@ window.onload = (function() {
 		 * @param {object} element &lt;input&gt; с введенными данными
 		 * @param {string} regexp Паттерн для проверки
 		 * @param {string} errorMessage Сообщение об ошибке для пользователя
-		 * @description Сравниваем содержимое поля с паттерном
+		 * @description Сохраняем element и его значение в локальное хранилище
+		 * Сравниваем содержимое поля с паттерном
 		 * Если они равны ...
 		 * Инкрементируем счетчик правильно заполненных полей
 		 * Показываем корректно заполненное поле
@@ -2869,6 +2870,14 @@ window.onload = (function() {
 			 * @type {string}
 			 */
 			var value = element.value;
+// NOTE ЗДЕСЬ
+			/**
+			 * @summary Сохраняем input и значение в хранилище
+			 * @name localStorage
+			 * @type object
+			 * @property {function} setItem Записывает пару ключ и значение в хранилище
+			 */
+			localStorage.setItem(element.name, value)
 
 			/** Проверяем совпадение с регулярным выражением */
 			if (regexp.test(value)) {
@@ -2919,6 +2928,13 @@ window.onload = (function() {
 			var element = this,
 				/** И присваиваем соответствующее сообщение об ошибке */
 				errMessage = 'Имя задано неверно';
+
+			//NOTE И ЗДЕСЬ
+			if (!localStorage.getItem(element.name)) {
+				element.value = '';
+			} else {
+				element.value = localStorage.getItem(element.name);
+			}
 
 			/**
 			 * @summary Регулярное выражение для проверки
