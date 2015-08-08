@@ -2929,10 +2929,14 @@ window.onload = (function() {
 				/** И присваиваем соответствующее сообщение об ошибке */
 				errMessage = 'Имя задано неверно';
 
-			//NOTE И ЗДЕСЬ
+			/** @summary Восстанавливаем введенную ранее в &lt;input&gt; информацию */
 			if (!localStorage.getItem(element.name)) {
+
+				/** Если в хранилище такого ключа нет */
 				element.value = '';
+
 			} else {
+				/** Если есть , то записываем значение из хранилища в input */
 				element.value = localStorage.getItem(element.name);
 			}
 
@@ -3023,6 +3027,20 @@ window.onload = (function() {
 			checkField(element, regexp, errorMessage);
 		};
 
+		/**
+		 * @summary Запрещает отправку данных из формы в оффлайне
+		 * Данные в хранилище все равно будут сохраненны в хранилище
+		 * во время валидации полей, которая сработает на onchange
+		 * @name submitData
+		 * @type {function}
+		 */
+		var submitData = function() {
+
+			if (!navigator.onLine) {
+				return false;
+			}
+		}
+
 /* --------------------------------------------------------------- Вешаем обработчики на проверяемые поля -- */
 
 		/** Вешаем обработчики */
@@ -3032,6 +3050,8 @@ window.onload = (function() {
 		if (tel) tel.onchange = validTel;
 		/** @listen onchange:mouseEvent - Если изменится значение поля ввода почты */
 		if (email) email.onchange = validEmail;
+		/** @listen submit:formEvent - В оффлайн режиме запрещаем submit */
+		window.addEventListener('submit', submitData, false);
 	} // FORM VALIDATE END
 
 /*
