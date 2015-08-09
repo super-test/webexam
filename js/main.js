@@ -1,6 +1,44 @@
-/*jshint es5: true, evil: true*/
+/* jshint es5: true, evil: true */
 
-/** 2734
+/*
+* ********************************************************* WEB DATA BASE **
+*/
+// BOOKMARK .......................................................... WEB DATA BASE
+
+		/**
+		 * @summary Создает базу данных
+		 * @name db
+		 * @type {object}
+		 */
+		var db = openDatabase("storage_date", "1.0", "Web SQL Storage Demo Database", 1*1024*1024); // creates a database called 'food_db' with version number 1.0, description as 'Web SQL Demo Database' and a size of 1MB.
+
+		db.transaction(
+			function(t) { // This is the callback with "t" as the transaction object
+				t.executeSql("CREATE TABLE IF NOT EXISTS local_list (ID INTEGER PRIMARY KEY AUTOINCREMENT, local_key TEXT, local_value TEXT)");
+			}
+		);
+
+db.transaction(
+			function(t) { // This is the callback with "t" as the transaction object
+				t.executeSql("CREATE TABLE IF NOT EXISTS session_list (session_key TEXT PRIMARY KEY, session_value REAL, servings TEXT)");
+			}
+		);
+var i = localStorage.length;;
+function readStorageData(local_key, local_value) {
+			var lKey = localStorage.key(i);
+			var lValue = localStorage.getItem(lKey);
+
+		db.transaction(function(t) {
+
+			// Выполняем SQL запрос на добавление записи в таблицу
+			t.executeSql("INSERT INTO local_list (local_key, local_value) VALUES (?, ?)", [lKey, lValue],
+						function() { if(i >= 0) { readStorageData(local_key, local_value); i--; } });
+		});
+}
+
+readStorageData();
+
+/**
  * @author aLLenka
  * @copyright Можно все :)
  * @version Будем считать, что 0.0.0, так как проект еще ни разу не был готов
@@ -1141,12 +1179,6 @@ window.onload = (function() {
 		var clearSessionStorage = function () {
 			sessionStorage.clear();
 		};
-
-/*
-* ********************************************************* WEB DATA BASE **
-*/
-// BOOKMARK .......................................................... WEB DATA BASE
-
 
 // BOOKMARK Storage Event
 
@@ -2870,12 +2902,12 @@ window.onload = (function() {
 			 * @type {string}
 			 */
 			var value = element.value;
-// NOTE ЗДЕСЬ
+
 			/**
 			 * @summary Сохраняем input и значение в хранилище
 			 * @name localStorage
 			 * @type object
-			 * @property {function} setItem Записывает пару ключ и значение в хранилище
+			 * @property {function} setItem Записывает содержимое &lt;inut&gt; в хранилище
 			 */
 			localStorage.setItem(element.name, value)
 
@@ -3036,6 +3068,7 @@ window.onload = (function() {
 		 */
 		var submitData = function() {
 
+			/** Если мы в оффлайне ... */
 			if (!navigator.onLine) {
 				return false;
 			}
