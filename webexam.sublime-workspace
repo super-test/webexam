@@ -21,7 +21,7 @@
 			"file": "js/main.js",
 			"settings":
 			{
-				"buffer_size": 90550,
+				"buffer_size": 95797,
 				"line_ending": "Unix"
 			}
 		}
@@ -86,6 +86,8 @@
 	],
 	"file_history":
 	[
+		"/home/allenka/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/allenka/public_html/webexam/js/main.js",
 		"/home/allenka/.config/sublime-text-3/Packages/PlainTasks/PlainTasks (Linux).sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/User/Notes.sublime-settings",
@@ -94,10 +96,8 @@
 		"/home/allenka/public_html/webexam/webexam.sublime-project",
 		"/home/allenka/.config/sublime-text-3/Packages/Colorsublime/Colorsublime.sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/User/View In Browser.sublime-settings",
-		"/home/allenka/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/User/LiveReload.sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/LiveReload/LiveReload.sublime-settings",
-		"/home/allenka/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/View In Browser/View In Browser.sublime-settings"
 	],
 	"find":
@@ -116,6 +116,8 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"var name",
+			"name",
 			"clearTimeout",
 			"name",
 			"табл",
@@ -179,15 +181,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 90550,
+						"buffer_size": 95797,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								40912,
+								40912
 							]
 						],
 						"settings":
@@ -196,7 +198,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2856.0,
+						"translation.y": 41680.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -282,7 +284,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 212.0,
+	"side_bar_width": 154.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
