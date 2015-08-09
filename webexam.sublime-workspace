@@ -3,25 +3,35 @@
 	{
 		"selected_items":
 		[
+			[
+				"local",
+				"local_list"
+			],
+			[
+				"storage",
+				"storage_date"
+			],
+			[
+				"data",
+				"dataLocal"
+			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"contents": "Package Control Messages\n========================\n\nSublimerge Pro:\n--------------\n\n  Sublimerge has just been installed. Thanks!\n  \n  It is highly recommended to restart Sublime Text before first use.\n  ------------------------------------------------------------------\n  \n  Simplified usage instructions\n  =============================\n  \n  In file view:\n  \n      [ctrl]+[alt]+[d]                - display Quick Panel with Sublimerge commands available for current view\n  \n  In diff view:\n  \n      [/]                             - display Differences Navigator\n      [down]                          - select the next difference (only single selection is possible)\n      [up]                            - select the previous difference (only single selection is possible)\n      [left]                          - merge selected change(s) from right to left\n      [right]                         - merge selected change(s) from left to right\n      [shift]+[left]                  - merge all changes from right to left\n      [shift]+[right]                 - merge all changes from left to right\n      [ctrl]+[enter]                  - toggle edit mode (currently in 2-way diff view only)\n      [ctrl]+[alt]+[left click]       - select/deselect change block (multiple selection is possible)\n      [ctrl]+[shift]+[left click]     - merge selected changes from left to right\n      [ctrl]+[shift]+[right click]    - merge selected changes from right to left\n  \n  In directories diff view:\n  \n      [enter]                         - enter subdirectory (if differs) or diff selected text file\n      [down]                          - select next file/directory\n      [up]                            - select previous file/directory or navigate one level up\n      [ctrl]+[alt]+[left click]       - select/deselect change block (multiple selection is possible)\n      [right]                         - apply selected change from left to right\n      [left]                          - apply all changes from left to right\n      [shift]+[left]                  - apply selected change from right to left\n      [shift]+[right]                 - apply all changes from right to left\n  \n  \n  Licensing\n  =========\n  \n  If you like Sublimerge, please support development by buying a license. It doesn't cost much! :)\n  \n  \n  Solving most common problems\n  ============================\n  \n  Sublimerge doesn't work. Console reports: \"ImportError: No module named 'sublimerge'\"\n  \n  If you installed Sublimerge using Package Control, please make sure that you use its final version.\n  Alpha does not install Sublimerge properly. You can also try Manual Installation (please view\n  sublimerge.com/installation.html for more details)\n  \n  \n  See also\n  ========\n  \n  If you are using Gerrit Code Review, please take a look at SublimeGerrit - the full featured\n  Gerrit Code Review integration for Sublime Text - http://www.sublimegerrit.com/\n  \n  \n  More information\n  ================\n  \n  For more information, troubleshooting, customizing settings and more, please visit www.sublimerge.com\n  \n  ",
-			"settings":
-			{
-				"buffer_size": 3077,
-				"line_ending": "Unix",
-				"name": "Package Control Messages",
-				"scratch": true
-			}
-		},
-		{
 			"file": "js/main.js",
 			"settings":
 			{
-				"buffer_size": 95797,
+				"buffer_size": 89053,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "doc/html5/html5-storage.html",
+			"settings":
+			{
+				"buffer_size": 2801,
 				"line_ending": "Unix"
 			}
 		}
@@ -33,10 +43,26 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 457.0,
-		"last_filter": "Package Control: ",
+		"height": 431.0,
+		"last_filter": "bookmark",
 		"selected_items":
 		[
+			[
+				"bookmark",
+				"SublimeBookmarks: Remove All Bookmarks (Clear Bookmarks)"
+			],
+			[
+				"remove",
+				"SublimeBookmarks: Remove A Bookmark"
+			],
+			[
+				"goto",
+				"SublimeBookmarks: Goto Bookmark"
+			],
+			[
+				"add",
+				"SublimeBookmarks: Add Bookmark"
+			],
 			[
 				"Package Control: ",
 				"Package Control: Install Package"
@@ -52,13 +78,9 @@
 			[
 				"insta",
 				"Package Control: Install Package"
-			],
-			[
-				"remove",
-				"Package Control: Remove Package"
 			]
 		],
-		"width": 571.0
+		"width": 637.0
 	},
 	"console":
 	{
@@ -80,12 +102,16 @@
 	"expanded_folders":
 	[
 		"/home/allenka/public_html/webexam",
+		"/home/allenka/public_html/webexam/css",
 		"/home/allenka/public_html/webexam/doc",
 		"/home/allenka/public_html/webexam/doc/html5",
 		"/home/allenka/public_html/webexam/js"
 	],
 	"file_history":
 	[
+		"/home/allenka/public_html/webexam/css/main.css",
+		"/home/allenka/.config/sublime-text-3/Packages/SublimeBookmarks/Default.sublime-keymap",
+		"/home/allenka/.config/sublime-text-3/Packages/User/Default.sublime-keymap",
 		"/home/allenka/Dropbox/Notes/.brain/Inbox.note",
 		"/home/allenka/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
@@ -117,6 +143,44 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"var i",
+			"var db",
+			"keyLocal",
+			"saveData",
+			"keySession",
+			"keyLocal",
+			"keySessionData",
+			"keyLocalData",
+			"saveData",
+			"saveLocalData",
+			"Save",
+			"saveInStorage",
+			"saveInSession",
+			"saveInLocal",
+			"showItems",
+			"show",
+			"localI",
+			"storageData",
+			"items",
+			"localStorage",
+			"localItems",
+			"showItems",
+			"showSessionItems",
+			"showLocalItems",
+			"itemsList",
+			"\"itemsList\"",
+			"\"localItemsList\"",
+			"\"localItems\"",
+			"localItemsList",
+			"sessionList",
+			"localList",
+			"localItems",
+			"localItemsList",
+			"localList",
+			"search",
+			"showLocalItems",
+			"showLoca",
+			"showLocal",
 			"var name",
 			"name",
 			"clearTimeout",
@@ -134,6 +198,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"localItems"
 		],
 		"reverse": false,
 		"show_context": true,
@@ -144,62 +209,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3077,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3067,
-								3067
-							]
-						],
-						"settings":
-						{
-							"auto_indent": false,
-							"syntax": "Packages/Text/Plain text.tmLanguage",
-							"word_wrap": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "js/main.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 95797,
+						"buffer_size": 89053,
 						"regions":
 						{
-							"mark":
-							{
-								"flags": 144,
-								"icon": "dot",
-								"regions":
-								[
-								],
-								"scope": "mark"
-							}
 						},
 						"selection":
 						[
 							[
-								40931,
-								40931
+								31100,
+								31100
 							]
 						],
 						"settings":
@@ -208,10 +235,39 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 40672.0,
+						"translation.y": 31951.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "doc/html5/html5-storage.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2801,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1100,
+								1100
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 420.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -294,7 +350,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 154.0,
+	"side_bar_width": 132.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

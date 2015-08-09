@@ -301,7 +301,35 @@ window.onload = (function() {
 		 */
 		var inputFile = document.getElementById('fileInput');
 
-		/**Получаем кнопки для манипуляций */
+		/** Получаем кнопки для манипуляций */
+
+		/**
+		 * @summary Кнопка Save in Local
+		 * @name saveInLocal
+		 * @type {object}
+		 */
+		var createWebDbButton = document.getElementById('createWebDb');
+
+		/**
+		 * @summary Кнопка Read data from Storage
+		 * @name saveInLocal
+		 * @type {object}
+		 */
+		var readFromStorageToDbButton = document.getElementById('readFromStorageToDb');
+
+		/**
+		 * @summary Кнопка Save in WEB SQL DB
+		 * @name saveDataInWebDB
+		 * @type {object}
+		 */
+		var saveDataInWebDB = document.getElementById('saveInWebDB');
+
+		/**
+		 * @summary Кнопка Drop Table WEB DB
+		 * @name saveDataInWebDB
+		 * @type {object}
+		 */
+		var dropTableWebDB = document.getElementById('dropTableFromWebDb');
 
 		/**
 		 * @summary Кнопка Save in Local
@@ -399,7 +427,12 @@ window.onload = (function() {
 		 */
 		var saveData = function () {
 
-			var storage, storageKey, storageValue;
+			/**
+			 * @summary Хранилище по умолчанию будет Локальным
+			 * @name storage
+			 * @type {object}
+			 */
+			var storage = localStorage, storageKey, storageValue;
 
 			if (event.target.id == "saveInLocalStorage") {
 
@@ -407,21 +440,36 @@ window.onload = (function() {
       			storageKey = keyLocal;
       			storageValue = dataLocal;
 
-      		} else {
+				/**
+				 * @summary Сохраняет данные в локальном хранилище
+				 * @property {method} - setItem - Сохраняет пару ключ и значение в локальном хранилище
+				 * @param {string} - keyLocal.value - Ключ, введенный в &lt;input&gt;
+				 * @param {string} - dataLocal.value - Значение, введенное в &lt;input&gt;
+				 * @static
+				 */
+				storage.setItem(keySession.value, dataSession.value);
+
+      		} else if(event.target.id == "saveInSessionStorage") {
 
   				storage = sessionStorage;
   				storageKey = keySession;
       			storageValue = dataSession;
-      		}
 
-			/**
-			 * @summary Сохраняет данные в локальном хранилище
-			 * @property {method} - setItem - Сохраняет пару ключ и значение в локальном хранилище
-			 * @param {string} - keyLocal.value - Ключ, введенный в &lt;input&gt;
-			 * @param {string} - dataLocal.value - Значение, введенное в &lt;input&gt;
-			 * @static
-			 */
-			storage.setItem(keyLocal.value, dataLocal.value);
+				/**
+				 * @summary Сохраняет данные в локальном хранилище
+				 * @property {method} - setItem - Сохраняет пару ключ и значение в локальном хранилище
+				 * @param {string} - keyLocal.value - Ключ, введенный в &lt;input&gt;
+				 * @param {string} - dataLocal.value - Значение, введенное в &lt;input&gt;
+				 * @static
+				 */
+				storage.setItem(keyLocal.value, dataLocal.value);
+
+      		} else if(event.target.id == "saveInWebDB") {
+
+      			db.transaction(function (t) {
+      				t.executeSql("INSERT INTO local_list (local_key, local_value) VALUES (?, ?)", [keyLocal.value, dataLocal.value]);
+      			});
+      		}
 
 		};
 
@@ -699,7 +747,6 @@ window.onload = (function() {
       			storage = localStorage;
   			else 
   				storage = sessionStorage;
-
 			/**
 			 * @summary Очищает {@link itemsList}
 			 * @property {string} innerHTML - Вставляет текст в HTML
@@ -1218,23 +1265,55 @@ window.onload = (function() {
 * ********************************************************* WEB DATA BASE **
 */
 // BOOKMARK .......................................................... WEB DATA BASE
+		
+		var db;
 
 		/**
 		 * @summary Создает базу данных
-		 * @name db
-		 * @type {object}
+		 * @name createWebDb
+		 * @type {function}
 		 */
-		var db = openDatabase("storage_date", "1.0", "Web SQL Storage Demo Database", 1*1024*1024);
+		var createWebDb = function() {
+
+			/**
+			 * @summary Создаем базу данных
+			 * @type {object}
+			 * @name db
+			 */
+			db = openDatabase("storage_date", "1.0", "Web SQL Storage Demo Database", 1*1024*1024);
+
+			/**
+			 * @summary Создает таблицы
+			 * @property {function} transaction Обращение к базе данных
+			 */
+			db.transaction(
+				function(t) { // This is the callback with "t" as the transaction object
+					t.executeSql("CREATE TABLE IF NOT EXISTS local_list(local_key NOT NULL, local_value)");
+				}
+			);
+
+			return db;
+		}
 
 		/**
-		 * @summary Создает таблицы
-		 * @property {function} transaction Обращение к базе данных
+		 * @summary Создает базу данных
+		 * @name createWebDb
+		 * @type {function}
 		 */
-		db.transaction(
-			function(t) { // This is the callback with "t" as the transaction object
-				t.executeSql("CREATE TABLE IF NOT EXISTS local_list (local_key, local_value)");
-			}
-		);
+		var dropWebDb = function() {
+
+			/**
+			 * @summary Создает таблицы
+			 * @property {function} transaction Обращение к базе данных
+			 */
+			db.transaction(
+				function(t) { // This is the callback with "t" as the transaction object
+					t.executeSql('DROP TABLE local_list');
+				}
+			);
+
+			return db;
+		}
 
 		/**
 		 * @summary Счетчик обращений к базе данных
@@ -1265,16 +1344,16 @@ window.onload = (function() {
 				t.executeSql("INSERT INTO local_list (local_key, local_value) VALUES (?, ?)", [lKey, lValue],
 					function() {
 
-						if(i < localStorage.length - 1) {
+						if(++i < localStorage.length) {
+							//++i;
 							readStorageData(local_key, local_value);
-							i++;
 						}
+						else return;
 					}
 				);
+
 			});
 		}
-
-		readStorageData();
 
 // BOOKMARK STORAGE LISTENERS
 
@@ -1282,6 +1361,15 @@ window.onload = (function() {
 
 		/** @listens onstorage:storageEvent Изменение Локального хранилища */
 		//window.onstorage = storageChanged;
+		/** @listens click:mouseEvent Нажатие на кнопку Create WEB SQL DB */
+		createWebDbButton.onclick = createWebDb;
+		/** @listens click:mouseEvent Нажатие на кнопку Read From Storage to DB */
+		readFromStorageToDbButton.onclick = readStorageData;
+		/** @listens click:mouseEvent Нажатие на кнопку Save In WEB SQL DB */
+		saveDataInWebDB.onclick = saveData;
+		/** @listens click:mouseEvent Нажатие на кнопку Drop Table */
+		dropTableWebDB.onclick = dropWebDb;
+
 		/** @listens click:mouseEvent Нажатие на кнопку Save In Local */
 		saveInLocal.onclick = saveData;
 		/** @listens click:mouseEvent Нажатие на кнопку Save In Session */
