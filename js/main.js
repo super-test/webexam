@@ -393,11 +393,26 @@ window.onload = (function() {
 // BOOKMARK SaveData()
 
 		/**
-		 * @summary - Сохраняет данные в Локальном хранилище
-		 * @name saveLocalData
+		 * @summary - Сохраняет данные в хранилищaх
+		 * @name saveData
 		 * @type {function}
 		 */
-		var saveLocalData = function () {
+		var saveData = function () {
+
+			var storage, storageKey, storageValue;
+
+			if (event.target.id == "saveInLocalStorage") {
+
+      			storage = localStorage;
+      			storageKey = keyLocal;
+      			storageValue = dataLocal;
+
+      		} else {
+
+  				storage = sessionStorage;
+  				storageKey = keySession;
+      			storageValue = dataSession;
+      		}
 
 			/**
 			 * @summary Сохраняет данные в локальном хранилище
@@ -406,25 +421,7 @@ window.onload = (function() {
 			 * @param {string} - dataLocal.value - Значение, введенное в &lt;input&gt;
 			 * @static
 			 */
-			localStorage.setItem(keyLocal.value, dataLocal.value);
-
-		};
-
-		/**
-		 * @summary - Сохраняет пару ключ-значение в Сессионном хранилище
-		 * @name saveSessionData
-		 * @type {function}
-		 */
-		var saveSessionData = function () {
-
-			/**
-			 * @summary Сохраняет данные в в сессионном хранилище
-			 * @property {method} - setItem - Сохраняет пару ключ и значение в сессионном хранилище
-			 * @param {string} - keySession.value - Ключ, введенный в &lt;input&gt;
-			 * @param {string} - dataSession.value - Значение, введенное в &lt;input&gt;
-			 * @static
-			 */
-			sessionStorage.setItem(keySession.value, dataSession.value);
+			storage.setItem(keyLocal.value, dataLocal.value);
 
 		};
 
@@ -1286,9 +1283,9 @@ window.onload = (function() {
 		/** @listens onstorage:storageEvent Изменение Локального хранилища */
 		//window.onstorage = storageChanged;
 		/** @listens click:mouseEvent Нажатие на кнопку Save In Local */
-		saveInLocal.addEventListener('click', saveLocalData, false);
+		saveInLocal.onclick = saveData;
 		/** @listens click:mouseEvent Нажатие на кнопку Save In Session */
-		saveInSession.onclick = saveSessionData;
+		saveInSession.onclick = saveData;
 		/** @listens click:mouseEvent Нажатие на кнопку Show Local */
 		showLocal.onclick = showItems;
 		/** @listens click:mouseEvent Нажатие на кнопку Show Session */
