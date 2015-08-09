@@ -86,6 +86,7 @@
 	],
 	"file_history":
 	[
+		"/home/allenka/Dropbox/Notes/.brain/Inbox.note",
 		"/home/allenka/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
 		"/home/allenka/public_html/webexam/js/main.js",
@@ -184,12 +185,21 @@
 						"buffer_size": 95797,
 						"regions":
 						{
+							"mark":
+							{
+								"flags": 144,
+								"icon": "dot",
+								"regions":
+								[
+								],
+								"scope": "mark"
+							}
 						},
 						"selection":
 						[
 							[
-								40912,
-								40912
+								40931,
+								40931
 							]
 						],
 						"settings":
@@ -198,7 +208,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 41680.0,
+						"translation.y": 40672.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -213,7 +223,7 @@
 	},
 	"input":
 	{
-		"height": 38.0
+		"height": 46.0
 	},
 	"layout":
 	{

@@ -362,18 +362,11 @@ window.onload = (function() {
 		/** Получаем таблицы c данными из хранилищ */
 
 		/**
-		 * @summary Динамическая таблица для данных из локального хранилища {@link localList}
-		 * @name localList
+		 * @summary Динамическая таблица для данных из хранилищ {@link itemsList}
+		 * @name itemsList
 		 * @type {object}
 		 */
-		var localList = document.getElementById('localItemsList');
-
-		/**
-		 * @summary Динамическая таблица {@link localList} с данными сессионного хранилища {@link sessionList}
-		 * @name sessionList
-		 * @type {object}
-		 */
-		var sessionList = document.getElementById('sessionItemsList');
+		var itemsList = document.getElementById('storageItems');
 
 		/**
 		 * @summary &lt;fieldset&gt; для Birthday Book
@@ -685,43 +678,50 @@ window.onload = (function() {
 		};
 
 		// ----------------------------------------------------------------- Показываем данные --
-// BOOKMARK ShowLocalItems()
+// BOOKMARK ShowItems()
 
-		/**
-		 * @name showLocalItems
+		/*
+		 * @name showItems
 		 * @type {function}
 		 *
 		 * @description Если в Локальном хранилище пустота ...
 		 * Показываем, что здесь ничего нет
-		 * Иначе - создаем динамическую табличку {@link localList}
+		 * Иначе - создаем динамическую табличку {@link itemsList}
 		 * Циклом бежим по всем данным
 		 * Если находим JSON-объект, то конвертируем его
-		 * Заполняем ими табличку {@link localList}
+		 * Заполняем ими табличку {@link itemsList}
 		 * К каждой паре ключ-значение добавляем кнопку "Удалить"
 		 * Вешаем на кнопку динамический обработчик на клик
-		 * @summary Показываем в табличке {@link localList} содержимое локального хранилища
+		 * @summary Показываем в табличке {@link itemsList} содержимое локального хранилища
 		 */
-		var showLocalItems = function () {
+		var showItems = function () {
+
+			var storage;
+
+			if (event.target.id == "showLocalStorage")
+      			storage = localStorage;
+  			else 
+  				storage = sessionStorage;
 
 			/**
-			 * @summary Очищает {@link localList}
+			 * @summary Очищает {@link itemsList}
 			 * @property {string} innerHTML - Вставляет текст в HTML
 			 * @static
 			 */
-			localList.innerHTML = '';
+			itemsList.innerHTML = '';
 
 			/** Если в Локальном хранилище пустота ... */
-			if (localStorage.length === 0) {
+			if (storage.length === 0) {
 
 				/**
-				 * @summary Создает ряд для {@link localList}
+				 * @summary Создает ряд для {@link itemsList}
 				 * @name noneItem
 				 * @type {object}
 				 */
 				var noneItem = document.createElement('tr');
 
 				/**
-				 * @summary Создаем ячейку для {@link localList}
+				 * @summary Создаем ячейку для {@link itemsList}
 				 * @name noneTd
 				 * @type {object}
 				 */
@@ -742,19 +742,19 @@ window.onload = (function() {
 				noneItem.appendChild(noneTd);
 
 				/**
-				 * @summary Крепит ряд в {@link localList}
+				 * @summary Крепит ряд в {@link itemsList}
 				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 				 * @static
 				 */
-				localList.appendChild(noneItem);
+				itemsList.appendChild(noneItem);
 
 			}
 
 			/** Если в Локальном хранилище что-то есть ... */
-			if (localStorage.length > 0) {
+			if (storage.length > 0) {
 
 				/** Пробегаем по всем элементам */
-				for (var i = 0; i < localStorage.length; i++) {
+				for (var i = 0; i < storage.length; i++) {
 
 					/** Присваиваем значения текущей пары во временные переменные */
 
@@ -763,19 +763,19 @@ window.onload = (function() {
 					 * @name key
 					 * @type {string}
 					 */
-					var key = localStorage.key(i);
+					var key = storage.key(i);
 
 					/**
 					 * @summary Временная переменная для значения (JSON-объект)
 					 * @name data
 					 * @type {object | string}
 					 */
-					var data = localStorage.getItem(key);
+					var data = storage.getItem(key);
 
-					/** Создаем элементы таблички {@link localList} */
+					/** Создаем элементы таблички {@link itemsList} */
 
 					/**
-					 * @summary Создает новый ряд для {@link localList}
+					 * @summary Создает новый ряд для {@link itemsList}
 					 * @name newItem
 					 * @type {object}
 					 */
@@ -826,13 +826,13 @@ window.onload = (function() {
 						/** @property {string} - backgroundColor - Фон кнопки белого цвета */
 						del.style.backgroundColor = 'white';
 
-					/** @property {string} backgroundImage - Паттерн для фона таблицы {@link localList} */
+					/** @property {string} backgroundImage - Паттерн для фона таблицы {@link itemsList} */
 					document.getElementById('storageData').style.backgroundImage = "url('http://www.subtlepatterns.com/patterns/white_leather.png')";
 
 					/** Заполняем табличку */
 
 					/**
-					 * @summary Заносим ключ в таблицу {@link localList}
+					 * @summary Заносим ключ в таблицу {@link itemsList}
 					 * @property {string} innerHTML - Вставляет текст в HTML
 					 * @static
 					 */
@@ -856,11 +856,11 @@ window.onload = (function() {
 					}
 
 					/**
-					 * @summary Крепит Вставляем ряд {@link newItem} в таблицу {@link localList}
+					 * @summary Крепит Вставляем ряд {@link newItem} в таблицу {@link itemsList}
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
-					localList.appendChild(newItem);
+					itemsList.appendChild(newItem);
 
 					/**
 					 * @summary Крепит в ряд ячейку с ключом {@link tdKey}
@@ -910,219 +910,7 @@ window.onload = (function() {
 
 			} // IF END
 
-		}; // SHOW LOCAL ITEMS END
-
-// BOOKMARK ShowSessionItems()
-
-		/**
-		 * @name showLocalItems
-		 * @type {function}
-		 *
-		 * @description Если в Сессионном хранилище пустота ...
-		 * Показываем, что здесь ничего нет
-		 * Иначе - создаем динамическую табличку {@link sessionList}
-		 * Циклом бежим по всем данным
-		 * Заполняем ими табличку {@link sessionList}
-		 * К каждой паре ключ-значение добавляем кнопку "Удалить"
-		 * Вешаем на кнопку динамический обработчик на клик
-		 * @summary Показываем в табличке {@link sessionList} содержимое Сессионного хранилища
-		 */
-		var showSessionItems = function () {
-
-			/**
-			 * @summary Очищает таблицу {@link sessionList}
-			 * @property {string} innerHTML - Вставляет текст в HTML
-			 * @static
-			 */
-			sessionList.innerHTML = '';
-
-			/** Если в табличке {@link sessionList} пусто, показываем, что здесь ничего нет ... */
-			if (sessionStorage.length === 0) {
-
-				/**
-				 * @summary Создает ряд для {@link sessionList}
-				 * @name noneItem
-				 * @type {object}
-				 */
-				var noneItem = document.createElement('tr');
-
-				/**
-				 * @summary Показываем, что в Сессионном хранилище нет данных
-				 * @property {string} innerHTML - Вставляет текст в HTML
-				 * @static
-				 */
-				var noneTd = document.createElement('td');
-
-				/**
-				 * @summary Показываем, что в Сессионном хранилище нет данных
-				 * @property {string} innerHTML - Вставляет текст в HTML
-				 * @static
-				 */
-				noneTd.innerHTML = "You have no items in temporary list!";
-
-				/**
-				 * @summary Крепит ячейку в ряд
-				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
-				 * @static
-				 */
-				noneItem.appendChild(noneTd);
-
-				/**
-				 * @summary Крепит ряд в {@link sessionList}
-				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
-				 * @static
-				 */
-				sessionList.appendChild(noneItem);
-
-			}
-
-			/** Если в табличке {@link sessionList} что-то есть ... */
-			if (sessionStorage.length > 0) {
-
-				/** Циклом бежим по хранилищу ...*/
-				for (var i = 0; i < sessionStorage.length; i++) {
-
-					/** Присваиваем значения во временные переменные ... */
-
-					/**
-					 * @summary Временная переменная для ключа
-					 * @name key
-					 * @type {string}
-					 */
-					var key = sessionStorage.key(i);
-
-					/**
-					 * @summary Временная переменная для значения (JSON-объект)
-					 * @name data
-					 * @type {object | string}
-					 */
-					var data = sessionStorage.getItem(sessionStorage.key(i));
-
-					/** Создаем динамическую табличку {@link sessionList} для показа найденных данных */
-
-					/**
-					 * @summary Создает новый ряд для {@link sessionList}
-					 * @name newItem
-					 * @type {object}
-					 */
-					var newItem = document.createElement('tr');
-
-					/**
-					 * @summary Создает ячейку для ключа
-					 * @name tdKey
-					 * @type {object}
-					 */
-					var tdKey = document.createElement('td');
-
-					/**
-					 * @summary Создает ячейку для значения
-					 * @name tdValue
-					 * @type {object}
-					 */
-					var tdValue = document.createElement('td');
-
-					/**
-					 * @summary Создает ячейку для удаления
-					 * @name tdDel
-					 * @type {object}
-					 */
-					var tdDel = document.createElement('td');
-
-					/**
-					 * @summary Создает кнопку для удаления
-					 * @name del
-					 * @type {object}
-					 */
-					var del = document.createElement('input');
-					/** @property {string} - type - Это кнопка */
-						del.type = 'button';
-						/** @property {string} - value - На ней написано Delete */
-						del.value = 'Delete';
-						/** @property {string} - backgroundRepeat - Фон не повторяется */
-						del.style.backgroundRepeat = 'no-repeat';
-						/** @property {string} - backgroundSize - Картинка по размеру фона */
-						del.style.backgroundSize = 'contain';
-
-					/** @property {string} backgroundImage - Паттерн для фона таблицы {@link sessionList} */
-					document.getElementById('storageData').style.backgroundImage = "url('http://www.subtlepatterns.com/patterns/white_leather.png')";
-					/** @property {string} backgroundImage - Картинка для кнопки Удалить {@link del} */
-					del.style.backgroundImage = "url('../../img/del.png')";
-					/** @property {string} backgroundColore - Фон кнопки {@link del} белый */
-					del.style.backgroundColor = 'white';
-
-					/** Заполним табличку {@link sessionList} данными */
-
-					/**
-					 * @summary Заносим ключ в таблицу {@link sessionList}
-					 * @property {string} innerHTML - Вставляет текст в HTML
-					 * @static
-					 */
-					tdKey.innerHTML = key;
-
-					/**
-					 * @summary Заносим значение в таблицу {@link sessionList}
-					 * @property {string} innerHTML - Вставляет текст в HTML
-					 * @static
-					 */
-					tdValue.innerHTML = data;
-
-					/** Вставляем таблицу {@link sessionList} в DOM */
-
-					/**
-					 * @summary Крепит ряд в {@link sessionList}
-					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
-					 * @static
-					 */
-					sessionList.appendChild(newItem);
-
-					/**
-					 * @summary Крепит в ряд ячейку с ключом {@link tdKey}
-					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
-					 * @static
-					 */
-					newItem.appendChild(tdKey);
-
-					/**
-					 * @summary Крепит в ряд ячейку с датой рождения {@link tdValue}
-					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
-					 * @static
-					 */
-					newItem.appendChild(tdValue);
-
-					/**
-					 * @summary Крепит в ряд в ячейку кнопку для удаления {@link del}
-					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
-					 * @static
-					 */
-					tdDel.appendChild(del);
-
-					/**
-					 * @summary Крепит ячейку {@link tdDel} с кнопкой в ряд
-					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
-					 * @static
-					 */
-					newItem.appendChild(tdDel);
-
-					/**
-					 * @description Присваиваем {@link key} как свойство в кнопку {@link del}
-					 * (иначе - не доступно)
-					 * @property {string} - key -
-					 * @static
-					 */
-					del.key = key;
-
-					/**
-					 * @summary Удаляет данные из текущей строки из Локального хранилища
-					 * @listens click:mouseEvent
-					 * @description Создаем динамический обработчик и вешаем его на кнопку удаления
-					 */
-					del.onclick = new Function('sessionStorage.removeItem(this.key)');
-
-				} // FOR END
-
-			} // IF END
-
-		}; // SHOW SESSION ITEMS() END
+		}; // SHOW ITEMS END
 
 		/**
 		 * @summary Очистка Локального хранилища
@@ -1439,7 +1227,7 @@ window.onload = (function() {
 		 * @name db
 		 * @type {object}
 		 */
-		var db = openDatabase("storage_date", "1.0", "Web SQL Storage Demo Database", 1*1024*1024); 
+		var db = openDatabase("storage_date", "1.0", "Web SQL Storage Demo Database", 1*1024*1024);
 
 		/**
 		 * @summary Создает таблицы
@@ -1478,12 +1266,12 @@ window.onload = (function() {
 
 				/** Выполняем SQL запрос на добавление записи в таблицу */
 				t.executeSql("INSERT INTO local_list (local_key, local_value) VALUES (?, ?)", [lKey, lValue],
-					function() { 
-										
+					function() {
+
 						if(i < localStorage.length - 1) {
-							readStorageData(local_key, local_value); 
-							i++; 
-						} 
+							readStorageData(local_key, local_value);
+							i++;
+						}
 					}
 				);
 			});
@@ -1502,9 +1290,9 @@ window.onload = (function() {
 		/** @listens click:mouseEvent Нажатие на кнопку Save In Session */
 		saveInSession.onclick = saveSessionData;
 		/** @listens click:mouseEvent Нажатие на кнопку Show Local */
-		showLocal.onclick = showLocalItems;
+		showLocal.onclick = showItems;
 		/** @listens click:mouseEvent Нажатие на кнопку Show Session */
-		showSession.onclick = showSessionItems;
+		showSession.onclick = showItems;
 		/** @listens click:mouseEvent Нажатие на кнопку Сlear Local */
 		clearLocal.onclick = clearLocalStorage;
 		/** @listens click:mouseEvent Нажатие на кнопку Сlear Session */
