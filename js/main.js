@@ -454,13 +454,15 @@ window.onload = (function() {
 				 * @param {string} - dataLocal.value - Значение, введенное в &lt;input&gt;
 				 * @static
 				 */
-				storage.setItem(keySession.value, dataSession.value);
+				storage.setItem(keyLocal.value, dataLocal.value);
 
-      		} else if(event.target.id == "saveInSessionStorage") {
+      		} 
+
+      		if(event.target.id == "saveInSessionStorage") {
 
   				storage = sessionStorage;
-  				storageKey = keySession;
-      			storageValue = dataSession;
+  				storageKey = keyLocal;
+      			storageValue = dataLocal;
 
 				/**
 				 * @summary Сохраняет данные в локальном хранилище
@@ -471,7 +473,9 @@ window.onload = (function() {
 				 */
 				storage.setItem(keyLocal.value, dataLocal.value);
 
-      		} else if(event.target.id == "saveInWebDB") {
+      		} 
+
+      		if(event.target.id == "saveInWebDB") {
 
       			db.transaction(function (t) {
       				t.executeSql("INSERT INTO local_list (local_key, local_value) VALUES (?, ?)", [keyLocal.value, dataLocal.value]);
@@ -757,19 +761,22 @@ window.onload = (function() {
 
 
 			/**
-			 * @summary Переменная для хранилища
+			 * @summary Переменные для хранилища, ключа и значения, 
+			 * и тела функции для динамического обработчика
 			 *
 			 */
-			var storage, key, data;
+			var storage, key, data, funcString;
 
 			/** @summary Выясняем что показывать */
 			if (event.target.id === "showLocalStorage") {
 
       			storage = localStorage;
+      			funcString = 'localStorage.removeItem(this.key)';
 
 			} else if(event.target.id === "showSessionStorage") {
 
   				storage = sessionStorage;
+  				funcString = 'sessionStorage.removeItem(this.key)';
 
   			} 
 
@@ -801,86 +808,8 @@ window.onload = (function() {
 					 */
 					data = storage.getItem(key);
 
-					/** Создаем элементы таблички {@link itemsList} */
-					var table = createTable();				
-					
-					/** Заполняем табличку */
-
-
-					/**
-					 * @summary Заносим ключ в таблицу {@link itemsList}
-					 * @property {string} innerHTML - Вставляет текст в HTML
-					 * @static
-					 */
-					table.tdKey.innerHTML = key;
-
-					/** Проверяем значение поля на наличие JSON-объекта */
-					if (data.substr(0, 1) === '{') {
-
-						/** Если да - то парсим */
-						table.tdValue.innerHTML = JSON.parse(data).dateOfBirth;
-
-					} else {
-
-						/**
-						 * @description Если значение {@link data} - простая строка,
-						 * тогда присваиваем значение в ячейку {@link tdValue}
-						 * @property {string} innerHTML - Вставляет текст в HTML
-						 * @static
-						 */
-						table.tdValue.innerHTML = data;
-					}
-
-					/**
-					 * @summary Крепит Вставляем ряд {@link newItem} в таблицу {@link itemsList}
-					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
-					 * @static
-					 */
-					itemsList.appendChild(table.tr);
-
-					/**
-					 * @summary Крепит в ряд ячейку с ключом {@link tdKey}
-					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
-					 * @static
-					 */
-					table.tr.appendChild(table.tdKey);
-
-					/**
-					 * @summary Крепит в ряд ячейку с датой рождения {@link tdValue}
-					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
-					 * @static
-					 */
-					table.tr.appendChild(table.tdValue);
-
-					/**
-					 * @summary Крепит в ряд в ячейку кнопку для удаления {@link del}
-					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
-					 * @static
-					 */
-					table.tdDel.appendChild(table.del);
-
-					/**
-					 * @summary Крепит ячейку {@link tdDel} с кнопкой в ряд
-					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
-					 * @static
-					 */
-					table.tr.appendChild(table.tdDel);
-
-					/**
-					 * @description Присваиваем {@link key} как свойство в кнопку {@link del}
-					 * (иначе - не доступно)
-					 * @property {string} - key -
-					 * @static
-					 */
-					 /** @property {string} Присваиваем key как свойство в кнопку (иначе - не доступен) */
-					table.del.key = key;
-
-					/**
-					 * @summary Удаляет данные из текущей строки из Локального хранилища
-					 * @listens click:mouseEvent
-					 * @description Создаем динамический обработчик и вешаем его на кнопку удаления
-					 */
-					table.del.onclick = new Function('localStorage.removeItem(this.key)');
+					/** Создаем и заполняем элементы таблички {@link itemsList} */
+					var table = createTable(itemsList, key, data, funcString);					
 
 				} // FOR END
 
@@ -936,12 +865,17 @@ window.onload = (function() {
 		}
 
 		/** 
-		* @summary Создает элемент таблицы для показа содержимого хранилищ/ Web DB
+		* @description Создает ряд таблицы с тремя ячейками
+		* для динамического показа содержимого.
+		* Третья ячейка - кнопка "Удалить" с динамическим обработчиком
 		* @name createTable
 		* @type {function}
+		* @param {object} itemsList Существующая HTML-Таблица
+		* @param {string} key 1-я ячейка - Значение ключа 
+		* @param {string} value 2-я ячейка - Значение значения. С проверкой значения на JSON и парсингом в строку
 		* @return {object} 
 		*/
-		var createTable = function() {
+		var createTable = function(itemsList, key, data, funcString) {
 
 			/**
 			 * @summary Возвращаемый объект с html/css для таблицы показа содержимого
@@ -949,6 +883,7 @@ window.onload = (function() {
 			 * @property {object} tr ряд для таблицы
 			 * @property {object} tdKey ячейка для ключа
 			 * @property {object} tdDel ячейка для кнопки "Удалить"
+			 * @return {object} заполненный значениями
 			 */
 			var htmlTable = {};
 			/**
@@ -963,12 +898,51 @@ window.onload = (function() {
 			 * @property {object} tdKey ячейка для ключа
 			 */
 			htmlTable.tdKey = document.createElement('td');
+			htmlTable.tdKey.innerHTML = key;
 
 			/**
 			 * @summary Создает ячейку для значения
 			 * @property {object} tdValue ячейка для значения
 			 */
 			htmlTable.tdValue = document.createElement('td');
+
+			/** Проверяем значение поля на наличие JSON-объекта */
+			if (data.substr(0, 1) === '{') {
+
+				/** Если да - то парсим */
+				htmlTable.tdValue.innerHTML = JSON.parse(data).dateOfBirth;
+
+			} else {
+
+				/**
+				 * @description Если значение {@link data} - простая строка,
+				 * тогда присваиваем значение в ячейку {@link tdValue}
+				 * @property {string} innerHTML - Вставляет текст в HTML
+				 * @static
+				 */
+				htmlTable.tdValue.innerHTML = data;
+			}
+
+			/**
+			 * @summary Крепит Вставляем ряд {@link newItem} в таблицу {@link itemsList}
+			 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+			 * @static
+			 */
+			itemsList.appendChild(htmlTable.tr);
+
+			/**
+			 * @summary Крепит в ряд ячейку с ключом {@link tdKey}
+			 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+			 * @static
+			 */
+			htmlTable.tr.appendChild(htmlTable.tdKey);
+
+			/**
+			 * @summary Крепит в ряд ячейку с датой рождения {@link tdValue}
+			 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+			 * @static
+			 */
+			htmlTable.tr.appendChild(htmlTable.tdValue);
 
 			/**
 			 * @summary Создает ячейку для удаления
@@ -981,6 +955,38 @@ window.onload = (function() {
 			 * @property {object} tdDel Кнопка "Удалить"
 			 */
 			htmlTable.del = document.createElement('input');
+
+			/**
+			 * @summary Крепит в ряд в ячейку кнопку для удаления {@link del}
+			 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+			 * @static
+			 */
+			htmlTable.tdDel.appendChild(htmlTable.del);
+
+			/**
+			 * @summary Крепит ячейку {@link tdDel} с кнопкой в ряд
+			 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+			 * @static
+			 */
+			htmlTable.tr.appendChild(htmlTable.tdDel);
+
+			/**
+			 * @description Присваиваем {@link key} как свойство в кнопку {@link del}
+			 * (иначе - не доступно)
+			 * @property {string} - key -
+			 * @static
+			 */
+			/** @property {string} Присваиваем key как свойство в кнопку (иначе - не доступен) */
+			htmlTable.del.key = key;
+
+			/**
+			 * @summary Удаляет данные из текущей строки из Локального хранилища
+			 * @listens click:mouseEvent
+			 * @description Создаем динамический обработчик и вешаем его на кнопку удаления
+			 */
+			htmlTable.del.onclick = new Function(funcString);
+
+			
 
 			/**
 			 * @summary Стилизуем кнопку для удаления
@@ -1354,14 +1360,14 @@ window.onload = (function() {
 		 * @name showWebDb
 		 * @type {function}
 		 */
-		var showWebDb = function() {
+		/*var showWebDb = function() {
 
 			db.transaction(function(t) {
 t.executeSql("SELECT * FROM local_list", [], function(tx, result) {
 for(var i = 0; i < result.rows.length; i++) {
 document.write('<b>' + result.rows.item(i)['local_key'] + '</b><br />');
 }}, null)}); 
-		}
+		}*/
 
 		/**
 		 * @summary Удаляет таблицу local_list
