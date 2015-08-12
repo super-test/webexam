@@ -818,6 +818,22 @@ window.onload = (function() {
 		}; // SHOW ITEMS END
 
 		/**
+		 * @summary Показывает все записи BD
+		 * @name showWebDb
+		 * @type {function}
+		 */
+		var showWebDb = function(t) {
+
+			db.transaction(function(t) {
+				t.executeSql("SELECT * FROM local_list", [], function(tx, result) {
+					for(var i = 0; i < result.rows.length; i++) {
+						// document.write('<b>' + result.rows.item(i)['local_key'] + '</b><br />');
+						createTable(itemsList, result.rows.item(i)['local_key'], result.rows.item(i)['local_value'], "alert('super')");
+					}}, null)
+				}); 
+			}
+
+		/**
 		 * @summary Создает ряд с сообщением о том, что в хранилище пусто
 		 * @name createEmptyRow
 		 * @type {function}
@@ -1356,20 +1372,6 @@ window.onload = (function() {
 		}
 
 		/**
-		 * @summary Показывает все записи BD
-		 * @name showWebDb
-		 * @type {function}
-		 */
-		/*var showWebDb = function() {
-
-			db.transaction(function(t) {
-t.executeSql("SELECT * FROM local_list", [], function(tx, result) {
-for(var i = 0; i < result.rows.length; i++) {
-document.write('<b>' + result.rows.item(i)['local_key'] + '</b><br />');
-}}, null)}); 
-		}*/
-
-		/**
 		 * @summary Удаляет таблицу local_list
 		 * @name dropWebDb
 		 * @type {function}
@@ -1448,7 +1450,7 @@ document.write('<b>' + result.rows.item(i)['local_key'] + '</b><br />');
 		/** @listens click:mouseEvent Нажатие на кнопку Drop Table */
 		dropTableWebDB.onclick = dropWebDb;
 		/** @listens click:mouseEvent Нажатие на кнопку Show DB */
-		showWebDbButton.onclick = showItems;
+		showWebDbButton.onclick = showWebDb;
 
 		/** @listens click:mouseEvent Нажатие на кнопку Save In Local */
 		saveInLocal.onclick = saveData;

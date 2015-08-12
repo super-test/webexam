@@ -4,6 +4,42 @@
 		"selected_items":
 		[
 			[
+				"func",
+				"funcString"
+			],
+			[
+				"new",
+				"newItem"
+			],
+			[
+				"create",
+				"createEmptyRow"
+			],
+			[
+				"lo",
+				"local_key"
+			],
+			[
+				"k",
+				"key"
+			],
+			[
+				"va",
+				"value"
+			],
+			[
+				"show",
+				"showWebDbButton"
+			],
+			[
+				"showSession",
+				"showSessionStorage"
+			],
+			[
+				"di",
+				"disabled	Attr"
+			],
+			[
 				"loca",
 				"local_list"
 			],
@@ -22,10 +58,6 @@
 			[
 				"read",
 				"readStorageData"
-			],
-			[
-				"create",
-				"createWebDb"
 			],
 			[
 				"createW",
@@ -55,7 +87,7 @@
 			"file": "js/main.js",
 			"settings":
 			{
-				"buffer_size": 91540,
+				"buffer_size": 94133,
 				"line_ending": "Unix"
 			}
 		},
@@ -63,7 +95,7 @@
 			"file": "doc/html5/html5-storage.html",
 			"settings":
 			{
-				"buffer_size": 3074,
+				"buffer_size": 3163,
 				"line_ending": "Unix"
 			}
 		}
@@ -175,6 +207,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"db",
+			"showWebDb",
+			"showItems",
+			"showI",
+			"saveData",
+			"itemsList",
+			"tdDel",
+			"htmlTable.row",
+			"table.row",
+			"newItem",
+			"createTable",
+			"showItems",
+			"createEmptyRow",
 			"showItems",
 			"],\n",
 			"update",
@@ -265,15 +310,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 91540,
+						"buffer_size": 94133,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								34861,
-								34861
+								22538,
+								22538
 							]
 						],
 						"settings":
@@ -282,7 +327,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 35423.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -294,15 +339,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3074,
+						"buffer_size": 3163,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1122,
-								1122
+								1363,
+								1363
 							]
 						],
 						"settings":
@@ -311,7 +356,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 868.0,
+						"translation.y": 840.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
