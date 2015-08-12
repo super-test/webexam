@@ -4,8 +4,40 @@
 		"selected_items":
 		[
 			[
+				"loca",
+				"local_list"
+			],
+			[
+				"upda",
+				"updateWebDb"
+			],
+			[
 				"local",
 				"local_list"
+			],
+			[
+				"ret",
+				"return"
+			],
+			[
+				"read",
+				"readStorageData"
+			],
+			[
+				"create",
+				"createWebDb"
+			],
+			[
+				"createW",
+				"createWebDbButton"
+			],
+			[
+				"key",
+				"keyLocal"
+			],
+			[
+				"ke",
+				"keyLocal"
 			],
 			[
 				"storage",
@@ -23,7 +55,7 @@
 			"file": "js/main.js",
 			"settings":
 			{
-				"buffer_size": 89053,
+				"buffer_size": 91540,
 				"line_ending": "Unix"
 			}
 		},
@@ -31,7 +63,7 @@
 			"file": "doc/html5/html5-storage.html",
 			"settings":
 			{
-				"buffer_size": 2801,
+				"buffer_size": 3074,
 				"line_ending": "Unix"
 			}
 		}
@@ -49,7 +81,7 @@
 		[
 			[
 				"bookmark",
-				"SublimeBookmarks: Remove All Bookmarks (Clear Bookmarks)"
+				"SublimeBookmarks: Add Bookmark"
 			],
 			[
 				"remove",
@@ -129,7 +161,7 @@
 	],
 	"find":
 	{
-		"height": 36.0
+		"height": 46.0
 	},
 	"find_in_files":
 	{
@@ -143,6 +175,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"showItems",
+			"],\n",
+			"update",
+			"readFromStorageToDbButton",
+			"dropWebDb",
+			"db",
+			"UPDATE",
+			"readStorageData",
+			"readStorageData()",
+			"saveDa",
+			"saveInWebDB",
+			"setItem",
+			"saveInSession",
+			"saveInLocal",
+			"saveData",
 			"var i",
 			"var db",
 			"keyLocal",
@@ -218,15 +265,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 89053,
+						"buffer_size": 91540,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								31100,
-								31100
+								34861,
+								34861
 							]
 						],
 						"settings":
@@ -235,7 +282,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 31951.0,
+						"translation.y": 35423.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -247,15 +294,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2801,
+						"buffer_size": 3074,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1100,
-								1100
+								1122,
+								1122
 							]
 						],
 						"settings":
@@ -264,7 +311,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 420.0,
+						"translation.y": 868.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,

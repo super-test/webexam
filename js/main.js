@@ -332,6 +332,13 @@ window.onload = (function() {
 		var dropTableWebDB = document.getElementById('dropTableFromWebDb');
 
 		/**
+		 * @summary Кнопка Show WEB DB
+		 * @name showWebDbButton
+		 * @type {object}
+		 */
+		var showWebDbButton = document.getElementById('showWebDbData');
+
+		/**
 		 * @summary Кнопка Save in Local
 		 * @name saveInLocal
 		 * @type {object}
@@ -729,7 +736,7 @@ window.onload = (function() {
 		 * @name showItems
 		 * @type {function}
 		 *
-		 * @description Если в Локальном хранилище пустота ...
+		 * @description Если в Локальном/ Сессионном хранилище/ WEB SQL DB пустота ...
 		 * Показываем, что здесь ничего нет
 		 * Иначе - создаем динамическую табличку {@link itemsList}
 		 * Циклом бежим по всем данным
@@ -741,12 +748,6 @@ window.onload = (function() {
 		 */
 		var showItems = function () {
 
-			var storage;
-
-			if (event.target.id == "showLocalStorage")
-      			storage = localStorage;
-  			else 
-  				storage = sessionStorage;
 			/**
 			 * @summary Очищает {@link itemsList}
 			 * @property {string} innerHTML - Вставляет текст в HTML
@@ -754,44 +755,28 @@ window.onload = (function() {
 			 */
 			itemsList.innerHTML = '';
 
+
+			/**
+			 * @summary Переменная для хранилища
+			 *
+			 */
+			var storage, key, data;
+
+			/** @summary Выясняем что показывать */
+			if (event.target.id === "showLocalStorage") {
+
+      			storage = localStorage;
+
+			} else if(event.target.id === "showSessionStorage") {
+
+  				storage = sessionStorage;
+
+  			} 
+
 			/** Если в Локальном хранилище пустота ... */
 			if (storage.length === 0) {
 
-				/**
-				 * @summary Создает ряд для {@link itemsList}
-				 * @name noneItem
-				 * @type {object}
-				 */
-				var noneItem = document.createElement('tr');
-
-				/**
-				 * @summary Создаем ячейку для {@link itemsList}
-				 * @name noneTd
-				 * @type {object}
-				 */
-				var noneTd = document.createElement('td');
-
-				/**
-				 * @summary Показываем, что в Локальном хранилище нет данных
-				 * @property {string} innerHTML - Вставляет текст в HTML
-				 * @static
-				 */
-				noneTd.innerHTML = "You have no items in your list!";
-
-				/**
-				 * @summary Крепит ячейку в ряд
-				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
-				 * @static
-				 */
-				noneItem.appendChild(noneTd);
-
-				/**
-				 * @summary Крепит ряд в {@link itemsList}
-				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
-				 * @static
-				 */
-				itemsList.appendChild(noneItem);
-
+				createEmptyRow("storage", "Storage is Empty");
 			}
 
 			/** Если в Локальном хранилище что-то есть ... */
@@ -807,86 +792,33 @@ window.onload = (function() {
 					 * @name key
 					 * @type {string}
 					 */
-					var key = storage.key(i);
+					key = storage.key(i);
 
 					/**
 					 * @summary Временная переменная для значения (JSON-объект)
 					 * @name data
 					 * @type {object | string}
 					 */
-					var data = storage.getItem(key);
+					data = storage.getItem(key);
 
 					/** Создаем элементы таблички {@link itemsList} */
-
-					/**
-					 * @summary Создает новый ряд для {@link itemsList}
-					 * @name newItem
-					 * @type {object}
-					 */
-					var newItem = document.createElement('tr');
-
-					/**
-					 * @summary Создает ячейку для ключа
-					 * @name tdKey
-					 * @type {object}
-					 */
-					var tdKey = document.createElement('td');
-
-					/**
-					 * @summary Создает ячейку для значения
-					 * @name tdValue
-					 * @type {object}
-					 */
-					var tdValue = document.createElement('td');
-
-					/**
-					 * @summary Создает ячейку для удаления
-					 * @name tdDel
-					 * @type {object}
-					 */
-					var tdDel = document.createElement('td');
-
-					/**
-					 * @summary Создает кнопку для удаления
-					 * @name del
-					 * @type {object}
-					 */
-					var del = document.createElement('input');
-
-					/**
-					 * @summary Стилизуем кнопку для удаления
-					 * @property {method} style - Добавляет CSS-свойства к HTML-Элементу
-					 */
-					del.style.backgroundImage = "url('../../img/del.png')";
-
-						/** @property {string} - type - Это кнопка */
-						del.type = 'button';
-						/** @property {string} - value - На ней написано Delete */
-						del.value = 'Delete';
-						/** @property {string} - backgroundRepeat - Фон не повторяется */
-						del.style.backgroundRepeat = 'no-repeat';
-						/** @property {string} - backgroundSize - Картинка по размеру фона */
-						del.style.backgroundSize = 'contain';
-						/** @property {string} - backgroundColor - Фон кнопки белого цвета */
-						del.style.backgroundColor = 'white';
-
-					/** @property {string} backgroundImage - Паттерн для фона таблицы {@link itemsList} */
-					document.getElementById('storageData').style.backgroundImage = "url('http://www.subtlepatterns.com/patterns/white_leather.png')";
-
+					var table = createTable();				
+					
 					/** Заполняем табличку */
+
 
 					/**
 					 * @summary Заносим ключ в таблицу {@link itemsList}
 					 * @property {string} innerHTML - Вставляет текст в HTML
 					 * @static
 					 */
-					tdKey.innerHTML = key;
+					table.tdKey.innerHTML = key;
 
 					/** Проверяем значение поля на наличие JSON-объекта */
 					if (data.substr(0, 1) === '{') {
 
 						/** Если да - то парсим */
-						tdValue.innerHTML = JSON.parse(data).dateOfBirth;
+						table.tdValue.innerHTML = JSON.parse(data).dateOfBirth;
 
 					} else {
 
@@ -896,7 +828,7 @@ window.onload = (function() {
 						 * @property {string} innerHTML - Вставляет текст в HTML
 						 * @static
 						 */
-						tdValue.innerHTML = data;
+						table.tdValue.innerHTML = data;
 					}
 
 					/**
@@ -904,35 +836,35 @@ window.onload = (function() {
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
-					itemsList.appendChild(newItem);
+					itemsList.appendChild(table.tr);
 
 					/**
 					 * @summary Крепит в ряд ячейку с ключом {@link tdKey}
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
-					newItem.appendChild(tdKey);
+					table.tr.appendChild(table.tdKey);
 
 					/**
 					 * @summary Крепит в ряд ячейку с датой рождения {@link tdValue}
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
-					newItem.appendChild(tdValue);
+					table.tr.appendChild(table.tdValue);
 
 					/**
 					 * @summary Крепит в ряд в ячейку кнопку для удаления {@link del}
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
-					tdDel.appendChild(del);
+					table.tdDel.appendChild(table.del);
 
 					/**
 					 * @summary Крепит ячейку {@link tdDel} с кнопкой в ряд
 					 * @property {method} - appendChild - Вставляет HTML-объект в DOM
 					 * @static
 					 */
-					newItem.appendChild(tdDel);
+					table.tr.appendChild(table.tdDel);
 
 					/**
 					 * @description Присваиваем {@link key} как свойство в кнопку {@link del}
@@ -941,20 +873,137 @@ window.onload = (function() {
 					 * @static
 					 */
 					 /** @property {string} Присваиваем key как свойство в кнопку (иначе - не доступен) */
-					del.key = key;
+					table.del.key = key;
 
 					/**
 					 * @summary Удаляет данные из текущей строки из Локального хранилища
 					 * @listens click:mouseEvent
 					 * @description Создаем динамический обработчик и вешаем его на кнопку удаления
 					 */
-					del.onclick = new Function('localStorage.removeItem(this.key)');
+					table.del.onclick = new Function('localStorage.removeItem(this.key)');
 
 				} // FOR END
 
 			} // IF END
 
 		}; // SHOW ITEMS END
+
+		/**
+		 * @summary Создает ряд с сообщением о том, что в хранилище пусто
+		 * @name createEmptyRow
+		 * @type {function}
+		 */
+		var createEmptyRow = function(storageName, message) {
+
+			/** Аргументы по умолчанию */
+			var name = storageName || 'list';
+			var msg = message || 'You have no items in your ' + name;
+			
+			/**
+			 * @summary Создает ряд для {@link itemsList}
+			 * @name noneItem
+			 * @type {object}
+			 */
+			var noneItem = document.createElement('tr');
+
+			/**
+			 * @summary Создаем ячейку для {@link itemsList}
+			 * @name noneTd
+			 * @type {object}
+			 */
+			var noneTd = document.createElement('td');
+
+			/**
+			 * @summary Показываем, что в Локальном хранилище нет данных
+			 * @property {string} innerHTML - Вставляет текст в HTML
+			 * @static
+			 */
+			noneTd.innerHTML = message;
+
+			/**
+			 * @summary Крепит ячейку в ряд
+			 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+			 * @static
+			 */
+			noneItem.appendChild(noneTd);
+
+			/**
+			 * @summary Крепит ряд в {@link itemsList}
+			 * @property {method} - appendChild - Вставляет HTML-объект в DOM
+			 * @static
+			 */
+			itemsList.appendChild(noneItem);
+		}
+
+		/** 
+		* @summary Создает элемент таблицы для показа содержимого хранилищ/ Web DB
+		* @name createTable
+		* @type {function}
+		* @return {object} 
+		*/
+		var createTable = function() {
+
+			/**
+			 * @summary Возвращаемый объект с html/css для таблицы показа содержимого
+			 * @name htmlTable
+			 * @property {object} tr ряд для таблицы
+			 * @property {object} tdKey ячейка для ключа
+			 * @property {object} tdDel ячейка для кнопки "Удалить"
+			 */
+			var htmlTable = {};
+			/**
+			 * @summary Создает новый ряд для {@link itemsList}
+			 * @property {object} tr ряд для таблицы
+			 * @property {object} tdValue ячейка для значения
+			 */
+			htmlTable.tr = document.createElement('tr');
+
+			/**
+			 * @summary Создает ячейку для ключа
+			 * @property {object} tdKey ячейка для ключа
+			 */
+			htmlTable.tdKey = document.createElement('td');
+
+			/**
+			 * @summary Создает ячейку для значения
+			 * @property {object} tdValue ячейка для значения
+			 */
+			htmlTable.tdValue = document.createElement('td');
+
+			/**
+			 * @summary Создает ячейку для удаления
+			 * @property {object} tdDel ячейка для кнопки "Удалить"
+			 */
+			htmlTable.tdDel = document.createElement('td');
+
+			/**
+			 * @summary Создает кнопку для удаления
+			 * @property {object} tdDel Кнопка "Удалить"
+			 */
+			htmlTable.del = document.createElement('input');
+
+			/**
+			 * @summary Стилизуем кнопку для удаления
+			 * @property {method} style - Добавляет CSS-свойства к HTML-Элементу
+			 */
+			htmlTable.del.style.backgroundImage = "url('../../img/del.png')";
+
+			/** @property {string} - type - Это кнопка */
+			htmlTable.del.type = 'button';
+			/** @property {string} - value - На ней написано Delete */
+			htmlTable.del.value = 'Delete';
+			/** @property {string} - backgroundRepeat - Фон не повторяется */
+			htmlTable.del.style.backgroundRepeat = 'no-repeat';
+			/** @property {string} - backgroundSize - Картинка по размеру фона */
+			htmlTable.del.style.backgroundSize = 'contain';
+			/** @property {string} - backgroundColor - Фон кнопки белого цвета */
+			htmlTable.del.style.backgroundColor = 'orange';
+
+			/** @property {string} backgroundImage - Паттерн для фона таблицы {@link itemsList} */
+			document.getElementById('storageData').style.backgroundImage = "url('http://www.subtlepatterns.com/patterns/white_leather.png')";
+
+			return htmlTable;
+		}
 
 		/**
 		 * @summary Очистка Локального хранилища
@@ -1266,6 +1315,11 @@ window.onload = (function() {
 */
 // BOOKMARK .......................................................... WEB DATA BASE
 		
+		/**
+		 * @summary База данных
+		 * @name db
+		 * @type {function}
+		 */
 		var db;
 
 		/**
@@ -1296,14 +1350,28 @@ window.onload = (function() {
 		}
 
 		/**
-		 * @summary Создает базу данных
-		 * @name createWebDb
+		 * @summary Показывает все записи BD
+		 * @name showWebDb
+		 * @type {function}
+		 */
+		var showWebDb = function() {
+
+			db.transaction(function(t) {
+t.executeSql("SELECT * FROM local_list", [], function(tx, result) {
+for(var i = 0; i < result.rows.length; i++) {
+document.write('<b>' + result.rows.item(i)['local_key'] + '</b><br />');
+}}, null)}); 
+		}
+
+		/**
+		 * @summary Удаляет таблицу local_list
+		 * @name dropWebDb
 		 * @type {function}
 		 */
 		var dropWebDb = function() {
 
 			/**
-			 * @summary Создает таблицы
+			 * @summary Удаление таблицы
 			 * @property {function} transaction Обращение к базе данных
 			 */
 			db.transaction(
@@ -1316,7 +1384,7 @@ window.onload = (function() {
 		}
 
 		/**
-		 * @summary Счетчик обращений к базе данных
+		 * @summary Счетчик рекурсивных обращений
 		 * @name i
 		 * @type {number}
 		 */
@@ -1340,12 +1408,13 @@ window.onload = (function() {
 				var lKey = localStorage.key(i);
 				var lValue = localStorage.getItem(lKey);
 
+				// FEATURES - Борьба с асинхронными запросами к WEB DB при помощи рекурсии
 				/** Выполняем SQL запрос на добавление записи в таблицу */
 				t.executeSql("INSERT INTO local_list (local_key, local_value) VALUES (?, ?)", [lKey, lValue],
 					function() {
 
+						// FEATURES - Странное использование i
 						if(++i < localStorage.length) {
-							//++i;
 							readStorageData(local_key, local_value);
 						}
 						else return;
@@ -1359,7 +1428,10 @@ window.onload = (function() {
 
 		/** Вешаем обработчики для хранилища */
 
-		/** @listens onstorage:storageEvent Изменение Локального хранилища */
+		/** 
+		 * @summary Работает, но закомментировано, потому что мешает
+		 * @listens onstorage:storageEvent Изменение Локального хранилища 
+		 */
 		//window.onstorage = storageChanged;
 		/** @listens click:mouseEvent Нажатие на кнопку Create WEB SQL DB */
 		createWebDbButton.onclick = createWebDb;
@@ -1369,6 +1441,8 @@ window.onload = (function() {
 		saveDataInWebDB.onclick = saveData;
 		/** @listens click:mouseEvent Нажатие на кнопку Drop Table */
 		dropTableWebDB.onclick = dropWebDb;
+		/** @listens click:mouseEvent Нажатие на кнопку Show DB */
+		showWebDbButton.onclick = showItems;
 
 		/** @listens click:mouseEvent Нажатие на кнопку Save In Local */
 		saveInLocal.onclick = saveData;
