@@ -267,14 +267,14 @@ window.onload = (function() {
 		/** Получаем инпуты */
 
 		/**
-		 * @summary &lt;input&gt для ввода ключа в Локальное хранилище
+		 * @summary &lt;input&gt для ввода ключа
 		 * @name keyLocal
 		 * @type {object}
 		 */
 		var keyLocal = document.getElementById('keyLocalData');
 
 		/**
-		 * @summary &lt;input&gt для ввода ключа в Локальное хранилище
+		 * @summary &lt;input&gt для ввода данных
 		 * @name dataLocal
 		 * @type {object}
 		 */
@@ -285,14 +285,14 @@ window.onload = (function() {
 		 * @name keySession
 		 * @type {object}
 		 */
-		var keySession = document.getElementById('keySessionData');
+		//var keySession = document.getElementById('keySessionData');
 
 		/**
 		 * @summary &lt;input&gt для ввода значения в Сессионное хранилище
 		 * @name dataSession
 		 * @type {object}
 		 */
-		var dataSession = document.getElementById('inputSessionData');
+		//var dataSession = document.getElementById('inputSessionData');
 
 		/**
 		 * @summary &lt;input&gt для drag'n'drop image
@@ -312,7 +312,7 @@ window.onload = (function() {
 
 		/**
 		 * @summary Кнопка Read data from Storage
-		 * @name saveInLocal
+		 * @name readFromStorageToDbButton
 		 * @type {object}
 		 */
 		var readFromStorageToDbButton = document.getElementById('readFromStorageToDb');
@@ -326,7 +326,7 @@ window.onload = (function() {
 
 		/**
 		 * @summary Кнопка Drop Table WEB DB
-		 * @name saveDataInWebDB
+		 * @name dropTableWebDB
 		 * @type {object}
 		 */
 		var dropTableWebDB = document.getElementById('dropTableFromWebDb');
@@ -439,7 +439,21 @@ window.onload = (function() {
 			 * @name storage
 			 * @type {object}
 			 */
-			var storage = localStorage, storageKey, storageValue;
+			var storage = localStorage;
+
+			/**
+			 * @summary Временная переменная для ключа
+			 * @name storageKey
+			 * @type {string}
+			 */
+			var storageKey;
+
+			/**
+			 * @summary Временная переменная для значения
+			 * @name storageValue
+			 * @type {string}
+			 */
+			var storageValue;
 
 			if (event.target.id == "saveInLocalStorage") {
 
@@ -456,7 +470,7 @@ window.onload = (function() {
 				 */
 				storage.setItem(keyLocal.value, dataLocal.value);
 
-      		} 
+      		}
 
       		if(event.target.id == "saveInSessionStorage") {
 
@@ -465,20 +479,21 @@ window.onload = (function() {
       			storageValue = dataLocal;
 
 				/**
-				 * @summary Сохраняет данные в локальном хранилище
-				 * @property {method} - setItem - Сохраняет пару ключ и значение в локальном хранилище
+				 * @summary Сохраняет данные в сессионном хранилище
+				 * @property {method} - setItem - Сохраняет пару ключ и значение в сессионном хранилище
 				 * @param {string} - keyLocal.value - Ключ, введенный в &lt;input&gt;
 				 * @param {string} - dataLocal.value - Значение, введенное в &lt;input&gt;
 				 * @static
 				 */
 				storage.setItem(keyLocal.value, dataLocal.value);
 
-      		} 
+      		}
 
       		if(event.target.id == "saveInWebDB") {
 
       			db.transaction(function (t) {
-      				t.executeSql("INSERT INTO local_list (local_key, local_value) VALUES (?, ?)", [keyLocal.value, dataLocal.value]);
+      				t.executeSql("INSERT INTO local_list (local_key, local_value) VALUES (?, ?)",
+      					[keyLocal.value, dataLocal.value]);
       			});
       		}
 
@@ -748,7 +763,7 @@ window.onload = (function() {
 		 * Заполняем ими табличку {@link itemsList}
 		 * К каждой паре ключ-значение добавляем кнопку "Удалить"
 		 * Вешаем на кнопку динамический обработчик на клик
-		 * @summary Показываем в табличке {@link itemsList} содержимое локального хранилища
+		 * @summary Показываем в табличке {@link itemsList} содержимое
 		 */
 		var showItems = function () {
 
@@ -759,34 +774,55 @@ window.onload = (function() {
 			 */
 			itemsList.innerHTML = '';
 
+			/**
+			 * @summary Хранилище по умолчанию будет Локальным
+			 * @name storage
+			 * @type {object}
+			 */
+			var storage;
 
 			/**
-			 * @summary Переменные для хранилища, ключа и значения, 
-			 * и тела функции для динамического обработчика
-			 *
+			 * @summary Временная переменная для ключа
+			 * @name key
+			 * @type {string}
 			 */
-			var storage, key, data, funcString;
+			var key;
+
+			/**
+			 * @summary Временная переменная для значения
+			 * @name data
+			 * @type {string}
+			 */
+			var data;
+
+			/**
+			 * @summary Тело функции для динамического обработчика
+			 * @name funcString
+			 * @type {string}
+			 */
+			var funcString;
 
 			/** @summary Выясняем что показывать */
 			if (event.target.id === "showLocalStorage") {
 
-      			storage = localStorage;
-      			funcString = 'localStorage.removeItem(this.key)';
+			storage = localStorage;
+			funcString = 'localStorage.removeItem(this.key)';
 
 			} else if(event.target.id === "showSessionStorage") {
 
   				storage = sessionStorage;
   				funcString = 'sessionStorage.removeItem(this.key)';
 
-  			} 
+  			}
 
-			/** Если в Локальном хранилище пустота ... */
+			/** Если там пустота ... */
 			if (storage.length === 0) {
 
+				/** Покахываем, что здесь ничего нет */
 				createEmptyRow("storage", "Storage is Empty");
 			}
 
-			/** Если в Локальном хранилище что-то есть ... */
+			/** Если там что-то есть ... */
 			if (storage.length > 0) {
 
 				/** Пробегаем по всем элементам */
@@ -808,8 +844,8 @@ window.onload = (function() {
 					 */
 					data = storage.getItem(key);
 
-					/** Создаем и заполняем элементы таблички {@link itemsList} */
-					var table = createTable(itemsList, key, data, funcString);					
+					/** Создаем и заполняем элементы таблички {@link createTable} */
+					var table = createTable(itemsList, key, data, funcString);
 
 				} // FOR END
 
@@ -817,22 +853,31 @@ window.onload = (function() {
 
 		}; // SHOW ITEMS END
 
+
 		/**
 		 * @summary Показывает все записи BD
 		 * @name showWebDb
 		 * @type {function}
 		 */
 		var showWebDb = function(t) {
+			itemsList.innerHTML = '';
+
 
 			db.transaction(function(t) {
-				t.executeSql("SELECT * FROM local_list", [], function(tx, result) {
-					for(var i = 0; i < result.rows.length; i++) {
-						// document.write('<b>' + result.rows.item(i)['local_key'] + '</b><br />');
-						createTable(itemsList, result.rows.item(i)['local_key'], result.rows.item(i)['local_value'], "alert('super')");
-					}}, null)
-				}); 
-			}
+				t.executeSql("SELECT * FROM local_list", [], function(t, result) {
 
+
+					var idn;
+					for(var i = 0; i < result.rows.length; i++) {
+
+						idn = result.rows.item(i).local_key;
+						var query = "DELETE FROM local_list WHERE local_key=(?)),["+result.rows.item(i)['local_key']+"]);";
+						var funcString = 'db.transaction(function(t){t.executeSql('+query+' )};)';
+						createTable(itemsList, result.rows.item(i)['local_key'], result.rows.item(i)['local_value'], funcString);
+
+					}}, null);
+				});
+			};
 		/**
 		 * @summary Создает ряд с сообщением о том, что в хранилище пусто
 		 * @name createEmptyRow
@@ -843,7 +888,7 @@ window.onload = (function() {
 			/** Аргументы по умолчанию */
 			var name = storageName || 'list';
 			var msg = message || 'You have no items in your ' + name;
-			
+
 			/**
 			 * @summary Создает ряд для {@link itemsList}
 			 * @name noneItem
@@ -880,16 +925,16 @@ window.onload = (function() {
 			itemsList.appendChild(noneItem);
 		}
 
-		/** 
+		/**
 		* @description Создает ряд таблицы с тремя ячейками
 		* для динамического показа содержимого.
 		* Третья ячейка - кнопка "Удалить" с динамическим обработчиком
 		* @name createTable
 		* @type {function}
 		* @param {object} itemsList Существующая HTML-Таблица
-		* @param {string} key 1-я ячейка - Значение ключа 
+		* @param {string} key 1-я ячейка - Значение ключа
 		* @param {string} value 2-я ячейка - Значение значения. С проверкой значения на JSON и парсингом в строку
-		* @return {object} 
+		* @return {object}
 		*/
 		var createTable = function(itemsList, key, data, funcString) {
 
@@ -1002,7 +1047,7 @@ window.onload = (function() {
 			 */
 			htmlTable.del.onclick = new Function(funcString);
 
-			
+
 
 			/**
 			 * @summary Стилизуем кнопку для удаления
@@ -1210,7 +1255,7 @@ window.onload = (function() {
 						/** В Java Script месяцы отсчитываются от 0 */
 						month++;
 
-						/** <input type='date' не понимает день и месяц без нолика */
+						/** &lt;input type='date'&gt; не понимает день и месяц без нолика */
 						if (month <= 9) {
 
 							/** Добавляем его для значений меньше 10 */
@@ -1336,7 +1381,7 @@ window.onload = (function() {
 * ********************************************************* WEB DATA BASE **
 */
 // BOOKMARK .......................................................... WEB DATA BASE
-		
+
 		/**
 		 * @summary База данных
 		 * @name db
@@ -1436,9 +1481,9 @@ window.onload = (function() {
 
 		/** Вешаем обработчики для хранилища */
 
-		/** 
+		/**
 		 * @summary Работает, но закомментировано, потому что мешает
-		 * @listens onstorage:storageEvent Изменение Локального хранилища 
+		 * @listens onstorage:storageEvent Изменение Локального хранилища
 		 */
 		//window.onstorage = storageChanged;
 		/** @listens click:mouseEvent Нажатие на кнопку Create WEB SQL DB */
@@ -1468,6 +1513,7 @@ window.onload = (function() {
 		saveBirthButton.onclick = saveBirthday;
 		/** @listens click:mouseEvent Нажатие на кнопку Search */
 		searchButton.onclick = searchData;
+
 		/** @listens onchange:DOM-Event Загрузка файла в &lt;input&gt; */
 		inputFile.onchange = processFiles;
 		/** @listens ondragenter:DOM-Event Начало перетаскивания */

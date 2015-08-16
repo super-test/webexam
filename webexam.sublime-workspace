@@ -4,6 +4,66 @@
 		"selected_items":
 		[
 			[
+				"create",
+				"createTable"
+			],
+			[
+				"a",
+				"alert"
+			],
+			[
+				"lo",
+				"local_key"
+			],
+			[
+				"local",
+				"keyLocal"
+			],
+			[
+				"ke",
+				"key"
+			],
+			[
+				"crea",
+				"createWebDb"
+			],
+			[
+				"va",
+				"var"
+			],
+			[
+				"op",
+				"openDatabase"
+			],
+			[
+				"delete",
+				"deleteItem"
+			],
+			[
+				"list",
+				"local_list"
+			],
+			[
+				"r",
+				"rowid"
+			],
+			[
+				"ro",
+				"rowid"
+			],
+			[
+				"ite",
+				"itemsList"
+			],
+			[
+				"local_",
+				"local_key"
+			],
+			[
+				"de",
+				"del"
+			],
+			[
 				"func",
 				"funcString"
 			],
@@ -12,20 +72,8 @@
 				"newItem"
 			],
 			[
-				"create",
-				"createEmptyRow"
-			],
-			[
-				"lo",
-				"local_key"
-			],
-			[
 				"k",
 				"key"
-			],
-			[
-				"va",
-				"value"
 			],
 			[
 				"show",
@@ -48,10 +96,6 @@
 				"updateWebDb"
 			],
 			[
-				"local",
-				"local_list"
-			],
-			[
 				"ret",
 				"return"
 			],
@@ -65,10 +109,6 @@
 			],
 			[
 				"key",
-				"keyLocal"
-			],
-			[
-				"ke",
 				"keyLocal"
 			],
 			[
@@ -87,7 +127,7 @@
 			"file": "js/main.js",
 			"settings":
 			{
-				"buffer_size": 94133,
+				"buffer_size": 94891,
 				"line_ending": "Unix"
 			}
 		},
@@ -173,13 +213,13 @@
 	],
 	"file_history":
 	[
+		"/home/allenka/public_html/webexam/js/main.js",
 		"/home/allenka/public_html/webexam/css/main.css",
 		"/home/allenka/.config/sublime-text-3/Packages/SublimeBookmarks/Default.sublime-keymap",
 		"/home/allenka/.config/sublime-text-3/Packages/User/Default.sublime-keymap",
 		"/home/allenka/Dropbox/Notes/.brain/Inbox.note",
 		"/home/allenka/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
-		"/home/allenka/public_html/webexam/js/main.js",
 		"/home/allenka/.config/sublime-text-3/Packages/PlainTasks/PlainTasks (Linux).sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/User/Notes.sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/PlainNotes/Notes.sublime-settings",
@@ -193,7 +233,7 @@
 	],
 	"find":
 	{
-		"height": 46.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -207,6 +247,28 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"+\")};)\";",
+			"funcString",
+			"createTable",
+			"query",
+			"funcString",
+			"createTable",
+			"showItems",
+			"createTable",
+			"openDatabase",
+			"openDatabase()",
+			"funcString",
+			"showItems",
+			"createDB",
+			"create",
+			"db",
+			"dd",
+			"showWebDb",
+			"funcS",
+			"nameField",
+			"onload",
+			"onchange",
+			"processFiles",
 			"db",
 			"showWebDb",
 			"showItems",
@@ -310,24 +372,25 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 94133,
+						"buffer_size": 94891,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								22538,
-								22538
+								23539,
+								23539
 							]
 						],
 						"settings":
 						{
+							"history_list_is_closing": true,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": 202.0,
+						"translation.y": 24027.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -356,7 +419,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 840.0,
+						"translation.y": 1736.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
@@ -442,7 +505,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 132.0,
+	"side_bar_width": 289.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
