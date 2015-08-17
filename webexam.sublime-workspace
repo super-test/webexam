@@ -4,6 +4,70 @@
 		"selected_items":
 		[
 			[
+				"web",
+				"webPage"
+			],
+			[
+				"i",
+				"init"
+			],
+			[
+				"We",
+				"WebExam"
+			],
+			[
+				"w",
+				"window"
+			],
+			[
+				"doc",
+				"document"
+			],
+			[
+				"Fr",
+				"FramePage"
+			],
+			[
+				"window",
+				"Window"
+			],
+			[
+				"path",
+				"path"
+			],
+			[
+				"do",
+				"document"
+			],
+			[
+				"pa",
+				"path"
+			],
+			[
+				"d",
+				"document"
+			],
+			[
+				"frame",
+				"frameDocument"
+			],
+			[
+				"showLo",
+				"showLocalStorage"
+			],
+			[
+				"da",
+				"data"
+			],
+			[
+				"show",
+				"showWebDbData"
+			],
+			[
+				"r",
+				"rows"
+			],
+			[
 				"create",
 				"createTable"
 			],
@@ -44,10 +108,6 @@
 				"local_list"
 			],
 			[
-				"r",
-				"rowid"
-			],
-			[
 				"ro",
 				"rowid"
 			],
@@ -74,10 +134,6 @@
 			[
 				"k",
 				"key"
-			],
-			[
-				"show",
-				"showWebDbButton"
 			],
 			[
 				"showSession",
@@ -127,15 +183,7 @@
 			"file": "js/main.js",
 			"settings":
 			{
-				"buffer_size": 94891,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "doc/html5/html5-storage.html",
-			"settings":
-			{
-				"buffer_size": 3163,
+				"buffer_size": 94634,
 				"line_ending": "Unix"
 			}
 		}
@@ -147,10 +195,42 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 431.0,
-		"last_filter": "bookmark",
+		"height": 490.0,
+		"last_filter": "note",
 		"selected_items":
 		[
+			[
+				"note",
+				"Notes: List…"
+			],
+			[
+				"tas",
+				"Tasks: New document"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"",
+				"Notes: Change Color…"
+			],
+			[
+				"new",
+				"Tasks: New document"
+			],
+			[
+				"packa",
+				"Package Control: Remove Package"
+			],
+			[
+				"pa",
+				"Package Control: Install Package"
+			],
+			[
+				"notes",
+				"Notes: New…"
+			],
 			[
 				"bookmark",
 				"SublimeBookmarks: Add Bookmark"
@@ -184,7 +264,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 637.0
+		"width": 681.0
 	},
 	"console":
 	{
@@ -206,23 +286,48 @@
 	"expanded_folders":
 	[
 		"/home/allenka/public_html/webexam",
-		"/home/allenka/public_html/webexam/css",
-		"/home/allenka/public_html/webexam/doc",
-		"/home/allenka/public_html/webexam/doc/html5",
 		"/home/allenka/public_html/webexam/js"
 	],
 	"file_history":
 	[
+		"/home/allenka/Dropbox/Notes/Snippets.note",
+		"/home/allenka/.config/sublime-text-3/Packages/JSHint Gutter/.jshintrc",
+		"/home/allenka/public_html/webexam/js/refactor.js",
 		"/home/allenka/public_html/webexam/js/main.js",
+		"/home/allenka/public_html/webexam/TASKS.TODO",
+		"/home/allenka/.config/sublime-text-3/Packages/PlainTasks/messages/Tutorial.todo",
+		"/home/allenka/.config/sublime-text-3/Packages/User/PlainTasks.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/PlainTasks/messages/tasks.TODO",
+		"/home/allenka/public_html/webexam/doc/php/php-shop.php",
+		"/home/allenka/public_html/webexam/doc/php/php-diary.php",
+		"/home/allenka/public_html/webexam/doc/html5/html5-tags.html",
+		"/home/allenka/public_html/webexam/doc/html5/html5-storage.html",
+		"/home/allenka/public_html/webexam/doc/html5/frameset.html",
+		"/home/allenka/public_html/webexam/doc/html5/html5-canvas.html",
+		"/home/allenka/public_html/webexam/doc/html5/html5-forms.html",
+		"/home/allenka/public_html/webexam/doc/html5/html5-media.html",
+		"/home/allenka/public_html/webexam/doc/html5/html5-history.html",
+		"/home/allenka/.config/sublime-text-3/Packages/JSHint Gutter/JSHint.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/User/JSLint.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/JSLint/JSLint.sublime-settings",
+		"/home/allenka/public_html/webexam/tasks.TODO",
+		"/home/allenka/.config/sublime-text-3/Packages/PlainTasks/PlainTasks (Linux).sublime-settings",
+		"/home/allenka/public_html/webexam/NOTES.md",
+		"/home/allenka/.config/sublime-text-3/Packages/PlainNotes/Notes.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/User/bh_core.sublime-settings",
+		"/home/allenka/Dropbox/Notes/ToDo.note",
+		"/home/allenka/.config/sublime-text-3/Packages/DoxyDoxygen/Default (Linux).sublime-keymap",
+		"/home/allenka/.config/sublime-text-3/Packages/DoxyDoxygen/Doxy.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/DoxyDoxygen/Doxy.sublime-commands",
+		"/home/allenka/.config/sublime-text-3/Packages/User/WakaTime.sublime-settings",
+		"/home/allenka/.config/sublime-text-3/Packages/BracketHighlighter/bh_core.sublime-settings",
 		"/home/allenka/public_html/webexam/css/main.css",
 		"/home/allenka/.config/sublime-text-3/Packages/SublimeBookmarks/Default.sublime-keymap",
 		"/home/allenka/.config/sublime-text-3/Packages/User/Default.sublime-keymap",
 		"/home/allenka/Dropbox/Notes/.brain/Inbox.note",
 		"/home/allenka/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
-		"/home/allenka/.config/sublime-text-3/Packages/PlainTasks/PlainTasks (Linux).sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/User/Notes.sublime-settings",
-		"/home/allenka/.config/sublime-text-3/Packages/PlainNotes/Notes.sublime-settings",
 		"/home/allenka/.config/sublime-text-3/Packages/User/Colorsublime.sublime-settings",
 		"/home/allenka/public_html/webexam/webexam.sublime-project",
 		"/home/allenka/.config/sublime-text-3/Packages/Colorsublime/Colorsublime.sublime-settings",
@@ -247,6 +352,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"createEmpty",
+			"showItems",
+			"showI",
+			"=== ",
+			"mainWindow",
+			"window.parent.document",
+			"alert",
+			"mainWindow",
+			"frameWindow",
+			"mainWindow",
+			"showItems",
+			"INSERT",
+			"createW",
+			"funcString",
+			"LOCAL_KEY",
 			"+\")};)\";",
 			"funcString",
 			"createTable",
@@ -372,57 +492,86 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 94891,
+						"buffer_size": 94634,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								23539,
-								23539
+								22587,
+								22587
 							]
 						],
 						"settings":
 						{
-							"history_list_is_closing": true,
+							"BracketHighlighterBusy": false,
+							"bh_regions":
+							[
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content"
+							],
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 202.0,
-						"translation.y": 24027.0,
+						"translation.x": 0.0,
+						"translation.y": 22640.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "doc/html5/html5-storage.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3163,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1363,
-								1363
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1736.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -459,9 +608,17 @@
 		]
 	},
 	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 178.0
+	},
 	"output.find_results":
 	{
 		"height": 0.0
+	},
+	"output.jotter":
+	{
+		"height": 38.0
 	},
 	"pinned_build_system": "",
 	"project": "webexam.sublime-project",
@@ -501,11 +658,11 @@
 	"settings":
 	{
 	},
-	"show_minimap": false,
+	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 289.0,
+	"side_bar_width": 248.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
