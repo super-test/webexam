@@ -810,7 +810,7 @@ window.onload = (function() {
 					data = storage.getItem(key);
 
 					/** Создаем и заполняем элементы таблички {@link itemsList} */
-					var table = createTable(itemsList, key, data, funcString);					
+					var table = createTable(itemsList, key, data, funcString);				
 
 				} // FOR END
 
@@ -832,13 +832,15 @@ window.onload = (function() {
 			db.transaction(function(t) {
 				db = openDatabase("storage_date", "1.0", "Web SQL Storage Demo Database", 1*1024*1024);
 				t.executeSql("SELECT * FROM local_list", [], function(tx, result) {
+
+					if(result.rows.length === 0) {createEmptyRow('', 'Sorry, but db is empty');}
 					for(var i = 0; i < result.rows.length; i++) {
 						var idn = result.rows.item(i)['local_key'];
 						funcString = "db = openDatabase('storage_date', '1.0', 'Web SQL Storage Demo Database', '1*1024*1024'), db.transaction(function (t){t.executeSql('DELETE FROM local_list WHERE local_key = (?)', ['" + idn + "'])})";
 						createTable(itemsList, result.rows.item(i)['local_key'], result.rows.item(i)['local_value'], '('+ funcString + ')');
-					}}, null)
+					}}, null);
 				}); 
-			}
+			};
 
 		/**
 		 * @summary Создает ряд с сообщением о том, что в хранилище пусто
@@ -848,8 +850,8 @@ window.onload = (function() {
 		var createEmptyRow = function(storageName, message) {
 
 			/** Аргументы по умолчанию */
-			var name = storageName || 'list';
-			var msg = message || 'You have no items in your ' + name;
+			var name = (storageName) ? storageName : 'list';
+			var msg = (message) ? message : 'You have no items in your ' + name;
 			
 			/**
 			 * @summary Создает ряд для {@link itemsList}
