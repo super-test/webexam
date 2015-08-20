@@ -767,20 +767,19 @@ window.onload = (function() {
 			 */
 			var storage, key, data, funcString;
 
-			if (event.target.id === "showLocalStorage" || event.target.id === showSessionStorage) { 
+			if (event.target.id === "showLocalStorage" || event.target.id === "showSessionStorage") { 
 
 				/** @summary Выясняем что показывать */
 			if (event.target.id === "showLocalStorage") {
 
       			storage = localStorage;
       			funcString = 'localStorage.removeItem(this.key)';
-
-			} else if(event.target.id === "showSessionStorage") {
+      		}
+			if(event.target.id === "showSessionStorage") {
 
   				storage = sessionStorage;
   				funcString = 'sessionStorage.removeItem(this.key)';
   			}
-
 
   			/** Если в Локальном хранилище пустота ... */
 			if (storage.length === 0) {
@@ -816,8 +815,6 @@ window.onload = (function() {
 				} // FOR END
 
 			} // IF END
-		}// IF-ы для хранилищ
-
 		} else if(event.target.id ==="showWebDbData") {
 
   				showWebDb(funcString);
