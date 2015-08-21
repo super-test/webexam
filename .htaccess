@@ -1,4 +1,15 @@
 RewriteEngine on
 #RewriteRule ^test sef.html [L]
+
+#Кодировка по умолчанию для PHP-файлов
 AddDefaultCharset UTF-8
 php_flag display_errors 1
+
+#Добавляем тип файла для манифеста
+AddType text/cache-manifest .manifest
+
+#Добавляем тип манифеста отдельно для Мозиллы
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/cache-manifest "access plus 0 seconds"
+</IfModule>

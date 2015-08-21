@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html lang="ru" manifest="../../demo.manifest">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Application Cache Test</title>
+</head>
+
+<body>
+	<style>
+		html {
+			font-family: "DejaVu Sans", "Geneva CY", "Verdana";
+			background: #ffffff;
+			overflow: hidden;
+			border: 0;
+		}
+		body {
+			width: 880px;
+			height: 600px;
+			position: relative;
+			background: #999999;
+			margin: 20px auto;
+			box-shadow: 0 0 15px 10px #999999;
+				-webkit-box-shadow: 0 0 15px 10px #999999;
+					-moz-box-shadow: 0 0 15px 10px #999999;
+		}
+		/* Экран загрузки*/
+		.progressbar {
+			display: none;
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 880px;
+			height: 600px;
+			background-color: #333333;
+			z-index: 256;
+			border: 1px solid #333333;
+		}
+		.progressbar #progresstext {
+			position: absolute;
+			left: 0px;
+			top: 200px;
+			width: 880px;
+			color: #66ff00;
+			text-align: center;
+			font-size: 36px;
+			text-shadow: 0 0 0.8em #aaff00, 0 0 0.8em #aaff00;
+		}
+		.progressbar #progress {
+			position: absolute;
+			left: 100px;
+			top: 300px;
+			width: 600px;
+			height: 40px;
+		}
+		/* Заставка */
+		.flash {
+			position: absolute;
+			left: 0px;
+			top: 0px;
+			width: 880px;
+			height: 600px;
+			background-color: #666666;
+			z-index: 51;
+			border: 1px solid #333333;
+		}
+	</style>
+
+	<!-- Блокирующее окно -->
+	<div id="flash" class="flash"></div>
+
+	<!-- Окно загрузки -->
+	<div id="progressbar" class="progressbar">
+		<div id="progresstext">Загрузка</div>
+		<progress id="progress"></progress>
+	</div>
+
+	<script type="text/javascript" src="../../js/vendor/jquery.js"></script>
+	<script type="text/javascript">
+
+		// Переменные прогресса
+		var progress_value = 0;
+		var progress_max = 1;
+
+		$(function() {
+
+			// Проверяем подключение
+			if (navigator.onLine) {
+				alert('Соединение есть');
+
+			} else {
+				alert('Невозможно установить соединение с сервером');
+		}
+
+		// Получаем объект Application Cache
+		cache = window.applicationCache;
+
+		if (cache) {
+
+			// Добавляем слушателей событий
+			// Ресурсы уже кэшированнны. Индикатор прогресса скрыт.
+			cache.addEventListener('cached', function(e) {
+				ProgressHide();
+				}, false);
+
+			// Начало скачивания ресурсов. progress_max - количество ресурсов. Показываем индикатор прогресса
+			cache.addEventListener('downloading', function(e) {
+				ProgressShow(); 
+				progress_max = 3;
+				}, false);
+
+			// Процесс скачивания ресурсов. Индикатор прогресса изменяется
+			cache.addEventListener('progress', function(e) {
+				ProgressChange();
+				}, false);
+
+			// Скачивание ресурсов. Скрываем индикатор прогресса. Обновляем кэш. Перезагружаем страницу.
+			cache.addEventListener('updateready', function(e) {
+				ProgressHide(); 
+				window.applicationCache.swapCache(); 
+				location.reload();
+				}, false);
+			}
+		});
+
+		// Отслеживаем нажатие клавиш клавиатуры
+		$(document).keyup(function(event) {
+
+			// При нажатии shift+1 производиться попытка обновления кэша
+			if (event.shiftKey && event.keyCode == 49) {
+				window.applicationCache.update();
+			}
+			return false;
+		});
+
+		//------------------- Функции управлением экраном загрузки ----------------//
+		function ProgressShow() {
+			$("#progressbar").show(300);
+			progress_value = 0;
+		}
+
+		function ProgressChange() {
+			progress_value++;
+			$("#progress").attr({max: progress_max, value: progress_value});
+		}
+
+		function ProgressHide() {
+			$("#progressbar").hide(300);
+		}
+		//-------------------------------------------------------------------------//
+	</script>
+</body>
+</html>

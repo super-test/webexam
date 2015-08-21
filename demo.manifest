@@ -1,13 +1,22 @@
 CACHE MANIFEST
+#Версия 9
 
+#LIBRARIES
 https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js
 http://fonts.googleapis.com/css?family=Neucha|Kurale&subset=latin,cyrillic,latin-ext
 http://fonts.googleapis.com/css?family=PT+Mono&subset=cyrillic-ext,latin-ext
 http://fonts.googleapis.com/css?family=Ubuntu+Mono&subset=cyrillic-ext,latin
+
+#FONTS
 fonts/Merriweather_Light.ttf
-https://www.google-analytics.com/analytics.js
+
+#PATTERNS
 http://www.subtlepatterns.com/patterns/white_leather.png
 http://www.subtlepatterns.com/patterns/pink_rice.png
+https://www.google-analytics.com/analytics.js
+
+#FILES
+index.html
 js/main.js
 js/plugins.js
 js/vendor/jquery.js
@@ -16,6 +25,26 @@ js/vendor/logifill-details-min.js
 css/main.css
 css/normalize.css
 doc/html5/frameset.html
+doc/html5/html5-appcash.html
 doc/html5/html5-canvas.html
+doc/html5/html5-forms.html
+doc/html5/html5-media.html
+doc/html5/html5-storage.html
+doc/html5/html5-tags.html
+
+
+#IMAGES
+img/del.png
+img/gift.png
+img/interesting.png
+img/logo-html.png
+img/ok.png
 img/peacock-blues.png
+img/source.png
+img/ubuntu.jpg
 favicon.ico
+
+#media
+media/how_fast.ogg
+media/popup.mp3
+media/swansong.ogg

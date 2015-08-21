@@ -15,6 +15,76 @@
  * ***************************************************************************************** JAVA SCRIPT **
  * ********************************************************************************************************
  */
+
+ var appCache = window.applicationCache;
+
+		var handleCacheEvent = function(e) {
+
+
+			switch (appCache.status) {
+
+				case appCache.UNCACHED:						// UNCACHED == 0
+					alert('UNCACHED: кэш ещё не инициализирован');
+					break;
+
+				case appCache.IDLE:							// IDLE == 1
+					alert('IDLE: никаких действий с кэшем не производиться');
+					break;
+
+				case appCache.CHECKING:						// CHECKING == 2
+					alert('CHECKING: производиться проверка файла .manifest');
+					break;
+
+				case appCache.DOWNLOADING:					// DOWNLOADING == 3
+					alert('DOWNLOADING: производится загрузка ресурсов');
+					break;
+
+				case appCache.UPDATEREADY:					// UPDATEREADY == 5
+					alert('UPDATEREADY: загрузка выполнена - требуется swapCache()');
+					appCash.swapCache();
+					alert('swapCache was done...')
+					break;
+
+				case appCache.OBSOLETE:						// OBSOLETE == 5
+					alert('OBSOLETE: текущий кэш является устаревшим');
+					break;
+
+				default:
+					handleCacheError(e);
+				break;
+			}
+};
+
+var handleCacheError = function(e) {
+	alert('Ошибка: Не удалось обновить кэш!');  
+};
+
+// Выполняется после первого кэширования манифеста
+appCache.addEventListener('cached', handleCacheEvent, false);
+
+// Проверка обновления. Всегда идёт первым в последовательности событий
+appCache.addEventListener('checking', handleCacheEvent, false);
+
+// Обновление найдено, браузер забирает ресурсы
+appCache.addEventListener('downloading', handleCacheEvent, false);
+
+// Манифест вернул ошибку 404 или 410, загрузка прервана
+// или манифест изменился, пока происходил процесс загрузки
+appCache.addEventListener('error', handleCacheError, false);
+
+// Выполняется после первого скачивания манифеста
+appCache.addEventListener('noupdate', handleCacheEvent, false);
+
+// Выполняется, если файл манифеста возвращает 404 или 410.
+// Эти результаты в кэше приложения будут удалены   
+appCache.addEventListener('obsolete', handleCacheEvent, false);
+
+// Выполняется для каждого ресурса перечисленного в манифесте, пока они забираются
+appCache.addEventListener('progress', handleCacheEvent, false);
+
+// Выполняется, когда ресурсы манифеста были недавно скачаны  
+appCache.addEventListener('updateready', handleCacheEvent, false);
+
 // BOOKMARK Window.onload
 
 /**
@@ -428,9 +498,11 @@ window.onload = (function() {
 // BOOKMARK SaveData()
 
 		/**
-		 * @summary - Сохраняет данные в хранилищaх
-		 * @name saveData
-		 * @type {function}
+		 * @summary    Сохраняет данные в хранилищaх
+		 * @name       saveData
+		 * @type       {function}
+		 *
+		 * @method     saveData
 		 */
 		var saveData = function () {
 
@@ -441,8 +513,14 @@ window.onload = (function() {
 			 */
 			var storage = localStorage, storageKey, storageValue;
 
+			/** Если источник события - кнопка Сохранить в Локальном ...*/
 			if (event.target.id == "saveInLocalStorage") {
 
+				/** 
+				 * Хранилище - Локальное
+				 * Ключ - данные из инпута
+				 * Значение - значение из инпута
+				 */
       			storage = localStorage;
       			storageKey = keyLocal;
       			storageValue = dataLocal;
@@ -458,8 +536,14 @@ window.onload = (function() {
 
       		} 
 
+      		/** Если источник события - кнопка Сохранить в Сессионном ...*/
       		if(event.target.id == "saveInSessionStorage") {
 
+      			/** 
+				 * Хранилище - Сессионное
+				 * Ключ - данные из инпута
+				 * Значение - значение из инпута
+				 */
   				storage = sessionStorage;
   				storageKey = keyLocal;
       			storageValue = dataLocal;
@@ -475,8 +559,10 @@ window.onload = (function() {
 
       		} 
 
+      		/** Если источник события - кнопка Сохранить в WebDB ...*/
       		if(event.target.id == "saveInWebDB") {
 
+      			/** Вставляем ключ и значение в WebSQL*/
       			db.transaction(function (t) {
       				t.executeSql("INSERT INTO local_list (local_key, local_value) VALUES (?, ?)", [keyLocal.value, dataLocal.value]);
       			});
@@ -624,7 +710,6 @@ window.onload = (function() {
 				 */
 				textGift.className = 'dinamic';
 
-
 				/**
 				 * @summary Крепит картинку c текстом в fieldset
 				 * @property {method} - appendChild - Вставляет HTML-объект в DOM
@@ -767,25 +852,33 @@ window.onload = (function() {
 			 */
 			var storage, key, data, funcString;
 
+			/** Если источник события кнопка Локального или Сессионного хранилищ */
 			if (event.target.id === "showLocalStorage" || event.target.id === "showSessionStorage") { 
 
-				/** @summary Выясняем что показывать */
+				/** @summary Если источник события кнопка "Показать Локальное хранилище" */
 			if (event.target.id === "showLocalStorage") {
 
+				/** Хранилище - Локальное хранилище */
       			storage = localStorage;
+      			/** Строка для передачи в new Func */
       			funcString = 'localStorage.removeItem(this.key)';
       		}
+
+      		/** @summary Если источник события кнопка "Показать Сессионное хранилище" */
 			if(event.target.id === "showSessionStorage") {
 
+				/** Хранилище - Сессионное хранилище */
   				storage = sessionStorage;
+  				/** Строка для передачи в new Func */
   				funcString = 'sessionStorage.removeItem(this.key)';
   			}
 
-  			/** Если в Локальном хранилище пустота ... */
+  			/** Если в Локальном или Сессионном хранилище пустота ... */
 			if (storage.length === 0) {
 
-				createEmptyRow("storage", "Storage is Empty");
-			}
+				/** Показываем, что в табличке пусто */
+                createEmptyRow("storage", "Storage is Empty");             
+            }
 
 			/** Если в Локальном хранилище что-то есть ... */
 			if (storage.length > 0) {
@@ -815,8 +908,11 @@ window.onload = (function() {
 				} // FOR END
 
 			} // IF END
+
+		/** Если источник события - показать базу данных */
 		} else if(event.target.id ==="showWebDbData") {
 
+				/** Вызываем показ базы данных */
   				showWebDb(funcString);
   			}
 
@@ -830,13 +926,26 @@ window.onload = (function() {
 		var showWebDb = function(funcString) {
 
 			db.transaction(function(t) {
+
+				/** Соединения с базой данных все равно не происходит */
 				db = openDatabase("storage_date", "1.0", "Web SQL Storage Demo Database", 1*1024*1024);
+
+				/** Выбираем все данные из базы */
 				t.executeSql("SELECT * FROM local_list", [], function(tx, result) {
 
-					if(result.rows.length === 0) {createEmptyRow('', 'Sorry, but db is empty');}
+					/** Если там пусто, показываем, что там ничего нет*/
+					if(result.rows.length === 0) {
+						createEmptyRow('', 'Sorry, but db is empty');
+					}
+					/** Иначе запускаем цикл */
 					for(var i = 0; i < result.rows.length; i++) {
+
+						/** Текущий ключ в базе данных */
 						var idn = result.rows.item(i)['local_key'];
+
+						/** Переменная для передачи в new Func() с текущим ключом */
 						funcString = "db = openDatabase('storage_date', '1.0', 'Web SQL Storage Demo Database', '1*1024*1024'), db.transaction(function (t){t.executeSql('DELETE FROM local_list WHERE local_key = (?)', ['" + idn + "'])})";
+						/** Создаем табличку с текущим значением из базы данных*/
 						createTable(itemsList, result.rows.item(i)['local_key'], result.rows.item(i)['local_value'], '('+ funcString + ')');
 					}}, null);
 				}); 
@@ -1248,6 +1357,7 @@ window.onload = (function() {
 			} // FOR END
 
 		}; // SEARCH DATA() END
+
 
 
 /*
