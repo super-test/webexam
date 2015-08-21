@@ -15,7 +15,7 @@
  * ***************************************************************************************** JAVA SCRIPT **
  * ********************************************************************************************************
  */
-
+/*
  var appCache = window.applicationCache;
 
 		var handleCacheEvent = function(e) {
@@ -84,7 +84,7 @@ appCache.addEventListener('progress', handleCacheEvent, false);
 
 // Выполняется, когда ресурсы манифеста были недавно скачаны  
 appCache.addEventListener('updateready', handleCacheEvent, false);
-
+/*
 // BOOKMARK Window.onload
 
 /**
