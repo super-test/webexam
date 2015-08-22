@@ -135,6 +135,40 @@ window.onload = (function() {
 	 */
 	var timeoutIDForDrawSquare;
 
+
+/*
+* ********************************************************* Java Script HTML5 Editor **
+*/
+	
+	var editorBtn = document.getElementById('editorInput');
+	var showInputBtn = document.getElementById('showInput');
+	var output = document.getElementById('fileOutput');
+	var	editorReader = new FileReader();
+	
+	
+	var showFileInput = function() {
+		var btn = document.getElementById('editorInput');
+		btn.click();
+		
+	};
+		
+	var processFiles = function (e) {
+		var readerFile = editorBtn.files[0];
+		editorReader.readAsText(readerFile);
+		readText(e);
+	};
+	
+	var readText = function (e) {
+		
+		// Когда это событие активируется, данные готовы.
+		// Вставляем их в страницу в элемент <div>
+		output.textContent = e.target.result;
+	};
+	
+	editorReader.onload = readText;
+
+	showInputBtn.onclick = showFileInput;
+	editorBtn.onchange = processFiles;
 /*
 * ********************************************************* Java Script Canvas **
 */
@@ -1442,7 +1476,7 @@ window.onload = (function() {
 				/** Используем URL изображения для заполнения фона */
 				dropBox.style.backgroundImage = "url('" + e.target.result + "')";
 				dropBox.style.width = files[0].width;
-				dropBox.style.height = files[0].style.height;
+				dropBox.style.height = files[0].height;
 
 			};
 

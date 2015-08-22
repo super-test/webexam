@@ -327,6 +327,10 @@ code q {
 	font-size: 1vw;
 }
 
+.hide {
+	display: none;
+}
+
 /* FUTURE Links Fonts */
 /* ---------------------------------------------------------------------------------- Списки в основном тексте */
 
@@ -1014,7 +1018,7 @@ progress::-webkit-progress-value {
 
 #dropBox {
 	background: lightyellow;
-	background-size: 100%;
+	background-size: 100%; /* Уменьшение изображения, чтоб его можно было видеть */
 	background-repeat: no-repeat;
 }
 
