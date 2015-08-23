@@ -135,40 +135,182 @@ window.onload = (function() {
 	 */
 	var timeoutIDForDrawSquare;
 
-
 /*
 * ********************************************************* Java Script HTML5 Editor **
 */
 	
-	var editorBtn = document.getElementById('editorInput');
-	var showInputBtn = document.getElementById('showInput');
-	var output = document.getElementById('fileOutput');
-	var	editorReader = new FileReader();
+	if (window.parent.location.pathname === '/doc/html5/html5-editor.html') {
+
+	var requestedBytes = 3 * 1024 * 1024; // 3MB
+
+	/** Запрашиваем разрешение на использование хранилища */
+	navigator.webkitPersistentStorage.requestQuota (
+    	requestedBytes, function(grantedBytes) {  
+        	window.requestFileSystem(PERSISTENT, grantedBytes, onInitFs, errorHandler);
+    	}, function(e) { console.log('Error', e); }
+	);
+
+	function onInitFs(fs) {
+
+		/** Тест доступа */
+  		console.log('Opened file system: ' + fs.name);
+
+  		/** Создаем файл */
+  		var createFiles = function() {
+
+  			fs.root.getFile('log.txt', {create: true/**, exclusive: true*/}, function(fileEntry) {
+
+		    	// fileEntry будет иметь следующие свойства
+		    	//fileEntry.isFile === true;
+		    	//fileEntry.name == 'log.txt';
+		   		//fileEntry.fullPath == '/log.txt';
+
+			   	// Create a FileWriter object for our FileEntry (log.txt).
+    			fileEntry.createWriter(function(fileWriter) {
+
+					fileWriter.onwriteend = function(e) {
+						console.log('Write completed.');
+					};
+
+					fileWriter.onerror = function(e) {
+						console.log('Write failed: ' + e.toString());
+					};
+
+					var aFileParts = ['<a id="a"><b id="b">hey!</b></a>'];
+					var oMyBlob = new Blob(aFileParts, {type : 'text/html'}); // the blob
+
+					fileWriter.write(oMyBlob);
+					//var bb = new BlobBuilder();
+					//bb.append('Ipsum Lorem');
+					//fileWriter.write(bb.getBlob('text/plain'));
+
+					}, errorHandler);
+
+  			}, errorHandler);
+  		};
+
+  		/** Читаем содержимое файла */
+  		var readFiles = function() {
+  			
+  			fs.root.getFile('log.txt', {}, function(fileEntry) {
+				fileEntry.file(function(file) {
+
+					var reader = new FileReader();
+					reader.readAsText(file);
+
+					reader.onloadend = function(e) {
+
+						var textarea = document.getElementById('fileOutput');
+						textarea.innerHTML = this.result; //Содержимое файла
+					};
+
+				}, errorHandler);
+
+			}, errorHandler);
+  		};
+
+		createFileButton.onclick = createFiles;
+		readFileButton.onclick = readFiles;
+	}
+
+	/** Описываем возможные ошибки */	
+	function errorHandler(e) {
+  		var msg = '';
+  		var eName = e.name; //FileError
+
+  		switch (eName.code) {
+    		case eName.QUOTA_EXCEEDED_ERR:
+      		msg = 'QUOTA_EXCEEDED_ERR';
+      		break;
+    	case eName.NOT_FOUND_ERR:
+      		msg = 'NOT_FOUND_ERR';
+     		break;
+    	case eName.SECURITY_ERR:
+      		msg = 'SECURITY_ERR';
+      		break;
+    	case eName.INVALID_MODIFICATION_ERR:
+      		msg = 'INVALID_MODIFICATION_ERR';
+    		break;
+    	case eName.INVALID_STATE_ERR:
+      		msg = 'INVALID_STATE_ERR';
+      		break;
+    	default:
+      		msg = 'Unknown Error';
+      		break;
+  		};
+
+  		console.log('Error: ' + msg);
+	}
+
+	//Taking care of the browser-specific prefix
+	window.requestFileSystem  = window.requestFileSystem || window.webkitRequestFileSystem;
+
+	// The first parameter defines the type of storage: persistent or temporary
+	// Next, set the size of space needed (in bytes)
+	// initFs is the success callback
+	// And the last one is the error callback
+	// for denial of access and other errors. 
+	window.requestFileSystem(window.PERSISTENT, 3*1024*1024, onInitFs, errorHandler);
+
+
+	var createFileButton = document.getElementById('fileCreateBtn');
+	var readFileButton = document.getElementById('fileReadBtn');
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
+			
+	/** Спрятанный инпут */
+	//var editorBtn = document.getElementById('editorInput');
+	/** Видимая кнопка */
+	//var showInputBtn = document.getElementById('showInput');
+	/** Див для показа содержимого файла */
+	//var output = document.getElementById('fileOutput');
+	//var	editorReader = new FileReader();
 	
 	
-	var showFileInput = function() {
-		var btn = document.getElementById('editorInput');
-		btn.click();
+	/**
+	 * @summary    Эмулирует клик
+	 *
+	 * @method     showFileInput
+	 */
+	//var showFileInput = function() {
+		//var btn = document.getElementById('editorInput');
+		//btn.click();
 		
 	};
 		
-	var processFiles = function (e) {
-		var readerFile = editorBtn.files[0];
-		editorReader.readAsText(readerFile);
-		readText(e);
-	};
+	/**
+	 * @summary    Считывает файл файлридером
+	 *
+	 * @method     processFiles
+	 * @param      {InputEvent}  e       Добавление списка файлов в кнопку
+	 */
+	//var processFiles = function (e) {
+
+		//var readerFile = editorBtn.files[0];
+		//editorReader.readAsText(readerFile);
+		//readText(e);
+	//};
 	
-	var readText = function (e) {
+	/**
+	 * @summary    Вставляет считанный ридером файл в output
+	 *
+	 * @method     readText
+	 * @param      {BlobEvent}  e       Файлридер загружен
+	 */
+	//var readText = function (e) {
 		
 		// Когда это событие активируется, данные готовы.
 		// Вставляем их в страницу в элемент <div>
-		output.textContent = e.target.result;
-	};
+		//output.textContent = e.target.result;
+	//};
 	
-	editorReader.onload = readText;
+	//editorReader.onload = readText;
 
-	showInputBtn.onclick = showFileInput;
-	editorBtn.onchange = processFiles;
+	//showInputBtn.onclick = showFileInput;
+	//editorBtn.onchange = processFiles;
+
+	//}
 /*
 * ********************************************************* Java Script Canvas **
 */
