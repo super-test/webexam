@@ -141,6 +141,9 @@ window.onload = (function() {
 	
 	if (window.parent.location.pathname === '/doc/html5/html5-editor.html') {
 
+	var output = document.getElementById('fileOutput');
+	output.focus();
+
 	var requestedBytes = 3 * 1024 * 1024; // 3MB
 
 	/** Запрашиваем разрешение на использование хранилища */
@@ -165,27 +168,7 @@ window.onload = (function() {
 		    	//fileEntry.name == 'log.txt';
 		   		//fileEntry.fullPath == '/log.txt';
 
-			   	// Create a FileWriter object for our FileEntry (log.txt).
-    			fileEntry.createWriter(function(fileWriter) {
-
-					fileWriter.onwriteend = function(e) {
-						console.log('Write completed.');
-					};
-
-					fileWriter.onerror = function(e) {
-						console.log('Write failed: ' + e.toString());
-					};
-
-					var aFileParts = ['<a id="a"><b id="b">hey!</b></a>'];
-					var oMyBlob = new Blob(aFileParts, {type : 'text/html'}); // the blob
-
-					fileWriter.write(oMyBlob);
-					//var bb = new BlobBuilder();
-					//bb.append('Ipsum Lorem');
-					//fileWriter.write(bb.getBlob('text/plain'));
-
-					}, errorHandler);
-
+			   	
   			}, errorHandler);
   		};
 
@@ -209,9 +192,41 @@ window.onload = (function() {
 			}, errorHandler);
   		};
 
+  		var writeFiles = function() {
+
+			fs.root.getFile('log.txt', {create: true}, function(fileEntry) {
+
+			// Create a FileWriter object for our FileEntry (log.txt).
+    		fileEntry.createWriter(function(fileWriter) {
+
+				fileWriter.onwriteend = function(e) {
+					console.log('Write completed.');
+				};
+
+				fileWriter.onerror = function(e) {
+					console.log('Write failed: ' + e.toString());
+				};
+
+				var aFileParts = [];
+				aFileParts.push(''+output.innerHTML+'');
+				var oMyBlob = new Blob(aFileParts, {type : 'text/plain'}); // the blob
+
+				fileWriter.write(oMyBlob);
+				//var bb = new BlobBuilder();
+				//bb.append('Ipsum Lorem');
+				//fileWriter.write(bb.getBlob('text/plain'));
+
+			}, errorHandler);
+    	}, errorHandler);
+
+	};
+
 		createFileButton.onclick = createFiles;
 		readFileButton.onclick = readFiles;
+		writeFileButton.onclick = writeFiles;
 	}
+
+	
 
 	/** Описываем возможные ошибки */	
 	function errorHandler(e) {
@@ -255,6 +270,7 @@ window.onload = (function() {
 
 	var createFileButton = document.getElementById('fileCreateBtn');
 	var readFileButton = document.getElementById('fileReadBtn');
+	var writeFileButton = document.getElementById('fileWriteBtn');
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
