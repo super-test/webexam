@@ -142,6 +142,7 @@ window.onload = (function() {
 	if (window.parent.location.pathname === '/doc/html5/html5-editor.html') {
 
 	var output = document.getElementById('fileOutput');
+	var input = document.getElementById('fileInput');
 	output.focus();
 
 	var requestedBytes = 3 * 1024 * 1024; // 3MB
@@ -161,12 +162,12 @@ window.onload = (function() {
   		/** Создаем файл */
   		var createFiles = function() {
 
-  			fs.root.getFile('log.txt', {create: true/**, exclusive: true*/}, function(fileEntry) {
+  			fs.root.getFile('log1.html', {create: true/**, exclusive: true*/}, function(fileEntry) {
 
 		    	// fileEntry будет иметь следующие свойства
 		    	//fileEntry.isFile === true;
-		    	//fileEntry.name == 'log.txt';
-		   		//fileEntry.fullPath == '/log.txt';
+		    	//fileEntry.name == 'log.html';
+		   		//fileEntry.fullPath == '/log.html';
 
 			   	
   			}, errorHandler);
@@ -175,7 +176,7 @@ window.onload = (function() {
   		/** Читаем содержимое файла */
   		var readFiles = function() {
   			
-  			fs.root.getFile('log.txt', {}, function(fileEntry) {
+  			fs.root.getFile('log.html', {type: "text/html, charset=UTF-8"}, function(fileEntry) {
 				fileEntry.file(function(file) {
 
 					var reader = new FileReader();
@@ -183,8 +184,7 @@ window.onload = (function() {
 
 					reader.onloadend = function(e) {
 
-						var textarea = document.getElementById('fileOutput');
-						textarea.innerHTML = this.result; //Содержимое файла
+						output.innerHTML = this.result; //Содержимое файла
 					};
 
 				}, errorHandler);
@@ -194,9 +194,9 @@ window.onload = (function() {
 
   		var writeFiles = function() {
 
-			fs.root.getFile('log.txt', {create: true}, function(fileEntry) {
+			fs.root.getFile('log.html', {create: true}, function(fileEntry) {
 
-			// Create a FileWriter object for our FileEntry (log.txt).
+			// Create a FileWriter object for our FileEntry (log.html).
     		fileEntry.createWriter(function(fileWriter) {
 
 				fileWriter.onwriteend = function(e) {
@@ -208,8 +208,8 @@ window.onload = (function() {
 				};
 
 				var aFileParts = [];
-				aFileParts.push(''+output.innerHTML+'');
-				var oMyBlob = new Blob(aFileParts, {type : 'text/plain'}); // the blob
+				aFileParts[0] = ''+output.innerHTML+'';
+				var oMyBlob = new Blob(aFileParts, {type : 'text/html'}); // the blob
 
 				fileWriter.write(oMyBlob);
 				//var bb = new BlobBuilder();
@@ -224,6 +224,8 @@ window.onload = (function() {
 		createFileButton.onclick = createFiles;
 		readFileButton.onclick = readFiles;
 		writeFileButton.onclick = writeFiles;
+		input.oninput = new Function("document.getElementById('fileOutput').innerHTML = this.value");
+		
 	}
 
 	
