@@ -222,14 +222,13 @@ window.onload = (function() {
 
 	};
 	
-	var insert_tag = function(_obj_name, _tag_start, _tag_end)
+	var insert_tag = function(_obj_name, elem_output, _tag_start, _tag_end)
 		// _obj_name - name объекта - как правило, textarea, но при желании можно сделать любой
 		// указываем именно NAME, так как согласно стандартам DOCTYPE HTML 4.01 strict и выше
 		// свойство ID у объектов ввода является не приемлемым и требуется обращаться только name
 		// _tag_start - что вставлять перед выделенным текстом
 		// _tag_end - что вставлять после выделенного текста
 		{
-			alert('start');
 			// берем объект
 			var area=document.getElementsByName(_obj_name).item(0);
 
@@ -250,6 +249,8 @@ window.onload = (function() {
 
 			 // вставляем все, что после выделения
 			 area.value.substring(area.selectionEnd,area.value.length);
+
+			  elem_output.innerHTML = area.value;
 			}
 
 			// Иначе заплатка для Internet Explorer
@@ -262,7 +263,9 @@ window.onload = (function() {
 			  var newText=_tag_start+selectedText+_tag_end;
 			  // вставляем новый текст
 			  document.selection.createRange().text=newText;
+
 			}
+
 			}
 		}// /insert_tag
 
@@ -273,7 +276,7 @@ window.onload = (function() {
 		 * @return     {function} Возвращает обработчик с заданными параметрами
 		 */
 		var addInsertTag = function() {
-			return insert_tag("edit", "<b>", "</b>"); 
+			return insert_tag("edit", output, "<b>", "</b>"); 
 		};
 
 
