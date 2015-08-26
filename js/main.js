@@ -279,7 +279,7 @@ window.onload = (function() {
 			return insert_tag("edit", output, "<b>", "</b>"); 
 		};
 
-
+		
 		//boldButton.onclick = "insert_tag('edit','<strong>','</strong>');";
 		boldButton.onclick = addInsertTag;
 
@@ -287,6 +287,8 @@ window.onload = (function() {
 		readFileButton.onclick = readFiles;
 		writeFileButton.onclick = writeFiles;
 		input.oninput = new Function("document.getElementById('fileOutput').innerHTML = this.value");
+		output.onkeydown = new Function("document.getElementById('fileInput').value = this.innerHTML");
+		
 
 	}
 
