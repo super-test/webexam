@@ -186,12 +186,23 @@ window.onload = (function() {
 					reader.onloadend = function(e) {
 
 						output.innerHTML = this.result; //Содержимое файла
+						input.innerHTML = output.innerHTML;
 					};
 
 				}, errorHandler);
 
 			}, errorHandler);
   		};
+
+  		var deleteFiles = function() {
+  				fs.root.getFile('log.html', {create: false}, function(fileEntry) {
+
+    				fileEntry.remove(function() {
+      					console.log('File removed.');
+    				}, errorHandler);
+
+  				}, errorHandler);
+  			}
 
   		var writeFiles = function() {
 
@@ -279,6 +290,7 @@ window.onload = (function() {
 			return insert_tag("edit", output, "<b>", "</b>"); 
 		};
 
+		var deleteBtn = document.getElementById('fileDelButton').onclick = deleteFiles;
 		
 		//boldButton.onclick = "insert_tag('edit','<strong>','</strong>');";
 		boldButton.onclick = addInsertTag;
