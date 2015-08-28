@@ -201,7 +201,7 @@ window.onload = (function() {
 					reader.onloadend = function(e) {
 
 						output.innerHTML = this.result; //Содержимое файла
-						input.innerHTML = output.innerHTML;
+						input.innerHTML = output.innerHTML;// Синхронизируем
 					};
 
 				}, errorHandler);
@@ -242,7 +242,7 @@ window.onload = (function() {
 
 				else {
 					var aFileParts = [];
-				var oMyBlob = new Blob(aFileParts, {type : 'text/html'}); // the blob
+					var oMyBlob = new Blob(aFileParts, {type : 'text/html'}); // the blob
 				}
 				aFileParts[0] = ''+output.innerHTML+'';
 
