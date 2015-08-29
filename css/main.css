@@ -301,7 +301,8 @@ code q {
 	quotes: "\0027" "\0027";					/* Апостроф (одинарная кавычка) */
 }
 
-#codeString {
+#codeString,
+#fileInput {
 	font-family: "Anonymous", "Courier", monospace;
 	font-size: 1.3vw;							/* Размер шрифта */
 	font-weight: bold;							/* Полужирный шрифт */
@@ -468,7 +469,9 @@ article {
 	margin: 15px;
 	width: 65vw;
 	height: 20vh;
-
+}
+#fileOutput{
+	width: 70vw;
 }
 
 /* ---------------------------------------------------------------------------------- Блоки с кодом */
@@ -489,6 +492,11 @@ pre {
 	height: 80vh;
 	z-index: 100;
 	margin-left: 0;
+}
+
+#fileInput {
+	width: 70vw;
+	height: 20vh;
 }
 
 /* ---------------------------------------------------------------------------------- Блоки с текстом */
@@ -854,6 +862,7 @@ details summary {
 }
 
 #codeString,
+#fileInput,
 .apiButtons {
 	border: 5px solid darkslategray;
 }
@@ -989,7 +998,8 @@ input[type='range'] {
 /* ---------------------------------------------------------------------------------- Backgrounds */
 
 .frameHTML {
-	background: url('http://www.subtlepatterns.com/patterns/white_leather.png');
+	/*background: url('http://www.subtlepatterns.com/patterns/white_leather.png');*/
+	background: url('../img/white_leather.png');
 }
 
 #canvasField  {
@@ -1007,9 +1017,11 @@ input[type='range'] {
 	opacity: 1;
 }
 
-#codeString {
+#codeString,
+#fileInput {
 	background: url('../img/peacock-blues.png');
 	opacity: .4;
+	overflow: auto;
 }
 
 progress::-webkit-progress-value {

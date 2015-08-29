@@ -146,6 +146,8 @@ window.onload = (function() {
 	var boldButton = document.getElementById('boldButton')
 	output.focus();
 
+	var writeFileButton = document.getElementById('fileWriteBtn');
+
 	/** Спрятанный инпут */
 	var editorBtn = document.getElementById('editorInput');
 	/** Видимая кнопка */
@@ -200,7 +202,7 @@ window.onload = (function() {
 
 					reader.onloadend = function(e) {
 
-						output.innerHTML = this.result; //Содержимое файла
+						output.innerHTML = reader.result; //Содержимое файла
 						input.innerHTML = output.innerHTML;// Синхронизируем
 					};
 
@@ -233,7 +235,6 @@ window.onload = (function() {
 				fileWriter.onerror = function(e) {
 					console.log('Write failed: ' + e.toString());
 				};
-
 				
 				if(e.target.id === 'editorInput') {
 					var aFileParts = editorBtn.files;
@@ -241,10 +242,17 @@ window.onload = (function() {
 				}
 
 				else {
-					var aFileParts = [];
+
+					aFileParts = [];
+					for(var i = 0; i < input.value.length; i++) {
+						aFileParts[i] = input.value[i];
+					}
 					var oMyBlob = new Blob(aFileParts, {type : 'text/html'}); // the blob
 				}
-				aFileParts[0] = ''+output.innerHTML+'';
+				//aFileParts[0] = ''+output.innerHTML+'';
+
+				//aFileParts = ''+output.innerHTML+'';
+				aFileParts = input.value;
 
 				fileWriter.write(oMyBlob);
 				//var bb = new BlobBuilder();
@@ -373,7 +381,6 @@ window.onload = (function() {
 
 	var createFileButton = document.getElementById('fileCreateBtn');
 	var readFileButton = document.getElementById('fileReadBtn');
-	var writeFileButton = document.getElementById('fileWriteBtn');
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////
