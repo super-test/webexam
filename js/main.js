@@ -263,7 +263,7 @@ window.onload = (function() {
     	}, errorHandler);
 
 	};
-	
+
 	var insert_tag = function(_obj_name, elem_output, _tag_start, _tag_end)
 		// _obj_name - name объекта - как правило, textarea, но при желании можно сделать любой
 		// указываем именно NAME, так как согласно стандартам DOCTYPE HTML 4.01 strict и выше
@@ -317,14 +317,29 @@ window.onload = (function() {
 		 * @method     addParam
 		 * @return     {function} Возвращает обработчик с заданными параметрами
 		 */
-		var addInsertTag = function() {
-			return insert_tag("edit", output, "<b>", "</b>"); 
+		var addBoldStyle = function() {
+			return insert_tag("edit", output, "<span style='font-weight: bold'>", "</span>"); 
+		};
+
+		var addRedStyle = function() {
+			return insert_tag("edit", output, "<span style='color: red'>", "</span>"); 
+		};
+
+		var addParagraph = function() {
+			return insert_tag("edit", output, "<p>", "</p>"); 
+		};
+
+		var toLeft = function() {
+			return insert_tag("edit", output, "<span style='float: right'>", "</span>"); 
 		};
 
 		var deleteBtn = document.getElementById('fileDelButton').onclick = deleteFiles;
 		
-		//boldButton.onclick = "insert_tag('edit','<strong>','</strong>');";
-		boldButton.onclick = addInsertTag;
+
+		boldButton.onclick = addBoldStyle;
+		document.getElementById("redButton").onclick = addRedStyle;
+		document.getElementById("pButton").onclick = addParagraph;
+		document.getElementById("leftButton").onclick = toLeft;
 
 		createFileButton.onclick = createFiles;
 		readFileButton.onclick = readFiles;
