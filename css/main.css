@@ -475,6 +475,22 @@ article {
 	width: 74vw;
 }
 
+#httpArticle {
+	text-align: center;
+	line-height: 15vh;
+}
+
+#slide {
+	display: inline-block;
+	text-align: center;
+	width: 40vw;
+	background: rgba(218,165,32,0.5);
+	border: solid 3px darkslategray;
+	padding: 10px;
+	
+}
+
+
 /* ---------------------------------------------------------------------------------- Блоки с кодом */
 
 code {

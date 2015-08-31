@@ -98,67 +98,26 @@ var  httpGallery = (function() {
 	
 	var slideNumber = 1;
 
-	function setListeners() {
-
-		var nextBtn = document.getElementById('next_btn');
-		var prevBtn = document.getElementById('prev_btn');
-		nextBtn.onclick = nextSlide;
-		prevBtn.onclick = prevSlide;
-	}
-
-	function newSlideReceived() {
-
-		if ((req.readyState == 4) && (req.status == 200)) {
-			var response = req.responseText;
-			document.body.innerHTML = response;
-			setListeners();
-		}
-	}
-
-	function goToNewSlide() {
-
-		// Отправляем номер слайда в файл exotic_china.php
-		req.open('GET', 'http-gallery.php?slideNumber=' + slideNumber, true);
-
-		// Подключаем функцию для обработки данных слайдов
-		req.onreadystatechange = newSlideReceived;
-
-		// Отправляем запрос
-		req.send(null);
-	}
-
 	function nextSlide() {
-
-		if (slideNumber === 4) {
-			slideNumber = 1;
-
-		} else {
-			slideNumber += 1;
-		}
-
-
-		goToNewSlide();
-		return false;
+		alert('next');
 	}
-
+	
 	function prevSlide() {
-
-		if (slideNumber === 1) {
-			slideNumber = 4;
-
-		} else {
-			slideNumber -= 1;
-		}
-
-		goToNewSlide();
-		return false;
+		alert('prev');
 	}
 
 	return {
 
-		init: function() {
-			goToNewSlide();
-			setListeners();
+		function nextSlide() {
+		alert('next');
+	}
+
+		init: function(next_btn_id, prev_btn_id) {
+
+			var nextBtn = document.getElementById(next_btn_id);
+			var prevBtn = document.getElementById(prev_btn_id);
+			nextBtn.onclick = nextSlide;
+			prevBtn.onclick = prevSlide;
 
 		} // httpGallery.init
 
@@ -176,6 +135,7 @@ var  httpGallery = (function() {
  */
 window.onload = (function() {
 
+	httpGallery.nextSlide();
 	if (window.parent.location.pathname === '/doc/html5/http-gallery.php') 
 		httpGallery.init('nextElem', 'prevElem');
 
