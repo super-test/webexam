@@ -42,9 +42,9 @@
 
 						// patterns
 
-						$slideNumber = $_GET["slideNumber"];
+						$currentSlide = $_GET["currentSlide"];
 
-						switch($slideNumber)
+						switch($currentSlide)
 						{
 							case 1:
 								echo '<figure><h2>Delete</h2><img src="http://webexam/img/del.png"></figure>';

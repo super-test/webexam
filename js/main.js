@@ -96,7 +96,7 @@ var  httpGallery = (function() {
 
 	var req = new XMLHttpRequest();
 	
-	var slideNumber = 1;
+	var currentSlide = 1;
 
 	function setListeners() {
 
@@ -118,7 +118,7 @@ var  httpGallery = (function() {
 	function goToNewSlide() {
 
 		// Отправляем номер слайда в файл exotic_china.php
-		req.open('GET', 'http-gallery.php?slideNumber=' + slideNumber, true);
+		req.open('GET', 'http-gallery.php?currentSlide=' + currentSlide, true);
 
 		// Подключаем функцию для обработки данных слайдов
 		req.onreadystatechange = newSlideReceived;
@@ -129,11 +129,11 @@ var  httpGallery = (function() {
 
 	function nextSlide() {
 
-		if (slideNumber === 4) {
-			slideNumber = 1;
+		if (currentSlide === 4) {
+			currentSlide = 1;
 
 		} else {
-			slideNumber += 1;
+			currentSlide += 1;
 		}
 
 
@@ -143,11 +143,11 @@ var  httpGallery = (function() {
 
 	function prevSlide() {
 
-		if (slideNumber === 1) {
-			slideNumber = 4;
+		if (currentSlide === 1) {
+			currentSlide = 4;
 
 		} else {
-			slideNumber -= 1;
+			currentSlide -= 1;
 		}
 
 		goToNewSlide();
