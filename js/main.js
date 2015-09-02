@@ -95,8 +95,9 @@ appCache.addEventListener('updateready', handleCacheEvent, false);
 var  httpGallery = (function() {
 
 	var req = new XMLHttpRequest();
-	
+
 	var currentSlide = 1;
+	var counter = 0;
 
 	function setListeners() {
 
@@ -104,6 +105,12 @@ var  httpGallery = (function() {
 		var prevBtn = document.getElementById('prev_btn');
 		nextBtn.onclick = nextSlide;
 		prevBtn.onclick = prevSlide;
+
+		if(counter >= 5) {
+			nextBtn.onclick = '';
+			prevBtn.onclick = '';
+		}
+
 	}
 
 	function newSlideReceived() {
@@ -119,6 +126,7 @@ var  httpGallery = (function() {
 
 		// Отправляем номер слайда в файл exotic_china.php
 		req.open('GET', 'http-gallery.php?currentSlide=' + currentSlide, true);
+		cookies.setCookie('cookieCounter', counter, 1);
 
 		// Подключаем функцию для обработки данных слайдов
 		req.onreadystatechange = newSlideReceived;
@@ -136,7 +144,7 @@ var  httpGallery = (function() {
 			currentSlide += 1;
 		}
 
-
+		++counter;
 		goToNewSlide();
 		return false;
 	}
@@ -150,6 +158,7 @@ var  httpGallery = (function() {
 			currentSlide -= 1;
 		}
 
+		++counter;
 		goToNewSlide();
 		return false;
 	}
@@ -166,6 +175,42 @@ var  httpGallery = (function() {
 
 })();
 
+var cookies = (function() {
+
+	return {
+
+		// Сохраняет пару имя/ значение в виде cookie, кодируя значение с помощью 
+		// encodeURIComponent(), чтобы экранировать точки с запятой, запятые и пробелы. 
+		// Если в параметре daysToLive передается число, атрибут max-age 
+		// устанавливается так, что срок хранения cookie истекает через 
+		// указанное число дней. Если передать значение 0, cookie будет удален
+		setCookie: function (name, value, daysToLive) {
+
+			var cookie = name + '=' + encodeURIComponent(value);
+
+			if (typeof daysToLive === 'number') {
+				cookie += '; max-age=' + (daysToLive * 60 * 60 * 24);
+			} else {
+				throw new Error('Параметр daysToLive должен быть числом.');
+			}
+			document.cookie = cookie;
+		}
+	};
+})();
+
+var httpGalleryPage = (function(){
+		return {
+			init: (function() {
+				httpGallery.init();
+				cookies.setCookie('cookieCounter', 0, 1);
+				cookies.setCookie('Delete', 'http://webexam/img/del.png', 1);
+				cookies.setCookie('Gift', 'http://webexam/img/gift.png', 1);
+				cookies.setCookie('Interesting', 'http://webexam/img/interesting.png', 1);
+				cookies.setCookie('Ok', 'http://webexam/img/ok.png', 1);
+				
+			})()
+	};
+})();
 
 
 // BOOKMARK Window.onload
@@ -176,8 +221,9 @@ var  httpGallery = (function() {
  */
 window.onload = (function() {
 
-	if (window.parent.location.pathname === '/doc/html5/http-gallery.php') 
-		httpGallery.init('nextElem', 'prevElem');
+	if (window.parent.location.pathname === '/doc/html5/http-gallery.php') { 
+		httpGalleryPage.init();
+	}
 
 	/**
 	 * @summary Главное окно с фреймами в браузере

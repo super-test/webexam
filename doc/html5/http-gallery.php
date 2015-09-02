@@ -37,7 +37,7 @@
 	
 		<main>
 			<article id='httpArticle'>
-				<h1>Просто картинки</h1>
+				<h2>Просто картинки</h2>
 					<?php
 
 						// patterns
@@ -47,16 +47,16 @@
 						switch($currentSlide)
 						{
 							case 1:
-								echo '<figure><h2>Delete</h2><img src="http://webexam/img/del.png"></figure>';
+								echo '<figure><h2>Delete</h2><img src='.@$_COOKIE['Delete'].'></figure>';
 								break;
 							case 2:
-								echo '<figure><h2>Gift</h2><img src="http://webexam/img/gift.png"></figure>';
+								echo '<figure><h2>Gift</h2><img src='.@$_COOKIE['Gift'].'></figure>';
 								break;
 							case 3:
-								echo '<figure><h2>Interesting</h2><img src="http://webexam/img/interesting.png"></figure>';
+								echo '<figure><h2>Interesting</h2><img src='.@$_COOKIE['Interesting'].'></figure>';
 								break;
 							case 4:
-								echo '<figure><h2>Ok</h2><img src="http://webexam/img/ok.png"></figure>';
+								echo '<figure><h2>Ok</h2><img src='.@$_COOKIE['Ok'].'></figure>';
 								break;
 							default:
 								echo 'Слайд не найден';
@@ -64,8 +64,22 @@
 					?>
 
 					<div id="slide">Нажмите на ссылку, чтобы показать картинку.
-						<a id="prev_btn" href="#">Пред</a> 
+						<br/><a id="prev_btn" href="#">Пред</a> 
 						<a id="next_btn" href="#">След</a>
+						<br/>
+							<?php 
+								if(@$_COOKIE['cookieCounter'] == 0)
+									echo "Вы посмотрели ".@$_COOKIE['cookieCounter']." картинок";
+
+								else if(@$_COOKIE['cookieCounter'] == 1)
+									echo "Вы посмотрели ".@$_COOKIE['cookieCounter']." картинку";
+
+								else if(@$_COOKIE['cookieCounter'] >=2 && @$_COOKIE['cookieCounter'] <= 4)
+									echo "Вы посмотрели ".@$_COOKIE['cookieCounter']." картинки";
+								
+								else if(@$_COOKIE['cookieCounter'] == 5)
+									echo "Чтобы посмотреть остальные - отправьте смс на короткий номер";
+							 ?>
 					</div>
 
 

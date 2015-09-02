@@ -302,7 +302,7 @@ code q {
 }
 
 #codeString,
-#fileInput {
+#fileInputEditor {
 	font-family: "Anonymous", "Courier", monospace;
 	font-size: 1.3vw;							/* Размер шрифта */
 	font-weight: bold;							/* Полужирный шрифт */
@@ -478,14 +478,16 @@ article {
 #httpArticle {
 	text-align: center;
 	line-height: 15vh;
+	border: 20px double darkslategray;
 }
 
 #slide {
 	display: inline-block;
 	text-align: center;
+	line-height: 5vh;
 	width: 40vw;
 	background: rgba(218,165,32,0.5);
-	border: solid 3px darkslategray;
+	border: 3px double darkslategray;
 	padding: 10px;
 	
 }
@@ -511,7 +513,7 @@ pre {
 	margin-left: 0;
 }
 
-#fileInput {
+#fileInputEditor {
 	width: 70vw;
 	height: 20vh;
 }
@@ -879,7 +881,7 @@ details summary {
 }
 
 #codeString,
-#fileInput,
+#fileInputEditor,
 .apiButtons {
 	border: 5px solid darkslategray;
 }
@@ -1035,7 +1037,7 @@ input[type='range'] {
 }
 
 #codeString,
-#fileInput {
+#fileInputEditor {
 	background: url('../img/peacock-blues.png');
 	opacity: .4;
 	overflow: auto;
