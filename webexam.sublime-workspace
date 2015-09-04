@@ -4,6 +4,54 @@
 		"selected_items":
 		[
 			[
+				"worker",
+				"workers"
+			],
+			[
+				"se",
+				"self"
+			],
+			[
+				"on",
+				"onmessage"
+			],
+			[
+				"c",
+				"console"
+			],
+			[
+				"d",
+				"data"
+			],
+			[
+				"post",
+				"postMessage"
+			],
+			[
+				"WOR",
+				"workers"
+			],
+			[
+				"createW",
+				"createWorker"
+			],
+			[
+				"remo",
+				"removeEventListener"
+			],
+			[
+				"coo",
+				"cookieCounter"
+			],
+			[
+				"set",
+				"setCookie"
+			],
+			[
+				"cook",
+				"cookies"
+			],
+			[
 				"next",
 				"next_btn"
 			],
@@ -34,10 +82,6 @@
 			[
 				"get",
 				"getCookies"
-			],
-			[
-				"set",
-				"setCookies"
 			],
 			[
 				"ma",
@@ -168,10 +212,6 @@
 				"path"
 			],
 			[
-				"d",
-				"document"
-			],
-			[
 				"frame",
 				"frameDocument"
 			],
@@ -272,10 +312,6 @@
 				"readStorageData"
 			],
 			[
-				"createW",
-				"createWebDbButton"
-			],
-			[
 				"key",
 				"keyLocal"
 			],
@@ -295,26 +331,23 @@
 			"file": "js/main.js",
 			"settings":
 			{
-				"buffer_size": 108705,
+				"buffer_size": 110772,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "doc/html5/http-gallery.php",
+			"file": "doc/html5/html5-web-workers.html",
 			"settings":
 			{
-				"buffer_size": 2012,
+				"buffer_size": 1427,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "/* FUTURE FONTS IIMPORTED */\n\n/* -------------------------------------------------------- Neuka - заголовки таблиц Kurale - списки */\n\n@import url(http://fonts.googleapis.com/css?family=Neucha|Kurale&subset=latin,cyrillic,latin-ext);\n@import url(http://fonts.googleapis.com/css?family=PT+Mono&subset=cyrillic-ext,latin-ext); /* Для строки с кодом */\n@import url(http://fonts.googleapis.com/css?family=Ubuntu+Mono&subset=cyrillic-ext,latin); /* Для кнопок */\n\n/* -------------------------------------------------------- Для заголовков */\n\n@font-face {\n\n	font-family: \"MerriWeather\";\n	src: url(\"Metrophobic-webfont.eot\");\n	src: local('!'),\n		url(\"../../fonts/Merriweather-BoldItalic.eot?#iefix\") format(\"embedded-opentype\"),\n		url(\"../../fonts/Merriweather-HeavyItalic.eot?#iefix\") format(\"embedded-opentype\"),\n		url(\"../../fonts/Merriweather-Italic.eot?#iefix\") format(\"embedded-opentype\"),\n		url(\"../../fonts/Merriweather-LightItalic.eot?#iefix\") format(\"embedded-opentype\"),\n		url(\"../../fonts/Merriweather_Light.ttf\") format(\"truetype\"),\n		url(\"../../fonts/Merriweather-Bold.ttf\") format(\"truetype\"),\n		url(\"../../fonts/Merriweather-Regular.ttf\") format(\"truetype\"),\n		url(\"../../fonts/Merriweather-BoldItalic.ttf\") format(\"truetype\"),\n		url(\"../../fonts/Merriweather_UltraBold.ttf\") format(\"truetype\");\n	font-weight: normal;\n	font-style: normal;\n}\n\n/* -------------------------------------------------------- Для участков с кодом */\n\n@font-face {\n\n	font-family: \"Anonymous\"; 									/* Гарнитура шрифта */\n	src: url(\"../../fonts/Anonymous.ttf\");						/* Путь к файлу со шрифтом */\n}\n\n/* FIXME Не удалось убрать рамку вокруг checkbox-ов */\n/* FIXME Fieldset в Chrome продолжает рамку под своим label */\n\n\n/*! HTML5 Boilerplate v5.2.0 | MIT License | https://html5boilerplate.com/ */\n\n/*\n * What follows is the result of much research on cross-browser styling.\n * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,\n * Kroc Camen, and the H5BP dev community and team.\n */\n\n/* ==========================================================================\n   Base styles: opinionated defaults\n   ========================================================================== */\n\n/*\n * Remove text-shadow in selection highlight:\n * https://twitter.com/miketaylr/status/12228805301\n *\n * These selection rule sets have to be separate.\n * Customize the background color to match your design.\n */\n\n::-moz-selection {\n    background: #b3d4fc;\n    text-shadow: none;\n}\n\n::selection {\n    background: #b3d4fc;\n    text-shadow: none;\n}\n\n/*\n * A better looking default horizontal rule\n */\n\nhr {\n    display: block;\n	height: 1px;\n    border: 0;\n    border-top: 1px solid #ccc;\n    margin: 1em 0;\n    padding: 0;\n}\n\n/*\n * Remove the gap between audio, canvas, iframes,\n * images, videos and the bottom of their containers:\n * https://github.com/h5bp/html5-boilerplate/issues/440\n */\n\naudio,\ncanvas,\niframe,\nimg,\nsvg,\nvideo {\n    vertical-align: middle;\n}\n\n/*\n * Remove default fieldset styles.\n */\n\nfieldset {\n    border: 0;\n    margin: 0;\n    padding: 0;\n}\n\n/*\n * Allow only vertical resizing of textareas.\n */\n\n/*textarea {\n *   resize: vertical;\n/*}\n\n/* ==========================================================================\n   Browser Upgrade Prompt\n   ========================================================================== */\n\n.browserupgrade {\n    margin: 0.2em 0;\n    background: #ccc;\n    color: #000;\n    padding: 0.2em 0;\n}\n\n/* ==========================================================================\n   Author's custom styles\n   ==========================================================================\n*/\n\n/* NOTE Все размеры задаем в vh и vw, чтобы текст не вываливался из блоковп при уменьшении размеров окна браузера */\n\n/* FUTURE USER STYLES START */\n\n/* FUTURE FONTS */\n/* ---------------------------------------------------------------------------------- Основной шрифт */\n\nhtml {\n    line-height: 1.5;							/* Высота межстрочного интервала */\n    font-size: 1.1vw;							/* Размер основного шрифта */\n	font-family: \"Comic Sans MS\", \"Verdana\", sans-serif;\n    color: darkslategray;						/* Цвет текста */\n}\n\np {\n	text-indent: 3vw;							/* Отступ первой строки */\n}\n\nem {\n	font-weight: bold;							/* Полужирный шрифт */\n	font-style: normal;							/* Некурсивное начертание */\n	color: #ff0000;\n}\n\n/* Footer */\n.license {\n	text-align: center;							/* Выравниваем по центру футера */\n}\n\n/* FUTURE Heading Fonts */\n/* ---------------------------------------------------------------------------------- Заголовки */\n\nheader {\n	text-transform: uppercase; 					/* Заголовки большими буквами */\n	text-align: center;							/* Заголовочная часть по центру */\n	font-family: \"MerriWeather\", \"Arial\", sans-serif;\n	color: firebrick;\n}\n\nh3 {\n	text-transform: uppercase;					/* Тоже большими буквами */\n	margin-left: 15vw; 							/* Заголовки поменьше - по левой стороне */\n	font-family: \"MerriWeather\", \"Comic Sans MS\", sans-serif;\n	color: brown;\n}\n\n/* Заголовки таблицы */\n.responsive-table caption {\n	text-transform: uppercase;					/* Все буквы большие */\n	font-weight: bold;							/* Полужирный шрифт */\n	font-size: 2vw;								/* Размер шрифта */\n	font-family: \"Neucha\", cursive;				/* Шрифт */\n	color: firebrick;\n}\n\n/* Заголовочная часть таблицы */\n.responsive-table th {\n	text-align: center; 						/* Выравниваем текст заголовков по центру */\n	font-weight: bold;							/* Полужирное начертание */\n	font-size: 2vw; 							/* Размер шрифта заголовков */\n	font-family: \"Arial\", \"Helvetica\", \"Verdana\", sans-serif;\n	color: darkslategray;						/* Цвет шрифта заголовков */\n}\n\n.responsive-table th,\ndetails summary {\n	text-transform: uppercase;					/* Все буквы большие */\n	font-family: \"Monotype Corsiva\", monospace;	/* Шрифт */\n}\n\n/* Встроенные таблицы */\n.inner-table {\n	font-size: 1.3vw;							/* Размер шрифта чуть меньше, чем основной */\n}\n\n/* FUTURE Links Fonts */\n/* ---------------------------------------------------------------------------------- Cсылки на странице */\n\na {\n	text-decoration: none;						/* Убираем подчеркивание */\n	color: crimson;\n}\n\n/* Ссылки при наведении */\na:hover {\n	text-decoration: underline;					/* Показываем ссылку */\n	color: darkorange;							/* Цвет ссылки при наведении */\n}\n\n/* Ссылки крупнее, чем просто в тексте */\n.medium-link {\n	text-decoration: none;						/* Убираем подчеркивание */\n	font-variant: small-caps; 					/* Прописные символы размером со строчные */\n	font-weight: bold;							/* Полужирный шрифт */\n	font-size: 2vw;								/* Размер шрифта как у заголовков в таблице */\n	color: darkslateblue;						/* Цвет текста */\n}\n\n/* Посещенные ссылки */\n.medium-link:visited {\n	color: mediumorchid;						/* Цвет текста */\n}\n\n/* Посещенные ссылки при наведении */\n.medium-link:hover {\n	text-decoration: underline;					/* Показываем ссылку */\n	color: mediumpurple;						/* Цвет текста */\n}\n\n/* ---------------------------------------------------------------------------------- Cсылки для текстовых блоков */\n\n.source-links a {\n	text-decoration: none; 						/* Убираем подчеркивание у ссылок */\n	color: darkslateblue;\n}\n\n.source-links a:visited {\n	color: lightslategray;\n}\n\n/* FUTURE Image Fonts */\n/* ---------------------------------------------------------------------------------- Подписи под картинками */\n\n/* Форматируем текст подписи к рисунку */\n.float-figure figcaption {\n	font-size: small; 							/* Уменьшенный размер шрифта */\n	font-weight: bold;							/* Полужирный курсив */\n	font-style: italic;\n}\n\n#dropBox {\n	text-align: center;\n}\n\n#dropBox div {\n	font-family: Verdana, Arial, sans-serif;\n}\n\n\n/* FUTURE Definition Fonts */\n/* ---------------------------------------------------------------------------------- Определения в тексте */\n\ndfn {\n	font-style: normal;							/* Убрали курсив */\n	font-weight: bold;							/* Полужирный шрифт */\n	font-size: 1.2vw;							/* Шрифт на 0.1 больше основного */\n	color: lightcoral;\n}\n\n/* FUTURE Quotes Font */\n/* ---------------------------------------------------------------------------------- Кавычки */\n\nq {\n	font-style: italic; 						/* Курсивное начертание текста */\n    color: darkslateblue; 						/* Синий цвет текста */\n    quotes: \"\\00ab\" \"\\00bb\"; 					/* Кавычки в виде двойных угловых скобок */\n}\n\n/* FUTURE CodeBlocks Fonts */\n/* ---------------------------------------------------------------------------------- Блоки с кодом */\n\ncode {\n	font-family: \"Anonymous\", \"Courier\", monospace;\n	font-size: 1.3vw;							/* Размер шрифта */\n	font-weight: bold;							/* Полужирный шрифт */\n}\n\ncode q {\n	quotes: \"\\0027\" \"\\0027\";					/* Апостроф (одинарная кавычка) */\n}\n\n#codeString,\n#fileInput {\n	font-family: \"Anonymous\", \"Courier\", monospace;\n	font-size: 1.3vw;							/* Размер шрифта */\n	font-weight: bold;							/* Полужирный шрифт */\n	color: cyan;\n}\n\n/* ---------------------------------------------------------------------------------- Блоки с кнопками */\n\n.serverButton {\n	display: block;								/* Пока что будут по всей ширине страницы сверху */\n}\n\n.apiButtons button,\n.apiButtons input[type='number'] {\n	text-align: left;\n	font-family: 'Ubuntu Mono', \"Courier\", monospace;\n	font-size: 1.3vw;							/* Размер шрифта */\n	font-weight: bold;							/* Полужирный шрифт */\n	color: darkred;\n}\n\n.apiButtons input[type='number'] {\n	font-size: 1vw;\n}\n\n.hide {\n	display: none;\n}\n\n/* FUTURE Links Fonts */\n/* ---------------------------------------------------------------------------------- Списки в основном тексте */\n\narticle > ul li,\narticle > ol li {\n	line-height: 3.5vh;							/* Высота линии */\n	font-family: \"Neucha\", cursive;				/* Шрифт */\n	font-size: 1.2vw;							/* Размер шрифта */\n}\n\n/* FUTURE Form Fonts */\n/* ---------------------------------------------------------------------------------- Таблицы */\n\n/* Текст подсказки */\n::-webkit-input-placeholder { color: blueviolet; text-overflow: ellipsis; }\n	::-moz-placeholder          { color: blueviolet; text-overflow: ellipsis; }\n		:-moz-placeholder           { color: blueviolet; text-overflow: ellipsis; }\n			:-ms-input-placeholder      { color: blueviolet; text-overflow: ellipsis; }\n\n/* Отмеченные поля */\n*:checked~label {\n	font-weight: bold;\n}\n\n#storageItems tr td {\n	font-variant: small-caps;\n	font-size: 1.5vw;\n	font-weight: bold;\n	color: darkmagenta;\n}\n\nlegend {\n	font-size: 1.5vw;\n	font-weight: bold;							/* Пишем полужирным шрифтом */\n	font-variant: small-caps;					/* Маленькими/ большими буквами */\n}\n\n/* FUTURE Fonts Misc */\n/* ---------------------------------------------------------------------------------- Кнопки под плейером */\n\n/* Панель с кнопками под плейером */\n.panel button,\n.panel outline {\n	text-transform: uppercase;					/* Пишем большими буквами */\n	font-weight: bold;							/* Полужирный шрифт */\n	text-align: center;							/* Текст в центре */\n	font-size: 1.1vw;							/* Размер шрифта */\n}\n\n/* Ползунок для видео */\n#volumeCtrl,\n#videoProgress,\noutput {\n	text-align: center;							/* Текст в центре */\n}\n\n/* ---------------------------------------------------------------------------------- Буквица */\n\np::first-letter {\n	float: left; 								/* Обтекание по левому краю */\n	margin-right: -3.1vw; 						/* text-indent отсчитывается от стилизованной 1-й буквы */\n	margin-left: 1vw;\n	line-height: 1.8vh; 						/* Положение относительно текста */\n	font-size: 2vw;								/* Размер буквицы */\n	color: lightcoral;		 					/* Цвет буквицы  */\n}\n\n/* Приводим в нормальный вид первую букву для 3D-текста, так как на нее влияет p:first-letter */\n.text-3d::first-letter {\n	float: none;\n	color: inherit;\n	font-size: inherit;\n	margin: inherit;\n}\n\n/* ---------------------------------------------------------------------------------- 3D Text */\n\n.text-3d {\n	font-size: 4vw;\n	font-weight: bold;\n	margin: 1vw 0;\n	color: #fff;\n	padding: 1vw;\n	text-shadow:\n		-1px 1px 0 #ddd,\n		-2px 2px 0 #c8c8c8,\n		-3px 3px 0 #ccc,\n		-4px 4px 0 #b8b8b8,\n		-4px 4px 0 #bbb,\n			0px 1px 1px rgba(0,0,0,.4),\n			0px 2px 2px rgba(0,0,0,.3),\n				-1px 3px 3px rgba(0,0,0,.2),\n				-1px 5px 5px rgba(0,0,0,.1),\n					-2px 8px 8px rgba(0,0,0,.1),\n					-2px 13px 13px rgba(0,0,0,.1);\n}\n\n/* -------------------------------------------------------------------------- Шрифт для динамических элементов */\n\n.dinamic {\n	font-size: 1.3vw;\n	font-weight: bold;\n	color: darkred;\n}\n\n/* FUTURE PAGE-PROOF */\n/* ---------------------------------------------------------------------------------- Общие правила верстки */\n\n/* Меняем блочную модель для всех элементов */\n* {\n	box-sizing: border-box;\n}\n\nbody {\n	margin: 1vh 1vw; 							/* Маленькие одинаковые отступы для всего */\n}\n\narticle {\n	position: relative;							/* Для загнутых уголков */\n	margin: 5vh 0.5vw;\n	padding: 2vw;\n	min-height: 90vh;\n	min-width: 460px;\n}\n\n#storageData {\n	display: block;\n	margin: 1vw auto;\n	padding: 1vw;\n	width: 75vw;\n	overflow: hidden;\n}\n\n#dropBox {\n	margin: 15px;\n	width: 65vw;\n	height: 20vh;\n}\n\n#fileOutput{\n	width: 74vw;\n}\n\n#httpArticle {\n	text-align: center;\n	line-height: 15vh;\n}\n\n#slide {\n	display: inline-block;\n	text-align: center;\n	width: 40vw;\n	background: rgba(218,165,32,0.5);\n	border: solid 3px darkslategray;\n	padding: 10px;\n	\n}\n\n\n/* ---------------------------------------------------------------------------------- Блоки с кодом */\n\ncode {\n	width: 65vw;								/* Ширина внутренних блоков кода */\n	margin: 2vw auto;							/* Центрируем внутренние блоки кода */\n}\n\npre {\n	tab-size: 4;								/* Размер табуляции */\n}\n\n#codeString {\n	float: left;\n	width: 15vw;\n	max-width: 69vw;\n	height: 80vh;\n	z-index: 100;\n	margin-left: 0;\n}\n\n#fileInput {\n	width: 70vw;\n	height: 20vh;\n}\n\n/* ---------------------------------------------------------------------------------- Блоки с текстом */\n\n/* Текстовые блоки \"Интересно\", \"Важно\" и прочие */\n.text-block {\n	padding: 2vh 7vw;								/* Отодвигаем текст */\n}\n\n/* ---------------------------------------------------------------------------------- Блоки с кнопками */\n\n.apiButtons {\n	float: right;\n	width: 16vw;\n	height: 80vh;\n	margin: 0;\n	overflow-y: auto;\n	overflow-x: hidden;\n}\n\n.serverButtons {\n	display: block;\n	margin-bottom: 0;\n	text-align: left;\n}\n\n/* ---------------------------------------------------------------------------------- Рисунки в тексте */\n\n/* Форматируем блок плавающего рисунка. */\n.float-figure {\n	float: left; 								/* Пусть картинки в тексте плавают слева */\n	margin-right: 10vw;							/* Отступ для текста */\n}\n\n.float-figure figcaption {\n	max-width: 20vw; 							/* Задаем максимальную ширину для подписи */\n	margin-bottom: 3vh;							/* Отступ снизу */\n	margin-left: 47%;							/* ... и слева */\n}\n\n.float-figure img {\n	width: 15vw; 								/* Ширина блока с картинкой */\n}\n\n/* ---------------------------------------------------------------------------------- Details Page Proof  */\n\ndetails[open] summary,\ndetails[open] > code {\n	display: block;								/* иначе невозможно расположить внутренние элементы */\n}\n\ndetails summary::-webkit-details-marker {\n	display: none;								/* прячем родной значок */\n}\n\ndetails summary {\n	padding: 5px;								/* размер блока */\n}\n\ndetails summary:before,\ndetails[open] summary:before {\n	content: \" ⇓ \";								/* значок в открытом состоянии */\n	font-size: 2em;								/* размер значка */\n	color: darkslategray;						/* цвет значка в открытом состоянии */\n	margin-right: 5px;							/* расстояние от левого края до текста */\n}\n\ndetails[open] summary:before {\n	content: \" ⇑ \";								/* значок в закрытом состоянии */\n}\n\n/* ---------------------------------------------------------------------------------- Футер */\n\nfooter {\n	clear: both;\n	min-height: 10vh;							/* Высота футера */\n}\n\n/* FUTURE Tables Page-Proof */\n/* ---------------------------------------------------------------------------------- Таблицы */\n\n/* Правила для больших таблиц на всю страницу */\n.responsive-table {\n	width: 90vw; 								/* Ширина таблицы */\n	margin: 0 auto; 							/* Центрируем таблицу по горизонтали */\n}\n\n/* Заголовок больших таблиц */\n.responsive-table caption {\n	margin-top: 2vh;							/* Поля для заголовка */\n	margin-bottom: 5vh;\n}\n\n/* Заголовочная часть больших таблиц */\n.responsive-table thead tr th {\n	height: 10vh;								/* Высота заголовочной части */\n}\n\n.responsive-table td,\n.responsive-table th {\n	padding: 1vw; 								/* Отступы в заголовочной части */\n}\n\n/* Тело больших таблиц */\n.responsive-table tr td:first-child { 			/* В первую колонку не влазит заголовок */\n	width: 20vw;								/* Задаем ей подходящую ширину */\n}\n\n/* Правила для внутренних таблиц */\n.inner-table {\n	width: 75vw; 								/* Ширина внутренней таблицы */\n	margin: 2vw auto;							/* Центрируем внутреннюю таблицу */\n}\n\n#storageItems {\n	float: left;\n	width: 73vw;\n	margin: 1vh auto;\n}\n\n#storageItems tr td {\n	padding: 1vw;\n}\n\n/* FUTURE Lists Page Proof */\n/* ---------------------------------------------------------------------------------- Списки */\n\n/* Правила для списков непосредственно в <article> еще есть в summary */\narticle > ul,\narticle > ol {\n	margin-left: 5vw;\n	margin-top: 3vh;\n	margin-bottom: 3vh;\n}\n\narticle > ul li {\n	list-style-type: none; 						/* Убираем исходные маркеры */\n	background: url(\"../img/ok.png\"); 			/* Загружаем картинку */\n	background-repeat: no-repeat;				/* Запрещаем ей повторяться */\n	background-size: 1vw auto;					/* Делаем картинку резиновой */\n	background-position: 0.1vw center;			/* Размещаем ее слева */\n	padding: 0.2vh 2vw;							/* Задаем отступы сверху и снизу */\n}\n\n/* FUTURE Form Page Proof */\n/* ---------------------------------------------------------------------------------- Формы */\n\nform {\n	padding: 1vw;								/* Внутренний отступ */\n}\n\n.fieldsetWrap {\n	width: 80vw;\n}\n\n.fieldsetWrap fieldset {\n	width: 32vw;								/* Задаем только ширину, чтобы можно было добавлять содержимое */\n}\n\nfieldset {\n	display: inline-block;						/* Показываем по 2 филдсета в ряд */\n	vertical-align: top;						/* Выравниваем их по верхней линии */\n	width: 42vw;\n	margin: 2vh 1vw;							/* Поля */\n	padding: 2vh 1vw;							/* Отступы */\n	outline: 0;\n}\n\n.fieldsetWrap fieldset:nth-child(-n+2) {\n	float: left;\n}\n\n.fieldsetWrap fieldset:nth-last-child(2) {\n	width: 70vw;\n	margin: 1vh auto;\n}\n\nlegend {\n	padding: 0 1vw;								/* Выравниваем по центру */\n}\n\nlabel {\n	display: inline-block;						/* Размещаем в один ряд с кнопками */\n	vertical-align: top;						/* Выравниваем их по верхней линии */\n	margin: 0.5vw;								/* Поля */\n	width: 8vw;									/* Ширина */\n}\n\n/* Инпуты */\ninput,\ntextarea,\nselect {\n	margin: 1vh 2vw;							/* Поля */\n	padding: 1vh 1vw;							/* Отступы */\n	width: 15vw;\n}\n\ntextarea {\n	height: 10vh;\n	overflow: hidden;							/* Запрещаем скролл */\n}\n\ninput[type=\"checkbox\"],\ninput[type=\"radio\"] {\n	width: 2vw;\n	height: 3vh;\n}\n\ninput[type=\"button\"],\ninput[type=\"file\"],\n.apiButtons input[type='number'] {\n	width: 14vw;\n	padding: 0.3vw;								/* Отступы */\n}\n\n.apiButtons input[type='number'] {\n	margin: 0.2vw;\n}\n\nprogress,\noutput {\n	display: block;\n	margin: 3vh auto;\n	padding: 1vw;								/* Отступы */\n	height: 5vh;\n	width: 83vw;\n}\n\n/* FUTURE Frames Page Proof */\n/* ---------------------------------------------------------------------------------- Фреймы */\n\niframe {\n	position: absolute;\n	width: 97vw;\n	min-height: 80vh;\n	margin-right: -20vw;\n	padding-left: -50vw;\n	padding-top: 0;\n}\n\n/* FUTURE Canvas Page Proof */\n/* ---------------------------------------------------------------------------------- Canvas */\n\n/* FIXME Кривой Canvas */\n/* Canvas */\n#canvasField {\n	position: relative;									/* Чтобы скрытая картинка для сохранения далеко не убегала */\n}\n\n/* FIXME Кривая картинка */\n/* Блок для картинки */\n#savedCopyContainer,\n#savedImageCopy {\n	display: none;										/* Сначала прячем */\n	position: absolute;									/* Позиционируем */\n	top: 4%; left: 5%; right: 80%;\n	width: 600px;\n	height: 350px;\n}\n\n#savedImageCopy {\n	margin: 10px;\n	width: 550px;\n	height: 300px;\n\n}\n\n#savedCopyContainer p {\n	margin-top: 300px;\n}\n\n/* FUTURE Media Page Proof */\n/* ---------------------------------------------------------------------------------- Плейер */\n\n/* FIXME С Video все как-то некошерно */\nvideo {\n	display: block;								/* Отображаем как блок, чтобы было можно центрировать */\n	width: 41vw;								/* Подбираем ширину до вертикальных полос прокрутки */\n	margin: 5vh auto;							/* Центрируем и немножко отодвигаем сверху */\n}\n\n/* Панелька с кнопками для плейера */\n.panel {\n	position: relative;							/* ????????????????????? */\n	margin: 2vh auto;\n	width: 55vw;\n	height: 15vh;\n}\n\n/* Ползунок для видео */\n#volumeCtrl,\n#videoProgress,\noutput {\n	position: relative;							/* ????????????????????? */\n	display: block;								/* ????????????????????? */\n	margin: 2vh auto;\n	padding: 0.5vh;\n	width: 45vw;\n	height: 4vh;\n}\n\n/* FUTURE BUTTONS && CURSORS */\n/* ---------------------------------------------------------------------------------- BUTTONS PAGE-PROOF */\n\n/* Кнопки для плейера */\n.panel button {\n	display: inline-block;\n	margin: 0.2vw auto;\n}\n\n.apiButtons button {\n	position: relative; 						/* Чтобы сработал z-index */\n	width: 16vw;\n	z-index: 100;								/* Выдвигаем вперед */\n}\n\ndetails summary {\n	cursor: pointer;	 						/* курсор-указатель */\n}\n\n/* FEATURE Custom scroll */\n\n/* Скроллбар */\n::-webkit-scrollbar {\n	width: 18px;\n	height: 18px;\n}\n\n/* Кнопка вверх/ вниз */\n::-webkit-scrollbar-button:start:decrement,\n::-webkit-scrollbar-button:end:increment  {\n	height: 5px;\n	display: block;\n	background-color: transparent;\n}\n\n/* Трек */\n::-webkit-scrollbar-track {\n	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);\n	border-radius: 10px;\n}\n\n/* Видимая часть трека */\n::-webkit-scrollbar-track-piece  {\n	background-color: lightsteelblue;\n	-webkit-border-radius: 6px;\n}\n\n/* ползунок */\n::-webkit-scrollbar-thumb {\n	height: 50px;\n	background-color: darkcyan;\n	border: 1px solid #eee;\n	-webkit-border-radius: 6px;\n}\n\n/* FUTURE BORDERS */\n/* ---------------------------------------------------------------------------------- Бордюры для Canvas */\n\n#canvasField,\n#savedCopyContainer {\n	border: 2px dashed darkslategray;\n}\n\n#codeString,\n#fileInput,\n.apiButtons {\n	border: 5px solid darkslategray;\n}\n\n/* ---------------------------------------------------------------------------------- Бордюры для текстовых блоков */\n\n/* Текстовые блоки \"Интересно\", \"Важно\" и прочие */\n.text-block {\n	border-radius: 10px;\n}\n\n/* Блок - \"Это интересно\" */\n.interesting {\n	border: 0.5vw double lightcoral;\n}\n\n/* Блок со ссылками на источник */\n.source-links {\n	border: 0.5vw double lightcyan;\n}\n\n/* ---------------------------------------------------------------------------------- Бордюры для таблиц */\n\n.responsive-table,\nform {\n	border-collapse: collapse;					/* Соединяем рамки таблицы */\n	border: 5px groove lightslategray;			/* Рамка для таблицы */\n}\n\n.responsive-table td,\n.responsive-table th,\nfooter {\n	border: 2px inset lightslategray;			/* Рамка для ячеек */\n}\n\n.inner-table,\n.inner-table th,\n.inner-table tr,\n.inner-table td {\n	border: 2px ridge darkslategray;   			/* Рамки вложенных таблиц */\n}\n\n#storageItems tr>td {\n	border: 5px solid darkgreen;\n}\n\nfooter {\n	border-bottom-left-radius: 50px 120px; 		/* Скругленные уголки */\n	border-bottom-right-radius: 50px 120px;\n}\n\n/* ---------------------------------------------------------------------------------- Бордюры для форм */\n\nfieldset {\n	border: 3px groove darkslategray;\n	border-radius: 10px;\n}\n\nfieldset,\ninput,\ninput:focus,				/* Убираем рамки при выделении, так как они не совпадают со скругленными уголками */\ninput[type=\"range\"],\ninput[type=\"range\"]:focus,\ninput[type=\"checkbox\"],\ninput[type=\"checkbox\"]:focus,\ninput[type=\"radio\"],\ninput[type=\"radio\"]:focus,\ntextarea,\ntextarea:focus,\nselect,\nselect:focus,\nprogress,\noutput,\n.apiButtons {\n	outline: none;			/* Убираем пунктирную рамку только у текстовых полей и селектов */\n	border: 2px solid darkslategray;\n	border-radius: 10px;\n}\n\n/* Стилизуем ползунок для Opera и Chrome */\ninput[type='range']::-webkit-slider-thumb {\n	-webkit-appearance: none;\n	background-color: #ffeeee;\n	border: 1px solid darkslategray;\n	width: 20px;\n	height: 20px;\n	border-radius: 10px;\n	cursor: pointer;\n}\n\n/* Прячем стандартный ползунок для Opera и Chrome */\ninput[type='range'] {\n	-webkit-appearance: none;\n}\n\n/* ---------------------------------------------------------------------------------- HTML5 Валидация полей форм */\n\n/* Некорректно заполненные поля формы */\n:invalid,\n:out-of-range {\n	border: 2px solid red;\n}\n\n/* Корректно заполненные поля формы */\n:valid,\n:in-range {\n	border: 2px solid green;\n}\n\n/* Поля формы обязательные для заполнения */\n:required {\n	border: 2px solid lightCoral;\n}\n\n/* ---------------------------------------------------------------------------------- Бордюры для плейера */\n\n.panel button {\n	border-radius: 5px;\n}\n\n/* ---------------------------------------------------------------------------------- Бордюры для MISC */\n\n.text-3d {\n	border: 2vw solid white;\n}\n\n#dropBox {\n	border: 5px dotted gray;\n	border-radius: 5px;\n}\n\n/* FUTURE BACKGROUNDS */\n/* ---------------------------------------------------------------------------------- Backgrounds */\n\n.frameHTML {\n	/*background: url('http://www.subtlepatterns.com/patterns/white_leather.png');*/\n	background: url('../img/white_leather.png');\n}\n\n#canvasField  {\n	background: url('http://www.subtlepatterns.com/patterns/pink_rice.png');\n	margin: 0;\n}\n\n.apiButtons button,\n.apiButtons input {\n	opacity: .6;\n}\n\n.apiButtons button:hover,\n.apiButtons input:hover {\n	opacity: 1;\n}\n\n#codeString,\n#fileInput {\n	background: url('../img/peacock-blues.png');\n	opacity: .4;\n	overflow: auto;\n}\n\nprogress::-webkit-progress-value {\n	background-color: lightgreen;\n}\n\n#dropBox {\n	background: lightyellow;\n	background-size: 100%; /* Уменьшение изображения, чтоб его можно было видеть */\n	background-repeat: no-repeat;\n}\n\n/* ---------------------------------------------------------------------------------- Фон для блоков с текстом */\n\n/* Текстовые блоки \"Интересно\", \"Важно\" и прочие */\n.text-block {\n	background-repeat: no-repeat; 					/* Запрещаем картинке повторяться */\n	background-size: 5vw auto;						/* Делаем ее маленькой */\n	background-position: 1vw center;				/* Клеим к левому краю */\n}\n\n/* Блок - \"Это интересно\" */\n.interesting {\n	background-image: url(\"../img/interesting.png\");\n}\n\n/* Блок со ссылками на источник */\n.source-links {\n	background-image: url(\"../img/source.png\");\n}\n\n/* FUTURE GRADIENTS */\n/* ---------------------------------------------------------------------------------- Page Gradients */\n\nhtml {\n	background:\n		radial-gradient(circle at 2.02% 72.90%, #cecece, transparent 100%),\n		radial-gradient(circle at 97.98% 17.89%, #ffffff, transparent 100%),\n		radial-gradient(circle at 50.00% 49.93%, rgba(255,255,255,0.5), transparent 100%),\n		radial-gradient(circle at 50% 50%, #000000, #000000 100%)\n}\n\narticle,\n#storageItems tr td {\n	background:\n		radial-gradient(circle at 2.02% 16.02%, #ffeeee, transparent 100%),\n		radial-gradient(circle at 97.98% 25.90%, #ddefbb, transparent 100%),\n		radial-gradient(circle at 50% 50%, #f8e57d, #f8e57d 100%)\n}\n\nfooter {\n	background:\n		radial-gradient(circle at 2.02% 72.90%, #626962, transparent 100%);\n}\n\n/* ---------------------------------------------------------------------------------- Tables Gradients */\n\n/* Градиент фона большой таблицы */\n:focus,\n.responsive-table,\nprogress::-webkit-progress-bar {\n	background:\n		radial-gradient(circle at 2.02% 32.98%, #eeefff, transparent 70%),\n		radial-gradient(circle at 97.98% 52.07%, #e4eab5, transparent 70%),\n		radial-gradient(circle at 50% 50%, #e9edef, #e9edef 100%)\n}\n\n/* Градиент заголовков таблиц */\n.responsive-table thead,\ndetails summary {\n	background-color: rgb(197,199,214);\n	background-image:\n		linear-gradient(to bottom, rgba(197,199,214, 0.2), rgba(14,100,63, 0.2));\n}\n\n.responsive-table tr:hover,\n.apiButtons button { 							/* Подсветка рядов таблицы */\n	background:\n		radial-gradient(circle at 2.02% 52.07%, #ece9e6, transparent 100%),\n		radial-gradient(circle at 97.98% 26.97%, #fff, transparent 100%),\n		radial-gradient(circle at 50% 50%, #000, #000 100%)\n}\n\n/* ---------------------------------------------------------------------------------- Forms Gradients */\n\ninput[type=\"submit\"],\ninput[type=\"reset\"],\ninput[type=\"file\"],\nselect,\n.panel button {\n	background:\n		radial-gradient(circle at 2.02% 32.98%, rgba(216, 195, 202, 0.83), transparent 60%),\n		radial-gradient(circle at 50% 50%, rgba(185, 214, 105, 0.3), rgba(185, 214, 105, 0.42) 100%)\n}\n\n/* ---------------------------------------------------------------------------------- Media Gradients */\n\n/* Градиент для плейера */\nprogress::-webkit-progress-value,\ninput[type=\"range\"],\n.panel button:focus {\n	background-image:\n		linear-gradient(to right, rgba(128, 247, 123, 0.3), rgba(27, 49, 2, 0.6));\n}\n\n/* FUTURE SHADOWS */\n/* ---------------------------------------------------------------------------------- Page Shadows */\n\narticle,\n.interesting,\n.source-links,\nform {\n	-webkit-box-shadow: 0 5px 10px rgba(65, 89, 123, 0.8), inset 0 0 50px rgba(158, 185, 204, 0.52);\n		-moz-box-shadow: 0 5px 10px rgba(65, 89, 123, 0.8), inset 0 0 50px rgba(158, 185, 204, 0.52);\n			box-shadow: 0 5px 10px rgba(65, 89, 123, 0.8), inset 0 0 50px rgba(158, 185, 204, 0.52);\n}\n\n/* Тень по всем 4-м сторонам */\n.apiButtons,\n#codeString {\n	position: relative;\n	z-index: 100;\n\n	-webkit-box-shadow: 0px 1px 15px 8px rgba(107, 146, 132, 0.63);\n		-moz-box-shadow:    0px 1px 15px 8px rgba(107, 146, 132, 0.63);\n			box-shadow:         0px 1px 15px 8px rgba(107, 146, 132, 0.63);\n}\n\nhr {\n	border: 0;\n	height: 5px;\n\nbackground:\n	-webkit-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0)),\n		-moz-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0)),\n			-o-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0)),\n				-ms-linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0)),\n					linear-gradient(left, rgba(0,0,0,0), rgba(178, 34, 34, 0.75), rgba(0,0,0,0));\n}\n\n/* Тень футера */\n.responsive-table,\nfooter {\n	box-shadow: 0px 0px 15px darkslategray;\n}\n\n/* ---------------------------------------------------------------------------------- Forms Shadows */\n\ninput,\ntextarea,\nselect,\noutline,\n#volumeCtrl {\n	box-shadow:	0px 0px 1px darkslategray inset,\n		1px 1px 2px lightGreen inset,\n		2px 2px 3px mistyRose inset;\n}\n\n#storageItems tr td:hover {\n		box-shadow:	0px 0px 2px 2px darkslategray,\n			0px 0px 4px 4px coral,\n			0px 0px 6px 6px lightgreen;\n}\n\n/* ---------------------------------------------------------------------------------- Misc Shadows */\n\n/* -------------------------------------------------------------- Загнутые уголки для страницы */\n\narticle:before,\narticle:after {\n	content: ' ';\n	position: absolute;\n	width: 45vw;											/* размеры прозрачных полосок */\n	height: 3vh;\n	left: 1.5vw;											/* Расстояние от левого края для левой полоски */\n	bottom: 4vh;											/* Расстояние снизу для левой полоски */\n	background: transparent;								/* Левая полоска прозрачная */\n\n	/* Настраиваем поворот */\n	-webkit-transform: skew(-5deg) rotate(-5deg);\n		-moz-transform: skew(-5deg) rotate(-5deg);\n			-ms-transform: skew(-5deg) rotate(-5deg);\n				-o-transform: skew(-15deg) rotate(-5deg);\n					transform: skew(-5deg) rotate(-5deg);\n\n	/* Настраиваем тень */\n	-webkit-box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);\n		-moz-box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);\n			box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);\n\n	z-index: -1; 									/* Прячем полоски под элемент с position absolute */\n}\n\n/* Правая полоска*/\narticle:after {\n	left: auto;\n	right: 1.5vw; 									/* Расстояние от правого края для правой полоски */\n\n	-webkit-transform: skew(5deg) rotate(5deg); 									/* Задаем перекосы */\n		-moz-transform: skew(5deg) rotate(5deg);\n			-ms-transform: skew(5deg) rotate(5deg);\n				-o-transform: skew(5deg) rotate(5deg);\n					transform: skew(5deg) rotate(5deg);\n}\n\n/* -------------------------------------------------------------- Загнутые уголки для блоков на странице */\n\narticle:before,\narticle:after {\n	content: ' ';\n	position: absolute;\n	width: 45vw;														/* размеры прозрачных полосок */\n	height: 3vh;\n	left: 1.5vw;											/* Расстояние от левого края для левой полоски */\n	bottom: 4vh;											/* Расстояние снизу для левой полоски */\n	background: transparent;\n\n	-webkit-transform: skew(-5deg) rotate(-5deg); 					/* немного поворачиваем полоски */\n		-moz-transform: skew(-5deg) rotate(-5deg);\n			-ms-transform: skew(-5deg) rotate(-5deg);\n				-o-transform: skew(-15deg) rotate(-5deg);\n					transform: skew(-5deg) rotate(-5deg);\n\n	-webkit-box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);\n		-moz-box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);\n			box-shadow: 10px 10px 40px rgba(0, 0, 0, 0.8);\n\n	z-index: -1; 									/* прячем полоски под элемент с position absolute */\n}\n\n/* Правая полоска*/\narticle:after {\n	left: auto;\n	right: 1.5vw; 									/* Расстояние от правого края для правой полоски */\n\n	-webkit-transform: skew(5deg) rotate(5deg); 									/* задаем перекосы */\n		-moz-transform: skew(5deg) rotate(5deg);\n			-ms-transform: skew(5deg) rotate(5deg);\n				-o-transform: skew(5deg) rotate(5deg);\n					transform: skew(5deg) rotate(5deg);\n}\n\n/* -------------------------------------------------------------- Text 3D */\n\n.text-3d {\n	box-shadow:\n	-1px 1px 0 #ddd,\n	-2px 2px 0 #c8c8c8,\n	-3px 3px 0 #ccc,\n		-4px 4px 0 #b8b8b8,\n		-4px 4px 0 #bbb,\n			0px 1px 1px rgba(0,0,0,.4),\n			0px 2px 2px rgba(0,0,0,.3),\n			-1px 3px 3px rgba(0,0,0,.2),\n				-1px 5px 5px rgba(0,0,0,.1),\n				-2px 8px 8px rgba(0,0,0,.1),\n				-2px 13px 13px rgba(0,0,0,.1);\n}\n\n/* FUTURE END USER STYLE */\n\n\n/* ==========================================================================\n   Helper classes\n   ========================================================================== */\n\n/*\n * Hide visually and from screen readers:\n */\n\n.hidden {\n	display: none !important;\n}\n\n/*\n * Hide only visually, but have it available for screen readers:\n * http://snook.ca/archives/html_and_css/hiding-content-for-accessibility\n */\n\n.visuallyhidden {\n	border: 0;\n    clip: rect(0 0 0 0);\n    height: 1px;\n    margin: -1px;\n    overflow: hidden;\n    padding: 0;\n    position: absolute;\n    width: 1px;\n}\n\n/*\n * Extends the .visuallyhidden class to allow the element\n * to be focusable when navigated to via the keyboard:\n * https://www.drupal.org/node/897638\n */\n\n.visuallyhidden.focusable:active,\n.visuallyhidden.focusable:focus {\n    clip: auto;\n    height: auto;\n    margin: 0;\n    overflow: visible;\n    position: static;\n    width: auto;\n}\n\n/*\n * Hide visually and from screen readers, but maintain layout\n */\n\n.invisible {\n    visibility: hidden;\n}\n\n/*\n * Clearfix: contain floats\n *\n * For modern browsers\n * 1. The space content is one way to avoid an Opera bug when the\n *    `contenteditable` attribute is included anywhere else in the document.\n *    Otherwise it causes space to appear at the top and bottom of elements\n *    that receive the `clearfix` class.\n * 2. The use of `table` rather than `block` is only necessary if using\n *    `:before` to contain the top-margins of child elements.\n */\n\n.clearfix:before,\n.clearfix:after {\n    content: \" \"; /* 1 */\n    display: table; /* 2 */\n}\n\n.clearfix:after {\n    clear: both;\n}\n\n/* ==========================================================================\n   EXAMPLE Media Queries for Responsive Design.\n   These examples override the primary ('mobile first') styles.\n   Modify as content requires.\n   ========================================================================== */\n\n@media only screen and (min-width: 35em) {\n    /* Style adjustments for viewports that meet the condition */\n}\n\n@media print,\n       (-webkit-min-device-pixel-ratio: 1.25),\n       (min-resolution: 1.25dppx),\n       (min-resolution: 120dpi) {\n    /* Style adjustments for high resolution devices */\n}\n\n/* ==========================================================================\n   Print styles.\n   Inlined to avoid the additional HTTP request:\n   http://www.phpied.com/delay-loading-your-print-css/\n   ========================================================================== */\n\n@media print {\n    *,\n    *:before,\n    *:after {\n        background: transparent !important;\n        color: #000 !important; /* Black prints faster:\n                                   http://www.sanbeiji.com/archives/953 */\n        box-shadow: none !important;\n        text-shadow: none !important;\n    }\n\n    a,\n    a:visited {\n        text-decoration: underline;\n    }\n\n    a[href]:after {\n        content: \" (\" attr(href) \")\";\n    }\n\n    abbr[title]:after {\n        content: \" (\" attr(title) \")\";\n    }\n\n    /*\n     * Don't show links that are fragment identifiers,\n     * or use the `javascript:` pseudo protocol\n     */\n\n    a[href^=\"#\"]:after,\n    a[href^=\"javascript:\"]:after {\n        content: \"\";\n    }\n\n    pre,\n    blockquote {\n        border: 1px solid #999;\n        page-break-inside: avoid;\n    }\n\n    /*\n     * Printing Tables:\n     * http://css-discuss.incutio.com/wiki/Printing_Tables\n     */\n\n    thead {\n        display: table-header-group;\n    }\n\n    tr,\n    img {\n        page-break-inside: avoid;\n    }\n\n    img {\n        max-width: 100% !important;\n    }\n\n    p,\n    h2,\n    h3 {\n        orphans: 3;\n        widows: 3;\n    }\n\n    h2,\n    h3 {\n        page-break-after: avoid;\n    }\n}\n\n\n\n\n",
 			"file": "css/main.css",
-			"file_size": 42430,
-			"file_write_time": 130855931659746805,
 			"settings":
 			{
-				"buffer_size": 37255,
+				"buffer_size": 37335,
 				"line_ending": "Unix"
 			}
 		},
@@ -428,6 +461,7 @@
 	},
 	"expanded_folders":
 	[
+		"/home/allenka/public_html/webexam",
 		"/home/allenka/public_html/webexam/css",
 		"/home/allenka/public_html/webexam/doc",
 		"/home/allenka/public_html/webexam/doc/design",
@@ -441,20 +475,21 @@
 	],
 	"file_history":
 	[
+		"/home/allenka/public_html/webexam/doc/html5/http-gallery.php",
+		"/home/allenka/public_html/webexam/index.html",
+		"/home/allenka/public_html/webexam/js/main.js",
+		"/home/allenka/public_html/webexam/doc/html5/html5-storage.html",
+		"/home/allenka/public_html/webexam/doc/html5/html5-editor.html",
+		"/home/allenka/public_html/webexam/doc/html5/html5-tags.html",
+		"/home/allenka/public_html/webexam/css/main.css",
 		"/home/allenka/public_html/webexam/doc/php/php-shop.php",
 		"/home/allenka/public_html/webexam/doc/html5/frameset.html",
-		"/home/allenka/public_html/webexam/doc/html5/html5-editor.html",
-		"/home/allenka/public_html/webexam/index.html",
-		"/home/allenka/public_html/webexam/css/main.css",
-		"/home/allenka/public_html/webexam/js/main.js",
 		"/home/allenka/.config/sublime-text-3/Packages/DoxyDoxygen/Default (Linux).sublime-keymap",
 		"/home/allenka/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
 		"/home/allenka/.config/sublime-text-3/Packages/DoxyDoxygen/Doxy.sublime-settings",
 		"/home/allenka/public_html/webexam/doc/html5/html5-history.html",
 		"/home/allenka/public_html/webexam/demo.manifest",
 		"/home/allenka/public_html/webexam/.htaccess",
-		"/home/allenka/public_html/webexam/doc/html5/html5-tags.html",
-		"/home/allenka/public_html/webexam/doc/html5/html5-storage.html",
 		"/home/allenka/public_html/webexam/doc/html5/html5-forms.html",
 		"/home/allenka/public_html/webexam/doc/html5/html5-canvas.html",
 		"/home/allenka/public_html/webexam/doc/html5/html5-appcash.html",
@@ -495,7 +530,7 @@
 	],
 	"find":
 	{
-		"height": 46.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -509,6 +544,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"#fileInput",
 			"fileInput",
 			"white_leather",
 			"article",
@@ -635,8 +671,7 @@
 			"showLocalItems",
 			"itemsList",
 			"\"itemsList\"",
-			"\"localItemsList\"",
-			"\"localItems\""
+			"\"localItemsList\""
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -655,7 +690,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -664,15 +699,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 108705,
+						"buffer_size": 110772,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4645,
-								4645
+								6272,
+								6272
 							]
 						],
 						"settings":
@@ -680,41 +715,21 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
@@ -725,43 +740,63 @@
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content"
 							],
 							"history_list_is_closing": true,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 4284.0,
+						"translation.y": 6588.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "doc/html5/http-gallery.php",
+					"file": "doc/html5/html5-web-workers.html",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2012,
+						"buffer_size": 1427,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1471,
-								1471
+								1385,
+								1385
 							]
 						],
 						"settings":
@@ -769,41 +804,21 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
@@ -814,25 +829,45 @@
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content"
 							],
 							"syntax": "Packages/HTML/HTML.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1113.0,
+						"translation.y": 616.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -841,15 +876,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 37255,
+						"buffer_size": 37335,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8600,
-								8609
+								13015,
+								13015
 							]
 						],
 						"settings":
@@ -857,41 +892,21 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_double_quote",
 								"bh_double_quote_center",
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
-								"bh_default",
-								"bh_default_center",
-								"bh_default_open",
-								"bh_default_close",
-								"bh_default_content",
 								"bh_tag",
 								"bh_tag_center",
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
+								"bh_c_define",
+								"bh_c_define_center",
+								"bh_c_define_open",
+								"bh_c_define_close",
+								"bh_c_define_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
@@ -902,25 +917,46 @@
 								"bh_curly_open",
 								"bh_curly_close",
 								"bh_curly_content",
-								"bh_c_define",
-								"bh_c_define_center",
-								"bh_c_define_open",
-								"bh_c_define_close",
-								"bh_c_define_content",
+								"bh_default",
+								"bh_default_center",
+								"bh_default_open",
+								"bh_default_close",
+								"bh_default_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content"
 							],
+							"history_list_is_closing": true,
 							"syntax": "Packages/CSS/CSS.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 8067.0,
+						"translation.y": 13191.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -945,26 +981,11 @@
 							"BracketHighlighterBusy": false,
 							"bh_regions":
 							[
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
-								"bh_double_quote",
-								"bh_double_quote_center",
-								"bh_double_quote_open",
-								"bh_double_quote_close",
-								"bh_double_quote_content",
-								"bh_square",
-								"bh_square_center",
-								"bh_square_open",
-								"bh_square_close",
-								"bh_square_content",
-								"bh_round",
-								"bh_round_center",
-								"bh_round_open",
-								"bh_round_close",
-								"bh_round_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -975,31 +996,46 @@
 								"bh_tag_open",
 								"bh_tag_close",
 								"bh_tag_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
-								"bh_single_quote",
-								"bh_single_quote_center",
-								"bh_single_quote_open",
-								"bh_single_quote_close",
-								"bh_single_quote_content",
-								"bh_curly",
-								"bh_curly_center",
-								"bh_curly_open",
-								"bh_curly_close",
-								"bh_curly_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
 								"bh_c_define_content",
+								"bh_square",
+								"bh_square_center",
+								"bh_square_open",
+								"bh_square_close",
+								"bh_square_content",
+								"bh_curly",
+								"bh_curly_center",
+								"bh_curly_open",
+								"bh_curly_close",
+								"bh_curly_content",
+								"bh_single_quote",
+								"bh_single_quote_center",
+								"bh_single_quote_open",
+								"bh_single_quote_close",
+								"bh_single_quote_content",
+								"bh_double_quote",
+								"bh_double_quote_center",
+								"bh_double_quote_open",
+								"bh_double_quote_close",
+								"bh_double_quote_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
 								"bh_unmatched",
 								"bh_unmatched_center",
 								"bh_unmatched_open",
 								"bh_unmatched_close",
-								"bh_unmatched_content"
+								"bh_unmatched_content",
+								"bh_round",
+								"bh_round_center",
+								"bh_round_open",
+								"bh_round_close",
+								"bh_round_content"
 							],
 							"color_scheme": "Packages/PlainNotes/Color Schemes/Sticky-GreenLight.tmTheme",
 							"is_note": true,
@@ -1100,7 +1136,7 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 288.0,
+	"side_bar_width": 254.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

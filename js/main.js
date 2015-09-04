@@ -167,7 +167,7 @@ var  httpGallery = (function() {
 
 		init: function() {
 			goToNewSlide();
-			setListeners();
+
 
 		} // httpGallery.init
 
@@ -179,36 +179,61 @@ var cookies = (function() {
 
 	return {
 
-		// Сохраняет пару имя/ значение в виде cookie, кодируя значение с помощью 
-		// encodeURIComponent(), чтобы экранировать точки с запятой, запятые и пробелы. 
-		// Если в параметре daysToLive передается число, атрибут max-age 
-		// устанавливается так, что срок хранения cookie истекает через 
-		// указанное число дней. Если передать значение 0, cookie будет удален
+		/**
+		 * Сохраняет сookie имя/ значение, закодированные encodeURIComponent()
+		 * чтобы экранировать точки с запятой, запятые и пробелы. 
+		 * Если в параметре daysToLive устанавливает max-age дней
+		 * 0 чтобы удалить
+		 */ 
 		setCookie: function (name, value, daysToLive) {
 
 			var cookie = name + '=' + encodeURIComponent(value);
 
 			if (typeof daysToLive === 'number') {
 				cookie += '; max-age=' + (daysToLive * 60 * 60 * 24);
+
 			} else {
 				throw new Error('Параметр daysToLive должен быть числом.');
 			}
+
 			document.cookie = cookie;
 		}
 	};
 })();
 
-var httpGalleryPage = (function(){
-		return {
-			init: (function() {
-				httpGallery.init();
+var workers = (function() {	
+
+	return {
+
+		newWorker: function (funcObj) {
+
+		    // Build a worker from an anonymous function body
+		    var blobURL = URL.createObjectURL(new Blob(['(',funcObj.toString(),')()'], {
+		        type: 'application/javascript'
+		    })),
+
+		    worker = new Worker(blobURL);
+
+		    // Won't be needing this anymore
+		   	URL.revokeObjectURL(blobURL);
+
+		    return worker;
+		},				
+	};
+})();
+
+var httpGalleryPage = (function() {
+
+	return {
+			init: function() {				
 				cookies.setCookie('cookieCounter', 0, 1);
 				cookies.setCookie('Delete', 'http://webexam/img/del.png', 1);
 				cookies.setCookie('Gift', 'http://webexam/img/gift.png', 1);
 				cookies.setCookie('Interesting', 'http://webexam/img/interesting.png', 1);
 				cookies.setCookie('Ok', 'http://webexam/img/ok.png', 1);
+				httpGallery.init();
+			}
 				
-			})()
 	};
 })();
 
@@ -223,6 +248,26 @@ window.onload = (function() {
 
 	if (window.parent.location.pathname === '/doc/html5/http-gallery.php') { 
 		httpGalleryPage.init();
+	}
+
+	if (window.parent.location.pathname === '/doc/html5/html5-web-workers.html') {
+		
+		var ww = workers.newWorker(function () {
+
+		   	var i = 0;
+		    function timedCount() {
+
+				i = i + 1;
+				postMessage(i);
+				setTimeout(timedCount, 500);
+			}
+
+			timedCount();
+		});
+
+		ww.onmessage = function (event) {
+			document.getElementById("result").innerHTML = event.data;
+		};
 	}
 
 	/**
